@@ -1,0 +1,9 @@
+// Variables
+@import 'variables';
+
+.video-header {
+	position: relative;
+	> .video {
+		width: 100%;
+	}
+}

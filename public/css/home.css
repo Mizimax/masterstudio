@@ -1,0 +1,8 @@
+.video-header {
+  position: relative;
+}
+
+.video-header > .video {
+  width: 100%;
+}
+

@@ -1,9 +1,55 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+a {
+	color: $primary;
+}
+
+//Helper
+.border-circle {
+	border-radius: 50%;
+}
+
+.primary-color {
+	color: $primary;
+}
+
+
+
+//Element
+.navbar-wrapper {
+	@extend .position-fixed;
+	z-index: $zindex-fixed;
+	top: 10px;
+	padding: 0 20px;
+	width: 100%;
+
+	.user-info-menu {
+		font-size: 12px;
+
+		.user-progress {
+			border-bottom: 1px solid #f2d5d0;
+
+			.level {
+				font-size: 11px;
+				font-weight: bold;
+			}
+
+			.levelup {
+				font-size: 9px;
+				margin-top: 1px;
+				color: #fcac42;
+			}
+
+			.progress {
+				height: 10px;
+			}
+		}
+	}
+}
+
 
