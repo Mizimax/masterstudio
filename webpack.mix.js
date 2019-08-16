@@ -1,4 +1,20 @@
 const mix = require('laravel-mix');
+// const LiveReloadPlugin = require('webpack-livereload-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
+mix.webpackConfig({
+    plugins: [
+        // new LiveReloadPlugin(),
+        new BrowserSyncPlugin({
+            files: [
+                'app/**/*',
+                'public/**/*',
+                'resources/views/**/*',
+                'routes/**/*'
+            ]
+        })
+    ]
+});
 
 /*
  |--------------------------------------------------------------------------
