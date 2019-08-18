@@ -6,10 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - Master Studio</title>
-    <link rel="stylesheet" href="/css/app.css">
     @yield('style')
     <script>
-      var page = '@yield('page')';
+      var page = '@yield('page')'
     </script>
 </head>
 <body>
@@ -17,12 +16,41 @@
     <div class="navbar-wrapper">
         <nav class="navbar navbar-expand-md bg-white">
             <a class="navbar-brand" href="#">Master Studio</a>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
+            <div class="user-info-menu row no-gutters">
+                <div class="col-auto px-2 image-wrapper">
+                    <img class="border-circle" src="/img/profile.jpg" width="50"
+                         title="Profile image"
+                         alt="Profile image">
+                </div>
+                <div class="col d-none d-lg-block">
+                    <div class="name">
+                        Tammanoon Jomjaturong
+                    </div>
+                    <div class="user-progress pb-1">
+                        <div class="row no-gutters">
+                            <div class="col-auto mr-1 level">L. 49</div>
+                            <div class="col" style="margin-top: 3px;">
+                                <div class="progress">
+                                    <div class="progress-bar bg-primary" role="progressbar"
+                                         style="width: 50%" aria-valuenow="50"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                            <div class="col-aut ml-1 levelup">50</div>
+                        </div>
+                    </div>
+                    <div class="coin">
+                        9999
+                    </div>
+                </div>
+            </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
@@ -42,35 +70,8 @@
                             master</a>
                     </li>
                 </ul>
-                <div class="user-info-menu row no-gutters">
-                    <div class="col-auto px-2 image-wrapper">
-                        <img class="border-circle" src="/img/profile.jpg" width="50"
-                             title="Profile image"
-                             alt="Profile image">
-                    </div>
-                    <div class="col">
-                        <div class="name">
-                            Tammanoon Jomjaturong
-                        </div>
-                        <div class="user-progress pb-1">
-                            <div class="row no-gutters">
-                                <div class="col-auto mr-1 level">L. 49</div>
-                                <div class="col" style="margin-top: 3px;">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-primary" role="progressbar"
-                                             style="width: 50%" aria-valuenow="50"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="col-aut ml-1 levelup">50</div>
-                            </div>
-                        </div>
-                        <div class="coin">
-                            9999
-                        </div>
-                    </div>
-                </div>
             </div>
+
         </nav>
     </div>
     <!--/.Navbar-->
