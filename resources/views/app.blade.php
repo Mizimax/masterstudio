@@ -8,6 +8,9 @@
     <title>@yield('title') - Master Studio</title>
     <link rel="stylesheet" href="/css/app.css">
     @yield('style')
+    <script>
+      var page = '@yield('page')';
+    </script>
 </head>
 <body>
     <!--Navbar-->
@@ -22,36 +25,31 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a id="home-menu" class="nav-link px-3" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                           role="button" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        <a id="activity-menu" class="nav-link px-3" href="/activity">Activities</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">Disabled</a>
+                        <a id="master-menu" class="nav-link px-3" href="/master">Master</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="studio-menu" class="nav-link px-3" href="/studio">Studio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="become-menu" class="nav-link px-3" href="/master/become">Become
+                            master</a>
                     </li>
                 </ul>
                 <div class="user-info-menu row no-gutters">
                     <div class="col-auto px-2 image-wrapper">
-                        <img class="border-circle" src="/img/profile.jpg" width="50" title="Profile image"
+                        <img class="border-circle" src="/img/profile.jpg" width="50"
+                             title="Profile image"
                              alt="Profile image">
                     </div>
                     <div class="col">
-                        <div class="">
+                        <div class="name">
                             Tammanoon Jomjaturong
                         </div>
                         <div class="user-progress pb-1">
@@ -67,7 +65,9 @@
                                 <div class="col-aut ml-1 levelup">50</div>
                             </div>
                         </div>
-                        <div></div>
+                        <div class="coin">
+                            9999
+                        </div>
                     </div>
                 </div>
             </div>
@@ -83,6 +83,15 @@
           //]]>
         </script>
     @endif
-    @yield('script')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#' + page + '-menu').addClass('active')
+          @yield('script')
+      })
+    </script>
+    @yield('scriptfile')
 </body>
 </html>
