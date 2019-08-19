@@ -4,6 +4,11 @@
 @import '~bootstrap/scss/bootstrap';
 // Variables
 @import 'variables';
+// Mixins
+@import 'mixins';
+// Reset
+@import 'reset';
+
 
 a {
 	color: $primary;
@@ -33,6 +38,10 @@ a {
 	&::placeholder {
 		color: white;
 	}
+}
+
+.image-wrapper {
+	font-size: 0;
 }
 
 

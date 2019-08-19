@@ -2,67 +2,215 @@
 @import 'variables';
 @import 'app';
 
+// Font size
+$activity-header-mobile: 24px;
+$activity-header: 60px;
+$activity-subheader-mobile: 20px;
+$activity-subheader: 42px;
+$searchbox-mobile: 12px;
+$searchbox: 20px;
+
 .video-header {
 	position: relative;
+
 	#carousel {
+		> .carousel-indicators {
+			margin-bottom: 3%;
+		}
 		.video {
 			width: 100%;
 		}
 	}
+
 	.content-wrapper {
 		display: flex;
-		position: absolute;
+		flex-direction: column;
 		width: 100%;
-		bottom: 100px;
+		bottom: 15%;
+		position: absolute;
+		padding: 0 20px;
 		left: 0;
+
 		.activity-name {
 			color: white;
-			margin-left: auto;
-			margin-right: 15%;
+
 			.header {
-				font-size: 60px;
-			}
-			.subheader {
-				font-size: 42px
-			}
-			.search-box {
-				width: 100%;
-				font-size: 20px;
-				color: white;
-				margin-top: 20px;
-				padding: 10px 20px;
-				@extend .input-transparent;
-			}
-		}
-		.activity-detail {
-			margin-left: 15%;
-			margin-right: auto;
-			border-radius: 15px;
-			background: rgba(255,255,255, 0.8);
-			.image-wrapper {
-				text-align: center;
-				transform: translateY(-50%);
-				img {
-					width: 100px;
-					border-radius: 50%;
+				font-size: $activity-header-mobile;
+				display: none;
+				@include mobile-up {
+					font-size: $activity-header;
 				}
-			}
-			.activity-content {
-				transform: translateY(-35px);
-				.icon-wrapper {
-					text-align: center;
-					img {
-						width: 50px;
-					}
+				@include mobileFirst(425px) {
+					display: block;
 				}
 			}
 
-			.header {
-				text-align: center;
-				font-weight: bold;
+			.subheader {
+				font-size: $activity-subheader-mobile;
+				display: none;
+				@include mobile-up {
+					font-size: $activity-subheader;
+				}
+				@include mobileFirst(425px) {
+					display: block;
+				}
 			}
+
+			.search-box {
+				width: 100%;
+				font-size: $searchbox-mobile;
+				color: white;
+				margin-top: 10px;
+				padding: 10px 20px;
+				outline: none;
+
+				@extend .input-transparent;
+
+				@include mobile-up {
+					font-size: $searchbox;
+					margin-top: 20px;
+				}
+			}
+		}
+
+		.activity-detail {
+			border-radius: 15px;
+			background: rgba(255, 255, 255, 0.8);
+			padding: 10px 25px;
+			margin-top: 70px;
+			position: relative;
+			@include tablet-up {
+				bottom: 15%;
+				top: auto;
+				margin-top: 0;
+			}
+
+			> .image-wrapper {
+				text-align: center;
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translate(-50%, -50%);
+
+				img {
+					width: 110px;
+					border-radius: 50%;
+				}
+			}
+
+			.activity-content {
+				margin-top: 60px;
+
+				> .result-course {
+					padding-top: 20px;
+					.image-wrapper {
+						text-align: center;
+
+						img {
+							width: 50px;
+						}
+					}
+				}
+
+				> .header {
+					text-align: center;
+					font-weight: bold;
+					font-size: 28px;
+					padding-bottom: 20px;
+					border-bottom: 2px solid #555;
+				}
+
+
+			}
+
+
 			.text {
+				font-size: 8px;
+				color: $primary;
+			}
+		}
+	}
+}
+
+.live-activity {
+	padding: 70px 0;
+	text-align: center;
+
+	> .header {
+		font-weight: bold;
+		font-size: 48px;
+	}
+
+	> .category-interest {
+		@include shadow(5px, 5px, 15px, 0px, 0.2);
+		display: inline-flex;
+		border-radius: 100px;
+		padding: 20px;
+		margin-top: 30px;
+
+		> .interest-activity {
+			margin: 0 7px;
+
+			> .icon {
+				border-radius: 50%;
+				width: 50px;
+				height: 50px;
+				border: 2px solid #888;
+
+				&.active {
+					border: none;
+					background: orange;
+					color: white;
+				}
+			}
+
+			> .name {
 				font-size: 10px;
+				margin-top: 5px;
+				color: #888;
+			}
+		}
+
+		> .add-interest-activity {
+			@extend .interest-activity;
+			> .icon {
+				border: none;
+				@include shadow(5px, 5px, 15px, 0px, 0.2);
+			}
+		}
+	}
+
+	.activity-story {
+		margin-top: 70px;
+		> .activity-card {
+			position: relative;
+			border-radius: 10px;
+			width: 150px;
+			height: 200px;
+
+			> .video-wrapper {
+				width: 100%;
+
+				> .video {
+					width: 100%;
+					border-radius: 10px;
+				}
+			}
+			> .title-wrapper {
+				position: absolute;
+				left: 0;
+				bottom: 0;
+
+				> .activity-join {
+					width: 40px;
+					height: 40px;
+				}
+
+				> .title {
+					font-size: 14px;
+					font-weight: bold;
+					color: white;
+				}
 			}
 		}
 	}
