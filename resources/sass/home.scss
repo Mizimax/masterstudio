@@ -17,6 +17,7 @@ $searchbox: 20px;
 		> .carousel-indicators {
 			margin-bottom: 3%;
 		}
+
 		.video {
 			width: 100%;
 		}
@@ -103,6 +104,7 @@ $searchbox: 20px;
 
 				> .result-course {
 					padding-top: 20px;
+
 					.image-wrapper {
 						text-align: center;
 
@@ -173,6 +175,7 @@ $searchbox: 20px;
 
 		> .add-interest-activity {
 			@extend .interest-activity;
+
 			> .icon {
 				border: none;
 				@include shadow(5px, 5px, 15px, 0px, 0.2);
@@ -181,37 +184,92 @@ $searchbox: 20px;
 	}
 
 	.activity-story {
-		margin-top: 70px;
-		> .activity-card {
-			position: relative;
-			border-radius: 10px;
-			width: 150px;
-			height: 200px;
+		display: flex;
+		flex-wrap: nowrap;
+		width: 100%;
+		overflow-x: auto;
+		padding: 100px 20px 30px 20px;
 
-			> .video-wrapper {
-				width: 100%;
-
-				> .video {
-					width: 100%;
-					border-radius: 10px;
-				}
+		> .activity-wrapper {
+			> .location {
+				text-align: left;
+				font-style: italic;
+				color: #9F9F9F;
+				margin-top: 8px;
 			}
-			> .title-wrapper {
-				position: absolute;
-				left: 0;
-				bottom: 0;
+			> .activity-card {
+				position: relative;
+				flex-shrink: 0;
+				border-radius: 10px;
+				width: 220px;
+				height: 300px;
+				margin-right: 20px;
 
-				> .activity-join {
-					width: 40px;
-					height: 40px;
+				> .video-wrapper {
+					width: 100%;
+
+					> .video {
+						position: absolute;
+						left: 0;
+						top: 0;
+						width: 100%;
+						height: 100%;
+						border-radius: 10px;
+						object-fit: cover;
+					}
 				}
 
-				> .title {
-					font-size: 14px;
-					font-weight: bold;
-					color: white;
+				> .image-wrapper {
+					width: 75px;
+					height: 75px;
+					position: absolute;
+					left: 20px;
+					top: 0;
+					transform: translateY(-50%);
+
+					> img {
+						border-radius: 50%;
+						width: 100%;
+						height: 100%;
+					}
+				}
+
+				> .title-wrapper {
+					position: absolute;
+					left: 10px;
+					bottom: 10px;
+
+					> .activity-join {
+						display: flex;
+						margin-top: 5px;
+
+						> .participant {
+							width: 40px;
+							height: 40px;
+							border-radius: 50%;
+							border: 1px solid #ccc;
+
+							&:not(:first-child) {
+								transform: translateX(-50%);
+							}
+
+							> img {
+								width: 100%;
+								height: 100%;
+								border-radius: 50%;
+							}
+						}
+					}
+
+					> .title {
+						font-size: 16px;
+						font-weight: bold;
+						color: white;
+					}
 				}
 			}
 		}
+
+
 	}
 }

@@ -108,28 +108,39 @@
             </div>
         </div>
         <div class="activity-story">
-            <div class="activity-card">
-                <div class="video-wrapper">
-                    <video class="video" autoplay loop muted>
-                        <source src="/video/activity.mp4"
-                                type="video/mp4" />
-                    </video>
-                </div>
-                <div class="title-wrapper">
-                    <div class="title">Basic Italian Food</div>
-                    <div class="activity-join">
-                        <div class="participant image-wrapper">
-                            <img src="" alt="">
+            @php
+                $activitys = [0,1,2,3,4,5,6,7,8,9,10]
+            @endphp
+            @foreach ($activitys as $activity)
+                <div class="activity-wrapper">
+                    <div class="activity-card">
+                        <div class="video-wrapper">
+                            <video class="video" loop muted>
+                                <source src="/video/activity.mp4"
+                                        type="video/mp4" />
+                            </video>
                         </div>
-                        <div class="participant image-wrapper">
-                            <img src="" alt="">
+                        <div class="image-wrapper">
+                            <img src="/img/profile.jpg" alt="">
                         </div>
-                        <div class="participant image-wrapper">
-                            <img src="" alt="">
+                        <div class="title-wrapper">
+                            <div class="title">Basic Italian Food</div>
+                            <div class="activity-join">
+                                <div class="participant image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                                <div class="participant image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                                <div class="participant image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="location">Yesterday: JAJA Studio</div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </section>
 @endsection
