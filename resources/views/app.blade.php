@@ -87,12 +87,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
     <script src="/js/app.js"></script>
+    @yield('scriptfile')
     <script>
       $(document).ready(function () {
         $('#' + page + '-menu').addClass('active')
           @yield('script')
       })
     </script>
-    @yield('scriptfile')
+
 </body>
 </html>

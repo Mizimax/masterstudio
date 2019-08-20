@@ -115,8 +115,8 @@
                 <div class="activity-wrapper">
                     <div class="activity-card">
                         <div class="video-wrapper">
-                            <video class="video" loop muted>
-                                <source src="/video/activity.mp4"
+                            <video class="video lazy" loop muted>
+                                <source data-src="/video/activity.mp4"
                                         type="video/mp4" />
                             </video>
                         </div>
@@ -143,4 +143,15 @@
             @endforeach
         </div>
     </section>
+@endsection
+
+@section('scriptfile')
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+@endsection
+
+@section('script')
+    var lazyLoadInstance = new LazyLoad({
+    elements_selector: ".lazy"
+    // ... more custom settings?
+    });
 @endsection
