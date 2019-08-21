@@ -11106,12 +11106,18 @@ a {
 
 .video-header > .content-wrapper {
   width: 100%;
-  bottom: 15%;
+  bottom: 12%;
   position: absolute;
   padding: 0 20px;
-  left: 6%;
+  left: 0;
   max-width: 600px;
   width: 100%;
+}
+
+@media (min-width: 576px) {
+  .video-header > .content-wrapper {
+    padding-left: 6%;
+  }
 }
 
 .video-header > .content-wrapper > .activity-name {
@@ -11193,7 +11199,6 @@ a {
   position: absolute;
   display: flex;
   width: 100%;
-  justify-content: space-between;
   top: 0;
   left: 0;
   transform: translateY(-35%);
@@ -11209,8 +11214,8 @@ a {
 }
 
 .video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-title > .title-wrapper {
-  margin-right: 30px;
   align-self: flex-end;
+  margin-left: 20px;
   margin-bottom: 10px;
 }
 
@@ -11229,7 +11234,8 @@ a {
 }
 
 .video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-content > .result-course {
-  padding-top: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-content > .result-course .image-wrapper {
@@ -11248,7 +11254,46 @@ a {
   border-bottom: 2px solid #555;
 }
 
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-add {
+  padding-top: 10px;
+}
+
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-add > .time-location {
+  display: flex;
+  text-align: center;
+}
+
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-add > .time-location > .header-title {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+}
+
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-add > .time-location > .header-title > .header {
+  color: #ccc;
+  font-size: 12px;
+}
+
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-add > .time-location > .header-title > .detail {
+  flex-grow: 1;
+  font-size: 12px;
+}
+
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-add > .badge-wrapper {
+  display: flex;
+}
+
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail > .activity-add > .badge-wrapper > .badge {
+  border: 1px solid #000;
+  border-radius: 20px;
+  font-style: italic;
+  flex-grow: 1;
+  padding: 3px 0;
+}
+
 .video-header > .content-wrapper > .activity-detail-wrapper > .activity-detail .text {
+  margin-top: 10px;
   font-size: 8px;
   color: #f14ea6;
 }

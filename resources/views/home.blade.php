@@ -24,19 +24,19 @@
                 <div class="carousel-item active">
                     <video class="video video-fluid" autoplay loop muted>
                         <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                type="video/mp4" />
+                                type="video/mp4"/>
                     </video>
                 </div>
                 <div class="carousel-item">
                     <video class="video video-fluid" autoplay loop muted>
                         <source src="https://mdbootstrap.com/img/video/forest.mp4"
-                                type="video/mp4" />
+                                type="video/mp4"/>
                     </video>
                 </div>
                 <div class="carousel-item">
                     <video class="video video-fluid" autoplay loop muted>
                         <source src="https://mdbootstrap.com/img/video/Agua-natural.mp4"
-                                type="video/mp4" />
+                                type="video/mp4"/>
                     </video>
                 </div>
             </div>
@@ -49,13 +49,14 @@
             <!-- Activity Name , Search -->
             <div class="activity-name">
                 <h1 class="header">@Master Studio</h1>
-                <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a href="#"></a>Chef</h2>
+                <h2 class="subheader d-block d-lg-none d-xl-block ml-3 ml-sm-5 pl-sm-2">Meet Real <a href="#"></a>Chef
+                </h2>
                 <input class="search-box" placeholder="Search your activities..." type="text">
             </div>
             <!-- End Activity Name , Search -->
-            <div class="activity-detail-wrapper">
+            <div class="activity-detail-wrapper d-none d-lg-flex">
                 <!-- Activity Detail -->
-                <div class="activity-detail justify-content-between flex-wrap  d-none d-md-block">
+                <div class="activity-detail justify-content-between flex-wrap">
                     <div class="activity-title">
                         <div class="image-wrapper">
                             <img src="/img/profile.jpg" alt="">
@@ -72,20 +73,50 @@
                                 <div class="image-wrapper">
                                     <img src="/img/profile.jpg" alt="">
                                 </div>
-                                <span class="text">secret of ingredients</span>
+                                <div class="text">secret of ingredients</div>
                             </div>
                             <div class="col text-center">
                                 <div class="image-wrapper">
                                     <img src="/img/profile.jpg" alt="">
                                 </div>
-                                <span class="text">secret of ingredients</span>
+                                <div class="text">secret of ingredients</div>
                             </div>
                             <div class="col text-center">
                                 <div class="image-wrapper">
                                     <img src="/img/profile.jpg" alt="">
                                 </div>
-                                <span class="text">secret of ingredients</span>
+                                <div class="text">secret of ingredients</div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="activity-add">
+                        <div class="time-location">
+                            <div class="header-title">
+                                <div class="header">
+                                    Register until
+                                </div>
+                                <div class="detail">10 Dec 2019</div>
+                            </div>
+                            <div class="header-title">
+                                <div class="header">
+                                    Start at
+                                </div>
+                                <div class="detail --start">
+                                    10 Dec 2019<br>
+                                    10 Dec 2019<br>
+                                    10 Dec 2019
+                                </div>
+                            </div>
+                            <div class="header-title">
+                                <div class="header">
+                                    Location
+                                </div>
+                                <div class="detail">10 Dec 2019</div>
+                            </div>
+                        </div>
+                        <div class="badge-wrapper my-1">
+                            <div class="badge mr-2">3 month activity</div>
+                            <div class="badge">Basic - Intermediate</div>
                         </div>
                     </div>
                 </div>
@@ -143,7 +174,7 @@
                         <div class="video-wrapper">
                             <video class="video lazy" loop muted>
                                 <source data-src="/video/activity.mp4"
-                                        type="video/mp4" />
+                                        type="video/mp4"/>
                             </video>
                         </div>
                         <div class="image-wrapper">

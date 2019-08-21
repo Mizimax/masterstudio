@@ -134,9 +134,9 @@ function hideVideo(e) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/home.scss */"./resources/sass/home.scss");
+__webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\home.scss */"./resources/sass/home.scss");
 
 
 /***/ })

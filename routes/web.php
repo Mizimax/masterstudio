@@ -12,3 +12,17 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/activity', function (){
+    return view('activity');
+});
+Route::get('/master', function (){
+    return view('master');
+});
+Route::get('/studio', function (){
+    return view('studio');
+});
+Route::get('/become', function (){
+    return view('become');
+});
+
+

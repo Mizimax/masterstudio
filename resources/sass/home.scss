@@ -25,12 +25,16 @@ $searchbox: 20px;
 
 	> .content-wrapper {
 		width: 100%;
-		bottom: 15%;
+		bottom: 12%;
 		position: absolute;
 		padding: 0 20px;
-		left: 6%;
+		left: 0;
 		max-width: 600px;
 		width: 100%;
+
+        @include mobile-up {
+            padding-left: 6%;
+        }
 
 		> .activity-name {
 			color: white;
@@ -94,7 +98,6 @@ $searchbox: 20px;
 					position: absolute;
 					display: flex;
 					width: 100%;
-					justify-content: space-between;
 					top: 0;
 					left: 0;
 					transform: translateY(-35%);
@@ -108,8 +111,8 @@ $searchbox: 20px;
 					}
 
 					> .title-wrapper {
-						margin-right: 30px;
 						align-self: flex-end;
+                        margin-left: 20px;
 						margin-bottom: 10px;
 						> .title {
 							font-size: 18px;
@@ -126,7 +129,8 @@ $searchbox: 20px;
 					margin-top: 60px;
 
 					> .result-course {
-						padding-top: 20px;
+						padding: 10px 0;
+                        border-bottom: 1px solid #ccc;
 
 						.image-wrapper {
 							text-align: center;
@@ -144,12 +148,44 @@ $searchbox: 20px;
 						padding-bottom: 20px;
 						border-bottom: 2px solid #555;
 					}
-
-
 				}
 
+                > .activity-add {
+                    padding-top: 10px;
+                    > .time-location {
+                        display: flex;
+                        text-align: center;
+                        > .header-title {
+                            display: flex;
+                            flex-direction: column;
+                            flex-grow: 1;
+                            align-items: center;
+
+                            > .header {
+                                color: #ccc;
+                                font-size: 12px;
+                            }
+
+                            > .detail {
+                                flex-grow: 1;
+                                font-size: 12px;
+                            }
+                        }
+                    }
+                    > .badge-wrapper {
+                        display: flex;
+                        > .badge {
+                            border: 1px solid #000;
+                            border-radius: 20px;
+                            font-style: italic;
+                            flex-grow: 1;
+                            padding: 3px 0;
+                        }
+                    }
+                }
 
 				.text {
+                    margin-top: 10px;
 					font-size: 8px;
 					color: $primary;
 				}
