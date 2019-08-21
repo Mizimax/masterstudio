@@ -45,7 +45,7 @@
         <!-- End Carousel -->
 
         <!-- Content Header -->
-        <div class="content-wrapper justify-content-around flex-md-row">
+        <div class="content-wrapper">
             <!-- Activity Name , Search -->
             <div class="activity-name">
                 <h1 class="header">@Master Studio</h1>
@@ -53,36 +53,62 @@
                 <input class="search-box" placeholder="Search your activities..." type="text">
             </div>
             <!-- End Activity Name , Search -->
-            <!-- Activity Detail -->
-            <div class="activity-detail justify-content-between flex-wrap  d-none d-md-block">
-                <div class="image-wrapper">
-                    <img src="/img/profile.jpg" alt="">
-                </div>
-                <div class="activity-content">
-                    <h3 class="header">The spirit of ingredient</h3>
-                    <div class="row result-course no-gutters">
-                        <div class="col text-center">
-                            <div class="image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
-                            </div>
-                            <span class="text">secret of ingredients</span>
+            <div class="activity-detail-wrapper">
+                <!-- Activity Detail -->
+                <div class="activity-detail justify-content-between flex-wrap  d-none d-md-block">
+                    <div class="activity-title">
+                        <div class="image-wrapper">
+                            <img src="/img/profile.jpg" alt="">
                         </div>
-                        <div class="col text-center">
-                            <div class="image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
-                            </div>
-                            <span class="text">secret of ingredients</span>
+                        <div class="title-wrapper">
+                            <div class="title">Mistrio Waso</div>
+                            <div class="badge">Italian food master</div>
                         </div>
-                        <div class="col text-center">
-                            <div class="image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
+                    </div>
+                    <div class="activity-content">
+                        <h3 class="header">The spirit of ingredient</h3>
+                        <div class="row result-course no-gutters">
+                            <div class="col text-center">
+                                <div class="image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                                <span class="text">secret of ingredients</span>
                             </div>
-                            <span class="text">secret of ingredients</span>
+                            <div class="col text-center">
+                                <div class="image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                                <span class="text">secret of ingredients</span>
+                            </div>
+                            <div class="col text-center">
+                                <div class="image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                                <span class="text">secret of ingredients</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- End Activity Detail -->
+                <div class="activity-tabs">
+                    <div class="activity-tab --join">
+                        <div class="icon-wrapper"></div>
+                        <div class="text">Join activity</div>
+                    </div>
+                    <div class="activity-tab --pin">
+                        <div class="icon-wrapper"></div>
+                        <div class="text">Pin activity</div>
+                    </div>
+                    <div class="activity-tab --invite">
+                        <div class="icon-wrapper"></div>
+                        <div class="text">Invite friend</div>
+                    </div>
+                    <div class="activity-tab --share">
+                        <div class="icon-wrapper"></div>
+                        <div class="text">Share</div>
+                    </div>
+                </div>
             </div>
-            <!-- End Activity Detail -->
         </div>
         <!-- End Content Header -->
     </section>

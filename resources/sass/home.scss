@@ -13,7 +13,7 @@ $searchbox: 20px;
 .video-header {
 	position: relative;
 
-	#carousel {
+	> #carousel {
 		> .carousel-indicators {
 			margin-bottom: 3%;
 		}
@@ -23,19 +23,19 @@ $searchbox: 20px;
 		}
 	}
 
-	.content-wrapper {
-		display: flex;
-		flex-direction: column;
+	> .content-wrapper {
 		width: 100%;
 		bottom: 15%;
 		position: absolute;
 		padding: 0 20px;
-		left: 0;
+		left: 6%;
+		max-width: 600px;
+		width: 100%;
 
-		.activity-name {
+		> .activity-name {
 			color: white;
 
-			.header {
+			> .header {
 				font-size: $activity-header-mobile;
 				display: none;
 				@include mobile-up {
@@ -46,7 +46,7 @@ $searchbox: 20px;
 				}
 			}
 
-			.subheader {
+			> .subheader {
 				font-size: $activity-subheader-mobile;
 				display: none;
 				@include mobile-up {
@@ -57,7 +57,7 @@ $searchbox: 20px;
 				}
 			}
 
-			.search-box {
+			> .search-box {
 				width: 100%;
 				font-size: $searchbox-mobile;
 				color: white;
@@ -74,61 +74,127 @@ $searchbox: 20px;
 			}
 		}
 
-		.activity-detail {
-			border-radius: 15px;
-			background: rgba(255, 255, 255, 0.8);
-			padding: 10px 25px;
-			margin-top: 70px;
-			position: relative;
-			@include tablet-up {
-				bottom: 15%;
-				top: auto;
-				margin-top: 0;
-			}
+		> .activity-detail-wrapper {
+			display: flex;
+			margin-top: 80px;
 
-			> .image-wrapper {
-				text-align: center;
-				position: absolute;
-				top: 0;
-				left: 50%;
-				transform: translate(-50%, -50%);
-
-				img {
-					width: 110px;
-					border-radius: 50%;
+			> .activity-detail {
+				border-radius: 15px;
+				background: rgba(255, 255, 255, 0.8);
+				padding: 10px 25px;
+				position: relative;
+				@include tablet-up {
+					bottom: 15%;
+					top: auto;
+					margin-top: 0;
 				}
-			}
 
-			.activity-content {
-				margin-top: 60px;
+				> .activity-title {
+					text-align: center;
+					position: absolute;
+					display: flex;
+					width: 100%;
+					justify-content: space-between;
+					top: 0;
+					left: 0;
+					transform: translateY(-35%);
 
-				> .result-course {
-					padding-top: 20px;
+					> .image-wrapper {
+						margin-left: 30px;
+						> img {
+							width: 100px;
+							border-radius: 50%;
+						}
+					}
 
-					.image-wrapper {
-						text-align: center;
-
-						img {
-							width: 50px;
+					> .title-wrapper {
+						margin-right: 30px;
+						align-self: flex-end;
+						margin-bottom: 10px;
+						> .title {
+							font-size: 18px;
+							font-style: italic;
+						}
+						> .badge {
+							border: 1px solid #000;
+							border-radius: 20px;
 						}
 					}
 				}
 
-				> .header {
-					text-align: center;
-					font-weight: bold;
-					font-size: 28px;
-					padding-bottom: 20px;
-					border-bottom: 2px solid #555;
+				> .activity-content {
+					margin-top: 60px;
+
+					> .result-course {
+						padding-top: 20px;
+
+						.image-wrapper {
+							text-align: center;
+
+							img {
+								width: 50px;
+							}
+						}
+					}
+
+					> .header {
+						text-align: center;
+						font-weight: bold;
+						font-size: 28px;
+						padding-bottom: 20px;
+						border-bottom: 2px solid #555;
+					}
+
+
 				}
 
 
+				.text {
+					font-size: 8px;
+					color: $primary;
+				}
 			}
 
+			> .activity-tabs {
+				> .activity-tab {
+					display: flex;
+					align-items: center;
 
-			.text {
-				font-size: 8px;
-				color: $primary;
+					> .icon-wrapper {
+						border-radius: 50%;
+						width: 50px;
+						height: 50px;
+					}
+
+					&.--join {
+						> .icon-wrapper {
+							background-color: $primary;
+						}
+					}
+
+					&.--pin {
+						> .icon-wrapper {
+							background-color: $orange;
+						}
+					}
+
+					&.--invite {
+						> .icon-wrapper {
+							background-color: $primary;
+						}
+					}
+
+					&.--share {
+						> .icon-wrapper {
+							background-color: $primary;
+						}
+					}
+
+					> .text {
+						font-weight: bold;
+						font-size: 14px;
+					}
+				}
 			}
 		}
 	}
@@ -197,6 +263,7 @@ $searchbox: 20px;
 				color: #9F9F9F;
 				margin-top: 8px;
 			}
+
 			> .activity-card {
 				position: relative;
 				flex-shrink: 0;
