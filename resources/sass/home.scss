@@ -136,7 +136,8 @@ $searchbox: 20px;
 							text-align: center;
 
 							img {
-								width: 50px;
+								width: 40px;
+                                height: 40px;
 							}
 						}
 					}
@@ -144,8 +145,8 @@ $searchbox: 20px;
 					> .header {
 						text-align: center;
 						font-weight: bold;
-						font-size: 28px;
-						padding-bottom: 20px;
+						font-size: 24px;
+						padding-bottom: 10px;
 						border-bottom: 2px solid #555;
 					}
 				}
@@ -167,8 +168,10 @@ $searchbox: 20px;
                             }
 
                             > .detail {
+                                display: flex;
+                                align-items: center;
                                 flex-grow: 1;
-                                font-size: 12px;
+                                font-size: 10px;
                             }
                         }
                     }
@@ -179,6 +182,7 @@ $searchbox: 20px;
                             border-radius: 20px;
                             font-style: italic;
                             flex-grow: 1;
+                            font-size: 10px;
                             padding: 3px 0;
                         }
                     }
@@ -192,9 +196,11 @@ $searchbox: 20px;
 			}
 
 			> .activity-tabs {
+                padding-left: 20px;
 				> .activity-tab {
 					display: flex;
 					align-items: center;
+                    margin-bottom: 20px;
 
 					> .icon-wrapper {
 						border-radius: 50%;
@@ -216,7 +222,7 @@ $searchbox: 20px;
 
 					&.--invite {
 						> .icon-wrapper {
-							background-color: $primary;
+							background-color: $purple;
 						}
 					}
 
@@ -228,7 +234,9 @@ $searchbox: 20px;
 
 					> .text {
 						font-weight: bold;
-						font-size: 14px;
+                        font-style: italic;
+						font-size: 16px;
+                        margin-left: 15px;
 					}
 				}
 			}
