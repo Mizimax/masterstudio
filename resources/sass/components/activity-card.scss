@@ -1,0 +1,112 @@
+.activity-detail {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 25px;
+    position: relative;
+    @include tablet-up {
+        bottom: 15%;
+        top: auto;
+        margin-top: 0;
+    }
+
+    > .activity-title {
+        text-align: center;
+        display: flex;
+        width: 100%;
+
+        > .image-wrapper {
+            margin-top: -50px;
+
+            > img {
+                width: 100px;
+                border-radius: 50%;
+            }
+        }
+
+        > .title-wrapper {
+            margin-left: 20px;
+            margin-bottom: 10px;
+
+            > .title {
+                font-size: 18px;
+                font-style: italic;
+            }
+
+            > .badge {
+                border: 1px solid #000;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    > .activity-content {
+
+        > .result-course {
+            padding: 8px 0;
+            border-bottom: 1px solid #ccc;
+
+            .image-wrapper {
+                text-align: center;
+
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+
+        > .header {
+            text-align: center;
+            font-weight: bold;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #555;
+        }
+    }
+
+    > .activity-add {
+        padding-top: 5px;
+
+        > .time-location {
+            display: flex;
+            text-align: center;
+
+            > .header-title {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+                align-items: center;
+
+                > .header {
+                    color: #888;
+                    font-size: 12px;
+                }
+
+                > .detail {
+                    display: flex;
+                    align-items: center;
+                    flex-grow: 1;
+                    font-size: 10px;
+                }
+            }
+        }
+
+        > .badge-wrapper {
+            display: flex;
+
+            > .badge {
+                border: 1px solid #000;
+                border-radius: 20px;
+                font-style: italic;
+                flex-grow: 1;
+                font-size: 10px;
+                padding: 3px 0;
+            }
+        }
+    }
+
+    .text {
+        margin-top: 10px;
+        font-size: 8px;
+        color: $primary;
+    }
+}

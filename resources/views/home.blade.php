@@ -49,78 +49,13 @@
             <!-- Activity Name , Search -->
             <div class="activity-name">
                 <h1 class="header">@Master Studio</h1>
-                <h2 class="subheader d-block d-lg-none d-xl-block ml-3 ml-sm-5 pl-sm-2">Meet Real <a href="#"></a>Chef
+                <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a href="#"></a>Chef
                 </h2>
                 <input class="search-box" placeholder="Search your activities..." type="text">
             </div>
             <!-- End Activity Name , Search -->
             <div class="activity-detail-wrapper d-none d-lg-flex">
-                <!-- Activity Detail -->
-                <div class="activity-detail justify-content-between flex-wrap">
-                    <div class="activity-title">
-                        <div class="image-wrapper">
-                            <img src="/img/profile.jpg" alt="">
-                        </div>
-                        <div class="title-wrapper">
-                            <div class="title">Mistrio Waso</div>
-                            <div class="badge">Italian food master</div>
-                        </div>
-                    </div>
-                    <div class="activity-content">
-                        <h3 class="header">The spirit of ingredient</h3>
-                        <div class="row result-course no-gutters">
-                            <div class="col text-center">
-                                <div class="image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
-                                <div class="text">secret of ingredients</div>
-                            </div>
-                            <div class="col text-center">
-                                <div class="image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
-                                <div class="text">secret of ingredients</div>
-                            </div>
-                            <div class="col text-center">
-                                <div class="image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
-                                <div class="text">secret of ingredients</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="activity-add">
-                        <div class="time-location">
-                            <div class="header-title">
-                                <div class="header">
-                                    Register until
-                                </div>
-                                <div class="detail">10 Dec 2019</div>
-                            </div>
-                            <div class="header-title">
-                                <div class="header">
-                                    Start at
-                                </div>
-                                <div class="detail --start">
-                                    10 Dec 2019<br>
-                                    10 Dec 2019<br>
-                                    10 Dec 2019
-                                </div>
-                            </div>
-                            <div class="header-title">
-                                <div class="header">
-                                    Location
-                                </div>
-                                <div class="detail">10 Dec 2019</div>
-                            </div>
-                        </div>
-                        <div class="badge-wrapper my-1">
-                            <div class="badge mr-2">3 month activity</div>
-                            <div class="badge">Basic - Intermediate</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Activity Detail -->
+                @include('components.activity-card')
                 <div class="activity-tabs">
                     <div class="activity-tab --join">
                         <div class="icon-wrapper"></div>
@@ -177,9 +112,15 @@
                                         type="video/mp4"/>
                             </video>
                         </div>
-                        <div class="image-wrapper">
-                            <img src="/img/profile.jpg" alt="">
+
+                        <div class="master-profile">
+                            @component('components.activity-card', ['noimage'=>true, 'size'=>75])
+                            @endcomponent
+                            <div class="image-wrapper">
+                                <img src="/img/profile.jpg" alt="">
+                            </div>
                         </div>
+
                         <div class="title-wrapper">
                             <div class="title">Basic Italian Food</div>
                             <div class="activity-join">
