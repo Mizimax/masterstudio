@@ -83,7 +83,6 @@ $searchbox: 20px;
                 margin-top: 10px;
                 padding: 10px 20px;
                 outline: none;
-
                 @extend .input-transparent;
 
                 @include mobile-up {
@@ -322,4 +321,42 @@ $searchbox: 20px;
         }
     }
 
+}
+
+.activity-you {
+    padding: 40px 0;
+    text-align: center;
+    background: black;
+
+    > .search {
+        width: 350px;
+        font-size: 20px;
+        margin-top: 20px;
+        padding: 10px 20px;
+        border-color: #ccc;
+        color: #ccc;
+    }
+
+    > .header {
+        color: white;
+        font-size: 48px;
+    }
+    > .activity-grid {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        width: 900px;
+        margin: 0 auto;
+        color: white;
+
+        &:after {
+            content: " ";
+            flex: auto;
+        }
+
+        > .activity-card {
+            width: 280px;
+            flex: 1;
+        }
+    }
 }
