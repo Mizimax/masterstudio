@@ -10970,6 +10970,10 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+input {
+    outline: none;
+}
+
 a,
 a:hover {
     color: inherit;
@@ -11164,5 +11168,20 @@ button:focus {
   font-size: 10px;
   color: #f14ea6;
   text-align: center;
+}
+
+.footer {
+    background: #201c1d;
+}
+
+.footer > .footer-wrapper {
+    max-width: 900px;
+    width: 100%;
+}
+
+.footer > .footer-bottom {
+    background: black;
+    color: #666;
+    padding: 13px 0;
 }
 

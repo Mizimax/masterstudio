@@ -57,26 +57,26 @@
             <div class="activity-detail-wrapper d-none d-lg-flex">
                 @include('components.activity-card')
                 <div class="activity-tabs">
-                    <div class="activity-tab --join">
-                        <div class="icon-wrapper">
+                    <div class="activity-tab">
+                        <div class="icon-wrapper --join">
                             <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Join activity</div>
                     </div>
-                    <div class="activity-tab --pin">
-                        <div class="icon-wrapper">
+                    <div class="activity-tab">
+                        <div class="icon-wrapper --pin">
                             <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Pin activity</div>
                     </div>
-                    <div class="activity-tab --invite">
-                        <div class="icon-wrapper">
+                    <div class="activity-tab">
+                        <div class="icon-wrapper --invite">
                             <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Invite friend</div>
                     </div>
-                    <div class="activity-tab --share">
-                        <div class="icon-wrapper">
+                    <div class="activity-tab">
+                        <div class="icon-wrapper --share">
                             <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Share</div>
@@ -152,15 +152,47 @@
     </section>
 
     <section class="activity-you">
-        <h2 class="header">Activity for you</h2>
+        <h3 class="header">Activity for you</h3>
         <input class="search input-transparent" placeholder="Search your activities..." type="text">
         <div class="activity-grid">
-            <div class="activity-card">5</div>
-            <div class="activity-card">5</div>
-            <div class="activity-card">5</div>
-            <div class="activity-card">5</div>
-            <div class="activity-card">5</div>
-            <div class="activity-card">5</div>
+            @php
+                $activitys = [0,1,2,3,4,5]
+            @endphp
+            @foreach ($activitys as $activity)
+                <div class="activity-card-wrapper">
+                    <div class="activity-card">
+                        <div class="video-wrapper">
+                            <video class="video lazy" loop muted>
+                                <source data-src="/video/activity.mp4"
+                                        type="video/mp4"/>
+                            </video>
+                        </div>
+
+                        <div class="master-profile">
+                            @component('components.activity-card', ['noimage'=>true, 'size'=>75])
+                            @endcomponent
+                            <div class="image-wrapper">
+                                <img src="/img/profile.jpg" alt="">
+                            </div>
+                        </div>
+
+                        <div class="title-wrapper">
+                            <div class="title">Basic Italian Food</div>
+                        </div>
+                    </div>
+                    <div class="activity-tabs">
+                        <div class="icon-wrapper --join">
+                            <img src="/img/icon/user-circle-regular.svg" class="svg">
+                        </div>
+                        <div class="icon-wrapper --pin">
+                            <img src="/img/icon/user-circle-regular.svg" class="svg">
+                        </div>
+                        <div class="icon-wrapper --invite">
+                            <img src="/img/icon/user-circle-regular.svg" class="svg">
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </section>
 @endsection

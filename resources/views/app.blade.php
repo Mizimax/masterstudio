@@ -113,6 +113,27 @@
 <div class="content">
     @yield('content')
 </div>
+
+<div class="footer">
+    <div class="footer-wrapper">
+        <h1 class="logo-name">MASTER STUDIO</h1>
+        <div class="row">
+            <div class="col">
+                <div class="menu"></div>
+            </div>
+            <div class="col">
+                <div class="follow"></div>
+            </div>
+            <div class="col">
+                <div class="email"></div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" align="center">
+        Allright reserved @master studio <span style="margin-left: 30px;">Since : 2019</span>
+    </div>
+</div>
+
 @if(config('app.env') == 'local')
     <script id="__bs_script__">//<![CDATA[
         document.write('<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.6\'><\/script>'.replace('HOST', location.hostname))

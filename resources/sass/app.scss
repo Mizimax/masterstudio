@@ -198,4 +198,19 @@ button:focus {
 	}
 }
 
+.footer {
+    background: #201c1d;
+
+    > .footer-wrapper {
+        max-width: 900px;
+        width: 100%;
+    }
+
+    > .footer-bottom {
+        background: black;
+        color: #666;
+        padding: 13px 0;
+    }
+}
+
 
