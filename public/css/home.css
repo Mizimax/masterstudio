@@ -10970,12 +10970,17 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-input {
-  outline: none;
+a,
+a:hover {
+    color: inherit;
 }
 
-a {
-  color: #f14ea6;
+a:hover {
+    text-decoration: none;
+}
+
+button:focus {
+    outline: none;
 }
 
 .border-circle {
@@ -10983,13 +10988,12 @@ a {
 }
 
 .primary-color {
-  color: #f14ea6;
+    color: #f14ea6 !important;
 }
 
 .input-transparent,
 .video-header > .content-wrapper > .activity-name > .search-box {
   border: 1px solid #fff;
-  color: white;
   background: transparent;
   border-radius: 30px;
 }
@@ -11037,6 +11041,7 @@ a {
 }
 
 .navbar-wrapper .navbar {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 0.4rem 1rem;
   border-radius: 15px;
 }
@@ -11045,26 +11050,84 @@ a {
   margin-left: auto;
 }
 
-.navbar-wrapper .navbar .nav-it em {
-  margin: 2px;
+.navbar-wrapper .navbar .nav-item {
+    margin: 2px;
 }
 
-.navbar-wrapper .navbar .nav-it em .nav-link {
+.navbar-wrapper .navbar .nav-item .nav-link {
   font-size: 14px;
   color: #555;
   text-align: center;
   white-space: nowrap;
 }
 
-.navbar-wrapper .navbar .nav-it em .nav-link.active,
-.navbar-wrapper .navbar .nav-it em .nav-link:hover {
+.navbar-wrapper .navbar .nav-item .nav-link.active,
+.navbar-wrapper .navbar .nav-item .nav-link:hover {
   border-radius: 20px;
   background-color: #f14ea6;
   color: white;
 }
 
 .navbar-wrapper .navbar .user-info-menu {
-  font-size: 12px;
+    font-size: 10px;
+}
+
+.navbar-wrapper .navbar .user-info-menu:hover > .profile-dropdown {
+    max-height: 400px;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+    width: 176px;
+}
+
+.navbar-wrapper .navbar .user-info-menu:hover > .profile-detail {
+    display: block !important;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70px;
+    max-height: 48px;
+    overflow: hidden;
+    background: white;
+    border-radius: 15px;
+    transition: all 0.3s;
+}
+
+@media (min-width: 992px) {
+    .navbar-wrapper .navbar .user-info-menu > .profile-dropdown {
+        width: 176px;
+    }
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-space {
+    height: 63px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu {
+    padding-bottom: 10px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu {
+    text-align: left;
+    width: 100px;
+    margin: 4px auto;
+    color: black;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .svg {
+    width: 15px;
+    height: 15px;
+    color: #f14ea6;
+    margin-right: 5px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name {
+    margin-left: 5px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name.\--logout {
+    color: #f14ea6;
 }
 
 @media (min-width: 768px) {
@@ -11074,8 +11137,9 @@ a {
 }
 
 .navbar-wrapper .navbar .user-info-menu .name {
+    font-weight: bold;
   white-space: nowrap;
-  width: 120px;
+    width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -11085,7 +11149,6 @@ a {
 }
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .level {
-  font-size: 11px;
   font-weight: bold;
 }
 
@@ -11097,6 +11160,10 @@ a {
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .progress {
   height: 10px;
+}
+
+.navbar-wrapper .navbar .user-info-menu .user-progress .progress > .progress-bar {
+    background-color: #fcac42;
 }
 
 .navbar-wrapper .navbar .user-info-menu .coin {
@@ -11222,6 +11289,17 @@ a {
   position: relative;
 }
 
+.video-header > .half-square {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh;
+    display: block;
+    background: white;
+    background: linear-gradient(to bottom right, transparent 50%, white 50%);
+}
+
 .video-header > #carousel > .carousel-indicators {
   margin-bottom: 3%;
 }
@@ -11237,7 +11315,6 @@ a {
 }
 
 .video-header > #carousel .carousel-item .video {
-  border-radius: 10px;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -11452,7 +11529,7 @@ a {
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 1030;
+    z-index: 1000;
 }
 
 .live-activity > .activity-story > .activity-wrapper > .activity-card > .master-profile > .activity-detail {
@@ -11510,44 +11587,5 @@ a {
   font-size: 16px;
   font-weight: bold;
   color: white;
-}
-
-.activity-you {
-  padding: 40px 0;
-  text-align: center;
-  background: black;
-}
-
-.activity-you > .search {
-  width: 350px;
-  font-size: 20px;
-  margin-top: 20px;
-  padding: 10px 20px;
-  border-color: #ccc;
-  color: #ccc;
-}
-
-.activity-you > .header {
-  color: white;
-  font-size: 48px;
-}
-
-.activity-you > .activity-grid {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  width: 900px;
-  margin: 0 auto;
-  color: white;
-}
-
-.activity-you > .activity-grid:after {
-  content: " ";
-  flex: auto;
-}
-
-.activity-you > .activity-grid > .activity-card {
-  width: 280px;
-  flex: 1;
 }
 
