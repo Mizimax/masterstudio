@@ -10970,8 +10970,17 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-a {
-  color: #f14ea6;
+a,
+a:hover {
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+button:focus {
+    outline: none;
 }
 
 .border-circle {
@@ -10979,7 +10988,7 @@ a {
 }
 
 .primary-color {
-  color: #f14ea6;
+    color: #f14ea6 !important;
 }
 
 .input-transparent {
@@ -11026,6 +11035,7 @@ a {
 }
 
 .navbar-wrapper .navbar {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 0.4rem 1rem;
   border-radius: 15px;
 }
@@ -11035,7 +11045,7 @@ a {
 }
 
 .navbar-wrapper .navbar .nav-item {
-  margin: 0 2px;
+    margin: 2px;
 }
 
 .navbar-wrapper .navbar .nav-item .nav-link {
@@ -11053,7 +11063,65 @@ a {
 }
 
 .navbar-wrapper .navbar .user-info-menu {
-  font-size: 12px;
+    font-size: 10px;
+}
+
+.navbar-wrapper .navbar .user-info-menu:hover > .profile-dropdown {
+    max-height: 400px;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+    width: 176px;
+}
+
+.navbar-wrapper .navbar .user-info-menu:hover > .profile-detail {
+    display: block !important;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70px;
+    max-height: 48px;
+    overflow: hidden;
+    background: white;
+    border-radius: 15px;
+    transition: all 0.3s;
+}
+
+@media (min-width: 992px) {
+    .navbar-wrapper .navbar .user-info-menu > .profile-dropdown {
+        width: 176px;
+    }
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-space {
+    height: 63px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu {
+    padding-bottom: 10px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu {
+    text-align: left;
+    width: 100px;
+    margin: 4px auto;
+    color: black;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .svg {
+    width: 15px;
+    height: 15px;
+    color: #f14ea6;
+    margin-right: 5px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name {
+    margin-left: 5px;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name.\--logout {
+    color: #f14ea6;
 }
 
 @media (min-width: 768px) {
@@ -11063,8 +11131,9 @@ a {
 }
 
 .navbar-wrapper .navbar .user-info-menu .name {
+    font-weight: bold;
   white-space: nowrap;
-  width: 120px;
+    width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -11074,7 +11143,6 @@ a {
 }
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .level {
-  font-size: 11px;
   font-weight: bold;
 }
 
@@ -11086,6 +11154,10 @@ a {
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .progress {
   height: 10px;
+}
+
+.navbar-wrapper .navbar .user-info-menu .user-progress .progress > .progress-bar {
+    background-color: #fcac42;
 }
 
 .navbar-wrapper .navbar .user-info-menu .coin {

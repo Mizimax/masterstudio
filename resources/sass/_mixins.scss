@@ -1,3 +1,9 @@
+@mixin desktop-up() {
+    @media (min-width: breakpoint-min(lg)) {
+        @content;
+    }
+}
+
 @mixin tablet-up() {
 	@media (min-width: breakpoint-min(md)) {
 		@content;

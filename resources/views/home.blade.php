@@ -77,6 +77,7 @@
             </div>
         </div>
         <!-- End Content Header -->
+        <div class="half-square"></div>
     </section>
 
     <section class="live-activity">
