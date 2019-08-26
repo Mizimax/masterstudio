@@ -58,19 +58,27 @@
                 @include('components.activity-card')
                 <div class="activity-tabs">
                     <div class="activity-tab --join">
-                        <div class="icon-wrapper"></div>
+                        <div class="icon-wrapper">
+                            <img src="/img/icon/user-circle-regular.svg" class="svg">
+                        </div>
                         <div class="text">Join activity</div>
                     </div>
                     <div class="activity-tab --pin">
-                        <div class="icon-wrapper"></div>
+                        <div class="icon-wrapper">
+                            <img src="/img/icon/user-circle-regular.svg" class="svg">
+                        </div>
                         <div class="text">Pin activity</div>
                     </div>
                     <div class="activity-tab --invite">
-                        <div class="icon-wrapper"></div>
+                        <div class="icon-wrapper">
+                            <img src="/img/icon/user-circle-regular.svg" class="svg">
+                        </div>
                         <div class="text">Invite friend</div>
                     </div>
                     <div class="activity-tab --share">
-                        <div class="icon-wrapper"></div>
+                        <div class="icon-wrapper">
+                            <img src="/img/icon/user-circle-regular.svg" class="svg">
+                        </div>
                         <div class="text">Share</div>
                     </div>
                 </div>

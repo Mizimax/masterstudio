@@ -11301,7 +11301,7 @@ button:focus {
 }
 
 .video-header > #carousel > .carousel-indicators {
-  margin-bottom: 3%;
+    margin-bottom: 10vh;
 }
 
 .video-header > #carousel .carousel-item {
@@ -11397,6 +11397,13 @@ button:focus {
   border-radius: 50%;
   width: 50px;
   height: 50px;
+}
+
+.video-header > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab > .icon-wrapper > .svg {
+    color: white;
+    padding: 6px;
+    width: 100%;
+    height: 100%;
 }
 
 .video-header > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab.\--join > .icon-wrapper {
