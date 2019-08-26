@@ -10970,6 +10970,10 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+input {
+  outline: none;
+}
+
 a {
   color: #f14ea6;
 }
@@ -10984,6 +10988,7 @@ a {
 
 .input-transparent {
   border: 1px solid #fff;
+  color: white;
   background: transparent;
   border-radius: 30px;
 }
@@ -11034,19 +11039,19 @@ a {
   margin-left: auto;
 }
 
-.navbar-wrapper .navbar .nav-item {
-  margin: 0 2px;
+.navbar-wrapper .navbar .nav-it em {
+  margin: 2px;
 }
 
-.navbar-wrapper .navbar .nav-item .nav-link {
+.navbar-wrapper .navbar .nav-it em .nav-link {
   font-size: 14px;
   color: #555;
   text-align: center;
   white-space: nowrap;
 }
 
-.navbar-wrapper .navbar .nav-item .nav-link.active,
-.navbar-wrapper .navbar .nav-item .nav-link:hover {
+.navbar-wrapper .navbar .nav-it em .nav-link.active,
+.navbar-wrapper .navbar .nav-it em .nav-link:hover {
   border-radius: 20px;
   background-color: #f14ea6;
   color: white;

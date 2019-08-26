@@ -10970,6 +10970,10 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+input {
+  outline: none;
+}
+
 a {
   color: #f14ea6;
 }
@@ -10985,6 +10989,7 @@ a {
 .input-transparent,
 .video-header > .content-wrapper > .activity-name > .search-box {
   border: 1px solid #fff;
+  color: white;
   background: transparent;
   border-radius: 30px;
 }
@@ -11040,19 +11045,19 @@ a {
   margin-left: auto;
 }
 
-.navbar-wrapper .navbar .nav-item {
-  margin: 0 2px;
+.navbar-wrapper .navbar .nav-it em {
+  margin: 2px;
 }
 
-.navbar-wrapper .navbar .nav-item .nav-link {
+.navbar-wrapper .navbar .nav-it em .nav-link {
   font-size: 14px;
   color: #555;
   text-align: center;
   white-space: nowrap;
 }
 
-.navbar-wrapper .navbar .nav-item .nav-link.active,
-.navbar-wrapper .navbar .nav-item .nav-link:hover {
+.navbar-wrapper .navbar .nav-it em .nav-link.active,
+.navbar-wrapper .navbar .nav-it em .nav-link:hover {
   border-radius: 20px;
   background-color: #f14ea6;
   color: white;
@@ -11505,5 +11510,44 @@ a {
   font-size: 16px;
   font-weight: bold;
   color: white;
+}
+
+.activity-you {
+  padding: 40px 0;
+  text-align: center;
+  background: black;
+}
+
+.activity-you > .search {
+  width: 350px;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+.activity-you > .header {
+  color: white;
+  font-size: 48px;
+}
+
+.activity-you > .activity-grid {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  width: 900px;
+  margin: 0 auto;
+  color: white;
+}
+
+.activity-you > .activity-grid:after {
+  content: " ";
+  flex: auto;
+}
+
+.activity-you > .activity-grid > .activity-card {
+  width: 280px;
+  flex: 1;
 }
 

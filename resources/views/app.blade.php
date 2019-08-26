@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - Master Studio</title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     @yield('style')
     <script>
       var page = '@yield('page')'
@@ -14,7 +15,7 @@
 <body>
     <!--Navbar-->
     <div class="navbar-wrapper">
-        <nav class="navbar navbar-expand-md bg-white">
+        <nav class="navbar navbar-light navbar-expand-md bg-white">
             <a class="navbar-brand" href="#">Master Studio</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse"

@@ -13,6 +13,10 @@ body {
     font-family: Roboto, sans-serif;
 }
 
+input {
+	outline: none;
+}
+
 a {
 	color: $primary;
 }
@@ -28,6 +32,7 @@ a {
 
 .input-transparent {
 	border: 1px solid #fff;
+	color: white;
 	background: transparent;
 	border-radius: 30px;
 	&::-webkit-input-placeholder { /* Edge */
@@ -68,8 +73,8 @@ a {
 			margin-left: auto;
 		}
 
-		.nav-item {
-			margin: 0 2px;
+		.nav-it em {
+			margin: 2px;
 
 			.nav-link {
 				font-size: 14px;

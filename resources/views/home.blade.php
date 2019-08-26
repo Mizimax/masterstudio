@@ -141,6 +141,19 @@
             @endforeach
         </div>
     </section>
+
+    <section class="activity-you">
+        <h2 class="header">Activity for you</h2>
+        <input class="search input-transparent" placeholder="Search your activities..." type="text">
+        <div class="activity-grid">
+            <div class="activity-card">5</div>
+            <div class="activity-card">5</div>
+            <div class="activity-card">5</div>
+            <div class="activity-card">5</div>
+            <div class="activity-card">5</div>
+            <div class="activity-card">5</div>
+        </div>
+    </section>
 @endsection
 
 @section('scriptfile')
