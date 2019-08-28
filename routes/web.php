@@ -24,5 +24,7 @@ Route::get('/studio', function (){
 Route::get('/become', function (){
     return view('become');
 });
-
-
+	Route::get('/content/activity/all', function () {
+		//?start=6&offset=12
+		return view('components.activity-grid-card', ['activities' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]);
+	});

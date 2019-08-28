@@ -1,7 +1,11 @@
 // Variables
 @import 'app';
 // Components
+@import 'components/icon';
 @import 'components/activity-card';
+@import 'components/activity-grid-card';
+@import 'components/activity-video-card';
+@import 'components/activity-you';
 
 // Font size
 $activity-header-mobile: 34px;
@@ -10,135 +14,6 @@ $activity-subheader-mobile: 28px;
 $activity-subheader: 42px;
 $searchbox-mobile: 12px;
 $searchbox: 20px;
-
-.icon-wrapper {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-
-    > .svg {
-        color: white;
-        padding: 6px;
-        width: 100%;
-        height: 100%;
-    }
-
-    &.--join {
-        background-color: $primary;
-
-    }
-
-    &.--pin {
-        background-color: $orange;
-
-    }
-
-    &.--invite {
-        background-color: $purple;
-
-    }
-
-    &.--share {
-        background-color: #323132;
-
-    }
-}
-
-.activity-card {
-    position: relative;
-    flex-shrink: 0;
-    border-radius: 10px;
-    width: 220px;
-    height: 300px;
-    margin-right: 20px;
-    transition: width .5s;
-
-    &:hover > .master-profile > .activity-detail {
-        width: 250px;
-        height: 250px;
-        padding: 5px 10px;
-    }
-
-    > .video-wrapper {
-        width: 100%;
-
-        > .video {
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 10px;
-            object-fit: cover;
-            object-position: 50% 50%;
-        }
-    }
-
-    > .master-profile {
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: $zindex-dropdown;
-
-        > .activity-detail {
-            width: 0;
-            height: 0;
-            padding: 0;
-            overflow: hidden;
-            transition: all .5s;
-        }
-
-        > .image-wrapper {
-            width: 75px;
-            height: 75px;
-            position: absolute;
-            left: 20px;
-            top: 0;
-            transform: translateY(-50%);
-
-            > img {
-                border-radius: 50%;
-                width: 100%;
-                height: 100%;
-            }
-        }
-    }
-
-
-    > .title-wrapper {
-        position: absolute;
-        left: 10px;
-        bottom: 10px;
-
-        > .activity-join {
-            display: flex;
-            margin-top: 5px;
-
-            > .participant {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                border: 1px solid #ccc;
-
-                &:not(:first-child) {
-                    transform: translateX(-50%);
-                }
-
-                > img {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 50%;
-                }
-            }
-        }
-
-        > .title {
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-        }
-    }
-}
 
 .video-header {
     position: relative;
@@ -319,68 +194,4 @@ $searchbox: 20px;
         }
     }
 
-}
-
-.activity-you {
-    padding: 50px 0;
-    text-align: center;
-    background: black;
-
-    > .search {
-        width: 350px;
-        font-size: 16px;
-        font-style: italic;
-        margin-top: 15px;
-        padding: 10px 15px;
-        border-color: #ccc;
-        color: #ccc;
-    }
-
-    > .header {
-        color: white;
-        font-size: 48px;
-        font-weight: bold;
-    }
-
-    > .activity-grid {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-evenly;
-        max-width: 900px;
-        margin: 20px auto 0;
-        color: white;
-
-        > .activity-card-wrapper {
-            margin: 50px 0 0;
-
-            &:hover > .activity-tabs {
-                opacity: 1;
-                z-index: 1;
-            }
-
-            > .activity-card {
-                flex: 0 1 250px;
-                width: 250px;
-                height: 250px;
-                color: black;
-                margin-right: 0;
-            }
-
-            > .activity-tabs {
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                margin-top: 20px;
-                opacity: 0;
-                z-index: -1;
-                transition: opacity .5s;
-
-                > .icon-wrapper {
-                    width: 40px;
-                    height: 40px;
-                    margin: 0 5px;
-                }
-            }
-        }
-    }
 }

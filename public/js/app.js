@@ -103,42 +103,50 @@ function hideVideo(e) {
   $(this).get(0).pause();
 }
 
-        /*
-         * Replace all SVG images with inline SVG
-         */
+    /*
+     * Replace all SVG images with inline SVG
+     */
 
+    jQuery('img.svg').each(function () {
+      var $img = jQuery(this)
+      var imgID = $img.attr('id')
+      var imgClass = $img.attr('class')
+      var imgURL = $img.attr('src')
+      jQuery.get(imgURL, function (data) {
+        // Get the SVG tag, ignore the rest
+        var $svg = jQuery(data).find('svg') // Add replaced image's ID to the new SVG
 
-        jQuery('img.svg').each(function () {
-            var $img = jQuery(this);
-            var imgID = $img.attr('id');
-            var imgClass = $img.attr('class');
-            var imgURL = $img.attr('src');
-            jQuery.get(imgURL, function (data) {
-                // Get the SVG tag, ignore the rest
-                var $svg = jQuery(data).find('svg'); // Add replaced image's ID to the new SVG
+        if (typeof imgID !== 'undefined') {
+          $svg = $svg.attr('id', imgID)
+        } // Add replaced image's classes to the new SVG
 
-                if (typeof imgID !== 'undefined') {
-                    $svg = $svg.attr('id', imgID);
-                } // Add replaced image's classes to the new SVG
+        if (typeof imgClass !== 'undefined') {
+          $svg = $svg.attr('class', imgClass + ' replaced-svg')
+        } // Remove any invalid XML tags as per http://validator.w3.org
 
+        $svg = $svg.removeAttr('xmlns:a') // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
 
-                if (typeof imgClass !== 'undefined') {
-                    $svg = $svg.attr('class', imgClass + ' replaced-svg');
-                } // Remove any invalid XML tags as per http://validator.w3.org
+        if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+          $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+        } // Replace image with new SVG
 
-
-                $svg = $svg.removeAttr('xmlns:a'); // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
-
-                if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-                    $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'));
-                } // Replace image with new SVG
-
-
-                $img.replaceWith($svg);
-            }, 'xml');
-        });
+        $img.replaceWith($svg)
+      }, 'xml')
+    })
 
 /***/ }),
+
+  /***/ './resources/sass/activity.scss':
+  /*!**************************************!*\
+    !*** ./resources/sass/activity.scss ***!
+    \**************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
 
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
@@ -163,15 +171,16 @@ function hideVideo(e) {
 /***/ }),
 
 /***/ 0:
-/*!****************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ***!
-  \****************************************************************************************/
+  /*!***********************************************************************************************************************!*\
+    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ***!
+    \***********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\js\app.js */"./resources/js/app.js");
-        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\app.scss */"./resources/sass/app.scss");
-        module.exports = __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\home.scss */"./resources/sass/home.scss");
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/js/app.js */'./resources/js/app.js')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/app.scss */'./resources/sass/app.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/home.scss */'./resources/sass/home.scss')
+    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity.scss */'./resources/sass/activity.scss')
 
 
 /***/ })

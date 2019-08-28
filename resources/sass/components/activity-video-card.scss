@@ -1,0 +1,95 @@
+.activity-card {
+	position: relative;
+	flex-shrink: 0;
+	border-radius: 10px;
+	width: 220px;
+	height: 300px;
+	margin-right: 20px;
+	transition: width .5s;
+
+	&:hover > .master-profile > .activity-detail {
+		width: 250px;
+		height: 250px;
+		padding: 5px 10px;
+	}
+
+	> .video-wrapper {
+		width: 100%;
+
+		> .video {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 10px;
+			object-fit: cover;
+			object-position: 50% 50%;
+		}
+	}
+
+	> .master-profile {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: $zindex-dropdown;
+
+		> .activity-detail {
+			width: 0;
+			height: 0;
+			padding: 0;
+			overflow: hidden;
+			transition: all .5s;
+		}
+
+		> .image-wrapper {
+			width: 75px;
+			height: 75px;
+			position: absolute;
+			left: 20px;
+			top: 0;
+			transform: translateY(-50%);
+
+			> img {
+				border-radius: 50%;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+
+	> .title-wrapper {
+		position: absolute;
+		left: 10px;
+		bottom: 10px;
+
+		> .activity-join {
+			display: flex;
+			margin-top: 5px;
+
+			> .participant {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				border: 1px solid #ccc;
+
+				&:not(:first-child) {
+					transform: translateX(-50%);
+				}
+
+				> img {
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+				}
+			}
+		}
+
+		> .title {
+			font-size: 16px;
+			font-weight: bold;
+			color: white;
+		}
+	}
+}

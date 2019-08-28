@@ -1,0 +1,35 @@
+.activity-you {
+	padding: 50px 0;
+	text-align: center;
+	background: black;
+
+	> .search {
+		width: 350px;
+		font-size: 16px;
+		font-style: italic;
+		margin-top: 15px;
+		padding: 10px 15px;
+		border-color: #ccc;
+		color: #ccc;
+	}
+
+	> .header {
+		color: white;
+		font-size: 48px;
+		font-weight: bold;
+	}
+
+	> .activity-grid {
+		position: relative;
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-evenly;
+		max-width: 900px;
+		margin: 20px auto 0;
+		color: white;
+
+		> .activity-card-wrapper {
+			margin: 50px 10px 0;
+		}
+	}
+}

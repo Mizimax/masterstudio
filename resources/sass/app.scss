@@ -38,6 +38,14 @@ button:focus {
     color: $primary !important;
 }
 
+.primary-bg {
+	background: $primary !important;
+}
+
+.color-black {
+	color: black;
+}
+
 .input-transparent {
 	border: 1px solid #fff;
 	background: transparent;
@@ -199,18 +207,90 @@ button:focus {
 }
 
 .footer {
+	padding: 0 20px;
     background: #201c1d;
 
     > .footer-wrapper {
         max-width: 900px;
         width: 100%;
-    }
+	    margin: 0 auto;
+	    padding: 40px 0 60px;
+	    color: $primary;
 
-    > .footer-bottom {
-        background: black;
-        color: #666;
-        padding: 13px 0;
+	    > .logo-name {
+		    padding: 35px 0 50px;
+	    }
+
+	    .col {
+		    margin: 20px 0;
+
+		    @include tablet-up {
+			    margin: 0;
+		    }
+
+		    > .title {
+			    font-size: 20px;
+			    font-weight: bold;
+			    padding: 10px 0 20px;
+		    }
+	    }
+
+	    .menu-list {
+		    flex-shrink: 1;
+		    flex-grow: 1;
+
+		    > .menu {
+			    display: table;
+			    padding: 10px 0;
+			    margin: 0 auto;
+
+			    @include tablet-up {
+				    margin: 0;
+			    }
+
+			    &.active, &:hover {
+				    cursor: pointer;
+				    padding: 10px 20px;
+				    border-radius: 20px;
+				    background-color: $primary;
+				    color: white;
+			    }
+		    }
+	    }
+
+	    .email-sub {
+		    flex-grow: 2;
+		    flex-basis: 100%;
+
+		    @include tablet-up {
+			    flex-basis: 0;
+		    }
+
+		    .email {
+			    > .input, > .sub-btn {
+				    border-radius: 20px;
+				    background: white;
+				    padding: 10px 20px;
+				    border: none;
+				    color: white;
+			    }
+		    }
+	    }
+
+	    .follow-us {
+		    flex-shrink: 1;
+		    flex-grow: 2;
+		    padding: 0 20px;
+	    }
+
+
+
     }
 }
 
+.footer-bottom {
+	background: black;
+	color: #666;
+	padding: 13px 0;
+}
 

@@ -1,0 +1,14 @@
+// Variables
+@import 'app';
+// Component
+@import 'components/icon';
+@import 'components/activity-card';
+@import 'components/activity-grid-card';
+@import 'components/activity-video-card';
+@import 'components/activity-you';
+@import 'components/loading';
+
+.all-activity {
+	@extend .activity-you;
+
+}

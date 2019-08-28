@@ -156,52 +156,18 @@
         <input class="search input-transparent" placeholder="Search your activities..." type="text">
         <div class="activity-grid">
             @php
-                $activitys = [0,1,2,3,4,5]
+                $activities = [0,1,2,3,4,5]
             @endphp
-            @foreach ($activitys as $activity)
-                <div class="activity-card-wrapper">
-                    <div class="activity-card">
-                        <div class="video-wrapper">
-                            <video class="video lazy" loop muted>
-                                <source data-src="/video/activity.mp4"
-                                        type="video/mp4"/>
-                            </video>
-                        </div>
-
-                        <div class="master-profile">
-                            @component('components.activity-card', ['noimage'=>true, 'size'=>75])
-                            @endcomponent
-                            <div class="image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <div class="title-wrapper">
-                            <div class="title">Basic Italian Food</div>
-                        </div>
-                    </div>
-                    <div class="activity-tabs">
-                        <div class="icon-wrapper --join">
-                            <img src="/img/icon/user-circle-regular.svg" class="svg">
-                        </div>
-                        <div class="icon-wrapper --pin">
-                            <img src="/img/icon/user-circle-regular.svg" class="svg">
-                        </div>
-                        <div class="icon-wrapper --invite">
-                            <img src="/img/icon/user-circle-regular.svg" class="svg">
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+            @include('components.activity-grid-card', ['activities'=>$activities])
         </div>
     </section>
 @endsection
 
-@section('scriptfile')
+@section('script')
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
 @endsection
 
-@section('script')
+@section('scriptready')
     var lazyLoadInstance = new LazyLoad({
     elements_selector: ".lazy"
     // ... more custom settings?
