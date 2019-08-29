@@ -6,10 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - Master Studio</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('style')
     <script>
-        var page = '@yield('page')'
+      var page = '@yield('page')'
     </script>
 </head>
 <body>
@@ -120,11 +121,21 @@
             <div class="row flex-column flex-sm-row">
                 <div class="col menu-list">
                     <div class="title">Menu</div>
-                    <div class="menu">Home</div>
-                    <div class="menu">Activities</div>
-                    <div class="menu">Master</div>
-                    <div class="menu">Studio</div>
-                    <div class="menu">Become master</div>
+                    <a href="/">
+                        <div id="home-footer" class="menu">Home</div>
+                    </a>
+                    <a href="/activity">
+                        <div id="activity-footer" class="menu">Activities</div>
+                    </a>
+                    <a href="/master">
+                        <div id="master-footer" class="menu">Master</div>
+                    </a>
+                    <a href="/studio">
+                        <div id="studio-footer" class="menu">Studio</div>
+                    </a>
+                    <a href="/become">
+                        <div id="become-footer" class="menu">Become master</div>
+                    </a>
                 </div>
                 <div class="col follow-us">
                     <div class="title">Follow us</div>
@@ -172,6 +183,43 @@
     <script>
       $(document).ready(function () {
         $('#' + page + '-menu').addClass('active')
+        $('.footer #' + page + '-footer').addClass('active')
+        /*
+        * Replace all SVG images with inline SVG
+        */
+        jQuery('img.svg').each(function () {
+          var $img = jQuery(this)
+          var imgID = $img.attr('id')
+          var imgClass = $img.attr('class')
+          var imgURL = $img.attr('src')
+
+          jQuery.get(imgURL, function (data) {
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg')
+
+            // Add replaced image's ID to the new SVG
+            if (typeof imgID !== 'undefined') {
+              $svg = $svg.attr('id', imgID)
+            }
+            // Add replaced image's classes to the new SVG
+            if (typeof imgClass !== 'undefined') {
+              $svg = $svg.attr('class', imgClass + ' replaced-svg')
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a')
+
+            // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+            if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+              $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+            }
+
+            // Replace image with new SVG
+            $img.replaceWith($svg)
+
+          }, 'xml')
+
+        })
           @yield('scriptready')
       })
     </script>

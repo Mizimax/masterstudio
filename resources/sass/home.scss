@@ -2,10 +2,11 @@
 @import 'app';
 // Components
 @import 'components/icon';
-@import 'components/activity-card';
+@import 'components/activity-card-detail';
 @import 'components/activity-grid-card';
 @import 'components/activity-video-card';
-@import 'components/activity-you';
+@import 'components/activity-you-section';
+@import 'components/live-activity-section';
 
 // Font size
 $activity-header-mobile: 34px;
@@ -16,182 +17,132 @@ $searchbox-mobile: 12px;
 $searchbox: 20px;
 
 .video-header {
-    position: relative;
+	position: relative;
 
 
-    > .half-square {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 10vh;
-        display: block;
-        background: white;
-        background: linear-gradient(to bottom right, transparent 50%, white 50%);
-    }
+	> .half-square {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 10vh;
+		display: block;
+		background: white;
+		background: linear-gradient(to bottom right, transparent 50%, white 50%);
+	}
 
-    > #carousel {
-        > .carousel-indicators {
-            margin-bottom: 10vh;
-        }
+	> #carousel {
+		> .carousel-indicators {
+			margin-bottom: 10vh;
+		}
 
-        .carousel-item {
-            height: 100vh;
-            @include tablet-up {
-                height: 100%;
-            }
+		.carousel-item {
+			height: 100vh;
+			@include tablet-up {
+				height: 100%;
+			}
 
-            .video {
-                object-fit: cover;
-            }
-        }
-    }
+			.video {
+				object-fit: cover;
+			}
+		}
+	}
 
-    > .content-wrapper {
-        width: 100%;
-        top: 55%;
-        transform: translateY(-50%);
-        position: absolute;
-        padding: 0 20px;
-        left: 0;
-        max-width: 600px;
-        width: 100%;
+	> .content-wrapper {
+		width: 100%;
+		top: 55%;
+		transform: translateY(-50%);
+		position: absolute;
+		padding: 0 20px;
+		left: 0;
+		max-width: 600px;
+		width: 100%;
 
-        @include mobile-up {
-            padding-left: 6%;
-        }
+		@include mobile-up {
+			padding-left: 6%;
+		}
 
-        > .activity-name {
-            color: white;
+		> .activity-name {
+			color: white;
 
-            > .header {
-                font-size: $activity-header-mobile;
-                display: block;
-                @include mobile-up {
-                    font-size: $activity-header;
-                }
-            }
+			> .header {
+				font-size: $activity-header-mobile;
+				display: block;
+				@include mobile-up {
+					font-size: $activity-header;
+				}
+			}
 
-            > .subheader {
-                font-size: $activity-subheader-mobile;
-                display: block;
-                @include mobile-up {
-                    font-size: $activity-subheader;
-                }
-            }
+			> .subheader {
+				font-size: $activity-subheader-mobile;
+				display: block;
+				@include mobile-up {
+					font-size: $activity-subheader;
+				}
+			}
 
-            > .search-box {
-                width: 100%;
-                font-size: $searchbox-mobile;
-                font-style: italic;
-                color: white;
-                margin-top: 10px;
-                padding: 10px 20px;
-                outline: none;
-                @extend .input-transparent;
+			> .search-box {
+				width: 100%;
+				font-size: $searchbox-mobile;
+				font-style: italic;
+				color: white;
+				margin-top: 10px;
+				padding: 10px 20px;
+				outline: none;
+				@extend .input-transparent;
 
-                @include mobile-up {
-                    font-size: $searchbox;
-                    margin-top: 20px;
-                }
-            }
-        }
+				@include mobile-up {
+					font-size: $searchbox;
+					margin-top: 20px;
+				}
+			}
+		}
 
-        > .activity-detail-wrapper {
-            display: flex;
-            margin-top: 80px;
+		> .activity-detail-wrapper {
+			display: flex;
+			margin-top: 80px;
 
-            > .activity-tabs {
-                padding-left: 20px;
+			> .activity-tabs {
+				padding-left: 20px;
 
-                > .activity-tab {
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 20px;
+				> .activity-tab {
+					display: flex;
+					align-items: center;
+					margin-bottom: 20px;
 
-                    > .text {
-                        font-weight: bold;
-                        font-style: italic;
-                        font-size: 16px;
-                        margin-left: 15px;
-                    }
-                }
-            }
-        }
-    }
+					> .text {
+						font-weight: bold;
+						font-style: italic;
+						font-size: 16px;
+						margin-left: 15px;
+					}
+				}
+			}
+		}
+	}
 }
 
-.live-activity {
-    padding: 70px 0;
-    text-align: center;
 
-    > .header {
-        font-weight: bold;
-        font-size: 48px;
-    }
+.activity-story {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	overflow-x: auto;
+	padding: 100px 20px 30px 20px;
 
-    > .category-interest {
-        @include shadow(5px, 5px, 15px, 0px, 0.2);
-        display: inline-flex;
-        border-radius: 100px;
-        padding: 20px;
-        margin-top: 30px;
+	> .activity-wrapper {
+		> .activity-card {
+			&:hover {
+				width: 420px;
+				cursor: pointer;
+			}
+		}
 
-        > .interest-activity {
-            margin: 0 7px;
-
-            > .icon {
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                border: 2px solid #888;
-
-                &.active {
-                    border: none;
-                    background: orange;
-                    color: white;
-                }
-            }
-
-            > .name {
-                font-size: 10px;
-                margin-top: 5px;
-                color: #888;
-            }
-        }
-
-        > .add-interest-activity {
-            @extend .interest-activity;
-
-            > .icon {
-                border: none;
-                @include shadow(5px, 5px, 15px, 0px, 0.2);
-            }
-        }
-    }
-
-    > .activity-story {
-        display: flex;
-        flex-wrap: nowrap;
-        width: 100%;
-        overflow-x: auto;
-        padding: 100px 20px 30px 20px;
-
-        > .activity-wrapper {
-            > .activity-card {
-                &:hover {
-                    width: 420px;
-                    cursor: pointer;
-                }
-            }
-
-            > .location {
-                text-align: left;
-                font-style: italic;
-                color: #9F9F9F;
-                margin-top: 8px;
-            }
-        }
-    }
-
+		> .location {
+			text-align: left;
+			font-style: italic;
+			color: #9F9F9F;
+			margin-top: 8px;
+		}
+	}
 }

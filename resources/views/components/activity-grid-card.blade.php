@@ -10,7 +10,7 @@
                             type="video/mp4" />
                 </video>
             </div>
-
+            <div class="overlay"></div>
             <div class="master-profile">
                 @component('components.activity-card', ['noimage'=>true, 'size'=>75])
                 @endcomponent

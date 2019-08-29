@@ -24,19 +24,19 @@
                 <div class="carousel-item active">
                     <video class="video video-fluid" autoplay loop muted>
                         <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                type="video/mp4"/>
+                                type="video/mp4" />
                     </video>
                 </div>
                 <div class="carousel-item">
                     <video class="video video-fluid" autoplay loop muted>
                         <source src="https://mdbootstrap.com/img/video/forest.mp4"
-                                type="video/mp4"/>
+                                type="video/mp4" />
                     </video>
                 </div>
                 <div class="carousel-item">
                     <video class="video video-fluid" autoplay loop muted>
                         <source src="https://mdbootstrap.com/img/video/Agua-natural.mp4"
-                                type="video/mp4"/>
+                                type="video/mp4" />
                     </video>
                 </div>
             </div>
@@ -118,7 +118,7 @@
                         <div class="video-wrapper">
                             <video class="video lazy" loop muted>
                                 <source data-src="/video/activity.mp4"
-                                        type="video/mp4"/>
+                                        type="video/mp4" />
                             </video>
                         </div>
 
@@ -152,14 +152,18 @@
     </section>
 
     <section class="activity-you">
-        <h3 class="header">Activity for you</h3>
-        <input class="search input-transparent" placeholder="Search your activities..." type="text">
-        <div class="activity-grid">
-            @php
-                $activities = [0,1,2,3,4,5]
-            @endphp
-            @include('components.activity-grid-card', ['activities'=>$activities])
+        <div class="content">
+            <h3 class="header">Activity for you</h3>
+            <input class="search input-transparent" placeholder="Search your activities..."
+                   type="text">
+            <div class="activity-grid">
+                @php
+                    $activities = [0,1,2,3,4,5]
+                @endphp
+                @include('components.activity-grid-card', ['activities'=>$activities])
+            </div>
         </div>
+        <div class="overlay"></div>
     </section>
 @endsection
 
