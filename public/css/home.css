@@ -11505,6 +11505,7 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper {
+    cursor: pointer;
   -webkit-animation: fadeout 0.5s;
   /* Safari, Chrome and Opera > 12.1 */
   /* Firefox < 16 */
@@ -11518,8 +11519,8 @@ button:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 800px;
-  height: 500px;
+    max-width: 700px;
+    height: 400px;
   z-index: 99;
   -webkit-animation: fadein 0.5s;
   /* Safari, Chrome and Opera > 12.1 */
@@ -11529,10 +11530,45 @@ button:focus {
   animation: fadein 0.5s;
 }
 
+.activity-card-wrapper > .activity-card > .video-wrapper.hover > .activity-tabs {
+    display: block;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper.hover > .play-wrapper {
+    display: block;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper .play-wrapper {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper .play-wrapper > .svg {
+    color: white;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    left: 103%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs > .icon-wrapper {
+    margin: 10px 0;
+}
+
 .activity-card-wrapper > .activity-card > .overlay {
   position: fixed !important;
   display: none;
-  background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.6);
   z-index: 50;
 }
 
@@ -11574,9 +11610,9 @@ button:focus {
   height: 100%;
   border-radius: 10px;
   -o-object-fit: cover;
-  object-fit: cover;
+    object-fit: cover;
   -o-object-position: 50% 50%;
-  object-position: 50% 50%;
+    object-position: 50% 50%;
 }
 
 .activity-card > .master-profile {

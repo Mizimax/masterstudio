@@ -103,29 +103,39 @@ function hideVideo(e) {
   $(this).get(0).pause();
 }
 
-    $('.activity-card > .video-wrapper').hover(function () {
-      console.log('hover')
-      $(this).addClass('hover')
-      $('.activity-card > .overlay').addClass('d-block')
-    })
-    $('.activity-card > .overlay').click(function () {
-      $(this).removeClass('d-block')
-      $(this).addClass('d-none')
-    })
+        var MasterStudio = {
+            videoHover: {
+                play: false
+            }
+        };
+        $('.activity-card > .video-wrapper').on('mouseenter', function () {
+            var self = this;
+            $(this).addClass('hover');
+            $(this).parent().children('.overlay').addClass('d-block');
+            $('.overlay.d-block').click(function () {
+                $(self).removeClass('hover');
+                $(this).removeClass('d-block');
+            });
+            $(this).click(function () {
+                if (!MasterStudio.videoHover.play) $(this).children('.video').get(0).play(); else $(this).children('.video').get(0).pause();
+                $(this).children('.play-wrapper').toggleClass('d-none');
+                MasterStudio.videoHover.play = !MasterStudio.videoHover.play;
+            });
+        });
 
 /***/ }),
 
-  /***/ './resources/sass/activity.scss':
-  /*!**************************************!*\
-    !*** ./resources/sass/activity.scss ***!
-    \**************************************/
-  /*! no static exports found */
-  /***/ (function (module, exports) {
+    /***/ "./resources/sass/activity.scss":
+    /*!**************************************!*\
+      !*** ./resources/sass/activity.scss ***!
+      \**************************************/
+    /*! no static exports found */
+    /***/ (function (module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-    /***/
-  }),
+        /***/
+    }),
 
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
@@ -150,16 +160,16 @@ function hideVideo(e) {
 /***/ }),
 
 /***/ 0:
-  /*!***********************************************************************************************************************!*\
-    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ***!
-    \***********************************************************************************************************************/
+    /*!***********************************************************************************************************************!*\
+      !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ***!
+      \***********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/js/app.js */'./resources/js/app.js')
-    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/app.scss */'./resources/sass/app.scss')
-    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/home.scss */'./resources/sass/home.scss')
-    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity.scss */'./resources/sass/activity.scss')
+        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\js\app.js */"./resources/js/app.js");
+        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\app.scss */"./resources/sass/app.scss");
+        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\home.scss */"./resources/sass/home.scss");
+        module.exports = __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\activity.scss */"./resources/sass/activity.scss");
 
 
 /***/ })

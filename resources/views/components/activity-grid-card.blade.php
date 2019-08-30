@@ -9,6 +9,20 @@
                     <source data-src="/video/activity.mp4"
                             type="video/mp4" />
                 </video>
+                <div class="play-wrapper">
+                    <img src="/img/icon/play-circle-solid.svg" class="svg">
+                </div>
+                <div class="activity-tabs">
+                    <div class="icon-wrapper --join">
+                        <img src="/img/icon/user-circle-regular.svg" class="svg">
+                    </div>
+                    <div class="icon-wrapper --pin">
+                        <img src="/img/icon/user-circle-regular.svg" class="svg">
+                    </div>
+                    <div class="icon-wrapper --invite">
+                        <img src="/img/icon/user-circle-regular.svg" class="svg">
+                    </div>
+                </div>
             </div>
             <div class="overlay"></div>
             <div class="master-profile">
@@ -21,17 +35,6 @@
 
             <div class="title-wrapper">
                 <div class="title">Basic Italian Food</div>
-            </div>
-        </div>
-        <div class="activity-tabs">
-            <div class="icon-wrapper --join">
-                <img src="/img/icon/user-circle-regular.svg" class="svg">
-            </div>
-            <div class="icon-wrapper --pin">
-                <img src="/img/icon/user-circle-regular.svg" class="svg">
-            </div>
-            <div class="icon-wrapper --invite">
-                <img src="/img/icon/user-circle-regular.svg" class="svg">
             </div>
         </div>
     </div>
