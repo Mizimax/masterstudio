@@ -11108,7 +11108,7 @@ button:focus {
 }
 
 .shadow {
-    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
 }
 
 .hide {
@@ -11509,7 +11509,7 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper {
-    cursor: pointer;
+  cursor: pointer;
   -webkit-animation: fadeout 0.5s;
   /* Safari, Chrome and Opera > 12.1 */
   /* Firefox < 16 */
@@ -11523,8 +11523,8 @@ button:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-    max-width: 700px;
-    height: 400px;
+  max-width: 700px;
+  height: 400px;
   z-index: 99;
   -webkit-animation: fadein 0.5s;
   /* Safari, Chrome and Opera > 12.1 */
@@ -11535,44 +11535,44 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover > .activity-tabs {
-    display: block;
+  display: block;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover > .play-wrapper {
-    display: block;
+  display: block;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper .play-wrapper {
-    display: none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 60px;
-    height: 60px;
-    transform: translate(-50%, -50%);
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  transform: translate(-50%, -50%);
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper .play-wrapper > .svg {
-    color: white;
+  color: white;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    left: 103%;
-    top: 50%;
-    transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  left: 103%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs > .icon-wrapper {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .activity-card-wrapper > .activity-card > .overlay {
   position: fixed !important;
   display: none;
-    background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 50;
 }
 
@@ -11614,9 +11614,9 @@ button:focus {
   height: 100%;
   border-radius: 10px;
   -o-object-fit: cover;
-    object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 50%;
-    object-position: 50% 50%;
+     object-position: 50% 50%;
 }
 
 .activity-card > .master-profile {
@@ -11783,23 +11783,23 @@ button:focus {
 }
 
 .activity-story {
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    overflow-x: auto;
-    padding: 100px 20px 30px 20px;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  overflow-x: auto;
+  padding: 100px 20px 30px 20px;
 }
 
 .activity-story > .activity-wrapper > .activity-card:hover {
-    width: 420px;
-    cursor: pointer;
+  width: 420px;
+  cursor: pointer;
 }
 
 .activity-story > .activity-wrapper > .location {
-    text-align: left;
-    font-style: italic;
-    color: #9F9F9F;
-    margin-top: 8px;
+  text-align: left;
+  font-style: italic;
+  color: #9F9F9F;
+  margin-top: 8px;
 }
 
 .video-header {
