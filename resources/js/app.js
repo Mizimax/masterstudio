@@ -8,12 +8,6 @@ function hideVideo(e) {
     $(this).get(0).pause();
 }
 
-var MasterStudio = {
-    videoHover: {
-        play: false
-    }
-}
-
 $('.activity-card > .video-wrapper').off('mouseenter').on('mouseenter', function () {
     var self = this;
     $(this).addClass('hover');

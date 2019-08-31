@@ -178,8 +178,19 @@
     @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
-    <script src="/js/app.js"></script>
     @yield('script')
+    <script>
+        var MasterStudio = {
+            videoHover: {
+                play: false
+            },
+            videoPreview: {
+                play: false,
+                src: ''
+            }
+        }
+    </script>
+    <script src="/js/app.js"></script>
     <script>
       $(document).ready(function () {
         $('#' + page + '-menu').addClass('active')

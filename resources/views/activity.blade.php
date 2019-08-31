@@ -107,6 +107,14 @@
         </div>
     </section>
 
+    <div class="record-video">
+        <div class="video-preview">
+            <video width="640" height="480" autoplay></video>
+        </div>
+        <button class="record-btn">Start recording</button>
+        {{--        <div class="overlay"></div>--}}
+    </div>
+
     <section class="all-activity">
         <div class="content">
             <h3 class="header">All activities</h3>
@@ -170,15 +178,21 @@
     let recorder = RecordRTC(stream, {
     type: 'video'
     });
+    $('.video-preview > video')[0].srcObject = stream
+    $('.record-btn').off('click').on('click', function(){
+    if(!MasterStudio.videoPreview.play){
     recorder.startRecording();
-
-    const sleep = m => new Promise(r => setTimeout(r, m));
-    await sleep(3000);
-
+    }
+    else {
     recorder.stopRecording(function() {
     let blob = recorder.getBlob();
     invokeSaveAsDialog(blob);
     });
+    $(this).text('Stop recording')
+    }
+    $(this).toggleClass('recording');
+    MasterStudio.videoPreview.play = !MasterStudio.videoPreview.play;
+    })
     });
     })
 @endsection
