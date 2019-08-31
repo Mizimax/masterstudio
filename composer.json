@@ -64,6 +64,7 @@
             "cp .env.example .env",
             "php artisan key:generate",
             "php artisan config:clear",
+            "php artisan config:cache",
             "chmod -R 777 public/"
         ]
     }
