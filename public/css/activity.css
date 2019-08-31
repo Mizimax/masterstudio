@@ -8046,7 +8046,9 @@ button.bg-dark:focus {
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
-.shadow {
+.shadow,
+.your-activity > .activity-timeline > .add-activity-story > .add-button,
+.your-activity > .activity-timeline .your-activity-timeline > .your-info {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
@@ -11103,6 +11105,12 @@ button:focus {
     font-size: 0;
 }
 
+.shadow,
+.your-activity > .activity-timeline > .add-activity-story > .add-button,
+.your-activity > .activity-timeline .your-activity-timeline > .your-info {
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+}
+
 .hide {
     display: none !important;
 }
@@ -11794,7 +11802,7 @@ button:focus {
 
 .loading-wrapper {
     display: none;
-    margin-top: -20px;
+    margin-top: 20px;
 }
 
 .lds-ellipsis {
@@ -11897,5 +11905,136 @@ button:focus {
     100% {
         transform: translate(19px, 0);
     }
+}
+
+.activity-story {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding: 100px 20px 30px 20px;
+}
+
+.activity-story > .activity-wrapper > .activity-card:hover {
+    width: 420px;
+    cursor: pointer;
+}
+
+.activity-story > .activity-wrapper > .location {
+    text-align: left;
+    font-style: italic;
+    color: #9F9F9F;
+    margin-top: 8px;
+}
+
+.your-activity > .activity-timeline {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline {
+    position: relative;
+    display: flex;
+    height: 204px;
+    margin-top: 100px;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .image-container {
+    padding-left: 60px;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .image-container > .your-image {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info {
+    width: 170px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info > * {
+    margin: 5px 0;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info > .name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info span {
+    display: block;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info .progress {
+    margin: 10px auto;
+    height: 5px;
+    width: 70px;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info .progress > .progress-bar {
+    background-color: #fcac42;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info > .timespend-badge {
+    display: inline-block;
+    border-radius: 20px;
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info > .timespend {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .your-info > .category {
+    border-radius: 20px;
+    border: 1px solid #000;
+    font-size: 13px;
+}
+
+.your-activity > .activity-timeline > .activity-story .activity-card {
+    width: 170px;
+    height: 204px;
+}
+
+.your-activity > .activity-timeline > .add-activity-story {
+    display: flex;
+    align-items: center;
+    transform: translateX(-50%);
+}
+
+.your-activity > .activity-timeline > .add-activity-story > .add-button {
+    display: flex;
+    flex-basis: 80px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    background: white;
+    cursor: pointer;
+}
+
+.your-activity > .activity-timeline > .add-activity-story > .add-button > .svg {
+    width: 30px;
+    height: 30px;
+    color: #555;
+}
+
+.your-activity > .activity-timeline > .add-activity-story > span {
+    text-align: left;
+    font-size: 10px;
 }
 

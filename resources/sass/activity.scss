@@ -8,15 +8,133 @@
 @import 'components/activity-you-section';
 @import 'components/live-activity-section';
 @import 'components/loading';
+@import 'components/activity-story-section';
 
 .all-activity {
-	@extend .activity-you;
+    @extend .activity-you;
 }
 
 .your-activity {
-	@extend .live-activity;
+    @extend .live-activity;
 
-	> .activity-timeline {
+    > .activity-timeline {
+        display: flex;
+        justify-content: space-evenly;
+        max-width: 1100px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 20px;
 
-	}
+        .your-activity-timeline {
+            position: relative;
+            display: flex;
+            height: 204px;
+            margin-top: 100px;
+
+            > .image-container {
+                padding-left: 60px;
+
+                > .your-image {
+                    position: absolute;
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                }
+            }
+
+            > .your-info {
+                width: 170px;
+                border-radius: 15px;
+                padding: 20px;
+                @extend .shadow;
+
+                > * {
+                    margin: 5px 0;
+                }
+
+                > .name {
+                    font-size: 20px;
+                    font-weight: bold;
+                }
+
+                span {
+                    display: block;
+                }
+
+                .progress {
+                    margin: 10px auto;
+                    height: 5px;
+                    width: 70px;
+
+                    > .progress-bar {
+                        background-color: #fcac42;
+                    }
+                }
+
+                > .timespend-badge {
+                    display: inline-block;
+                    border-radius: 20px;
+                    background: black;
+                    color: white;
+                    padding: 5px 10px;
+                    font-size: 13px;
+                }
+
+                > .timespend {
+                    font-style: italic;
+                    font-weight: bold;
+                }
+
+                > .category {
+                    border-radius: 20px;
+                    border: 1px solid #000;
+                    font-size: 13px;
+                }
+            }
+        }
+
+        //> .activity-timeline-expand {
+        //    @extend .shadow;
+        //    width: 20px;
+        //}
+
+        > .activity-story {
+            .activity-card {
+                width: 170px;
+                height: 204px;
+            }
+
+        }
+
+        > .add-activity-story {
+            display: flex;
+            align-items: center;
+            transform: translateX(-50%);
+
+            > .add-button {
+                @extend .shadow;
+                display: flex;
+                flex-basis: 80px;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                border-radius: 50%;
+                width: 80px;
+                height: 80px;
+                background: white;
+                cursor: pointer;
+
+                > .svg {
+                    width: 30px;
+                    height: 30px;
+                    color: #555;
+                }
+            }
+
+            > span {
+                text-align: left;
+                font-size: 10px;
+            }
+        }
+    }
 }

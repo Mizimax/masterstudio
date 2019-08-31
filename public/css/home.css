@@ -11107,6 +11107,10 @@ button:focus {
   font-size: 0;
 }
 
+.shadow {
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+}
+
 .hide {
   display: none !important;
 }
@@ -11778,6 +11782,26 @@ button:focus {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
+.activity-story {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding: 100px 20px 30px 20px;
+}
+
+.activity-story > .activity-wrapper > .activity-card:hover {
+    width: 420px;
+    cursor: pointer;
+}
+
+.activity-story > .activity-wrapper > .location {
+    text-align: left;
+    font-style: italic;
+    color: #9F9F9F;
+    margin-top: 8px;
+}
+
 .video-header {
   position: relative;
 }
@@ -11892,25 +11916,5 @@ button:focus {
   font-style: italic;
   font-size: 16px;
   margin-left: 15px;
-}
-
-.activity-story {
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
-  overflow-x: auto;
-  padding: 100px 20px 30px 20px;
-}
-
-.activity-story > .activity-wrapper > .activity-card:hover {
-  width: 420px;
-  cursor: pointer;
-}
-
-.activity-story > .activity-wrapper > .location {
-  text-align: left;
-  font-style: italic;
-  color: #9F9F9F;
-  margin-top: 8px;
 }
 

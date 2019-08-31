@@ -1,0 +1,23 @@
+.activity-story {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    padding: 100px 20px 30px 20px;
+
+    > .activity-wrapper {
+        > .activity-card {
+            &:hover {
+                width: 420px;
+                cursor: pointer;
+            }
+        }
+
+        > .location {
+            text-align: left;
+            font-style: italic;
+            color: #9F9F9F;
+            margin-top: 8px;
+        }
+    }
+}
