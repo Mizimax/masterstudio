@@ -231,7 +231,6 @@
           }, 'xml')
 
         })
-          @yield('scriptready')
       })
     </script>
 </body>

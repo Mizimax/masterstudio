@@ -8,9 +8,7 @@
 @endsection
 
 @section('content')
-    <section class="">
 
-    </section>
 
     <section class="your-activity">
         <h3 class="header">Your Activity</h3>
@@ -36,7 +34,8 @@
             <div class="your-activity-timeline">
                 <div class="image-container">
                     <div class="your-image image-wrapper">
-                        <img class="border-circle shadow" src="/img/profile.jpg" width="80" height="80"
+                        <img class="border-circle shadow" src="/img/profile.jpg" width="80"
+                             height="80"
                              title="Profile image"
                              alt="Profile image">
                     </div>
@@ -67,7 +66,7 @@
                             <div class="video-wrapper">
                                 <video class="video lazy" loop muted>
                                     <source data-src="/video/activity.mp4"
-                                            type="video/mp4"/>
+                                            type="video/mp4" />
                                 </video>
                             </div>
 
@@ -110,6 +109,10 @@
     <div class="record-video">
         <div class="video-preview">
             <video width="640" height="480" autoplay></video>
+            <div class="cantaccess">This function requires camera and microphone access.</div>
+            <div class="time-record" align="center">
+                <span class="time">0:00</span> / 1:00 minute
+            </div>
         </div>
         <button class="record-btn">Start recording</button>
         {{--        <div class="overlay"></div>--}}
@@ -145,54 +148,87 @@
     <!-- recommended -->
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script>
-        function getActivityPath() {
-            return '/content/activity/all'
+      function getActivityPath() {
+        return '/content/activity/all'
+      }
+
+      function calculateTimeDuration(secs) {
+        var min = Math.floor(secs / 60)
+        var sec = Math.floor(secs - (min * 60))
+        if (sec < 10) {
+          sec = '0' + sec
         }
+        return min + ':' + sec
+      }
+
+      $(document).ready(function () {
+        var lazyLoadInstance = new LazyLoad({
+          elements_selector: '.lazy',
+          // ... more custom settings?
+        })
+
+        $('.all-activity .activity-grid').infiniteScroll({
+          // options
+          path: getActivityPath,
+          append: '.activity-card-wrapper',
+          status: '.loading-wrapper',
+        })
+
+        $('.all-activity .activity-grid').on('append.infiniteScroll', function (event, response) {
+          if (lazyLoadInstance) {
+            lazyLoadInstance.update()
+          }
+        })
+
+        $('.add-button').click(function () {
+
+          var countup
+
+          $('.record-video').addClass('d-flex')
+
+          $('.record-video').off('click').on('click', function (event) {
+            if ($(event.target).hasClass('record-video')) {
+              $(this).toggleClass('d-flex')
+            }
+          })
+
+          navigator.mediaDevices.getUserMedia({
+              video: true,
+              audio: true,
+            },
+            function (stream) {
+              let recorder = RecordRTC(stream, {
+                type: 'video',
+              })
+              $('.video-preview > video')[0].srcObject = stream
+              $('.record-btn').off('click').on('click', function () {
+                  if (!MasterStudio.videoPreview.play) {
+                    recorder.startRecording()
+                    $(this).text('Stop recording...')
+
+                    var sec = 0
+                    $('.time-record > .time').text('0:00')
+                    countup = setInterval(function () {
+                      var countText = calculateTimeDuration(++sec)
+                      $('.time-record > .time').text(countText)
+                    }, 1000)
+                  } else {
+                    recorder.stopRecording(function () {
+                      let blob = recorder.getBlob()
+                      invokeSaveAsDialog(blob)
+                    })
+                    $(this).text('Start recording')
+                    clearInterval(countup)
+                  }
+                  $(this).toggleClass('recording')
+                  MasterStudio.videoPreview.play = !MasterStudio.videoPreview.play
+                },
+              )
+            }).catch(function (error) {
+            $('.cantaccess').addClass('d-block')
+          })
+        })
+      })
     </script>
 @endsection
 
-@section('scriptready')
-    var lazyLoadInstance = new LazyLoad({
-    elements_selector: ".lazy"
-    // ... more custom settings?
-    });
-
-    $('.all-activity .activity-grid').infiniteScroll({
-    // options
-    path: getActivityPath,
-    append: '.activity-card-wrapper',
-    status: '.loading-wrapper',
-    });
-
-    $('.all-activity .activity-grid').on( 'append.infiniteScroll', function( event, response ) {
-    if (lazyLoadInstance) {
-    lazyLoadInstance.update();
-    }
-    });
-
-    $('.add-button').click(function(){
-    navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true
-    }).then(async function(stream) {
-    let recorder = RecordRTC(stream, {
-    type: 'video'
-    });
-    $('.video-preview > video')[0].srcObject = stream
-    $('.record-btn').off('click').on('click', function(){
-    if(!MasterStudio.videoPreview.play){
-    recorder.startRecording();
-    }
-    else {
-    recorder.stopRecording(function() {
-    let blob = recorder.getBlob();
-    invokeSaveAsDialog(blob);
-    });
-    $(this).text('Stop recording')
-    }
-    $(this).toggleClass('recording');
-    MasterStudio.videoPreview.play = !MasterStudio.videoPreview.play;
-    })
-    });
-    })
-@endsection

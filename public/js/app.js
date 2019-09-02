@@ -93,48 +93,50 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-var figure = $(".activity-story .video").hover(hoverVideo, hideVideo);
+    $(document).ready(function () {
+      var figure = $('.activity-story .video').hover(hoverVideo, hideVideo)
 
-function hoverVideo(e) {
-  $(this).get(0).play();
-}
+      function hoverVideo(e) {
+        $(this).get(0).play()
+      }
 
-function hideVideo(e) {
-  $(this).get(0).pause();
-}
+      function hideVideo(e) {
+        $(this).get(0).pause()
+      }
 
-        $('.activity-card > .video-wrapper').off('mouseenter').on('mouseenter', function () {
-            var self = this;
-            $(this).addClass('hover');
-            $(this).parent().children('.overlay').addClass('d-block');
-            $(this).off('click').on('click', function () {
-                console.log('play', MasterStudio.videoHover.play);
-                if (!MasterStudio.videoHover.play) $(this).children('.video').get(0).play(); else $(this).children('.video').get(0).pause();
-                $(this).children('.play-wrapper').toggleClass('d-none');
-                MasterStudio.videoHover.play = !MasterStudio.videoHover.play;
-            });
-            $('.overlay.d-block').one('click ', function () {
-                $(self).removeClass('hover');
-                $(this).removeClass('d-block');
-                $(self).children('.video').get(0).pause();
-                $(self).children('.play-wrapper').removeClass('d-none');
-                MasterStudio.videoHover.play = false;
-            });
-        });
+      $('.activity-card > .video-wrapper').off('mouseenter').on('mouseenter', function () {
+        var self = this
+        $(this).addClass('hover')
+        $(this).parent().children('.overlay').addClass('d-block')
+        $(this).off('click').on('click', function () {
+          console.log('play', MasterStudio.videoHover.play)
+          if (!MasterStudio.videoHover.play) $(this).children('.video').get(0).play() else $(this).children('.video').get(0).pause()
+          $(this).children('.play-wrapper').toggleClass('d-none')
+          MasterStudio.videoHover.play = !MasterStudio.videoHover.play
+        })
+        $('.overlay.d-block').one('click ', function () {
+          $(self).removeClass('hover')
+          $(this).removeClass('d-block')
+          $(self).children('.video').get(0).pause()
+          $(self).children('.play-wrapper').removeClass('d-none')
+          MasterStudio.videoHover.play = false
+        })
+      })
+    })
 
 /***/ }),
 
-    /***/ "./resources/sass/activity.scss":
-    /*!**************************************!*\
-      !*** ./resources/sass/activity.scss ***!
-      \**************************************/
-    /*! no static exports found */
-    /***/ (function (module, exports) {
+  /***/ './resources/sass/activity.scss':
+  /*!**************************************!*\
+    !*** ./resources/sass/activity.scss ***!
+    \**************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-        /***/
-    }),
+    /***/
+  }),
 
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
@@ -159,16 +161,16 @@ function hideVideo(e) {
 /***/ }),
 
 /***/ 0:
-    /*!***********************************************************************************************************************!*\
-      !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ***!
-      \***********************************************************************************************************************/
+  /*!***********************************************************************************************************************!*\
+    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ***!
+    \***********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\js\app.js */"./resources/js/app.js");
-        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\app.scss */"./resources/sass/app.scss");
-        __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\home.scss */"./resources/sass/home.scss");
-        module.exports = __webpack_require__(/*! C:\Users\Maxang\Desktop\masterstudio\resources\sass\activity.scss */"./resources/sass/activity.scss");
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/js/app.js */'./resources/js/app.js')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/app.scss */'./resources/sass/app.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/home.scss */'./resources/sass/home.scss')
+    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity.scss */'./resources/sass/activity.scss')
 
 
 /***/ })
