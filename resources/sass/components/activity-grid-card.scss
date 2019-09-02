@@ -40,6 +40,19 @@
                 > .play-wrapper {
                     display: block;
                 }
+
+                > .button {
+                    &.--detail {
+                        position: absolute;
+                        right: 20px;
+                        bottom: 20px;
+                        background: $primary;
+                        border: none;
+                        color: white;
+                        padding: 17px 40px;
+                        border-radius: 40px;
+                    }
+                }
             }
 
             .play-wrapper {

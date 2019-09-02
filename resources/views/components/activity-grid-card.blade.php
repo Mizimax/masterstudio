@@ -12,6 +12,7 @@
                 <div class="play-wrapper">
                     <img src="/img/icon/play-circle-solid.svg" class="svg">
                 </div>
+                <button class="button --detail" onclick="window.location.href = '/activity/1'">view detail</button>
                 <div class="activity-tabs">
                     <div class="icon-wrapper --join">
                         <img src="/img/icon/user-circle-regular.svg" class="svg">

@@ -95,7 +95,7 @@
 
         > .activity-timeline-expand {
             @extend .shadow;
-            margin: 100px 20px 60px;
+            margin: 100px 20px 70px;
             padding: 15px;
             position: relative;
             border-radius: 20px;
@@ -107,6 +107,13 @@
                 width: 100%;
                 white-space: nowrap;
                 transform: rotate(-90deg);
+
+                > .svg {
+                    width: 25px;
+                    height: 25px;
+                    margin-left: 15px;
+                    color: #0072bf;
+                }
             }
         }
 
@@ -211,5 +218,121 @@
         color: white;
         border: none;
         border-radius: 40px;
+    }
+}
+
+.activity-header {
+    > #carousel {
+        > .carousel-indicators {
+            margin-bottom: 10vh;
+        }
+
+        .carousel-item {
+            height: 100vh;
+            @include tablet-up {
+                height: 100%;
+            }
+
+            .video {
+                object-fit: cover;
+            }
+
+            > .content-wrapper {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0;
+                width: 100%;
+
+                @include mobile-up {
+                    top: 20%;
+                    transform: translateY(0);
+                }
+
+                > .activity-name {
+                    color: white;
+                    width: 100%;
+                    padding-right: 20px;
+
+                    > .header {
+                        font-size: 50px;
+                        font-weight: bold;
+                        width: 100%;
+                        text-align: center;
+
+                        @include mobile-up {
+                            font-size: 50px;
+                            width: 70%;
+                            margin-left: auto;
+                        }
+
+                        @include tablet-up {
+                            font-size: 70px;
+                        }
+                    }
+
+                    > .subheader {
+                        font-size: 50px;
+                        width: 100%;
+                        text-align: center;
+
+                        @include mobile-up {
+                            font-size: 50px;
+                            width: 60%;
+                            margin-left: auto;
+                        }
+
+                        @include tablet-up {
+                            font-size: 70px;
+                        }
+                    }
+
+                    > .search-box-wrapper {
+                        text-align: center;
+                        width: 100%;
+
+                        @include mobile-up {
+                            font-size: 50px;
+                            width: 50%;
+                            margin-left: auto;
+                        }
+
+                        > .search-box {
+                            width: 80%;
+                            font-size: 16px;
+                            font-style: italic;
+                            color: white;
+                            margin-top: 10px;
+                            padding: 10px 20px;
+                            outline: none;
+                            @extend .input-transparent;
+
+                            @include mobile-up {
+                                font-size: 24px;
+                                margin-top: 20px;
+                            }
+                        }
+                    }
+                }
+
+                > .activity-detail-wrapper {
+                    margin-top: 15%;
+                    justify-content: flex-end;
+                    margin-right: 40px;
+
+                    > .activity-detail {
+                        margin: 0 20px;
+
+                        &:first-child {
+                            display: none;
+
+                            @include desktop-up {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

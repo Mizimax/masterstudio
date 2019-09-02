@@ -8,7 +8,61 @@
 @endsection
 
 @section('content')
+    <section class="activity-header">
+        <!-- Carousel -->
+        <div id="carousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel" data-slide-to="1"></li>
+                <li data-target="#carousel" data-slide-to="2"></li>
+            </ul>
+            <!-- End Indicators -->
 
+            <!-- Slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <video class="video video-fluid" autoplay loop muted>
+                        <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
+                                type="video/mp4"/>
+                    </video>
+                    <!-- Content Header -->
+                    <div class="content-wrapper">
+                        <!-- Activity Name , Search -->
+                        <div class="activity-name">
+                            <h1 class="header">@Master Studio</h1>
+                            <h2 class="subheader">Meet Real <a href="#"></a>Chef
+                            </h2>
+                            <div class="search-box-wrapper">
+                                <input class="search-box" placeholder="Search your activities..." type="text">
+                            </div>
+                        </div>
+                        <!-- End Activity Name , Search ac-->
+                        <div class="activity-detail-wrapper d-none d-md-flex">
+                            @include('components.master-card', ['size' => 70])
+                            @include('components.activity-card', ['size' => 70])
+                            @include('components.activity-card', ['size' => 70])
+                        </div>
+                    </div>
+                    <!-- End Content Header -->
+                </div>
+                <div class="carousel-item">
+                    <video class="video video-fluid" autoplay loop muted>
+                        <source src="https://mdbootstrap.com/img/video/forest.mp4"
+                                type="video/mp4"/>
+                    </video>
+                </div>
+                <div class="carousel-item">
+                    <video class="video video-fluid" autoplay loop muted>
+                        <source src="https://mdbootstrap.com/img/video/Agua-natural.mp4"
+                                type="video/mp4"/>
+                    </video>
+                </div>
+            </div>
+            <!-- End Slideshow -->
+        </div>
+        <!-- End Carousel -->
+    </section>
 
     <section class="your-activity">
         <h3 class="header">Your Activity</h3>
@@ -54,7 +108,7 @@
                 </div>
             </div>
             <div class="activity-timeline-expand">
-                <div class="text">activity timeline</div>
+                <div class="text">activity timeline <img src="/img/icon/caret-down-solid.svg" class="svg"></div>
             </div>
             <div class="activity-story">
                 @php
