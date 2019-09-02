@@ -11116,12 +11116,11 @@ button:focus {
 }
 
 .absolute-center,
-.record-video > .video-preview > .cantaccess,
-.your-activity > .activity-timeline > .activity-timeline-expand > .text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.record-video > .video-preview > .cantaccess {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .navbar-wrapper {
@@ -12013,15 +12012,19 @@ button:focus {
 }
 
 .your-activity > .activity-timeline > .activity-timeline-expand {
-    margin: 100px 0 40px 20px;
-    padding: 30px;
-    position: relative;
+	margin: 100px 20px 60px;
+	padding: 15px;
+	position: relative;
+	border-radius: 20px;
 }
 
 .your-activity > .activity-timeline > .activity-timeline-expand > .text {
-    width: 100%;
-    white-space: nowrap;
-    transform: rotate(90deg) translate(-50%, -50%);
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 100%;
+	white-space: nowrap;
+	transform: rotate(-90deg);
 }
 
 .your-activity > .activity-timeline > .activity-story .activity-card {
@@ -12060,64 +12063,64 @@ button:focus {
 }
 
 .record-video {
-    position: fixed;
-    display: none;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1111;
+	position: fixed;
+	display: none;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 1111;
 }
 
 .record-video > .video-preview {
-    margin: 0 20px;
-    border-radius: 20px;
-    background: white;
-    position: relative;
+	margin: 0 20px;
+	border-radius: 20px;
+	background: white;
+	position: relative;
 }
 
 .record-video > .video-preview > .video {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	display: block;
 }
 
 .record-video > .video-preview > .cantaccess {
-    width: 100%;
-    text-align: center;
-    display: none;
-    font-size: 20px;
+	width: 100%;
+	text-align: center;
+	display: none;
+	font-size: 20px;
 }
 
 .record-video > .video-preview > .time-record {
-    position: absolute;
-    bottom: 20px;
-    font-size: 20px;
-    color: #f14ea6;
-    text-align: center;
-    font-weight: bold;
-    left: 0;
-    width: 100%;
+	position: absolute;
+	bottom: 20px;
+	font-size: 20px;
+	color: #f14ea6;
+	text-align: center;
+	font-weight: bold;
+	left: 0;
+	width: 100%;
 }
 
 .record-video > .video-preview > .time-record > .time {
-    font-weight: normal;
+	font-weight: normal;
 }
 
 .record-video > .record-btn {
-    margin-top: 30px;
-    padding: 15px 30px;
-    font-size: 20px;
-    background: #f14ea6;
-    color: white;
-    border: none;
-    border-radius: 40px;
+	margin-top: 30px;
+	padding: 15px 30px;
+	font-size: 20px;
+	background: #f14ea6;
+	color: white;
+	border: none;
+	border-radius: 40px;
 }
 

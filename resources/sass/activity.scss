@@ -95,15 +95,18 @@
 
         > .activity-timeline-expand {
             @extend .shadow;
-            margin: 100px 0 40px 20px;
-            padding: 30px;
+            margin: 100px 20px 60px;
+            padding: 15px;
             position: relative;
+            border-radius: 20px;
 
             > .text {
-                @extend .absolute-center;
+                position: absolute;
+                left: 0;
+                bottom: 40px;
                 width: 100%;
                 white-space: nowrap;
-                transform: rotate(90deg) translate(-50%, -50%);
+                transform: rotate(-90deg);
             }
         }
 
