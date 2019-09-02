@@ -14,7 +14,6 @@ $(document).ready(function () {
         $(this).addClass('hover')
         $(this).parent().children('.overlay').addClass('d-block')
         $(this).off('click').on('click', function () {
-            console.log('play', MasterStudio.videoHover.play)
             if (!MasterStudio.videoHover.play) {
                 $(this).children('.video').get(0).play()
             } else {

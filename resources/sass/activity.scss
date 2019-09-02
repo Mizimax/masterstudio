@@ -93,10 +93,19 @@
             }
         }
 
-        //> .activity-timeline-expand {
-        //    @extend .shadow;
-        //    width: 20px;
-        //}
+        > .activity-timeline-expand {
+            @extend .shadow;
+            margin: 100px 0 40px 20px;
+            padding: 30px;
+            position: relative;
+
+            > .text {
+                @extend .absolute-center;
+                width: 100%;
+                white-space: nowrap;
+                transform: rotate(90deg) translate(-50%, -50%);
+            }
+        }
 
         > .activity-story {
             .activity-card {
@@ -152,12 +161,20 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    z-index: 999;
+    z-index: 1111;
 
     > .video-preview {
+        margin: 0 20px;
         border-radius: 20px;
         background: white;
         position: relative;
+
+        > .video {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            display: block;
+        }
 
         > .cantaccess {
             width: 100%;
