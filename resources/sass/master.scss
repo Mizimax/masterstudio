@@ -1,0 +1,100 @@
+// Variables
+@import 'app';
+// Components
+@import 'components/activity-story-section';
+@import 'components/activity-video-card.scss';
+@import 'components/activity-card-detail';
+@import 'components/master-card';
+
+.master-header {
+	position: relative;
+
+	> .bg-header {
+		height: 100vh;
+		background: url('/img/Deepsea.jpeg');
+		background-position: center;
+
+		@include tablet-up {
+			height: 100%;
+			padding-top: 52.5%;
+		}
+	}
+
+	> .header-content {
+		text-align: center;
+		max-width: 660px;
+		width: 100%;
+		@extend .absolute-center;
+
+		> .header {
+			font-size: 60px;
+			color: white;
+		}
+
+		> .search-box-wrapper {
+			display: flex;
+			text-align: center;
+			margin-top: 30px;
+
+			> .search-box {
+				flex: 1;
+				font-size: 16px;
+				font-style: italic;
+				color: white;
+				padding: 10px 20px;
+				outline: none;
+				@extend .input-transparent;
+			}
+
+			> .button {
+				margin-left: 20px;
+				height: 100%;
+				border: none;
+				border-radius: 40px;
+				padding: 15px 40px;
+				background: #2aace2;
+				color: white;
+			}
+		}
+
+		> .master-interest {
+			> .header {
+				font-size: 34px;
+				font-weight: bold;
+			}
+
+			> .master-list {
+				display: flex;
+				justify-content: center;
+
+				> .master-category {
+					> .header {
+						font-size: 24px;
+					}
+
+					> .master-content {
+						display: flex;
+
+						> .master-detail {
+							> .image-wrapper {
+								width: 75px;
+								height: 75px;
+								position: absolute;
+								left: 20px;
+								top: 0;
+								transform: translateY(-50%);
+
+								> img {
+									border-radius: 50%;
+									width: 100%;
+									height: 100%;
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+}

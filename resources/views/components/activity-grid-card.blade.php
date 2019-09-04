@@ -27,7 +27,7 @@
             </div>
             <div class="overlay"></div>
             <div class="master-profile">
-                @component('components.activity-card', ['noimage'=>true, 'size'=>75])
+                @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
                 @endcomponent
                 <div class="image-wrapper">
                     <img src="/img/profile.jpg" alt="">

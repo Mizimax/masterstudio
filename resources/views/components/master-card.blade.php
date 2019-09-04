@@ -1,8 +1,10 @@
 <!-- Activity Detail -->
 @php
     $size = !empty($size) ? $size : 100;
+    $data = [1];
 @endphp
-<div class="activity-detail justify-content-between flex-wrap">
+@if(!empty($data))
+    <div class="activity-detail {{!empty($animate) ? '--animate' : '' }} justify-content-between flex-wrap">
     <div class="activity-title">
         <div class="image-wrapper" style="margin-top: -{{ $size/2 }}px; width: {{ $size }}px; height: {{ $size }}px">
             @if(empty($noimage))
@@ -20,58 +22,64 @@
             <div class="text">Follow</div>
         </div>
     </div>
-    <div class="activity-content">
-        <h3 class="header" style="font-size: {{ $size/4 }}px">The spirit of ingredient</h3>
-        <div class="row result-course no-gutters">
-            <div class="col text-center">
-                <div class="image-wrapper">
-                    <img src="/img/profile.jpg" style="width: {{ $size/2.5 }}px; height: {{ $size/2.5 }}px" alt="">
-                </div>
-                <div class="text">secret of ingredients</div>
-            </div>
-            <div class="col text-center">
-                <div class="image-wrapper">
-                    <img src="/img/profile.jpg" style="width: {{ $size/2.5 }}px; height: {{ $size/2.5 }}px" alt="">
-                </div>
-                <div class="text">secret of ingredients</div>
-            </div>
-            <div class="col text-center">
-                <div class="image-wrapper">
-                    <img src="/img/profile.jpg" style="width: {{ $size/2.5 }}px; height: {{ $size/2.5 }}px" alt="">
-                </div>
-                <div class="text">secret of ingredients</div>
-            </div>
-        </div>
-    </div>
-    <div class="activity-add">
-        <div class="time-location">
-            <div class="header-title">
+        <div class="master-stat-wrapper">
+            <div class="master-stat">
                 <div class="header">
-                    Register until
+                    Disciples
                 </div>
-                <div class="detail">10 Dec 2019</div>
+                <div class="detail">700</div>
             </div>
-            <div class="header-title">
+            <div class="master-stat">
                 <div class="header">
-                    Start at
+                    Followers
                 </div>
                 <div class="detail --start">
-                    10 Dec 2019<br>
-                    10 Dec 2019<br>
-                    10 Dec 2019
-                </div>
+                    2,000
             </div>
-            <div class="header-title">
+            </div>
+            <div class="master-stat">
                 <div class="header">
-                    Location
-                </div>
-                <div class="detail">10 Dec 2019</div>
+                    Mastered
             </div>
-        </div>
-        <div class="badge-wrapper my-1">
-            <div class="badge mr-2">3 month activity</div>
-            <div class="badge">Basic - Intermediate</div>
+                <div class="detail">4</div>
         </div>
     </div>
+        <div class="activity-story">
+            @php
+                $activitys = [0,1,2,3,4,5,6,7,8,9,10]
+            @endphp
+            @foreach ($activitys as $activity)
+                <div class="activity-wrapper">
+                    <div class="activity-card">
+                        <div class="video-wrapper">
+                            <video class="video lazy" loop muted>
+                                <source data-src="/video/activity.mp4"
+                                        type="video/mp4" />
+                            </video>
+                        </div>
+
+                        <div class="title-wrapper">
+                            <div class="title">Basic Italian Food</div>
+                            <div class="activity-join">
+                                <div class="participant image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                                <div class="participant image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                                <div class="participant image-wrapper">
+                                    <img src="/img/profile.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="button-wrapper my-1" align="center">
+            <button class="button mr-2">Request<br>custom activity</button>
+            <button class="button ml-2">view profile</button>
+    </div>
 </div>
+@endif
 <!-- End Activity Detail -->

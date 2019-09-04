@@ -2,7 +2,7 @@
 @php
     $size = !empty($size) ? $size : 100;
 @endphp
-<div class="activity-detail justify-content-between flex-wrap">
+<div class="activity-detail {{!empty($animate) ? '--animate' : '' }} justify-content-between flex-wrap">
     <div class="activity-title">
         <div class="image-wrapper" style="margin-top: -{{ $size/2 }}px; width: {{ $size }}px; height: {{ $size }}px">
             @if(empty($noimage))

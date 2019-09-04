@@ -9,6 +9,7 @@
 @import 'components/live-activity-section';
 @import 'components/loading';
 @import 'components/activity-story-section';
+@import 'components/master-card';
 
 .all-activity {
     @extend .activity-you;
@@ -107,6 +108,8 @@
                 width: 100%;
                 white-space: nowrap;
                 transform: rotate(-90deg);
+	            font-size: 12px;
+	            font-weight: bold;
 
                 > .svg {
                     width: 25px;
@@ -224,7 +227,7 @@
 .activity-header {
     > #carousel {
         > .carousel-indicators {
-            margin-bottom: 10vh;
+	        margin-bottom: 11vh;
         }
 
         .carousel-item {

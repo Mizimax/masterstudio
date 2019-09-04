@@ -108,7 +108,7 @@
                 <div class="name">Add interest</div>
             </div>
         </div>
-        <div class="activity-story">
+        <div class="activity-story --hover">
             @php
                 $activitys = [0,1,2,3,4,5,6,7,8,9,10]
             @endphp
@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="master-profile">
-                            @component('components.activity-card', ['noimage'=>true, 'size'=>75])
+                            @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
                             @endcomponent
                             <div class="image-wrapper">
                                 <img src="/img/profile.jpg" alt="">

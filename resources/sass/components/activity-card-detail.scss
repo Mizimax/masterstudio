@@ -1,136 +1,123 @@
 .activity-detail {
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 10px 25px;
-    position: relative;
-    @include tablet-up {
-        bottom: 15%;
-        top: auto;
-        margin-top: 0;
-    }
+	border-radius: 15px;
+	background: rgba(255, 255, 255, 0.9);
+	padding: 10px 25px;
+	position: relative;
 
-    > .activity-title {
-        text-align: center;
-        display: flex;
-        width: 100%;
+	&.--animate {
+		width: 0;
+		height: 0;
+		padding: 0;
+		overflow: hidden;
+		transition: all .5s;
+	}
 
-        > .image-wrapper {
-            margin-top: -50px;
+	@include tablet-up {
+		bottom: 15%;
+		top: auto;
+		margin-top: 0;
+	}
 
-            > img {
-                width: 100px;
-                border-radius: 50%;
-            }
-        }
+	> .activity-title {
+		text-align: center;
+		display: flex;
+		width: 100%;
 
-        > .title-wrapper {
-            margin-left: 20px;
-            margin-bottom: 10px;
+		> .image-wrapper {
+			margin-top: -50px;
 
-            > .title {
-                font-size: 18px;
-                font-style: italic;
-            }
+			> img {
+				width: 100px;
+				border-radius: 50%;
+			}
+		}
 
-            > .badge {
-                border: 1px solid #000;
-                border-radius: 20px;
-            }
-        }
+		> .title-wrapper {
+			margin-left: 20px;
+			margin-bottom: 10px;
 
-        > .follow-wrapper {
-            > .follow-icon {
-                background: $primary;
-                border-radius: 50%;
-                font-size: 0;
-                width: 30px;
-                height: 30px;
-                margin: 0 auto;
+			> .title {
+				font-size: 18px;
+				font-style: italic;
+			}
 
-                > .svg {
-                    color: white;
-                    width: 100%;
-                    height: 100%;
-                }
-            }
+			> .badge {
+				border: 1px solid #000;
+				border-radius: 20px;
+			}
+		}
+	}
 
-            > .text {
-                color: $primary;
-                font-size: 10px;
-            }
-        }
-    }
+	> .activity-content {
 
-    > .activity-content {
+		.text {
+			margin-top: 10px;
+			font-size: 8px;
+			color: $primary;
+		}
 
-        .text {
-            margin-top: 10px;
-            font-size: 8px;
-            color: $primary;
-        }
+		> .result-course {
+			padding: 8px 0;
+			border-bottom: 1px solid #ccc;
 
-        > .result-course {
-            padding: 8px 0;
-            border-bottom: 1px solid #ccc;
+			.image-wrapper {
+				text-align: center;
 
-            .image-wrapper {
-                text-align: center;
+				img {
+					width: 40px;
+					height: 40px;
+				}
+			}
+		}
 
-                img {
-                    width: 40px;
-                    height: 40px;
-                }
-            }
-        }
+		> .header {
+			text-align: center;
+			font-weight: bold;
+			padding-bottom: 10px;
+			border-bottom: 2px solid #555;
+		}
+	}
 
-        > .header {
-            text-align: center;
-            font-weight: bold;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #555;
-        }
-    }
+	> .activity-add {
+		padding-top: 5px;
 
-    > .activity-add {
-        padding-top: 5px;
+		> .time-location {
+			display: flex;
+			text-align: center;
 
-        > .time-location {
-            display: flex;
-            text-align: center;
+			> .header-title {
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				align-items: center;
 
-            > .header-title {
-                display: flex;
-                flex-direction: column;
-                flex-grow: 1;
-                align-items: center;
+				> .header {
+					color: #888;
+					font-size: 12px;
+				}
 
-                > .header {
-                    color: #888;
-                    font-size: 12px;
-                }
+				> .detail {
+					display: flex;
+					align-items: center;
+					flex-grow: 1;
+					font-size: 10px;
+				}
+			}
+		}
 
-                > .detail {
-                    display: flex;
-                    align-items: center;
-                    flex-grow: 1;
-                    font-size: 10px;
-                }
-            }
-        }
+		> .badge-wrapper {
+			display: flex;
 
-        > .badge-wrapper {
-            display: flex;
-
-            > .badge {
-                border: 1px solid #000;
-                border-radius: 20px;
-                font-style: italic;
-                flex-grow: 1;
-                font-size: 10px;
-                padding: 3px 0;
-            }
-        }
-    }
+			> .badge {
+				border: 1px solid #000;
+				border-radius: 20px;
+				font-style: italic;
+				flex-grow: 1;
+				font-size: 10px;
+				padding: 3px 0;
+			}
+		}
+	}
 
 
 }
