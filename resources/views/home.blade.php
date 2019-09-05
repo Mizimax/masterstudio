@@ -90,24 +90,7 @@
 
     <section class="live-activity">
         <h3 class="header">Live Activity</h3>
-        <div class="category-interest">
-            <div class="interest-activity">
-                <div class="icon"></div>
-                <div class="name">badminton</div>
-            </div>
-            <div class="interest-activity">
-                <div class="icon"></div>
-                <div class="name">golf</div>
-            </div>
-            <div class="interest-activity">
-                <div class="icon"></div>
-                <div class="name">chef</div>
-            </div>
-            <div class="add-interest-activity">
-                <div class="icon"></div>
-                <div class="name">Add interest</div>
-            </div>
-        </div>
+        @include('components.category-interest')
         <div class="activity-story --hover">
             @php
                 $activitys = [0,1,2,3,4,5,6,7,8,9,10]

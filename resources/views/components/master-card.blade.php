@@ -35,7 +35,7 @@
                 </div>
                 <div class="detail --start">
                     2,000
-            </div>
+                </div>
             </div>
             <div class="master-stat">
                 <div class="header">

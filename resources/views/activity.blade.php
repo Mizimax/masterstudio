@@ -66,24 +66,7 @@
 
     <section class="your-activity">
         <h3 class="header">Your Activity</h3>
-        <div class="category-interest">
-            <div class="interest-activity">
-                <div class="icon"></div>
-                <div class="name">badminton</div>
-            </div>
-            <div class="interest-activity">
-                <div class="icon"></div>
-                <div class="name">golf</div>
-            </div>
-            <div class="interest-activity">
-                <div class="icon"></div>
-                <div class="name">chef</div>
-            </div>
-            <div class="add-interest-activity">
-                <div class="icon"></div>
-                <div class="name">Add interest</div>
-            </div>
-        </div>
+        @include('components.category-interest')
         <div class="activity-timeline">
             <div class="your-activity-timeline">
                 <div class="image-container">

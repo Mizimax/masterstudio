@@ -11779,56 +11779,6 @@ button:focus {
   font-size: 48px;
 }
 
-.live-activity > .category-interest,
-.your-activity > .category-interest {
-  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
-  display: inline-flex;
-  border-radius: 100px;
-  padding: 20px;
-  margin-top: 30px;
-}
-
-.live-activity > .category-interest > .interest-activity,
-.your-activity > .category-interest > .interest-activity,
-.live-activity > .category-interest > .add-interest-activity,
-.your-activity > .category-interest > .add-interest-activity {
-  margin: 0 7px;
-}
-
-.live-activity > .category-interest > .interest-activity > .icon,
-.your-activity > .category-interest > .interest-activity > .icon,
-.live-activity > .category-interest > .add-interest-activity > .icon,
-.your-activity > .category-interest > .add-interest-activity > .icon {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: 2px solid #888;
-}
-
-.live-activity > .category-interest > .interest-activity > .icon.active,
-.your-activity > .category-interest > .interest-activity > .icon.active,
-.live-activity > .category-interest > .add-interest-activity > .icon.active,
-.your-activity > .category-interest > .add-interest-activity > .icon.active {
-  border: none;
-  background: orange;
-  color: white;
-}
-
-.live-activity > .category-interest > .interest-activity > .name,
-.your-activity > .category-interest > .interest-activity > .name,
-.live-activity > .category-interest > .add-interest-activity > .name,
-.your-activity > .category-interest > .add-interest-activity > .name {
-  font-size: 10px;
-  margin-top: 5px;
-  color: #888;
-}
-
-.live-activity > .category-interest > .add-interest-activity > .icon,
-.your-activity > .category-interest > .add-interest-activity > .icon {
-  border: none;
-  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
-}
-
 .loading-wrapper {
   display: none;
   margin-top: 20px;
@@ -12053,6 +12003,47 @@ button:focus {
 .activity-detail > .button-wrapper > .button:hover {
     background: #f14ea6;
     color: white;
+}
+
+.category-interest {
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    border-radius: 100px;
+    padding: 20px;
+    margin-top: 30px;
+    z-index: 999;
+}
+
+.category-interest > .interest-activity,
+.category-interest > .add-interest-activity {
+    margin: 0 7px;
+}
+
+.category-interest > .interest-activity > .icon,
+.category-interest > .add-interest-activity > .icon {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #888;
+}
+
+.category-interest > .interest-activity > .icon.active,
+.category-interest > .add-interest-activity > .icon.active {
+    border: none;
+    background: orange;
+    color: white;
+}
+
+.category-interest > .interest-activity > .name,
+.category-interest > .add-interest-activity > .name {
+    font-size: 10px;
+    margin-top: 5px;
+    color: #888;
+}
+
+.category-interest > .add-interest-activity > .icon {
+    border: none;
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .your-activity > .activity-timeline {

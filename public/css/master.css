@@ -11688,6 +11688,47 @@ button:focus {
     color: white;
 }
 
+.category-interest {
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    border-radius: 100px;
+    padding: 20px;
+    margin-top: 30px;
+    z-index: 999;
+}
+
+.category-interest > .interest-activity,
+.category-interest > .add-interest-activity {
+    margin: 0 7px;
+}
+
+.category-interest > .interest-activity > .icon,
+.category-interest > .add-interest-activity > .icon {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #888;
+}
+
+.category-interest > .interest-activity > .icon.active,
+.category-interest > .add-interest-activity > .icon.active {
+    border: none;
+    background: orange;
+    color: white;
+}
+
+.category-interest > .interest-activity > .name,
+.category-interest > .add-interest-activity > .name {
+    font-size: 10px;
+    margin-top: 5px;
+    color: #888;
+}
+
+.category-interest > .add-interest-activity > .icon {
+    border: none;
+    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
 .master-header {
     position: relative;
 }
@@ -11844,5 +11885,229 @@ button:focus {
     border-radius: 10px;
     padding: 5px;
     font-weight: bold;
+}
+
+.master-profile-section .section-container {
+    padding: 70px 0;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.master-profile-section .section-container > .search-wrapper {
+    display: flex;
+    align-item: center;
+}
+
+.master-profile-section .section-container > .search-wrapper > .category-name {
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    flex: 1;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
+
+.master-profile-section .section-container > .search-wrapper > .search-box-wrapper {
+    flex: 2;
+    width: 100%;
+    font-style: italic;
+    border-radius: 25px;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.master-profile-section .section-container > .search-wrapper > .search-box-wrapper > .search-box {
+    margin-left: 40px;
+    margin-right: 10px;
+    width: 100%;
+    border: none;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-top: -40px;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline {
+    position: relative;
+    display: flex;
+    background: white;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .image-container {
+    padding-left: 50px;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .image-container > .your-image {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 3;
+    transform: translateY(-50%);
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info {
+    z-index: 2;
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    padding-left: 90px;
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.17);
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > * {
+    margin: 5px 0;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info span {
+    display: block;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .name {
+    font-size: 20px;
+    font-style: italic;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .category {
+    border-radius: 20px;
+    border: 1px solid #000;
+    font-size: 13px;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .master-stat {
+    border-radius: 20px;
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .master-stat:hover {
+    background-color: #f14ea6;
+    color: white;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .master-stat > .header {
+    font-size: 10px;
+    color: #f14ea6;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .master-stat > .detail {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video {
+    flex: 1;
+    position: relative;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .video {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    width: 102%;
+    height: 100%;
+    border-radius: 0 20px 20px 0;
+    display: block;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 3;
+    height: 100%;
+    padding-left: 25px;
+    border-left: 1px solid #fff;
+    color: white;
+    margin: 15px 10px 0 0;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .actions {
+    display: flex;
+    justify-content: flex-end;
+    text-align: center;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .actions > .action-wrapper > .join-button {
+    background: #fcac42;
+    border: none;
+    padding: 7px 15px;
+    font-size: 12px;
+    color: white;
+    border-radius: 40px;
+    font-weight: bold;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .actions > .action-wrapper > span {
+    display: block;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .actions > .follow-wrapper {
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .actions > .follow-wrapper > .follow-icon {
+    background: #f14ea6;
+    border-radius: 50%;
+    font-size: 0;
+    width: 42px;
+    height: 42px;
+    margin: 0 auto;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .actions > .follow-wrapper > .follow-icon > .svg {
+    color: white;
+    width: 100%;
+    height: 100%;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .actions > .follow-wrapper > .text {
+    margin-top: 5px;
+    color: white;
+    font-size: 10px;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .core-actions {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .core-actions > .request-button {
+    font-weight: bold;
+    padding: 7px 15px;
+    font-size: 12px;
+    background: #f14ea6;
+    color: white;
+    border: none;
+    border-radius: 40px;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action > .core-actions > .view-profile-button {
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 14px 15px;
+    font-size: 12px;
+    background: white;
+    color: #f14ea6;
+    border: none;
+    border-radius: 40px;
 }
 
