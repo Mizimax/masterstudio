@@ -22,13 +22,14 @@
 
 	> .header-content {
 		text-align: center;
-		max-width: 660px;
+        max-width: 700px;
 		width: 100%;
+        padding: 0 20px;
+        color: white;
 		@extend .absolute-center;
 
 		> .header {
 			font-size: 60px;
-			color: white;
 		}
 
 		> .search-box-wrapper {
@@ -58,9 +59,15 @@
 		}
 
 		> .master-interest {
+            display: none;
+            @include desktop-up {
+                display: block;
+            }
+
 			> .header {
 				font-size: 34px;
 				font-weight: bold;
+                margin: 7% 0 20px;
 			}
 
 			> .master-list {
@@ -68,21 +75,65 @@
 				justify-content: center;
 
 				> .master-category {
+                    padding: 0 20px;
+
 					> .header {
-						font-size: 24px;
-					}
+                        font-size: 22px;
+                        margin: 15px 0;
+                        font-style: italic;
+                    }
 
 					> .master-content {
 						display: flex;
+                        justify-content: center;
 
 						> .master-detail {
+                            position: relative;
+
+                            &.right > .activity-detail {
+                                right: -20px;
+
+                                > .activity-title {
+                                    flex-direction: row-reverse;
+
+                                    > .follow-wrapper {
+                                        margin: 0 auto 0 0;
+                                    }
+
+                                    > .title-wrapper {
+                                        margin-right: 40px;
+                                    }
+                                }
+                            }
+
+                            &:hover > .image-wrapper {
+                                z-index: 1000;
+                            }
+
+                            &:hover > .activity-detail {
+                                width: 340px;
+                                height: 440px;
+                                padding: 20px;
+                            }
+
+                            > .activity-detail {
+                                color: black;
+                                position: absolute;
+                                top: 0;
+                                left: -20;
+                                z-index: 999;
+                            }
+
 							> .image-wrapper {
+                                position: absolute;
+                                left: 50%;
+                                transform: translateX(-50%);
+                                z-index: 1;
 								width: 75px;
 								height: 75px;
-								position: absolute;
-								left: 20px;
-								top: 0;
-								transform: translateY(-50%);
+                                margin: 0 auto;
+
+
 
 								> img {
 									border-radius: 50%;
@@ -90,6 +141,20 @@
 									height: 100%;
 								}
 							}
+
+                            > .name {
+                                margin-top: 85px;
+                            }
+
+                            > .badge {
+                                display: block;
+                                background: orange;
+                                color: black;
+                                font-size: 6px;
+                                border-radius: 10px;
+                                padding: 5px;
+                                font-weight: bold;
+                            }
 						}
 					}
 				}
