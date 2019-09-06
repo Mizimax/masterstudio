@@ -10,7 +10,7 @@
 @section('content')
     <section class="video-header">
         <!-- Carousel -->
-        <div id="carousel" class="carousel slide" data-ride="carousel">
+        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#carousel" data-slide-to="0" class="active"></li>
@@ -121,6 +121,7 @@
                                         type="video/mp4" />
                             </video>
                         </div>
+                        \
 
                         <div class="master-profile">
                             @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
