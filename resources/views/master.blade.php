@@ -104,7 +104,7 @@
             <div class="filter-category" align="center">
                 @include('components.category-interest')
             </div>
-            <div class="master-profile-wrapper">
+            <div class="master-profile-wrapper" style="margin-top: -40px">
                 <div class="master-profile">
                     <div class="your-activity-timeline">
                         <div class="image-container">
@@ -118,7 +118,6 @@
                         <div class="your-info" align="center">
                             <h3 class="name">Soma Stamp</h3>
                             <span class="category">Badminton</span>
-                            <span class="">2 hours</span>
                             <div class="master-stat">
                                 <div class="header">
                                     Disciples
@@ -155,6 +154,132 @@
                                 <div class="follow-wrapper">
                                     <div class="follow-icon">
                                         <img src="/img/icon/caret-down-solid.svg" alt="Follow ..." class="svg">
+                                    </div>
+                                    <div class="text">Follow</div>
+                                </div>
+                            </div>
+                            <div class="core-actions">
+                                <button class="request-button">Request<br>custom activity</button>
+                                <button class="view-profile-button">view profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="master-profile-wrapper">
+                <div class="master-profile">
+                    <div class="your-activity-timeline">
+                        <div class="image-container">
+                            <div class="your-image image-wrapper">
+                                <img class="border-circle shadow" src="/img/profile.jpg" width="120"
+                                     height="120"
+                                     title="Profile image"
+                                     alt="Profile image">
+                            </div>
+                        </div>
+                        <div class="your-info" align="center">
+                            <h3 class="name">Soma Stamp</h3>
+                            <span class="category">Badminton</span>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Disciples
+                                </div>
+                                <div class="detail">700</div>
+                            </div>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Followers
+                                </div>
+                                <div class="detail --start">
+                                    2,000
+                                </div>
+                            </div>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Mastered
+                                </div>
+                                <div class="detail">4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="master-video">
+                        <video class="video video-fluid" autoplay loop muted>
+                            <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
+                                    type="video/mp4" />
+                        </video>
+                        <div class="master-action">
+                            <div class="actions">
+                                <div class="action-wrapper">
+                                    <button class="join-button">Join<br>Activity</button>
+                                    <span>1 Activity available</span>
+                                </div>
+                                <div class="follow-wrapper">
+                                    <div class="follow-icon">
+                                        <img src="/img/icon/caret-down-solid.svg" alt="Follow ..."
+                                             class="svg">
+                                    </div>
+                                    <div class="text">Follow</div>
+                                </div>
+                            </div>
+                            <div class="core-actions">
+                                <button class="request-button">Request<br>custom activity</button>
+                                <button class="view-profile-button">view profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="master-profile-wrapper">
+                <div class="master-profile">
+                    <div class="your-activity-timeline">
+                        <div class="image-container">
+                            <div class="your-image image-wrapper">
+                                <img class="border-circle shadow" src="/img/profile.jpg" width="120"
+                                     height="120"
+                                     title="Profile image"
+                                     alt="Profile image">
+                            </div>
+                        </div>
+                        <div class="your-info" align="center">
+                            <h3 class="name">Soma Stamp</h3>
+                            <span class="category">Badminton</span>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Disciples
+                                </div>
+                                <div class="detail">700</div>
+                            </div>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Followers
+                                </div>
+                                <div class="detail --start">
+                                    2,000
+                                </div>
+                            </div>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Mastered
+                                </div>
+                                <div class="detail">4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="master-video">
+                        <video class="video video-fluid" autoplay loop muted>
+                            <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
+                                    type="video/mp4" />
+                        </video>
+                        <div class="master-action">
+                            <div class="actions">
+                                <div class="action-wrapper">
+                                    <button class="join-button">Join<br>Activity</button>
+                                    <span>1 Activity available</span>
+                                </div>
+                                <div class="follow-wrapper">
+                                    <div class="follow-icon">
+                                        <img src="/img/icon/caret-down-solid.svg" alt="Follow ..."
+                                             class="svg">
                                     </div>
                                     <div class="text">Follow</div>
                                 </div>

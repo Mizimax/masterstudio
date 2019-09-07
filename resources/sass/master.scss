@@ -204,6 +204,13 @@
             }
         }
 
+	    > .filter-category {
+		    margin-top: 25px;
+		    position: relative;
+		    height: 107px;
+		    z-index: 999;
+	    }
+
         > .master-profile-wrapper {
             > .master-profile {
                 display: flex;
@@ -212,7 +219,7 @@
                 width: 100%;
                 margin: 0 auto;
                 padding: 0 20px;
-                margin-top: -40px;
+	            margin-bottom: 40px;
 
                 .your-activity-timeline {
                     position: relative;
@@ -261,13 +268,17 @@
                         > .master-stat {
                             border-radius: 20px;
                             margin: 0 5px;
-                            padding: 5px 10px;
+	                        padding: 5px 0;
                             text-align: center;
                             cursor: pointer;
 
                             &:hover {
                                 background-color: $primary;
                                 color: white;
+
+	                            > .header {
+		                            color: white;
+	                            }
                             }
 
                             > .header {
@@ -306,9 +317,9 @@
                         z-index: 3;
                         height: 100%;
                         padding-left: 25px;
-                        border-left: 1px solid #fff;
+	                    //border-left: 1px solid #fff;
                         color: white;
-                        margin: 15px 10px 0 0;
+	                    margin: 15px 15px 0 0;
 
                         > .actions {
                             display: flex;

@@ -11116,10 +11116,10 @@ button:focus {
 }
 
 .absolute-center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .navbar-wrapper {
@@ -11302,12 +11302,12 @@ button:focus {
 .footer > .footer-wrapper .menu-list .menu {
   display: table;
   padding: 10px 0;
-    margin: 7px auto;
+	margin: 7px auto;
 }
 
 @media (min-width: 768px) {
   .footer > .footer-wrapper .menu-list .menu {
-      margin: 7px 0;
+	  margin: 7px 0;
   }
 }
 
@@ -11389,11 +11389,11 @@ button:focus {
 }
 
 .activity-detail.\--animate {
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    transition: all 0.5s;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	transition: all 0.5s;
 }
 
 @media (min-width: 768px) {
@@ -11435,9 +11435,9 @@ button:focus {
 }
 
 .activity-detail > .activity-content .text {
-    margin-top: 10px;
-    font-size: 8px;
-    color: #f14ea6;
+	margin-top: 10px;
+	font-size: 8px;
+	color: #f14ea6;
 }
 
 .activity-detail > .activity-content > .result-course {
@@ -11558,14 +11558,14 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover > .button.\--detail {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    background: #f14ea6;
-    border: none;
-    color: white;
-    padding: 17px 40px;
-    border-radius: 40px;
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	background: #f14ea6;
+	border: none;
+	color: white;
+	padding: 17px 40px;
+	border-radius: 40px;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper .play-wrapper {
@@ -11761,23 +11761,23 @@ button:focus {
 }
 
 .activity-story {
-    display: flex;
-    flex-wrap: nowrap;
-    width: 100%;
-    overflow-x: auto;
-    padding: 100px 20px 30px 20px;
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	overflow-x: auto;
+	padding: 100px 20px 30px 20px;
 }
 
 .activity-story.\--hover > .activity-wrapper > .activity-card:hover {
-    width: 420px;
-    cursor: pointer;
+	width: 420px;
+	cursor: pointer;
 }
 
 .activity-story > .activity-wrapper > .location {
-    text-align: left;
-    font-style: italic;
-    color: #9F9F9F;
-    margin-top: 8px;
+	text-align: left;
+	font-style: italic;
+	color: #9F9F9F;
+	margin-top: 8px;
 }
 
 .category-interest {
@@ -11785,8 +11785,7 @@ button:focus {
   display: inline-flex;
   border-radius: 100px;
   padding: 20px;
-  margin-top: 30px;
-    z-index: 999;
+	background: white;
 }
 
 .category-interest > .interest-activity,
