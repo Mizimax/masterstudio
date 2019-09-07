@@ -9,6 +9,7 @@
 
 .master-header {
     position: relative;
+    z-index: 9;
 
     > .bg-header {
         height: 100vh;
@@ -165,6 +166,8 @@
 }
 
 .master-profile-section {
+    z-index: 1;
+
     .section-container {
         padding: 70px 0;
         max-width: 900px;
@@ -208,10 +211,12 @@
 		    margin-top: 25px;
 		    position: relative;
 		    height: 107px;
-		    z-index: 999;
+            z-index: 5;
 	    }
 
         > .master-profile-wrapper {
+            margin-bottom: 40px;
+
             > .master-profile {
                 display: flex;
                 justify-content: space-evenly;
@@ -219,7 +224,6 @@
                 width: 100%;
                 margin: 0 auto;
                 padding: 0 20px;
-	            margin-bottom: 40px;
 
                 .your-activity-timeline {
                     position: relative;

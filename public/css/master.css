@@ -1,6 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);
-
-@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -106,11 +104,11 @@ abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
+          text-decoration: underline dotted;
   cursor: help;
   border-bottom: 0;
   -webkit-text-decoration-skip-ink: none;
-  text-decoration-skip-ink: none;
+          text-decoration-skip-ink: none;
 }
 
 address {
@@ -2523,9 +2521,9 @@ textarea.form-control.is-invalid {
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
@@ -3970,8 +3968,8 @@ input[type=button].btn-block {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .custom-select:focus {
@@ -4090,8 +4088,8 @@ input[type=button].btn-block {
   padding: 0;
   background-color: transparent;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 .custom-range:focus {
@@ -4123,7 +4121,7 @@ input[type=button].btn-block {
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -webkit-appearance: none;
-  appearance: none;
+          appearance: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4154,7 +4152,7 @@ input[type=button].btn-block {
   border-radius: 1rem;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -moz-appearance: none;
-  appearance: none;
+       appearance: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -4944,9 +4942,9 @@ input[type=button].btn-block {
 @media (min-width: 576px) {
   .card-columns {
     -moz-column-count: 3;
-    column-count: 3;
+         column-count: 3;
     -moz-column-gap: 1.25rem;
-    column-gap: 1.25rem;
+         column-gap: 1.25rem;
     orphans: 1;
     widows: 1;
   }
@@ -5495,13 +5493,13 @@ a.badge-dark.focus {
 
 .progress-bar-animated {
   -webkit-animation: progress-bar-stripes 1s linear infinite;
-  animation: progress-bar-stripes 1s linear infinite;
+          animation: progress-bar-stripes 1s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .progress-bar-animated {
     -webkit-animation: none;
-    animation: none;
+            animation: none;
   }
 }
 
@@ -5872,8 +5870,8 @@ button.close {
   background-color: transparent;
   border: 0;
   -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 a.close.disabled {
@@ -5889,7 +5887,7 @@ a.close.disabled {
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
   -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   opacity: 0;
   border-radius: 0.25rem;
 }
@@ -6465,7 +6463,7 @@ a.close.disabled {
   width: 100%;
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+          backface-visibility: hidden;
   transition: transform 0.6s ease-in-out;
 }
 
@@ -6649,7 +6647,7 @@ a.close.disabled {
   border-right-color: transparent;
   border-radius: 50%;
   -webkit-animation: spinner-border 0.75s linear infinite;
-  animation: spinner-border 0.75s linear infinite;
+          animation: spinner-border 0.75s linear infinite;
 }
 
 .spinner-border-sm {
@@ -6687,7 +6685,7 @@ a.close.disabled {
   border-radius: 50%;
   opacity: 0;
   -webkit-animation: spinner-grow 0.75s linear infinite;
-  animation: spinner-grow 0.75s linear infinite;
+          animation: spinner-grow 0.75s linear infinite;
 }
 
 .spinner-grow-sm {
@@ -10598,9 +10596,9 @@ a.text-dark:focus {
     page-break-after: avoid;
   }
 
-  @page {
+@page {
     size: a3;
-  }
+}
 
   body {
     min-width: 992px !important;
@@ -10700,7 +10698,7 @@ pre {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
-  text-decoration-skip: objects;
+          text-decoration-skip: objects;
 }
 
 a:active,
@@ -10712,7 +10710,7 @@ abbr[title] {
   border-bottom: none;
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
+          text-decoration: underline dotted;
 }
 
 b,
@@ -11401,9 +11399,9 @@ button:focus {
   height: 100%;
   border-radius: 10px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   -o-object-position: 50% 50%;
-  object-position: 50% 50%;
+     object-position: 50% 50%;
 }
 
 .activity-card > .master-profile {
@@ -11730,6 +11728,7 @@ button:focus {
 
 .master-header {
   position: relative;
+  z-index: 9;
 }
 
 .master-header > .bg-header {
@@ -11886,6 +11885,10 @@ button:focus {
   font-weight: bold;
 }
 
+.master-profile-section {
+  z-index: 1;
+}
+
 .master-profile-section .section-container {
   padding: 70px 0;
   max-width: 900px;
@@ -11930,7 +11933,11 @@ button:focus {
   margin-top: 25px;
   position: relative;
   height: 107px;
-  z-index: 999;
+  z-index: 5;
+}
+
+.master-profile-section .section-container > .master-profile-wrapper {
+  margin-bottom: 40px;
 }
 
 .master-profile-section .section-container > .master-profile-wrapper > .master-profile {
@@ -11940,7 +11947,6 @@ button:focus {
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
-  margin-bottom: 40px;
 }
 
 .master-profile-section .section-container > .master-profile-wrapper > .master-profile .your-activity-timeline {
@@ -12031,7 +12037,7 @@ button:focus {
   border-radius: 0 20px 20px 0;
   display: block;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
 }
 
 .master-profile-section .section-container > .master-profile-wrapper > .master-profile > .master-video > .master-action {
