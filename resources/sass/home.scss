@@ -23,6 +23,7 @@ $searchbox: 20px;
 
 	> .half-square {
 		position: absolute;
+		z-index: 9;
 		bottom: 0;
 		left: 0;
 		width: 100%;

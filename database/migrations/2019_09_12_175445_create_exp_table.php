@@ -4,7 +4,7 @@
 	use Illuminate\Database\Schema\Blueprint;
 	use Illuminate\Database\Migrations\Migration;
 
-	class CreatePicturesTable extends Migration
+	class CreateExpTable extends Migration
 	{
 		/**
 		 * Run the migrations.
@@ -13,10 +13,9 @@
 		 */
 		public function up()
 		{
-			Schema::create('pictures', function (Blueprint $table) {
-				$table->bigIncrements('picture_id');
-				$table->string('picture_action');
-				$table->string('picture_url');
+			Schema::create('exp', function (Blueprint $table) {
+				$table->bigIncrements('exp_level');
+				$table->bigInteger('exp_up');
 				$table->timestamps();
 			});
 		}
@@ -28,6 +27,6 @@
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('pictures');
+			Schema::dropIfExists('exp');
 		}
 	}

@@ -17,9 +17,18 @@
 				$table->bigIncrements('master_id');
 				$table->string('master_name');
 				$table->string('master_nickname');
+				$table->string('master_background_action');
 				$table->date('master_birth');
 				$table->string('master_activity_name');
-				$table->string('master_activity_pic_id');
+				$table->string('master_activity_pic_action');
+				$table->text('master_activity_describe');
+				$table->string('master_talent');
+				$table->string('master_phone');
+				$table->string('master_objective');
+				$table->text('master_objective');
+				$table->bigInteger('master_guest_view')->default(0);
+				$table->bigInteger('master_user_view')->default(0);
+				$table->bigInteger('master_user_retention')->default(0);
 				$table->timestamps();
 			});
 		}

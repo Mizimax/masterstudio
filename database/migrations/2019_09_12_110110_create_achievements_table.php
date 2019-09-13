@@ -4,7 +4,7 @@
 	use Illuminate\Database\Schema\Blueprint;
 	use Illuminate\Database\Migrations\Migration;
 
-	class CreatePicturesTable extends Migration
+	class CreateAchievementsTable extends Migration
 	{
 		/**
 		 * Run the migrations.
@@ -13,10 +13,11 @@
 		 */
 		public function up()
 		{
-			Schema::create('pictures', function (Blueprint $table) {
-				$table->bigIncrements('picture_id');
-				$table->string('picture_action');
-				$table->string('picture_url');
+			Schema::create('achievements', function (Blueprint $table) {
+				$table->bigIncrements('achievement_id');
+				$table->string('achievement_pic');
+				$table->string('achievement_name');
+				$table->string('achievement_text');
 				$table->timestamps();
 			});
 		}
@@ -28,6 +29,6 @@
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('pictures');
+			Schema::dropIfExists('achievements_');
 		}
 	}

@@ -4,7 +4,7 @@
 	use Illuminate\Database\Schema\Blueprint;
 	use Illuminate\Database\Migrations\Migration;
 
-	class CreatePicturesTable extends Migration
+	class CreateActivityJoinTable extends Migration
 	{
 		/**
 		 * Run the migrations.
@@ -13,10 +13,12 @@
 		 */
 		public function up()
 		{
-			Schema::create('pictures', function (Blueprint $table) {
-				$table->bigIncrements('picture_id');
-				$table->string('picture_action');
-				$table->string('picture_url');
+			Schema::create('user_activities', function (Blueprint $table) {
+				$table->bigIncrements('user_activity_id');
+				$table->bigIncrements('activity_id');
+				$table->bigIncrements('user_id');
+				// 0 =
+				$table->tinyInteger('user_activity_status')->default(0);
 				$table->timestamps();
 			});
 		}
@@ -28,6 +30,6 @@
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('pictures');
+			Schema::dropIfExists('activity_join');
 		}
 	}

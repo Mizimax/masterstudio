@@ -24,14 +24,27 @@
 			@include fadeout(.5s);
 
 			&.hover {
-				position: fixed;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-                max-width: 700px;
+				position: absolute;
+				width: 700px;
                 height: 400px;
 				z-index: 99;
 				@include fadein(.5s);
+
+				&.left {
+					top: 0;
+					left: 0;
+				}
+
+				&.mid {
+					top: 0;
+					left: 0;
+					transform: translateX(calc(-50% + 125px));
+				}
+
+				&.right {
+					top: 0;
+					right: 0;
+				}
 
                 > .activity-tabs {
                     display: block;
