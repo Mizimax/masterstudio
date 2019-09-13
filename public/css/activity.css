@@ -11127,10 +11127,10 @@ button:focus {
 
 .absolute-center,
 .record-video > .video-preview > .cantaccess {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .navbar-wrapper {
@@ -11313,12 +11313,12 @@ button:focus {
 .footer > .footer-wrapper .menu-list .menu {
   display: table;
   padding: 10px 0;
-    margin: 7px auto;
+	margin: 7px auto;
 }
 
 @media (min-width: 768px) {
   .footer > .footer-wrapper .menu-list .menu {
-      margin: 7px 0;
+	  margin: 7px 0;
   }
 }
 
@@ -11400,11 +11400,11 @@ button:focus {
 }
 
 .activity-detail.\--animate {
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    transition: all 0.5s;
+	width: 0;
+	height: 0;
+	padding: 0;
+	overflow: hidden;
+	transition: all 0.5s;
 }
 
 @media (min-width: 768px) {
@@ -11446,9 +11446,9 @@ button:focus {
 }
 
 .activity-detail > .activity-content .text {
-    margin-top: 10px;
-    font-size: 8px;
-    color: #f14ea6;
+	margin-top: 10px;
+	font-size: 8px;
+	color: #f14ea6;
 }
 
 .activity-detail > .activity-content > .result-course {
@@ -11582,14 +11582,14 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover > .button.\--detail {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    background: #f14ea6;
-    border: none;
-    color: white;
-    padding: 17px 40px;
-    border-radius: 40px;
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+	background: #f14ea6;
+	border: none;
+	color: white;
+	padding: 17px 40px;
+	border-radius: 40px;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper .play-wrapper {
@@ -11920,142 +11920,142 @@ button:focus {
 }
 
 .activity-detail {
-    padding: 10px;
+	padding: 10px;
 }
 
 .activity-detail .follow-wrapper {
-    margin-left: auto;
-    cursor: pointer;
+	margin-left: auto;
+	cursor: pointer;
 }
 
 .activity-detail .follow-wrapper > .follow-icon {
-    background: #f14ea6;
-    border-radius: 50%;
-    font-size: 0;
-    width: 30px;
-    height: 30px;
-    margin: 0 auto;
+	background: #f14ea6;
+	border-radius: 50%;
+	font-size: 0;
+	width: 30px;
+	height: 30px;
+	margin: 0 auto;
 }
 
 .activity-detail .follow-wrapper > .follow-icon > .svg {
-    color: white;
-    width: 100%;
-    height: 100%;
+	color: white;
+	width: 100%;
+	height: 100%;
 }
 
 .activity-detail .follow-wrapper > .text {
-    margin-top: 3px;
-    color: #f14ea6;
-    font-size: 10px;
+	margin-top: 3px;
+	color: #f14ea6;
+	font-size: 10px;
 }
 
 .activity-detail > .master-stat-wrapper {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    border-top: 1px solid #ccc;
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	border-top: 1px solid #ccc;
 }
 
 .activity-detail > .master-stat-wrapper > .master-stat {
-    border-radius: 20px;
-    margin: 0 5px;
-    padding: 7px 20px;
-    text-align: center;
-    cursor: pointer;
+	border-radius: 20px;
+	margin: 0 5px;
+	padding: 7px 20px;
+	text-align: center;
+	cursor: pointer;
 }
 
 .activity-detail > .master-stat-wrapper > .master-stat:hover {
-    background-color: white;
+	background-color: white;
 }
 
 .activity-detail > .master-stat-wrapper > .master-stat > .header {
-    font-size: 10px;
-    color: #f14ea6;
+	font-size: 10px;
+	color: #f14ea6;
 }
 
 .activity-detail > .master-stat-wrapper > .master-stat > .detail {
-    font-size: 20px;
-    font-weight: bold;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .activity-detail > .activity-story {
-    width: 100%;
-    overflow-x: auto;
-    padding: 10px 0;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+	width: 100%;
+	overflow-x: auto;
+	padding: 10px 0;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 .activity-detail > .activity-story .activity-card {
-    width: 120px;
-    height: 170px;
-    margin-right: 5px;
+	width: 120px;
+	height: 170px;
+	margin-right: 5px;
 }
 
 .activity-detail > .button-wrapper {
-    display: flex;
-    padding-top: 10px;
+	display: flex;
+	padding-top: 10px;
 }
 
 .activity-detail > .button-wrapper > .button {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: bold;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #f14ea6;
-    background-color: white;
-    border-radius: 20px;
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px;
+	font-size: 14px;
+	font-weight: bold;
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	color: #f14ea6;
+	background-color: white;
+	border-radius: 20px;
 }
 
 .activity-detail > .button-wrapper > .button:hover {
-    background: #f14ea6;
-    color: white;
+	background: #f14ea6;
+	color: white;
 }
 
 .category-interest {
-    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
-    display: inline-flex;
-    border-radius: 100px;
-    padding: 20px;
-    background: white;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	display: inline-flex;
+	border-radius: 100px;
+	padding: 20px;
+	background: white;
 }
 
 .category-interest > .interest-activity,
 .category-interest > .add-interest-activity {
-    margin: 0 7px;
+	margin: 0 7px;
 }
 
 .category-interest > .interest-activity > .icon,
 .category-interest > .add-interest-activity > .icon {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    border: 2px solid #888;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	border: 2px solid #888;
 }
 
 .category-interest > .interest-activity > .icon.active,
 .category-interest > .add-interest-activity > .icon.active {
-    border: none;
-    background: orange;
-    color: white;
+	border: none;
+	background: orange;
+	color: white;
 }
 
 .category-interest > .interest-activity > .name,
 .category-interest > .add-interest-activity > .name {
-    font-size: 10px;
-    margin-top: 5px;
-    color: #888;
+	font-size: 10px;
+	margin-top: 5px;
+	color: #888;
 }
 
 .category-interest > .add-interest-activity > .icon {
-    border: none;
-    box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+	border: none;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .your-activity > .activity-timeline {
@@ -12135,28 +12135,28 @@ button:focus {
 }
 
 .your-activity > .activity-timeline > .activity-timeline-expand {
-    margin: 100px 20px 70px;
-    padding: 15px;
-    position: relative;
-    border-radius: 20px;
+	margin: 100px 20px 70px;
+	padding: 15px;
+	position: relative;
+	border-radius: 20px;
 }
 
 .your-activity > .activity-timeline > .activity-timeline-expand > .text {
-    position: absolute;
-    left: 0;
-    bottom: 40px;
-    width: 100%;
-    white-space: nowrap;
-    transform: rotate(-90deg);
-    font-size: 12px;
-    font-weight: bold;
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 100%;
+	white-space: nowrap;
+	transform: rotate(-90deg);
+	font-size: 12px;
+	font-weight: bold;
 }
 
 .your-activity > .activity-timeline > .activity-timeline-expand > .text > .svg {
-    width: 25px;
-    height: 25px;
-    margin-left: 15px;
-    color: #0072bf;
+	width: 25px;
+	height: 25px;
+	margin-left: 15px;
+	color: #0072bf;
 }
 
 .your-activity > .activity-timeline > .activity-story .activity-card {
@@ -12195,195 +12195,195 @@ button:focus {
 }
 
 .record-video {
-    position: fixed;
-    display: none;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    z-index: 1111;
+	position: fixed;
+	display: none;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 1111;
 }
 
 .record-video > .video-preview {
-    margin: 0 20px;
-    border-radius: 20px;
-    background: white;
-    position: relative;
+	margin: 0 20px;
+	border-radius: 20px;
+	background: white;
+	position: relative;
 }
 
 .record-video > .video-preview > .video {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 20px;
+	display: block;
 }
 
 .record-video > .video-preview > .cantaccess {
-    width: 100%;
-    text-align: center;
-    display: none;
-    font-size: 20px;
+	width: 100%;
+	text-align: center;
+	display: none;
+	font-size: 20px;
 }
 
 .record-video > .video-preview > .time-record {
-    position: absolute;
-    bottom: 20px;
-    font-size: 20px;
-    color: #f14ea6;
-    text-align: center;
-    font-weight: bold;
-    left: 0;
-    width: 100%;
+	position: absolute;
+	bottom: 20px;
+	font-size: 20px;
+	color: #f14ea6;
+	text-align: center;
+	font-weight: bold;
+	left: 0;
+	width: 100%;
 }
 
 .record-video > .video-preview > .time-record > .time {
-    font-weight: normal;
+	font-weight: normal;
 }
 
 .record-video > .record-btn {
-    margin-top: 30px;
-    padding: 15px 30px;
-    font-size: 20px;
-    background: #f14ea6;
-    color: white;
-    border: none;
-    border-radius: 40px;
+	margin-top: 30px;
+	padding: 15px 30px;
+	font-size: 20px;
+	background: #f14ea6;
+	color: white;
+	border: none;
+	border-radius: 40px;
 }
 
 .activity-header > #carousel > .carousel-indicators {
-    margin-bottom: 11vh;
+	margin-bottom: 11vh;
 }
 
 .activity-header > #carousel .carousel-item {
-    height: 100vh;
+	height: 100vh;
 }
 
 @media (min-width: 768px) {
-    .activity-header > #carousel .carousel-item {
-        height: 100%;
-    }
+	.activity-header > #carousel .carousel-item {
+		height: 100%;
+	}
 }
 
 .activity-header > #carousel .carousel-item .video {
-    -o-object-fit: cover;
-    object-fit: cover;
+	-o-object-fit: cover;
+	object-fit: cover;
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-    width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0;
+	width: 100%;
 }
 
 @media (min-width: 576px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper {
-        top: 20%;
-        transform: translateY(0);
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper {
+		top: 20%;
+		transform: translateY(0);
+	}
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name {
-    color: white;
-    width: 100%;
-    padding-right: 20px;
+	color: white;
+	width: 100%;
+	padding-right: 20px;
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-    font-size: 50px;
-    font-weight: bold;
-    width: 100%;
-    text-align: center;
+	font-size: 50px;
+	font-weight: bold;
+	width: 100%;
+	text-align: center;
 }
 
 @media (min-width: 576px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-        font-size: 50px;
-        width: 70%;
-        margin-left: auto;
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
+		font-size: 50px;
+		width: 70%;
+		margin-left: auto;
+	}
 }
 
 @media (min-width: 768px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-        font-size: 70px;
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
+		font-size: 70px;
+	}
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-    font-size: 50px;
-    width: 100%;
-    text-align: center;
+	font-size: 50px;
+	width: 100%;
+	text-align: center;
 }
 
 @media (min-width: 576px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-        font-size: 50px;
-        width: 60%;
-        margin-left: auto;
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
+		font-size: 50px;
+		width: 60%;
+		margin-left: auto;
+	}
 }
 
 @media (min-width: 768px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-        font-size: 70px;
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
+		font-size: 70px;
+	}
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper {
-    text-align: center;
-    width: 100%;
+	text-align: center;
+	width: 100%;
 }
 
 @media (min-width: 576px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper {
-        font-size: 50px;
-        width: 50%;
-        margin-left: auto;
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper {
+		font-size: 50px;
+		width: 50%;
+		margin-left: auto;
+	}
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper > .search-box {
-    width: 80%;
-    font-size: 16px;
-    font-style: italic;
-    color: white;
-    margin-top: 10px;
-    padding: 10px 20px;
-    outline: none;
+	width: 80%;
+	font-size: 16px;
+	font-style: italic;
+	color: white;
+	margin-top: 10px;
+	padding: 10px 20px;
+	outline: none;
 }
 
 @media (min-width: 576px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper > .search-box {
-        font-size: 24px;
-        margin-top: 20px;
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper > .search-box {
+		font-size: 24px;
+		margin-top: 20px;
+	}
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
-    margin-top: 15%;
-    justify-content: flex-end;
-    margin-right: 40px;
+	margin-top: 15%;
+	justify-content: flex-end;
+	margin-right: 40px;
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-detail {
-    margin: 0 20px;
+	margin: 0 20px;
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-detail:first-child {
-    display: none;
+	display: none;
 }
 
 @media (min-width: 992px) {
-    .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-detail:first-child {
-        display: block;
-    }
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-detail:first-child {
+		display: block;
+	}
 }
 

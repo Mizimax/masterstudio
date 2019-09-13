@@ -178,7 +178,6 @@
     @endif
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
-    @yield('script')
     <script>
         var MasterStudio = {
             videoHover: {
@@ -229,9 +228,9 @@
             $img.replaceWith($svg)
 
           }, 'xml')
-
         })
       })
     </script>
+    @yield('script')
 </body>
 </html>
