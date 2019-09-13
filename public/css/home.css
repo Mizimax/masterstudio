@@ -11534,11 +11534,8 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 700px;
+	position: absolute;
+	width: 700px;
   height: 400px;
   z-index: 99;
   -webkit-animation: fadein 0.5s;
@@ -11547,6 +11544,22 @@ button:focus {
   /* Internet Explorer */
   /* Opera < 12.1 */
   animation: fadein 0.5s;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper.hover.left {
+	top: 0;
+	left: 0;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper.hover.mid {
+	top: 0;
+	left: 0;
+	transform: translateX(calc(-50% + 125px));
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper.hover.right {
+	top: 0;
+	right: 0;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover > .activity-tabs {
@@ -11826,6 +11839,7 @@ button:focus {
 
 .video-header > .half-square {
   position: absolute;
+	z-index: 9;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -11859,6 +11873,7 @@ button:focus {
   top: 55%;
   transform: translateY(-50%);
   position: absolute;
+	z-index: 999;
   padding: 0 20px;
   left: 0;
   max-width: 600px;
