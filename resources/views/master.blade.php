@@ -98,7 +98,8 @@
             <div class="search-wrapper">
                 <div class="category-name">Italian Master</div>
                 <div class="search-box-wrapper">
-                    <input class="search-box" placeholder="Master name / Activity you like" type="text">
+                    <input class="search-box" placeholder="Master name / Activity you like"
+                           type="text">
                 </div>
             </div>
             <div class="filter-category" align="center">
@@ -141,72 +142,13 @@
                         </div>
                     </div>
                     <div class="master-video">
-                        <video class="video video-fluid" autoplay loop muted>
-                            <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                    type="video/mp4"/>
-                        </video>
-                        <div class="master-action">
-                            <div class="actions">
-                                <div class="action-wrapper">
-                                    <button class="join-button">Join<br>Activity</button>
-                                    <span>1 Activity available</span>
-                                </div>
-                                <div class="follow-wrapper">
-                                    <div class="follow-icon">
-                                        <img src="/img/icon/caret-down-solid.svg" alt="Follow ..." class="svg">
-                                    </div>
-                                    <div class="text">Follow</div>
-                                </div>
-                            </div>
-                            <div class="core-actions">
-                                <button class="request-button">Request<br>custom activity</button>
-                                <button class="view-profile-button">view profile</button>
-                            </div>
+                        <div class="video-wrapper">
+                            <video class="video video-fluid" autoplay loop muted>
+                                <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
+                                        type="video/mp4" />
+                            </video>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="master-profile-wrapper">
-                <div class="master-profile">
-                    <div class="your-activity-timeline">
-                        <div class="image-container">
-                            <div class="your-image image-wrapper">
-                                <img class="border-circle shadow" src="/img/profile.jpg" width="120"
-                                     height="120"
-                                     title="Profile image"
-                                     alt="Profile image">
-                            </div>
-                        </div>
-                        <div class="your-info" align="center">
-                            <h3 class="name">Soma Stamp</h3>
-                            <span class="category">Badminton</span>
-                            <div class="master-stat">
-                                <div class="header">
-                                    Disciples
-                                </div>
-                                <div class="detail">700</div>
-                            </div>
-                            <div class="master-stat">
-                                <div class="header">
-                                    Followers
-                                </div>
-                                <div class="detail --start">
-                                    2,000
-                                </div>
-                            </div>
-                            <div class="master-stat">
-                                <div class="header">
-                                    Mastered
-                                </div>
-                                <div class="detail">4</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="master-video">
-                        <video class="video video-fluid" autoplay loop muted>
-                            <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                    type="video/mp4" />
-                        </video>
+                        <div class="overlay"></div>
                         <div class="master-action">
                             <div class="actions">
                                 <div class="action-wrapper">
@@ -266,10 +208,79 @@
                         </div>
                     </div>
                     <div class="master-video">
-                        <video class="video video-fluid" autoplay loop muted>
-                            <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                    type="video/mp4" />
-                        </video>
+                        <div class="video-wrapper">
+                            <video class="video video-fluid" autoplay loop muted>
+                                <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
+                                        type="video/mp4" />
+                            </video>
+                        </div>
+                        <div class="overlay"></div>
+                        <div class="master-action">
+                            <div class="actions">
+                                <div class="action-wrapper">
+                                    <button class="join-button">Join<br>Activity</button>
+                                    <span>1 Activity available</span>
+                                </div>
+                                <div class="follow-wrapper">
+                                    <div class="follow-icon">
+                                        <img src="/img/icon/caret-down-solid.svg" alt="Follow ..."
+                                             class="svg">
+                                    </div>
+                                    <div class="text">Follow</div>
+                                </div>
+                            </div>
+                            <div class="core-actions">
+                                <button class="request-button">Request<br>custom activity</button>
+                                <button class="view-profile-button">view profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="master-profile-wrapper">
+                <div class="master-profile">
+                    <div class="your-activity-timeline">
+                        <div class="image-container">
+                            <div class="your-image image-wrapper">
+                                <img class="border-circle shadow" src="/img/profile.jpg" width="120"
+                                     height="120"
+                                     title="Profile image"
+                                     alt="Profile image">
+                            </div>
+                        </div>
+                        <div class="your-info" align="center">
+                            <h3 class="name">Soma Stamp</h3>
+                            <span class="category">Badminton</span>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Disciples
+                                </div>
+                                <div class="detail">700</div>
+                            </div>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Followers
+                                </div>
+                                <div class="detail --start">
+                                    2,000
+                                </div>
+                            </div>
+                            <div class="master-stat">
+                                <div class="header">
+                                    Mastered
+                                </div>
+                                <div class="detail">4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="master-video">
+                        <div class="video-wrapper">
+                            <video class="video video-fluid" autoplay loop muted>
+                                <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
+                                        type="video/mp4" />
+                            </video>
+                        </div>
+                        <div class="overlay"></div>
                         <div class="master-action">
                             <div class="actions">
                                 <div class="action-wrapper">
@@ -299,11 +310,11 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
     <script>
-        $(document).ready(function () {
-            var lazyLoadInstance = new LazyLoad({
-                elements_selector: '.lazy',
-                // ... more custom settings?
-            })
+      $(document).ready(function () {
+        var lazyLoadInstance = new LazyLoad({
+          elements_selector: '.lazy',
+          // ... more custom settings?
         })
+      })
     </script>
 @endsection

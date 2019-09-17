@@ -27,6 +27,7 @@
 				position: absolute;
 				width: 700px;
                 height: 400px;
+				margin: 0 20px;
 				z-index: 99;
 				@include fadein(.5s);
 
@@ -39,6 +40,14 @@
 					top: 0;
 					left: 0;
 					transform: translateX(calc(-50% + 125px));
+				}
+
+				&.fixedmid {
+					position: fixed;
+					left: 50%;
+					width: 100%;
+					max-width: 700px;
+					transform: translateX(-50%);
 				}
 
 				&.right {

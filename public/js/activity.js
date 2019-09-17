@@ -3,14 +3,8 @@ function activityHover() {
     var self = this
     var index = $(this).parent().parent().index()
     $(this).addClass('hover')
-    if ($(window).width() <= 539) {
-      $(this).addClass('mid')
-    } else if ($(window).width() <= 809) {
-      if (index % 2 === 0) {
-        $(this).addClass('left')
-      } else {
-        $(this).addClass('right')
-      }
+    if ($(window).width() <= 809) {
+      $(this).addClass('fixedmid')
     } else {
       if (index % 3 === 0) {
         $(this).addClass('left')
@@ -20,6 +14,9 @@ function activityHover() {
         $(this).addClass('mid')
       }
     }
+
+    $(this).children('.video').get(0).play()
+    MasterStudio.videoHover.play = true
 
     $(this).parent().children('.overlay').addClass('d-block')
     $(this).off('click').on('click', function () {
@@ -37,7 +34,7 @@ function activityHover() {
       $(this).removeClass('d-block')
 
       $(self).children('.video').get(0).pause()
-      $(self).children('.play-wrapper').removeClass('d-none')
+      $(self).children('.play-wrapper').addClass('d-none')
       MasterStudio.videoHover.play = false
     })
   })

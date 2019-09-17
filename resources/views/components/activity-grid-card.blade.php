@@ -9,7 +9,7 @@
                     <source data-src="/video/activity.mp4"
                             type="video/mp4" />
                 </video>
-                <div class="play-wrapper">
+                <div class="play-wrapper d-none">
                     <img src="/img/icon/play-circle-solid.svg" class="svg">
                 </div>
                 <button class="button --detail" onclick="window.location.href = '/activity/1'">view detail</button>

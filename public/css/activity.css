@@ -11548,6 +11548,7 @@ button:focus {
 	position: absolute;
 	width: 700px;
   height: 400px;
+	margin: 0 20px;
   z-index: 99;
   -webkit-animation: fadein 0.5s;
   /* Safari, Chrome and Opera > 12.1 */
@@ -11566,6 +11567,14 @@ button:focus {
 	top: 0;
 	left: 0;
 	transform: translateX(calc(-50% + 125px));
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper.hover.fixedmid {
+	position: fixed;
+	left: 50%;
+	width: 100%;
+	max-width: 700px;
+	transform: translateX(-50%);
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover.right {
