@@ -3,5 +3,6 @@
     "/css/app.css": "/css/app.css",
     "/css/home.css": "/css/home.css",
     "/css/activity.css": "/css/activity.css",
-    "/css/master.css": "/css/master.css"
+    "/css/master.css": "/css/master.css",
+    "/css/master-detail.css": "/css/master-detail.css"
 }

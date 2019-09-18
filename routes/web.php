@@ -18,6 +18,9 @@ Route::get('/activity', function () {
 Route::get('/master', function () {
     return view('master');
 });
+Route::get('/master/{name}', function ($name) {
+    return view('master-detail', ['master' => ['master_name' => $name]]);
+});
 Route::get('/studio', function () {
     return view('studio');
 });
