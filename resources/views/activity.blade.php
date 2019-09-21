@@ -39,9 +39,46 @@
                         </div>
                         <!-- End Activity Name , Search ac-->
                         <div class="activity-detail-wrapper d-none d-md-flex">
-                            @include('components.activity-card', ['size' => 70])
-                            @include('components.activity-card', ['size' => 70])
-                            @include('components.activity-card', ['size' => 70])
+                            <div class="activity-story justify-content-end">
+                                @php
+                                    $activitys = [0,1,2]
+                                @endphp
+                                @foreach ($activitys as $activity)
+                                    <div class="activity-wrapper">
+                                        <div class="activity-card">
+                                            <div class="video-wrapper">
+                                                <video class="video lazy" loop muted>
+                                                    <source data-src="https://maxang.me/activity.mp4"
+                                                            type="video/mp4" />
+                                                </video>
+                                            </div>
+
+                                            <div class="master-profile">
+                                                @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
+                                                @endcomponent
+                                                <div class="image-wrapper">
+                                                    <img src="/img/profile.jpg" alt="">
+                                                </div>
+                                            </div>
+
+                                            <div class="title-wrapper">
+                                                <div class="title">Basic Italian Food</div>
+                                                <div class="activity-join">
+                                                    <div class="participant image-wrapper">
+                                                        <img src="/img/profile.jpg" alt="">
+                                                    </div>
+                                                    <div class="participant image-wrapper">
+                                                        <img src="/img/profile.jpg" alt="">
+                                                    </div>
+                                                    <div class="participant image-wrapper">
+                                                        <img src="/img/profile.jpg" alt="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                     <!-- End Content Header -->
@@ -102,7 +139,7 @@
                         <div class="activity-card">
                             <div class="video-wrapper">
                                 <video class="video lazy" loop muted>
-                                    <source data-src="/video/activity.mp4"
+                                    <source data-src="https://maxang.me/activity.mp4"
                                             type="video/mp4"/>
                                 </video>
                             </div>

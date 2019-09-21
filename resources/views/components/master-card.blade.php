@@ -53,7 +53,7 @@
                     <div class="activity-card">
                         <div class="video-wrapper">
                             <video class="video lazy" loop muted>
-                                <source data-src="/video/activity.mp4"
+                                <source data-src="https://maxang.me/activity.mp4"
                                         type="video/mp4" />
                             </video>
                         </div>
@@ -78,7 +78,7 @@
         </div>
         <div class="button-wrapper my-1" align="center">
             <button class="button mr-2">Request<br>custom activity</button>
-            <button class="button ml-2">view profile</button>
+            <button class="button ml-2" onclick="window.location='/master/1'">view profile</button>
     </div>
 </div>
 @endif

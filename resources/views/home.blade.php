@@ -100,7 +100,7 @@
                     <div class="activity-card">
                         <div class="video-wrapper">
                             <video class="video lazy" loop muted>
-                                <source data-src="/video/activity.mp4"
+                                <source data-src="https://maxang.me/activity.mp4"
                                         type="video/mp4" />
                             </video>
                         </div>

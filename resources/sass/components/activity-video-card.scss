@@ -58,20 +58,23 @@
 
 		> .activity-join {
 			display: flex;
+			bottom: 0;
+			left: 0;
 			margin-top: 5px;
 
 			> .participant {
 				width: 40px;
 				height: 40px;
+				margin-right: -20px;
 				border-radius: 50%;
 				border: 1px solid #ccc;
-
-				&:not(:first-child) {
-					transform: translateX(-50%);
-				}
+				position: relative;
 
 				> img {
-					width: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 40px;
 					height: 100%;
 					border-radius: 50%;
 				}

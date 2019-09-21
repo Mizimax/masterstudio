@@ -32,4 +32,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/home.scss', 'public/css')
     .sass('resources/sass/activity.scss', 'public/css')
     .sass('resources/sass/master.scss', 'public/css')
-    .sass('resources/sass/master-detail.scss', 'public/css');
+  .sass('resources/sass/master-detail.scss', 'public/css')
+  .sass('resources/sass/activity-detail.scss', 'public/css');

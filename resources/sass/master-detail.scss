@@ -1,2 +1,218 @@
 // Variables
 @import 'app';
+@import 'components/master-action';
+@import 'components/activity-story-section';
+@import 'components/activity-video-card';
+@import 'components/activity-grid-card';
+@import 'components/activity-card-detail';
+
+.master-detail-section {
+	padding-top: 150px;
+	background: url('/img/Deepsea.jpeg');
+	background-size: cover;
+	position: relative;
+
+	> .master-container {
+		max-width: 900px;
+		width: 100%;
+		margin: 0 auto;
+		position: relative;
+		z-index: 2;
+
+		> .header {
+			padding: 15px 0;
+			color: white;
+			font-size: 28px;
+		}
+
+		> .master-profile-card-wrapper {
+			display: flex;
+
+			> .image-container {
+				position: relative;
+				padding-left: 50px;
+
+				@include mobileFirst(1015px) {
+					padding-left: 0;
+				}
+
+				> .image-wrapper {
+					width: 120px;
+					height: 120px;
+					position: absolute;
+					top: 50%;
+					left: 0;
+					transform: translate(-50%, -50%);
+
+					> img {
+						width: 100%;
+						height: 100%;
+						border-radius: 50%;
+					}
+				}
+			}
+
+			> .master-profile-card {
+				display: flex;
+				background: rgba(255, 255, 255, 0.9);
+				border-radius: 20px;
+				min-width: 0px;
+
+				> .master-info {
+					padding: 25px 10px 0 70px;
+					flex: 0 0 220px;
+
+					> .title {
+						font-size: 20px;
+						font-weight: bold;
+					}
+
+					> .master-badge {
+						margin-top: 70px;
+					}
+
+					.badge {
+						font-size: 11px;
+						border: 1px solid #000;
+						border-radius: 20px;
+						padding: 3px 10px;
+
+						&.--basic {
+							background: orange;
+							border: none;
+							padding: 5px 10px;
+						}
+
+						&.--advance {
+							background: orangered;
+							border: none;
+							padding: 5px 10px;
+						}
+					}
+				}
+
+				> .activity-story {
+					flex: 1;
+					overflow-x: auto;
+					padding: 25px 0;
+
+					.activity-card {
+						width: 130px;
+						height: 100%;
+						margin-right: 5px;
+					}
+
+					.title {
+						font-size: 12px;
+					}
+
+					.participant {
+						width: 30px;
+						height: 30px;
+						margin-right: -15px;
+					}
+				}
+			}
+		}
+
+		.master-action {
+			position: relative;
+			margin: 0;
+			padding: 20px 20px 20px 30px;
+		}
+
+		> .master-stat-wrapper {
+			display: flex;
+			justify-content: center;
+			padding: 10px;
+			border-top: 1px solid #ccc;
+
+			> .master-stat {
+				margin: 30px;
+				border-radius: 30px;
+				padding: 7px 25px;
+				text-align: center;
+				cursor: pointer;
+
+				&:hover {
+					background-color: white;
+					@extend .shadow;
+
+					> .header {
+						color: $primary
+					}
+
+					> .detail {
+						color: black;
+					}
+				}
+
+				> .header {
+					font-size: 12px;
+					color: white;
+				}
+
+				> .detail {
+					font-size: 38px;
+					color: white;
+					font-weight: bold;
+				}
+			}
+		}
+
+		> .nav-tab {
+			display: flex;
+
+			> .tab-link {
+				color: white;
+				font-size: 24px;
+				padding: 10px 30px;
+				border-right: 1px solid #fff;
+				font-weight: 300;
+
+				&.active {
+					font-weight: bold;
+				}
+
+				&:first-child {
+					padding: 10px 30px 10px 0;
+				}
+
+				&:last-child {
+					border-right: none;
+				}
+			}
+		}
+
+		> .tab-content {
+			padding: 10px 0 100px;
+			color: white;
+
+			> #activity {
+				> .activity-wrapper {
+					display: flex;
+
+					> .now-activity {
+						flex: 1;
+					}
+
+					> .past-activity {
+						flex: 1;
+						flex-grow: 3;
+						margin-left: 20px;
+
+						> .content {
+							display: flex;
+							flex-wrap: wrap;
+						}
+					}
+
+					.header {
+						padding: 10px 0;
+						border-bottom: 1px solid #fff;
+					}
+				}
+			}
+		}
+	}
+}

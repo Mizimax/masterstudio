@@ -97,6 +97,18 @@
 
 /***/ }),
 
+  /***/ './resources/sass/activity-detail.scss':
+  /*!*********************************************!*\
+    !*** ./resources/sass/activity-detail.scss ***!
+    \*********************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
   /***/ './resources/sass/activity.scss':
   /*!**************************************!*\
     !*** ./resources/sass/activity.scss ***!
@@ -131,6 +143,18 @@
 
 /***/ }),
 
+  /***/ './resources/sass/master-detail.scss':
+  /*!*******************************************!*\
+    !*** ./resources/sass/master-detail.scss ***!
+    \*******************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
   /***/ './resources/sass/master.scss':
   /*!************************************!*\
     !*** ./resources/sass/master.scss ***!
@@ -144,9 +168,9 @@
   }),
 
 /***/ 0:
-  /*!****************************************************************************************************************************************************!*\
-    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ./resources/sass/master.scss ***!
-    \****************************************************************************************************************************************************/
+  /*!******************************************************************************************************************************************************************************************************************************!*\
+    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ./resources/sass/master.scss ./resources/sass/master-detail.scss ./resources/sass/activity-detail.scss ***!
+    \******************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -154,7 +178,9 @@
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/app.scss */'./resources/sass/app.scss')
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/home.scss */'./resources/sass/home.scss')
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity.scss */'./resources/sass/activity.scss')
-    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/master.scss */'./resources/sass/master.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/master.scss */'./resources/sass/master.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/master-detail.scss */'./resources/sass/master-detail.scss')
+    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity-detail.scss */'./resources/sass/activity-detail.scss')
 
 
 /***/ })

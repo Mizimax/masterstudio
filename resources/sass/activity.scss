@@ -320,19 +320,26 @@
                 }
 
                 > .activity-detail-wrapper {
-                    margin-top: 15%;
+                    margin-top: 10%;
                     justify-content: flex-end;
                     margin-right: 40px;
 
-                    > .activity-detail {
-                        margin: 0 20px;
+                    > .activity-story {
 
-                        &:first-child {
-                            display: none;
+                        > .activity-wrapper {
+                            &:first-child {
+                                display: none;
 
-                            @include desktop-up {
-                                display: block;
+                                @include mobileFirst(990px) {
+                                    display: block;
+                                }
                             }
+                        }
+
+                        .activity-card {
+                            width: 250px;
+                            height: 250px;
+                            margin: 0 30px;
                         }
                     }
                 }

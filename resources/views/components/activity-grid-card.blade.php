@@ -1,4 +1,5 @@
 @php
+    $size = !empty($size) ? $size : 100;
     $activities = !empty($queryActivities) ? $queryActivities : (!empty($activities) ? $activities : '');
 @endphp
 @foreach ($activities as $activity)
@@ -6,10 +7,10 @@
         <div class="activity-card">
             <div class="video-wrapper">
                 <video class="video lazy" loop muted>
-                    <source data-src="/video/activity.mp4"
+                    <source data-src="https://maxang.me/activity.mp4"
                             type="video/mp4" />
                 </video>
-                <div class="play-wrapper d-none">
+                <div class="fadeoutpper d-none">
                     <img src="/img/icon/play-circle-solid.svg" class="svg">
                 </div>
                 <button class="button --detail" onclick="window.location.href = '/activity/1'">view detail</button>
@@ -27,7 +28,7 @@
             </div>
             <div class="overlay"></div>
             <div class="master-profile">
-                @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
+                @component('components.activity-card', ['noimage'=>true, 'size'=>$size, 'animate'=>true])
                 @endcomponent
                 <div class="image-wrapper">
                     <img src="/img/profile.jpg" alt="">
