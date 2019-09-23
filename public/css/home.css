@@ -1,6 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);
-
-@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -11041,6 +11039,10 @@ a:hover {
   text-decoration: none;
 }
 
+button {
+  border: none;
+}
+
 button:focus {
   outline: none;
 }
@@ -11122,6 +11124,13 @@ button:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.carousel-indicators {
+  right: unset;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
 }
 
 .navbar-wrapper {
@@ -11536,10 +11545,10 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover {
-	position: absolute;
-	width: 700px;
+  position: absolute;
+  width: 700px;
   height: 400px;
-	margin: 0 20px;
+  margin: 0 20px;
   z-index: 99;
   -webkit-animation: fadein 0.5s;
   /* Safari, Chrome and Opera > 12.1 */
@@ -11550,27 +11559,27 @@ button:focus {
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover.left {
-	top: 0;
-	left: 0;
+  top: 0;
+  left: 0;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover.mid {
-	top: 0;
-	left: 0;
-	transform: translateX(calc(-50% + 125px));
+  top: 0;
+  left: 0;
+  transform: translateX(calc(-50% + 125px));
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover.fixedmid {
-	position: fixed;
-	left: 50%;
-	width: 100%;
-	max-width: 700px;
-	transform: translateX(-50%);
+  position: fixed;
+  left: 50%;
+  width: 100%;
+  max-width: 700px;
+  transform: translateX(-50%);
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover.right {
-	top: 0;
-	right: 0;
+  top: 0;
+  right: 0;
 }
 
 .activity-card-wrapper > .activity-card > .video-wrapper.hover > .activity-tabs {
@@ -11705,25 +11714,25 @@ button:focus {
 
 .activity-card > .title-wrapper > .activity-join {
   display: flex;
-	bottom: 0;
-	left: 0;
+  bottom: 0;
+  left: 0;
   margin-top: 5px;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant {
   width: 40px;
   height: 40px;
-	margin-right: -20px;
+  margin-right: -20px;
   border-radius: 50%;
   border: 1px solid #ccc;
-	position: relative;
+  position: relative;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant > img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
   height: 100%;
   border-radius: 50%;
 }
@@ -11853,7 +11862,7 @@ button:focus {
 
 .video-header > .half-square {
   position: absolute;
-	z-index: 9;
+  z-index: 9;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -11887,7 +11896,7 @@ button:focus {
   top: 55%;
   transform: translateY(-50%);
   position: absolute;
-	z-index: 999;
+  z-index: 999;
   padding: 0 20px;
   left: 0;
   max-width: 600px;

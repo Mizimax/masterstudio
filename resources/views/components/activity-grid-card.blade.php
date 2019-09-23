@@ -30,7 +30,7 @@
             <div class="master-profile">
                 @component('components.activity-card', ['noimage'=>true, 'size'=>$size, 'animate'=>true])
                 @endcomponent
-                <div class="image-wrapper">
+                <div class="image-wrapper" style="width: {{$size/1.2}}px; height: {{$size/1.2}}px">
                     <img src="/img/profile.jpg" alt="">
                 </div>
             </div>

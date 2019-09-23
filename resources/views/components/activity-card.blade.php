@@ -2,14 +2,15 @@
 @php
     $size = !empty($size) ? $size : 100;
 @endphp
-<div class="activity-detail {{!empty($animate) ? '--animate' : '' }} justify-content-between flex-wrap">
-    <div class="activity-title">
-        <div class="image-wrapper" style="margin-top: -{{ $size/2 }}px; width: {{ $size }}px; height: {{ $size }}px">
+<div style="padding: {{ $size/8 }}px"
+     class="activity-detail {{!empty($animate) ? '--animate' : '' }} justify-content-between flex-wrap">
+    <div class="activity-title" style="margin-left: 5px">
+        <div class="image-wrapper" style="margin-top: -{{ $size/2.1 }}px; width: {{ $size }}px; height: {{ $size }}px">
             @if(empty($noimage))
                 <img style="width: {{ $size }}px; height: {{ $size }}px" src="/img/profile.jpg" alt="">
             @endif
         </div>
-        <div class="title-wrapper">
+        <div class="title-wrapper" style="margin-left: {{ $size/6 }}px">
             <div class="title">Mistrio Waso</div>
             <div class="badge">Italian food master</div>
         </div>
