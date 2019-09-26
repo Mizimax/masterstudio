@@ -38,8 +38,8 @@
                             </div>
                         </div>
                         <!-- End Activity Name , Search ac-->
-                        <div class="activity-detail-wrapper d-none d-md-flex">
-                            <div class="activity-story justify-content-end">
+                        <div class="activity-detail-wrapper d-none d-sm-flex">
+                            <div class="activity-story justify-content-md-end justify-content-center">
                                 @php
                                     $activitys = [0,1,2]
                                 @endphp
@@ -99,6 +99,7 @@
             <!-- End Slideshow -->
         </div>
         <!-- End Carousel -->
+        <div class="half-square"></div>
     </section>
 
     <section class="your-activity">

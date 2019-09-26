@@ -226,18 +226,31 @@
 }
 
 .activity-header {
+
+	> .half-square {
+		position: absolute;
+		z-index: 9;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 10vh;
+		display: block;
+		background: white;
+		background: linear-gradient(to bottom left, transparent 50%, white 50%);
+	}
+
     > #carousel {
         > .carousel-indicators {
-	        margin-bottom: 11vh;
+	        margin-bottom: 10vh;
         }
 
         .carousel-item {
             height: 100vh;
-            @include tablet-up {
-                height: 100%;
-            }
+	        position: relative;
 
             .video {
+	            width: 100%;
+	            height: 100%;
                 object-fit: cover;
             }
 
@@ -248,7 +261,7 @@
                 right: 0;
                 width: 100%;
 
-                @include mobile-up {
+	            @include tablet-up {
                     top: 20%;
                     transform: translateY(0);
                 }
@@ -258,6 +271,7 @@
                     width: 100%;
                     padding-right: 20px;
 
+
                     > .header {
                         font-size: 50px;
                         font-weight: bold;
@@ -266,28 +280,28 @@
 
                         @include mobile-up {
                             font-size: 50px;
-                            width: 70%;
-                            margin-left: auto;
                         }
 
                         @include tablet-up {
                             font-size: 70px;
+	                        margin-left: auto;
                         }
                     }
 
                     > .subheader {
-                        font-size: 50px;
+	                    font-size: 40px;
                         width: 100%;
                         text-align: center;
 
                         @include mobile-up {
-                            font-size: 50px;
-                            width: 60%;
-                            margin-left: auto;
+	                        font-size: 44px;
                         }
 
-                        @include tablet-up {
-                            font-size: 70px;
+	                    @include tablet-up {
+		                    width: 55%;
+		                    text-align: left;
+		                    font-size: 60px;
+                            margin-left: auto;
                         }
                     }
 
@@ -297,8 +311,12 @@
 
                         @include mobile-up {
                             font-size: 50px;
+	                        margin-left: auto;
+                        }
+
+	                    @include tablet-up {
                             width: 50%;
-                            margin-left: auto;
+		                    text-align: left;
                         }
 
                         > .search-box {
@@ -320,20 +338,32 @@
                 }
 
                 > .activity-detail-wrapper {
-                    margin-top: 10%;
+	                margin-top: 3vh;
                     justify-content: flex-end;
-                    margin-right: 40px;
+	                margin-right: 0;
+
+	                @include tablet-up {
+		                margin-right: 40px;
+	                }
 
                     > .activity-story {
 
                         > .activity-wrapper {
-                            &:first-child {
+	                        &:last-child {
                                 display: none;
 
                                 @include mobileFirst(990px) {
                                     display: block;
                                 }
                             }
+
+	                        &:nth-child(1) {
+		                        display: none;
+
+		                        @include mobileFirst(750px) {
+			                        display: block;
+		                        }
+	                        }
                         }
 
                         .activity-card {

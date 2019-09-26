@@ -11,7 +11,7 @@
     <div id="map" style="width: 100%; height: 100vh">
 
     </div>
-    <div class="map-detail">
+    <div class="map-detail" style="display: none">
         <div class="map-card">
             <div class="map-header">
                 <div class="title">Windshire studio</div>
@@ -26,7 +26,9 @@
                 <img class="master" src="/img/profile.jpg" alt="">
             </div>
         </div>
-        <button class="studio-button">view studio profile</button>
+        <a href="/studio/1">
+            <button class="studio-button">view studio profile</button>
+        </a>
     </div>
 @endsection
 
@@ -101,6 +103,7 @@
 
             $('.map-detail .title').text(lat)
 
+            $('.map-detail').css('display', 'block')
             $('.map-detail').css('top', y)
             $('.map-detail').css('left', x)
 

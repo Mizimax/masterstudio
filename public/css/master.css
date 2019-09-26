@@ -11123,8 +11123,7 @@ button:focus {
   display: none !important;
 }
 
-.absolute-center,
-.master-header > .header-content {
+.absolute-center {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -11849,19 +11848,16 @@ button:focus {
   background-position: center;
 }
 
-@media (min-width: 768px) {
-  .master-header > .bg-header {
-    height: 100%;
-    padding-top: 52.5%;
-  }
-}
-
 .master-header > .header-content {
   text-align: center;
   max-width: 700px;
   width: 100%;
   padding: 0 20px;
   color: white;
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .master-header > .header-content > .header {
@@ -11895,6 +11891,7 @@ button:focus {
 
 .master-header > .header-content > .master-interest {
   display: none;
+	margin-top: 13vh;
 }
 
 @media (min-width: 992px) {
@@ -11906,7 +11903,7 @@ button:focus {
 .master-header > .header-content > .master-interest > .header {
   font-size: 34px;
   font-weight: bold;
-  margin: 7% 0 20px;
+	margin: 0 0 20px;
 }
 
 .master-header > .header-content > .master-interest > .master-list {

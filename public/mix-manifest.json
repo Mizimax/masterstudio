@@ -6,5 +6,6 @@
     "/css/master.css": "/css/master.css",
     "/css/master-detail.css": "/css/master-detail.css",
   "/css/studio.css": "/css/studio.css",
-    "/css/activity-detail.css": "/css/activity-detail.css"
+  "/css/activity-detail.css": "/css/activity-detail.css",
+  "/css/studio-detail.css": "/css/studio-detail.css"
 }

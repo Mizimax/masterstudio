@@ -1,0 +1,45 @@
+// Variables
+@import 'app';
+@import 'components/activity-story-section';
+@import 'components/activity-video-card';
+@import 'components/activity-grid-card';
+@import 'components/activity-card-detail';
+
+.studio-header {
+	> .studio-header-content {
+
+		> .studio-icon {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			border: 1px solid #fff;
+		}
+
+		> .activity-story {
+			flex: 1;
+			overflow-x: auto;
+			padding: 25px 0;
+
+			.activity-card {
+				width: 120px;
+				height: 180px;
+				margin-right: 15px;
+			}
+
+			.title {
+				font-size: 12px;
+			}
+
+			.participant {
+				width: 30px;
+				height: 30px;
+				margin-right: -15px;
+			}
+		}
+	}
+}
+
+.studio-activity {
+	display: flex;
+	overflow-x: auto;
+}

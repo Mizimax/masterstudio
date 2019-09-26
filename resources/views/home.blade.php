@@ -54,9 +54,9 @@
                 <input class="search-box" placeholder="Search your activities..." type="text">
             </div>
             <!-- End Activity Name , Search -->
-            <div class="activity-detail-wrapper d-none d-lg-flex">
-                @include('components.activity-card')
-                <div class="activity-tabs">
+            <div class="activity-detail-wrapper">
+                @include('components.activity-card', ['size'=>80])
+                <div class="activity-tabs d-none d-sm-block">
                     <div class="activity-tab">
                         <div class="icon-wrapper --join">
                             <img src="/img/icon/user-circle-regular.svg" class="svg">

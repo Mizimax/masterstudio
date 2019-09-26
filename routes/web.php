@@ -27,6 +27,9 @@
 	Route::get('/studio', function () {
 		return view('studio');
 	});
+	Route::get('/studio/{name}', function () {
+		return view('studio-detail');
+	});
 	Route::get('/become', function () {
 		return view('become');
 	});
