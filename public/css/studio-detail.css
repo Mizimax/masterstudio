@@ -8046,7 +8046,9 @@ button.bg-dark:focus {
 	box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 
-.shadow {
+.shadow,
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card,
+.studio-detail-container > .studio-detail {
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
@@ -11107,7 +11109,9 @@ button:focus {
 	font-size: 0;
 }
 
-.shadow {
+.shadow,
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card,
+.studio-detail-container > .studio-detail {
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -11115,7 +11119,8 @@ button:focus {
 	display: none !important;
 }
 
-.absolute-center {
+.absolute-center,
+.studio-detail-container > .studio-detail > .detail-header > .content > .studio-line > .studio-icon {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -11357,6 +11362,35 @@ button:focus {
 	background: black;
 	color: #666;
 	padding: 13px 0;
+}
+
+.icon-wrapper {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+
+.icon-wrapper > .svg {
+	color: white;
+	padding: 6px;
+	width: 100%;
+	height: 100%;
+}
+
+.icon-wrapper.\--join {
+	background-color: #f14ea6;
+}
+
+.icon-wrapper.\--pin {
+	background-color: #fcac42;
+}
+
+.icon-wrapper.\--invite {
+	background-color: #f309f4;
+}
+
+.icon-wrapper.\--share {
+	background-color: #323132;
 }
 
 .activity-story {
@@ -11730,36 +11764,418 @@ button:focus {
 	padding: 3px 0;
 }
 
-.studio-header > .studio-header-content > .studio-icon {
-	width: 100px;
-	height: 100px;
-	border-radius: 50%;
-	border: 1px solid #fff;
+.master-action {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 3;
+	height: 100%;
+	padding-left: 25px;
+	color: white;
+	margin: 15px 15px 0 0;
 }
 
-.studio-header > .studio-header-content > .activity-story {
+.master-action > .actions {
+	display: flex;
+	justify-content: flex-end;
+	text-align: center;
+}
+
+.master-action > .actions > .action-wrapper > .join-button {
+	background: #f25b27;
+	border: none;
+	padding: 7px 15px;
+	font-size: 12px;
+	color: white;
+	border-radius: 40px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.master-action > .actions > .action-wrapper > span {
+	display: block;
+	margin-top: 5px;
+	color: #f25b27;
+	font-size: 10px;
+}
+
+.master-action > .actions > .follow-wrapper {
+	margin-left: 7px;
+	cursor: pointer;
+}
+
+.master-action > .actions > .follow-wrapper > .follow-icon {
+	background: #f14ea6;
+	border-radius: 50%;
+	font-size: 0;
+	width: 42px;
+	height: 42px;
+	margin: 0 auto;
+}
+
+.master-action > .actions > .follow-wrapper > .follow-icon > .svg {
+	color: white;
+	width: 100%;
+	height: 100%;
+}
+
+.master-action > .actions > .follow-wrapper > .text {
+	margin-top: 5px;
+	color: #f14ea6;
+	font-size: 10px;
+}
+
+.master-action > .core-actions {
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+}
+
+.master-action > .core-actions > .request-button {
+	font-weight: bold;
+	padding: 7px 15px;
+	font-size: 12px;
+	background: white;
+	color: #f14ea6;
+	border: none;
+	border-radius: 40px;
+}
+
+.master-action > .core-actions > .request-button:hover {
+	background: #f14ea6;
+	color: white;
+}
+
+.master-action > .core-actions > .view-profile-button {
+	margin-top: 10px;
+	font-weight: bold;
+	padding: 14px 15px;
+	font-size: 12px;
+	background: white;
+	color: #f14ea6;
+	border: none;
+	border-radius: 40px;
+}
+
+.master-action > .core-actions > .view-profile-button:hover {
+	background: #f14ea6;
+	color: white;
+}
+
+.studio-header {
+	background: url("/img/Deepsea.jpeg");
+	background-position: center;
+	height: 100vh;
+}
+
+.studio-header > .studio-header-wrapper {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 5vh;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content {
+	max-width: 475px;
+	width: 100%;
+	color: white;
+	padding: 20px;
+	margin-left: auto;
+	margin-right: 5vw;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .studio-icon {
+	width: 170px;
+	height: 170px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .studio-name {
+	font-size: 40px;
+	margin-top: 10px;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .studio-location {
+	font-size: 15px;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper {
+	display: flex;
+	margin: 20px 0 0;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button {
+	margin-right: 5px;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button > .icon-wrapper {
+	width: 42px;
+	height: 42px;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button > .join-button {
+	background: #f25b27;
+	border: none;
+	padding: 7px 15px;
+	font-size: 12px;
+	color: white;
+	border-radius: 40px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button > .text {
+	display: block;
+	margin-top: 5px;
+	font-size: 10px;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button > .follow-icon {
+	background: #f14ea6;
+	border-radius: 50%;
+	font-size: 0;
+	width: 42px;
+	height: 42px;
+	margin: 0 auto;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button > .follow-icon > .svg {
+	color: white;
+	width: 100%;
+	height: 100%;
+}
+
+.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
 	flex: 1;
 	overflow-x: auto;
 	padding: 25px 0;
 }
 
-.studio-header > .studio-header-content > .activity-story .activity-card {
-	width: 120px;
+.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .activity-card {
+	width: 130px;
 	height: 180px;
 	margin-right: 15px;
 }
 
-.studio-header > .studio-header-content > .activity-story .title {
+.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .title {
 	font-size: 12px;
 }
 
-.studio-header > .studio-header-content > .activity-story .participant {
+.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .participant {
 	width: 30px;
 	height: 30px;
 	margin-right: -15px;
 }
 
-.studio-activity {
+.studio-detail-container {
+	max-width: 900px;
+	width: 100%;
+	margin: 0 auto 40px;
+}
+
+.studio-detail-container > .studio-detail {
+	margin-top: -60px;
+	background: white;
+	border-radius: 20px;
+}
+
+.studio-detail-container > .studio-detail > .detail-header {
+	border-top-right-radius: 20px;
+	border-top-left-radius: 20px;
+	background: url("/img/Deepsea.jpeg");
+	background-position: center;
+	position: relative;
+	color: white;
+	text-align: center;
+	padding: 40px;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content {
+	position: relative;
+	z-index: 9;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .title {
+	font-size: 32px;
+	font-weight: bold;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .studio-line {
+	border-bottom: 1px solid #eee;
+	margin: 50px 0;
+	position: relative;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .studio-line > .studio-icon {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .nav-tab {
+	justify-content: center;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .nav-tab > .tab-link {
+	font-weight: 300;
+	font-size: 20px;
+	margin: 20px;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .nav-tab > .tab-link.active {
+	font-weight: bold;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .video-wrapper {
+	position: relative;
+	width: 100%;
+	max-height: 450px;
+	margin-bottom: -250px;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .video-wrapper > .video {
+	width: 100%;
+	max-height: 450px;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .video-wrapper > .play-wrapper {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 60px;
+	height: 60px;
+	transform: translate(-50%, -50%);
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .video-wrapper > .play-wrapper > .svg {
+	color: white;
+}
+
+.studio-detail-container > .studio-detail > .tab-content {
+	margin-top: 200px;
+	padding: 40px;
+}
+
+.studio-detail-container > .studio-detail > .tab-content > #description {
+	font-size: 14px;
+	color: #888;
+}
+
+.studio-detail-container > .studio-master > .title {
+	margin: 40px 0;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper {
+	display: flex;
+	margin-bottom: 30px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper .master-action {
+	position: relative;
+	margin: 0;
+	padding: 20px 20px 20px 30px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .image-container {
+	position: relative;
+	padding-left: 50px;
+}
+
+@media (min-width: 1015px) {
+	.studio-detail-container > .studio-master > .master-profile-card-wrapper > .image-container {
+		padding-left: 0;
+	}
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .image-container > .image-wrapper {
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .image-container > .image-wrapper > img {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card {
+	display: flex;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 20px;
+	min-width: 0px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .master-info {
+	padding: 25px 10px 0 70px;
+	flex: 0 0 220px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .master-info > .title {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .master-info > .master-badge {
+	margin-top: 70px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .master-info .badge {
+	font-size: 11px;
+	border: 1px solid #000;
+	border-radius: 20px;
+	padding: 3px 10px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .master-info .badge.\--basic {
+	background: orange;
+	border: none;
+	padding: 5px 10px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .master-info .badge.\--advance {
+	background: orangered;
+	border: none;
+	padding: 5px 10px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story {
+	flex: 1;
+	overflow-x: auto;
+	padding: 25px 0;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story .activity-card {
+	width: 130px;
+	height: 100%;
+	margin-right: 5px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story .title {
+	font-size: 12px;
+}
+
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story .participant {
+	width: 30px;
+	height: 30px;
+	margin-right: -15px;
+}
+
+.studio-detail-container > .studio-activity > .title {
+	margin: 40px 0 10px;
+	font-size: 30px;
+	font-weight: bold;
+}
+
+.studio-detail-container > .studio-activity > .activity-wrapper {
 	display: flex;
 	overflow-x: auto;
 }

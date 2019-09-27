@@ -261,7 +261,7 @@
                 right: 0;
                 width: 100%;
 
-	            @include tablet-up {
+	            @media (min-height: 800px) {
                     top: 20%;
                     transform: translateY(0);
                 }
@@ -341,12 +341,18 @@
 	                margin-top: 3vh;
                     justify-content: flex-end;
 	                margin-right: 0;
+	                display: none;
 
 	                @include tablet-up {
 		                margin-right: 40px;
 	                }
 
+	                @media (min-height: 740px) {
+		                display: flex;
+	                }
+
                     > .activity-story {
+	                    padding-top: 40px;
 
                         > .activity-wrapper {
 	                        &:last-child {

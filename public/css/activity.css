@@ -12315,7 +12315,7 @@ button:focus {
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-height: 800px) {
   .activity-header > #carousel .carousel-item > .content-wrapper {
     top: 20%;
     transform: translateY(0);
@@ -12409,12 +12409,23 @@ button:focus {
 	margin-top: 3vh;
   justify-content: flex-end;
 	margin-right: 0;
+	display: none;
 }
 
 @media (min-width: 768px) {
 	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
 		margin-right: 40px;
 	}
+}
+
+@media (min-height: 740px) {
+	.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
+		display: flex;
+	}
+}
+
+.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-story {
+	padding-top: 40px;
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-story > .activity-wrapper:last-child {

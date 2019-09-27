@@ -8045,7 +8045,7 @@ button.bg-dark:focus {
 }
 
 .shadow,
-section.activity-detail-section > .activity-section {
+section.activity-detail-section > .content > .activity-section {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
 
@@ -11107,7 +11107,7 @@ button:focus {
 }
 
 .shadow,
-section.activity-detail-section > .activity-section {
+section.activity-detail-section > .content > .activity-section {
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -11899,45 +11899,75 @@ section.activity-header #carousel .video {
 section.activity-detail-section {
   position: relative;
   margin-bottom: 25px;
+	display: flex;
+	position: relative;
   z-index: 5;
 }
 
-section.activity-detail-section > .activity-section {
+section.activity-detail-section > .side-sponsor {
+	margin-top: 50px;
+	flex: 1;
+}
+
+section.activity-detail-section > .side-sponsor > .sponsor {
+	display: block;
+	margin: 0 auto 20px;
+	width: 100px;
+	height: 100px;
+}
+
+section.activity-detail-section > .side-advertise {
+	flex: 1;
+	margin: 50px 10px 0;
+}
+
+section.activity-detail-section > .side-advertise > .googlea {
+	max-width: 200px;
+	width: 100%;
+	margin: 0 auto;
+	height: 450px;
+	background: #cccccc;
+}
+
+section.activity-detail-section > .content {
+	max-width: 750px;
+	width: 90%;
+}
+
+section.activity-detail-section > .content > .activity-section {
   text-align: center;
-  margin: 25px auto 0;
+	margin: 25px 0 0;
   border-radius: 20px;
   background: white;
   padding: 25px;
-  max-width: 750px;
-  width: 90%;
 }
 
-section.activity-detail-section > .activity-section > .title {
+section.activity-detail-section > .content > .activity-section > .title {
   color: #555;
   font-size: 38px;
   font-weight: bold;
 }
 
 @media (min-width: 1200px) {
-  section.activity-detail-section > .activity-section.\--header {
+	section.activity-detail-section > .content > .activity-section.\--header {
     margin-top: -75px;
   }
 }
 
-section.activity-detail-section > .activity-section.\--header > .subtitle {
+section.activity-detail-section > .content > .activity-section.\--header > .subtitle {
   margin-top: 15px;
   font-size: 18px;
   font-weight: bold;
 }
 
-section.activity-detail-section > .activity-section.\--exp > .benefit-wrapper {
+section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper {
   display: flex;
   flex-wrap: wrap-reverse;
   justify-content: space-evenly;
   margin-top: 10px;
 }
 
-section.activity-detail-section > .activity-section.\--exp > .benefit-wrapper > .benefit-card {
+section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card {
   margin: 15px;
   padding: 130px 20px 20px;
   color: white;
@@ -11946,25 +11976,25 @@ section.activity-detail-section > .activity-section.\--exp > .benefit-wrapper > 
   flex: 0 0 200px;
 }
 
-section.activity-detail-section > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .svg {
+section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .svg {
   display: block;
   width: 50px;
   height: 50px;
   margin: 0 auto;
 }
 
-section.activity-detail-section > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .name {
+section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .name {
   margin-top: 7px;
   font-size: 9px;
   font-weight: bold;
 }
 
-section.activity-detail-section > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .description {
+section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .description {
   margin-top: 10px;
   font-size: 9px;
 }
 
-section.activity-detail-section > .activity-section.\--exp > .more-button {
+section.activity-detail-section > .content > .activity-section.\--exp > .more-button {
   display: block;
   margin: 15px auto 0;
   border: 1px solid #ccc;
@@ -11973,81 +12003,81 @@ section.activity-detail-section > .activity-section.\--exp > .more-button {
   padding: 10px 15px;
 }
 
-section.activity-detail-section > .activity-section.\--exp > .more-button > .svg {
+section.activity-detail-section > .content > .activity-section.\--exp > .more-button > .svg {
   width: 17px;
   height: 17px;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper {
   display: flex;
   flex-wrap: wrap;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .google-map {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .google-map {
   flex-basis: 100%;
 }
 
 @media (min-width: 768px) {
-  section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .google-map {
+	section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .google-map {
     flex: 0 0 400px;
   }
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .google-map > iframe {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .google-map > iframe {
   width: 100%;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail {
   flex: 1;
   padding: 0 30px;
   margin-top: 20px;
 }
 
 @media (min-width: 768px) {
-  section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail {
+	section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail {
     margin-top: 0;
   }
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .title {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .title {
   color: #555;
   font-weight: bold;
   font-size: 38px;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .sub-title {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .sub-title {
   margin: 15px 0 20px;
   font-size: 18px;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section {
   padding: 10px 0;
   border-top: 1px solid #ccc;
   text-align: left;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .title {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .title {
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content {
   font-size: 12px;
   font-weight: 300;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content > .promo-code {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content > .promo-code {
   display: flex;
   margin-bottom: 5px;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content > .promo-code > .name {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content > .promo-code > .name {
   flex: 1;
   display: flex;
   align-items: center;
 }
 
-section.activity-detail-section > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content > .promo-code > .badge {
+section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .content > .promo-code > .badge {
   padding: 5px 8px;
   color: white;
   font-size: 13px;
@@ -12056,47 +12086,47 @@ section.activity-detail-section > .activity-section.\--studio > .studio-wrapper 
   font-weight: 300;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward {
   display: flex;
   flex-direction: column;
 }
 
 @media (min-width: 768px) {
-  section.activity-detail-section > .activity-section.\--prepward > .prepare-reward {
+	section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward {
     flex-direction: row;
   }
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .prepare-wrapper {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .prepare-wrapper {
   flex: 1;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .prepare-wrapper > .title {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .prepare-wrapper > .title {
   color: #555;
   font-size: 30px;
   font-weight: bold;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper {
   flex: 0 1 300px;
   text-align: left;
   margin-top: 20px;
 }
 
 @media (min-width: 768px) {
-  section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper {
+	section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper {
     margin-top: 0;
   }
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .title {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .title {
   text-align: center;
   color: #555;
   font-size: 30px;
   font-weight: bold;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail {
   display: flex;
   margin-top: 10px;
   align-items: center;
@@ -12104,12 +12134,12 @@ section.activity-detail-section > .activity-section.\--prepward > .prepare-rewar
 }
 
 @media (min-width: 768px) {
-  section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail {
+	section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail {
     justify-content: flex-start;
   }
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .image-wrapper {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .image-wrapper {
   flex: 0 0 80px;
   width: 80px;
   height: 80px;
@@ -12117,87 +12147,87 @@ section.activity-detail-section > .activity-section.\--prepward > .prepare-rewar
   border-right: 1px solid #ccc;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .image-wrapper > .svg {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .image-wrapper > .svg {
   width: 100%;
   height: 100%;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text {
   align-items: center;
   width: 211px;
   padding: 10px 0 10px 20px;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text > .name {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text > .name {
   font-size: 12px;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text > .reward {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text > .reward {
   font-size: 20px;
   font-weight: bold;
 }
 
-section.activity-detail-section > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text > .description {
+section.activity-detail-section > .content > .activity-section.\--prepward > .prepare-reward > .reward-wrapper > .reward-detail > .reward-text > .description {
   font-size: 12px;
 }
 
-section.activity-detail-section > .activity-section.\--suggest > .suggest-wrapper {
+section.activity-detail-section > .content > .activity-section.\--suggest > .suggest-wrapper {
   display: flex;
   justify-content: flex-start;
   overflow-x: auto;
 }
 
-section.activity-detail-section > .activity-section.\--suggest > .suggest-wrapper .activity-card {
+section.activity-detail-section > .content > .activity-section.\--suggest > .suggest-wrapper .activity-card {
   width: 200px;
   height: 200px;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper {
   display: flex;
   flex-wrap: wrap;
   margin-top: 25px;
 }
 
 @media (min-width: 435px) {
-  section.activity-detail-section > .activity-section.\--comment > .comment-wrapper {
+	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper {
     flex-wrap: wrap-reverse;
   }
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile {
   margin: 0 auto;
   font-size: 12px;
   margin-top: 10px;
 }
 
 @media (min-width: 435px) {
-  section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile {
+	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile {
     margin-right: 15px;
   }
 }
 
 @media (min-width: 687px) {
-  section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile {
+	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile {
     margin-top: 0;
   }
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .image-wrapper {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .image-wrapper {
   width: 80px;
   height: 80px;
   margin: 0 auto;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .image-wrapper > img {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .image-wrapper > img {
   border-radius: 50%;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .name {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .name {
   margin-top: 7px;
   font-weight: bold;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .category-level {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .category-level {
   display: inline-block;
   margin-top: 4px;
   padding: 2px 7px;
@@ -12205,7 +12235,7 @@ section.activity-detail-section > .activity-section.\--comment > .comment-wrappe
   border-radius: 10px;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .agree-no {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .agree-no {
   margin-top: 4px;
   display: flex;
   justify-content: center;
@@ -12213,13 +12243,13 @@ section.activity-detail-section > .activity-section.\--comment > .comment-wrappe
   color: #fa8e1d;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .agree-no > .svg {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .disciple-profile > .agree-no > .svg {
   width: 18px;
   height: 18px;
   margin-right: 3px;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail {
   flex: 1;
   text-align: left;
   padding-left: 15px;
@@ -12228,19 +12258,19 @@ section.activity-detail-section > .activity-section.\--comment > .comment-wrappe
 }
 
 @media (min-width: 435px) {
-  section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail {
+	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail {
     border-left: 1px solid #ccc;
   }
 }
 
 @media (min-width: 687px) {
-  section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail {
+	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail {
     padding: 0 15px;
     margin-top: 0;
   }
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail > .badge {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .badge {
   display: inline-block;
   padding: 10px 20px;
   border-radius: 20px;
@@ -12250,21 +12280,21 @@ section.activity-detail-section > .activity-section.\--comment > .comment-wrappe
   background: #fbaf3b;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail > .badge.\--mostly {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .badge.\--mostly {
   background: #f8931f;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail > .title {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .title {
   font-weight: bold;
   font-size: 20px;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail > .comment {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .comment {
   font-size: 12px;
   color: #888;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail > .readmore {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .readmore {
   background: white;
   border: 1px solid #888;
   font-size: 12px;
@@ -12272,18 +12302,18 @@ section.activity-detail-section > .activity-section.\--comment > .comment-wrappe
   color: #888;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail > .readmore:hover {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .readmore:hover {
   background: #888;
   color: white;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-detail > .join-since {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .join-since {
   margin-top: 3px;
   font-size: 12px;
   font-style: italic;
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-image {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-image {
   display: flex;
   justify-content: space-evenly;
   padding-left: 5px;
@@ -12292,24 +12322,35 @@ section.activity-detail-section > .activity-section.\--comment > .comment-wrappe
 }
 
 @media (min-width: 687px) {
-  section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-image {
+	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-image {
     border-left: 1px solid #ccc;
     margin-top: 0;
   }
 }
 
-section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-image > .image {
+section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-image > .image {
   width: 45%;
   border-left: none;
   border-radius: 10px;
 }
 
 @media (min-width: 687px) {
-  section.activity-detail-section > .activity-section.\--comment > .comment-wrapper > .comment-image > .image {
+	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-image > .image {
     width: 100px;
     height: 140px;
     margin-left: 10px;
   }
+}
+
+section.activity-detail-section > .content > .activity-section.\--sponsor > .sponsor-wrapper {
+	display: flex;
+	justify-content: space-evenly;
+	margin-top: 25px;
+}
+
+section.activity-detail-section > .content > .activity-section.\--sponsor > .sponsor-wrapper > .sponsor {
+	width: 130px;
+	height: 130px;
 }
 
 section.activity-detail-section .activity-story {

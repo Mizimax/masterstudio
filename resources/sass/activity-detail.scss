@@ -8,562 +8,606 @@
 @import 'components/activity-grid-card.scss';
 
 section.activity-header {
-    position: relative;
+	position: relative;
 
-    > .video-wrapper {
-        width: 100%;
-        height: 900px;
+	> .video-wrapper {
+		width: 100%;
+		height: 900px;
 
-        > .video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
+		> .video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
 
-    #carousel {
+	#carousel {
 
-        .vr-exp {
-            position: absolute;
-            bottom: 30px;
-            right: 40px;
-            z-index: 2;
-            background: white;
-            padding: 25px 20px;
-            border-radius: 50%;
+		.vr-exp {
+			position: absolute;
+			bottom: 30px;
+			right: 40px;
+			z-index: 2;
+			background: white;
+			padding: 25px 20px;
+			border-radius: 50%;
 
-            > .image-wrapper {
-                width: 70px;
-                height: 70px;
-                margin: 0 auto;
-            }
+			> .image-wrapper {
+				width: 70px;
+				height: 70px;
+				margin: 0 auto;
+			}
 
-            > .text {
-                font-weight: bold;
-            }
-        }
+			> .text {
+				font-weight: bold;
+			}
+		}
 
-        .activity-header-detail {
-            position: absolute;
-            bottom: 30px;
-            left: 40px;
-            z-index: 2;
+		.activity-header-detail {
+			position: absolute;
+			bottom: 30px;
+			left: 40px;
+			z-index: 2;
 
-            > .activity-action {
-                color: white;
-                text-align: center;
+			> .activity-action {
+				color: white;
+				text-align: center;
 
-                > .price {
-                    margin-top: 40px;
-                    font-size: 24px;
-                    font-weight: bold;
-                }
+				> .price {
+					margin-top: 40px;
+					font-size: 24px;
+					font-weight: bold;
+				}
 
-                > .join-button {
-                    display: block;
-                    color: white;
-                    width: 100%;
-                    margin-top: 20px;
-                    padding: 12px 0;
-                    font-size: 20px;
-                    font-weight: 300;
-                    border-radius: 15px;
-                    background: $primary;
-                }
+				> .join-button {
+					display: block;
+					color: white;
+					width: 100%;
+					margin-top: 20px;
+					padding: 12px 0;
+					font-size: 20px;
+					font-weight: 300;
+					border-radius: 15px;
+					background: $primary;
+				}
 
-                > .milestone-button {
-                    @extend .join-button;
-                    margin-top: 10px;
-                    background: white;
-                    color: $primary;
-                }
+				> .milestone-button {
+					@extend .join-button;
+					margin-top: 10px;
+					background: white;
+					color: $primary;
+				}
 
-                > .availability-wrapper {
-                    display: flex;
-                    margin-top: 20px;
-                    text-align: left;
+				> .availability-wrapper {
+					display: flex;
+					margin-top: 20px;
+					text-align: left;
 
-                    > .availability {
-                        flex: 1;
+					> .availability {
+						flex: 1;
 
-                        > .title {
-                            padding: 5px 0;
-                            font-size: 12px;
-                            border-bottom: 1px solid #fff;
-                        }
+						> .title {
+							padding: 5px 0;
+							font-size: 12px;
+							border-bottom: 1px solid #fff;
+						}
 
-                        > .number {
-                            padding-top: 5px;
-                            font-size: 18px;
-                        }
-                    }
+						> .number {
+							padding-top: 5px;
+							font-size: 18px;
+						}
+					}
 
-                    > .activity-join {
-                        padding-left: 10px;
-                        display: flex;
-                        flex: 2;
-                        align-self: flex-end;
+					> .activity-join {
+						padding-left: 10px;
+						display: flex;
+						flex: 2;
+						align-self: flex-end;
 
-                        > .participant {
-                            width: 40px;
-                            height: 40px;
-                            margin-right: -20px;
-                            border-radius: 50%;
-                            border: 1px solid #ccc;
-                            position: relative;
+						> .participant {
+							width: 40px;
+							height: 40px;
+							margin-right: -20px;
+							border-radius: 50%;
+							border: 1px solid #ccc;
+							position: relative;
 
-                            > img {
-                                position: absolute;
-                                top: 0;
-                                left: 0;
-                                width: 40px;
-                                height: 100%;
-                                border-radius: 50%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+							> img {
+								position: absolute;
+								top: 0;
+								left: 0;
+								width: 40px;
+								height: 100%;
+								border-radius: 50%;
+							}
+						}
+					}
+				}
+			}
+		}
 
-        .carousel-indicators {
-            bottom: 50px;
+		.carousel-indicators {
+			bottom: 50px;
 
-            @include mobileFirst(1200px) {
-                bottom: 120px;
-            }
-        }
+			@include mobileFirst(1200px) {
+				bottom: 120px;
+			}
+		}
 
-        .video {
-            display: block;
-            width: 100%;
-            height: 900px;
-            object-fit: cover;
-        }
-    }
+		.video {
+			display: block;
+			width: 100%;
+			height: 900px;
+			object-fit: cover;
+		}
+	}
 }
 
 section.activity-detail-section {
-    position: relative;
-    margin-bottom: 25px;
-    z-index: 5;
-
-    > .activity-section {
-        text-align: center;
-        margin: 25px auto 0;
-        border-radius: 20px;
-        background: white;
-        padding: 25px;
-        max-width: 750px;
-        width: 90%;
-        @extend .shadow;
-
-        > .title {
-            color: #555;
-            font-size: 38px;
-            font-weight: bold;
-        }
-
-        &.--header {
-            @include mobileFirst(1200px) {
-                margin-top: -75px;
-            }
-
-            > .subtitle {
-                margin-top: 15px;
-                font-size: 18px;
-                font-weight: bold;
-            }
-        }
-
-        &.--exp {
-            > .benefit-wrapper {
-                display: flex;
-                flex-wrap: wrap-reverse;
-                justify-content: space-evenly;
-                margin-top: 10px;
-
-                > .benefit-card {
-                    margin: 15px;
-                    padding: 130px 20px 20px;
-                    color: white;
-                    border-radius: 10px;
-                    background-size: cover;
-                    flex: 0 0 200px;
-
-                    > .svg {
-                        display: block;
-                        width: 50px;
-                        height: 50px;
-                        margin: 0 auto;
-                    }
-
-                    > .name {
-                        margin-top: 7px;
-                        font-size: 9px;
-                        font-weight: bold;
-                    }
-
-                    > .description {
-                        margin-top: 10px;
-                        font-size: 9px;
-                    }
-                }
-            }
-
-            > .more-button {
-                display: block;
-                margin: 15px auto 0;
-                border: 1px solid #ccc;
-                background: white;
-                border-radius: 20px;
-                padding: 10px 15px;
-
-                > .svg {
-                    width: 17px;
-                    height: 17px;
-                }
-            }
-        }
-
-        &.--studio {
-            > .studio-wrapper {
-                display: flex;
-                flex-wrap: wrap;
-
-                > .google-map {
-                    flex-basis: 100%;
-
-                    @include tablet-up {
-                        flex: 0 0 400px;
-                    }
-
-                    > iframe {
-                        width: 100%;
-                    }
-                }
-
-                > .studio-detail {
-                    flex: 1;
-                    padding: 0 30px;
-                    margin-top: 20px;
-
-                    @include tablet-up {
-                        margin-top: 0;
-                    }
-
-                    > .title {
-                        color: #555;
-                        font-weight: bold;
-                        font-size: 38px;
-                    }
-
-                    > .sub-title {
-                        margin: 15px 0 20px;
-                        font-size: 18px;
-                    }
-
-                    > .studio-section {
-                        padding: 10px 0;
-                        border-top: 1px solid #ccc;
-                        text-align: left;
-
-                        > .title {
-                            font-weight: bold;
-                            margin-bottom: 10px;
-                        }
-
-                        > .content {
-                            font-size: 12px;
-                            font-weight: 300;
-
-                            > .promo-code {
-                                display: flex;
-                                margin-bottom: 5px;
-
-                                > .name {
-                                    flex: 1;
-                                    display: flex;
-                                    align-items: center;
-                                }
-
-                                > .badge {
-                                    padding: 5px 8px;
-                                    color: white;
-                                    font-size: 13px;
-                                    background: #f25b27;
-                                    border-radius: 14px;
-                                    font-weight: 300;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        &.--prepward {
-            > .prepare-reward {
-                display: flex;
-                flex-direction: column;
-
-                @include tablet-up {
-                    flex-direction: row;
-                }
-
-                > .prepare-wrapper {
-                    flex: 1;
-
-                    > .title {
-                        color: #555;
-                        font-size: 30px;
-                        font-weight: bold;
-                    }
-                }
-
-                > .reward-wrapper {
-                    flex: 0 1 300px;
-                    text-align: left;
-                    margin-top: 20px;
-
-                    @include tablet-up {
-                        margin-top: 0;
-                    }
-
-                    > .title {
-                        text-align: center;
-                        color: #555;
-                        font-size: 30px;
-                        font-weight: bold;
-                    }
-
-                    > .reward-detail {
-                        display: flex;
-                        margin-top: 10px;
-                        align-items: center;
-                        justify-content: center;
-
-                        @include tablet-up {
-                            justify-content: flex-start;
-                        }
-
-                        > .image-wrapper {
-                            flex: 0 0 80px;
-                            width: 80px;
-                            height: 80px;
-                            padding: 0 10px;
-                            border-right: 1px solid #ccc;
-
-                            > .svg {
-                                width: 100%;
-                                height: 100%;
-                            }
-                        }
-
-                        > .reward-text {
-                            align-items: center;
-                            width: 211px;
-                            padding: 10px 0 10px 20px;
-
-                            > .name {
-                                font-size: 12px;
-                            }
-
-                            > .reward {
-                                font-size: 20px;
-                                font-weight: bold;
-                            }
-
-                            > .description {
-                                font-size: 12px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        &.--suggest {
-            > .suggest-wrapper {
-                display: flex;
-                justify-content: flex-start;
-                overflow-x: auto;
-
-                .activity-card {
-                    width: 200px;
-                    height: 200px;
-                }
-            }
-        }
-
-        &.--comment {
-            > .comment-wrapper {
-                display: flex;
-                flex-wrap: wrap;
-                margin-top: 25px;
-
-                @include mobileFirst(435px) {
-                    flex-wrap: wrap-reverse;
-                }
-
-                > .disciple-profile {
-                    margin: 0 auto;
-                    font-size: 12px;
-                    margin-top: 10px;
-
-                    @include mobileFirst(435px) {
-                        margin-right: 15px;
-                    }
-
-                    @include mobileFirst(687px) {
-                        margin-top: 0;
-                    }
-
-                    > .image-wrapper {
-                        width: 80px;
-                        height: 80px;
-                        margin: 0 auto;
-
-                        > img {
-                            border-radius: 50%;
-                        }
-                    }
-
-                    > .name {
-                        margin-top: 7px;
-                        font-weight: bold;
-                    }
-
-                    > .category-level {
-                        display: inline-block;
-                        margin-top: 4px;
-                        padding: 2px 7px;
-                        border: 1px solid #555;
-                        border-radius: 10px;
-                    }
-
-                    > .agree-no {
-                        margin-top: 4px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        color: #fa8e1d;
-
-                        > .svg {
-                            width: 18px;
-                            height: 18px;
-                            margin-right: 3px;
-                        }
-                    }
-                }
-
-                > .comment-detail {
-                    flex: 1;
-                    text-align: left;
-                    padding-left: 15px;
-                    border-left: none;
-                    margin-top: 10px;
-
-                    @include mobileFirst(435px) {
-                        border-left: 1px solid #ccc;
-                    }
-
-                    @include mobileFirst(687px) {
-                        padding: 0 15px;
-                        margin-top: 0;
-                    }
-
-                    > .badge {
-                        display: inline-block;
-                        padding: 10px 20px;
-                        border-radius: 20px;
-                        font-size: 16px;
-                        font-weight: normal;
-                        color: white;
-                        background: #fbaf3b;
-
-                        &.--mostly {
-                            background: #f8931f;
-                        }
-                    }
-
-                    > .title {
-                        font-weight: bold;
-                        font-size: 20px;
-                    }
-
-                    > .comment {
-                        font-size: 12px;
-                        color: #888;
-                    }
-
-                    > .readmore {
-                        background: white;
-                        border: 1px solid #888;
-                        font-size: 12px;
-                        border-radius: 20px;
-                        color: #888;
-
-                        &:hover {
-                            background: #888;
-                            color: white;
-                        }
-                    }
-
-                    > .join-since {
-                        margin-top: 3px;
-                        font-size: 12px;
-                        font-style: italic;
-                    }
-                }
-
-                > .comment-image {
-                    display: flex;
-                    justify-content: space-evenly;
-                    padding-left: 5px;
-                    border-left: none;
-                    margin-top: 10px;
-
-                    @include mobileFirst(687px) {
-                        border-left: 1px solid #ccc;
-                        margin-top: 0;
-                    }
-
-                    @include mobileFirst(435px) {
-                    }
-
-                    > .image {
-                        width: 45%;
-                        border-left: none;
-                        border-radius: 10px;
-
-                        @include mobileFirst(687px) {
-                            width: 100px;
-                            height: 140px;
-                            margin-left: 10px;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .activity-story {
-        margin-top: 25px;
-        padding: 0;
-
-        .activity-card {
-            width: 150px;
-            height: 210px;
-
-            .title {
-                font-size: 14px;
-            }
-
-            .participant {
-                width: 30px !important;
-                height: 30px !important;
-            }
-        }
-    }
+	position: relative;
+	margin-bottom: 25px;
+	display: flex;
+	position: relative;
+	z-index: 5;
+
+	> .side-sponsor {
+		margin-top: 50px;
+		flex: 1;
+
+		> .sponsor {
+			display: block;
+			margin: 0 auto 20px;
+			width: 100px;
+			height: 100px;
+		}
+	}
+
+	> .side-advertise {
+		flex: 1;
+		margin: 50px 10px 0;
+
+		> .googlea {
+			max-width: 200px;
+			width: 100%;
+			margin: 0 auto;
+			height: 450px;
+			background: #cccccc;
+		}
+	}
+
+	> .content {
+		max-width: 750px;
+		width: 90%;
+
+		> .activity-section {
+			text-align: center;
+			margin: 25px 0 0;
+			border-radius: 20px;
+			background: white;
+			padding: 25px;
+			@extend .shadow;
+
+			> .title {
+				color: #555;
+				font-size: 38px;
+				font-weight: bold;
+			}
+
+			&.--header {
+				@include mobileFirst(1200px) {
+					margin-top: -75px;
+				}
+
+				> .subtitle {
+					margin-top: 15px;
+					font-size: 18px;
+					font-weight: bold;
+				}
+			}
+
+			&.--exp {
+				> .benefit-wrapper {
+					display: flex;
+					flex-wrap: wrap-reverse;
+					justify-content: space-evenly;
+					margin-top: 10px;
+
+					> .benefit-card {
+						margin: 15px;
+						padding: 130px 20px 20px;
+						color: white;
+						border-radius: 10px;
+						background-size: cover;
+						flex: 0 0 200px;
+
+						> .svg {
+							display: block;
+							width: 50px;
+							height: 50px;
+							margin: 0 auto;
+						}
+
+						> .name {
+							margin-top: 7px;
+							font-size: 9px;
+							font-weight: bold;
+						}
+
+						> .description {
+							margin-top: 10px;
+							font-size: 9px;
+						}
+					}
+				}
+
+				> .more-button {
+					display: block;
+					margin: 15px auto 0;
+					border: 1px solid #ccc;
+					background: white;
+					border-radius: 20px;
+					padding: 10px 15px;
+
+					> .svg {
+						width: 17px;
+						height: 17px;
+					}
+				}
+			}
+
+			&.--studio {
+				> .studio-wrapper {
+					display: flex;
+					flex-wrap: wrap;
+
+					> .google-map {
+						flex-basis: 100%;
+
+						@include tablet-up {
+							flex: 0 0 400px;
+						}
+
+						> iframe {
+							width: 100%;
+						}
+					}
+
+					> .studio-detail {
+						flex: 1;
+						padding: 0 30px;
+						margin-top: 20px;
+
+						@include tablet-up {
+							margin-top: 0;
+						}
+
+						> .title {
+							color: #555;
+							font-weight: bold;
+							font-size: 38px;
+						}
+
+						> .sub-title {
+							margin: 15px 0 20px;
+							font-size: 18px;
+						}
+
+						> .studio-section {
+							padding: 10px 0;
+							border-top: 1px solid #ccc;
+							text-align: left;
+
+							> .title {
+								font-weight: bold;
+								margin-bottom: 10px;
+							}
+
+							> .content {
+								font-size: 12px;
+								font-weight: 300;
+
+								> .promo-code {
+									display: flex;
+									margin-bottom: 5px;
+
+									> .name {
+										flex: 1;
+										display: flex;
+										align-items: center;
+									}
+
+									> .badge {
+										padding: 5px 8px;
+										color: white;
+										font-size: 13px;
+										background: #f25b27;
+										border-radius: 14px;
+										font-weight: 300;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			&.--prepward {
+				> .prepare-reward {
+					display: flex;
+					flex-direction: column;
+
+					@include tablet-up {
+						flex-direction: row;
+					}
+
+					> .prepare-wrapper {
+						flex: 1;
+
+						> .title {
+							color: #555;
+							font-size: 30px;
+							font-weight: bold;
+						}
+					}
+
+					> .reward-wrapper {
+						flex: 0 1 300px;
+						text-align: left;
+						margin-top: 20px;
+
+						@include tablet-up {
+							margin-top: 0;
+						}
+
+						> .title {
+							text-align: center;
+							color: #555;
+							font-size: 30px;
+							font-weight: bold;
+						}
+
+						> .reward-detail {
+							display: flex;
+							margin-top: 10px;
+							align-items: center;
+							justify-content: center;
+
+							@include tablet-up {
+								justify-content: flex-start;
+							}
+
+							> .image-wrapper {
+								flex: 0 0 80px;
+								width: 80px;
+								height: 80px;
+								padding: 0 10px;
+								border-right: 1px solid #ccc;
+
+								> .svg {
+									width: 100%;
+									height: 100%;
+								}
+							}
+
+							> .reward-text {
+								align-items: center;
+								width: 211px;
+								padding: 10px 0 10px 20px;
+
+								> .name {
+									font-size: 12px;
+								}
+
+								> .reward {
+									font-size: 20px;
+									font-weight: bold;
+								}
+
+								> .description {
+									font-size: 12px;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			&.--suggest {
+				> .suggest-wrapper {
+					display: flex;
+					justify-content: flex-start;
+					overflow-x: auto;
+
+					.activity-card {
+						width: 200px;
+						height: 200px;
+					}
+				}
+			}
+
+			&.--comment {
+				> .comment-wrapper {
+					display: flex;
+					flex-wrap: wrap;
+					margin-top: 25px;
+
+					@include mobileFirst(435px) {
+						flex-wrap: wrap-reverse;
+					}
+
+					> .disciple-profile {
+						margin: 0 auto;
+						font-size: 12px;
+						margin-top: 10px;
+
+						@include mobileFirst(435px) {
+							margin-right: 15px;
+						}
+
+						@include mobileFirst(687px) {
+							margin-top: 0;
+						}
+
+						> .image-wrapper {
+							width: 80px;
+							height: 80px;
+							margin: 0 auto;
+
+							> img {
+								border-radius: 50%;
+							}
+						}
+
+						> .name {
+							margin-top: 7px;
+							font-weight: bold;
+						}
+
+						> .category-level {
+							display: inline-block;
+							margin-top: 4px;
+							padding: 2px 7px;
+							border: 1px solid #555;
+							border-radius: 10px;
+						}
+
+						> .agree-no {
+							margin-top: 4px;
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							color: #fa8e1d;
+
+							> .svg {
+								width: 18px;
+								height: 18px;
+								margin-right: 3px;
+							}
+						}
+					}
+
+					> .comment-detail {
+						flex: 1;
+						text-align: left;
+						padding-left: 15px;
+						border-left: none;
+						margin-top: 10px;
+
+						@include mobileFirst(435px) {
+							border-left: 1px solid #ccc;
+						}
+
+						@include mobileFirst(687px) {
+							padding: 0 15px;
+							margin-top: 0;
+						}
+
+						> .badge {
+							display: inline-block;
+							padding: 10px 20px;
+							border-radius: 20px;
+							font-size: 16px;
+							font-weight: normal;
+							color: white;
+							background: #fbaf3b;
+
+							&.--mostly {
+								background: #f8931f;
+							}
+						}
+
+						> .title {
+							font-weight: bold;
+							font-size: 20px;
+						}
+
+						> .comment {
+							font-size: 12px;
+							color: #888;
+						}
+
+						> .readmore {
+							background: white;
+							border: 1px solid #888;
+							font-size: 12px;
+							border-radius: 20px;
+							color: #888;
+
+							&:hover {
+								background: #888;
+								color: white;
+							}
+						}
+
+						> .join-since {
+							margin-top: 3px;
+							font-size: 12px;
+							font-style: italic;
+						}
+					}
+
+					> .comment-image {
+						display: flex;
+						justify-content: space-evenly;
+						padding-left: 5px;
+						border-left: none;
+						margin-top: 10px;
+
+						@include mobileFirst(687px) {
+							border-left: 1px solid #ccc;
+							margin-top: 0;
+						}
+
+						@include mobileFirst(435px) {
+						}
+
+						> .image {
+							width: 45%;
+							border-left: none;
+							border-radius: 10px;
+
+							@include mobileFirst(687px) {
+								width: 100px;
+								height: 140px;
+								margin-left: 10px;
+							}
+						}
+					}
+				}
+			}
+
+			&.--sponsor {
+				> .sponsor-wrapper {
+					display: flex;
+					justify-content: space-evenly;
+					margin-top: 25px;
+
+					> .sponsor {
+						width: 130px;
+						height: 130px;
+					}
+				}
+			}
+		}
+	}
+
+
+	.activity-story {
+		margin-top: 25px;
+		padding: 0;
+
+		.activity-card {
+			width: 150px;
+			height: 210px;
+
+			.title {
+				font-size: 14px;
+			}
+
+			.participant {
+				width: 30px !important;
+				height: 30px !important;
+			}
+		}
+	}
 }

@@ -4,6 +4,7 @@
 @import 'components/icon';
 @import 'components/activity-story-section.scss';
 @import 'components/activity-video-card.scss';
+@import 'components/category-interest.scss';
 
 .activity-story {
 	margin-top: 25px;
@@ -27,6 +28,7 @@
 
 .map-detail {
 	position: absolute;
+	z-index: 9;
 	width: 250px;
 
 	> .map-card {
@@ -80,5 +82,39 @@
 		background: #29ace2;
 		color: white;
 		font-size: 18px;
+	}
+}
+
+.search-wrapper {
+	position: absolute;
+	bottom: 100px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+
+	> .search-box-wrapper {
+		display: flex;
+		text-align: center;
+		margin-top: 30px;
+
+		> .search-box {
+			width: 450px;
+			font-size: 16px;
+			font-style: italic;
+			color: white;
+			padding: 10px 20px;
+			outline: none;
+			@extend .input-transparent;
+		}
+
+		> .button {
+			margin-left: 15px;
+			height: 100%;
+			border: none;
+			border-radius: 40px;
+			padding: 15px 40px;
+			background: #2aace2;
+			color: white;
+		}
 	}
 }
