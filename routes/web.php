@@ -12,6 +12,9 @@
 	*/
 
 	Route::get('/', 'HomeController@index');
+	Route::get('/profile', function () {
+		return view('profile');
+	});
 	Route::get('/activity', function () {
 		return view('activity');
 	});

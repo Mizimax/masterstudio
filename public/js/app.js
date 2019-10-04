@@ -167,6 +167,18 @@
     /***/
   }),
 
+  /***/ './resources/sass/profile.scss':
+  /*!*************************************!*\
+    !*** ./resources/sass/profile.scss ***!
+    \*************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
   /***/ './resources/sass/studio-detail.scss':
   /*!*******************************************!*\
     !*** ./resources/sass/studio-detail.scss ***!
@@ -192,9 +204,9 @@
   }),
 
 /***/ 0:
-  /*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
-    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ./resources/sass/master.scss ./resources/sass/master-detail.scss ./resources/sass/studio.scss ./resources/sass/studio-detail.scss ./resources/sass/activity-detail.scss ***!
-    \***********************************************************************************************************************************************************************************************************************************************************************************************/
+  /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ./resources/sass/master.scss ./resources/sass/master-detail.scss ./resources/sass/studio.scss ./resources/sass/studio-detail.scss ./resources/sass/activity-detail.scss ./resources/sass/profile.scss ***!
+    \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -206,7 +218,8 @@
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/master-detail.scss */'./resources/sass/master-detail.scss')
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/studio.scss */'./resources/sass/studio.scss')
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/studio-detail.scss */'./resources/sass/studio-detail.scss')
-    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity-detail.scss */'./resources/sass/activity-detail.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity-detail.scss */'./resources/sass/activity-detail.scss')
+    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/profile.scss */'./resources/sass/profile.scss')
 
 
 /***/ })
