@@ -31,7 +31,7 @@
                         <!-- Activity Name , Search -->
                         <div class="activity-name">
                             <h1 class="header">@Master Studio</h1>
-                            <h2 class="subheader">Meet Real <a href="#"></a>Chef
+                            <h2 class="subheader">Meet Real <a class="chef" href="#">Chef</a>
                             </h2>
                             <div class="search-box-wrapper">
                                 <input class="search-box" placeholder="Search your activities..." type="text">
@@ -54,7 +54,7 @@
                                             </div>
 
                                             <div class="master-profile">
-                                                @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
+                                                @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true])
                                                 @endcomponent
                                                 <div class="image-wrapper">
                                                     <img src="/img/profile.jpg" alt="">
@@ -146,7 +146,7 @@
                             </div>
 
                             <div class="master-profile">
-                                @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
+                                @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true])
                                 @endcomponent
                                 <div class="image-wrapper">
                                     <img src="/img/profile.jpg" alt="">
@@ -202,7 +202,7 @@
                 @php
                     $activities = [0,1,2,3,4,5]
                 @endphp
-                @include('components.activity-grid-card', ['activities'=>$activities])
+                @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
             </div>
             <div class="loading-wrapper">
                 <div class="lds-ellipsis infinite-scroll-request">

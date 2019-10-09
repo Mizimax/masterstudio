@@ -13,9 +13,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+
         Schema::create('users', function (Blueprint $table) {
 	        $table->bigIncrements('user_id');
-	        $table->bigInteger('master_id')->nullable();
+	        $table->bigInteger('master_id')->unsigned()->nullable();
 	        $table->string('user_name');
 	        $table->string('user_email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -23,11 +24,13 @@ class CreateUsersTable extends Migration
 	        $table->string('user_pic')->default('/img/profile.jpg');
 	        $table->bigInteger('user_coin')->default(0);
 	        $table->bigInteger('user_exp')->default(0);
-	        $table->int('user_level')->default(1);
+	        $table->integer('user_level')->default(1);
 	        $table->enum('user_type', ['user', 'master', 'admin']);
 	        $table->boolean('activity_week_viewed')->default(0); // 7 day retention 0 = not view 1 = viewed
             $table->rememberToken();
             $table->timestamps();
+
+	        $table->foreign('master_id')->references('master_id')->on('masters')->onDelete('set null');
         });
     }
 

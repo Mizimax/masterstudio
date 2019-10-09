@@ -10,14 +10,6 @@
 @import 'components/activity-story-section';
 @import 'components/category-interest';
 
-// Font size
-$activity-header-mobile: 34px;
-$activity-header: 60px;
-$activity-subheader-mobile: 28px;
-$activity-subheader: 42px;
-$searchbox-mobile: 12px;
-$searchbox: 20px;
-
 .video-header {
 	position: relative;
 
@@ -70,7 +62,9 @@ $searchbox: 20px;
 			color: white;
 
 			> .header {
+				text-shadow: 1px 1px #ccc;
 				font-size: $activity-header-mobile;
+				font-weight: bold;
 				display: block;
 				@include mobile-up {
 					font-size: $activity-header;
@@ -79,9 +73,16 @@ $searchbox: 20px;
 
 			> .subheader {
 				font-size: $activity-subheader-mobile;
+				font-weight: 300;
 				display: block;
 				@include mobile-up {
 					font-size: $activity-subheader;
+				}
+
+				> .chef {
+					color: #f9fc04;
+					font-style: italic;
+					border-bottom: 1px #f9fc04 solid;
 				}
 			}
 
@@ -89,7 +90,8 @@ $searchbox: 20px;
 				width: 100%;
 				font-size: $searchbox-mobile;
 				font-style: italic;
-				color: white;
+				font-weight: 100;
+				color: #ddd;
 				margin-top: 10px;
 				padding: 10px 20px;
 				outline: none;
@@ -104,13 +106,23 @@ $searchbox: 20px;
 
 		> .activity-detail-wrapper {
 			display: flex;
-			margin-top: 20%;
+			margin-top: 15%;
+
+			&:hover > .activity-tabs {
+				visibility: visible;
+				opacity: 1;
+			}
 
 			> .activity-tabs {
+				visibility: hidden;
+				opacity: 0;
+				transition: visibility 0.5s, opacity 0.5s linear;
 				padding-left: 20px;
+				color: white;
 
 				> .activity-tab {
 					display: flex;
+					cursor: pointer;
 					align-items: center;
 					margin-bottom: 15px;
 
@@ -123,6 +135,10 @@ $searchbox: 20px;
 						font-style: italic;
 						font-size: 16px;
 						margin-left: 15px;
+					}
+
+					.svg {
+						padding: 13px;
 					}
 				}
 			}

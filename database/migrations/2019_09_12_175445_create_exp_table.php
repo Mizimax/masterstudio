@@ -13,6 +13,7 @@
 		 */
 		public function up()
 		{
+
 			Schema::create('exp', function (Blueprint $table) {
 				$table->bigIncrements('exp_level');
 				$table->bigInteger('exp_up');

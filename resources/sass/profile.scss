@@ -1,3 +1,20 @@
 // Variables
 @import 'app';
 @import 'components/icon';
+
+.profile-wrapper {
+	background: #f4f4f4;
+	padding-top: 100px;
+
+	> .profile-container {
+		max-width: 900px;
+		width: 100%;
+		margin: 0 auto;
+		position: relative;
+
+		> .user-card {
+			@extend .shadow;
+			border-radius: 20px;
+		}
+	}
+}

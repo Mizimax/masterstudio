@@ -163,7 +163,6 @@
           {
             lat: 13.6759147,
             long: 100.5217145,
-            position: new google.maps.LatLng(13.6759147, 100.5217145),
             imgUrl: 'https://i.imgur.com/UDH8uMn.png',
           },
         ]

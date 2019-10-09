@@ -3,8 +3,13 @@ function activityHover() {
     var self = this
     var index = $(this).parent().parent().index()
     $(this).addClass('hover')
+    $(this).removeClass('fixedMid')
+    $(this).removeClass('left')
+    $(this).removeClass('right')
+    $(this).removeClass('mid')
     if ($(window).width() <= 809) {
-      $(this).addClass('fixedmid')
+      $(this).addClass('fixedMid')
+      console.log($(window).width())
     } else {
       if (index % 3 === 0) {
         $(this).addClass('left')

@@ -16,13 +16,16 @@
                 <button class="button --detail" onclick="window.location.href = '/activity/1'">view detail</button>
                 <div class="activity-tabs">
                     <div class="icon-wrapper --join">
-                        <img src="/img/icon/user-circle-regular.svg" class="svg">
+
                     </div>
                     <div class="icon-wrapper --pin">
-                        <img src="/img/icon/user-circle-regular.svg" class="svg">
+
                     </div>
                     <div class="icon-wrapper --invite">
-                        <img src="/img/icon/user-circle-regular.svg" class="svg">
+
+                    </div>
+                    <div class="icon-wrapper --share">
+
                     </div>
                 </div>
             </div>

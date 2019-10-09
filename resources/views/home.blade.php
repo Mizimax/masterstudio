@@ -49,7 +49,8 @@
             <!-- Activity Name , Search -->
             <div class="activity-name">
                 <h1 class="header">@Master Studio</h1>
-                <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a href="#"></a>Chef
+                <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a class="chef"
+                                                                        href="#">Chef</a>
                 </h2>
                 <input class="search-box" placeholder="Search your activities..." type="text">
             </div>
@@ -59,25 +60,21 @@
                 <div class="activity-tabs d-none d-sm-block">
                     <div class="activity-tab">
                         <div class="icon-wrapper --join">
-                            <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Join activity</div>
                     </div>
                     <div class="activity-tab">
                         <div class="icon-wrapper --pin">
-                            <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Pin activity</div>
                     </div>
                     <div class="activity-tab">
                         <div class="icon-wrapper --invite">
-                            <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Invite friend</div>
                     </div>
                     <div class="activity-tab">
                         <div class="icon-wrapper --share">
-                            <img src="/img/icon/user-circle-regular.svg" class="svg">
                         </div>
                         <div class="text">Share</div>
                     </div>
@@ -107,7 +104,7 @@
                         \
 
                         <div class="master-profile">
-                            @component('components.activity-card', ['noimage'=>true, 'size'=>75, 'animate'=>true])
+                            @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true])
                             @endcomponent
                             <div class="image-wrapper">
                                 <img src="/img/profile.jpg" alt="">
@@ -144,7 +141,7 @@
                 @php
                     $activities = [0,1,2,3,4,5]
                 @endphp
-                @include('components.activity-grid-card', ['activities'=>$activities])
+                @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
             </div>
         </div>
         <div class="overlay"></div>

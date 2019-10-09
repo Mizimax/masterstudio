@@ -4,7 +4,7 @@
 	use Illuminate\Database\Schema\Blueprint;
 	use Illuminate\Database\Migrations\Migration;
 
-	class CreateActivityStoriesTable extends Migration
+	class CreateBenefitsTable extends Migration
 	{
 		/**
 		 * Run the migrations.
@@ -14,15 +14,17 @@
 		public function up()
 		{
 
-			Schema::create('activity_stories', function (Blueprint $table) {
-				$table->bigIncrements('activity_story_id');
+			Schema::create('benefits', function (Blueprint $table) {
+				$table->bigIncrements('benefit_id');
 				$table->bigInteger('activity_id')->unsigned();
-				$table->bigInteger('user_id')->unsigned();
-				$table->string('activity_story_video');
+				$table->string('benefit_name');
+				$table->string('benefit_pic');
+				$table->string('benefit_bg');
+				$table->text('benefit_bullet');
 				$table->timestamps();
 
 				$table->foreign('activity_id')->references('activity_id')->on('activities');
-				$table->foreign('user_id')->references('user_id')->on('users');
+
 			});
 		}
 
@@ -33,6 +35,6 @@
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('activity_stories');
+			Schema::dropIfExists('benefits');
 		}
 	}

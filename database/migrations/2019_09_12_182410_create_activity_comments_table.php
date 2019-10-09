@@ -13,15 +13,20 @@
 		 */
 		public function up()
 		{
+
 			Schema::create('activity_comments', function (Blueprint $table) {
 				$table->bigIncrements('comment_id');
-				$table->bigInteger('activity_id');
-				$table->bigInteger('user_id');
+				$table->bigInteger('activity_id')->unsigned();
+				$table->bigInteger('user_id')->unsigned();
 				$table->text('comment_text');
 				$table->integer('comment_agree')->default(0);
 				$table->enum('comment_rate', ['most recommended', 'recommended']);
 				$table->string('comment_pic_action');
 				$table->timestamps();
+
+				$table->foreign('activity_id')->references('activity_id')->on('activities');
+				$table->foreign('user_id')->references('user_id')->on('users');
+
 			});
 		}
 

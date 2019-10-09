@@ -17,7 +17,9 @@
     <!--Navbar-->
     <div class="navbar-wrapper">
         <nav class="navbar navbar-light navbar-expand-md bg-white">
-            <a class="navbar-brand primary-color" href="#">Master Studio</a>
+            <a class="navbar-brand primary-color" href="/">
+                <img src="/img/logo.png" alt="Master Studio" class="logo">
+            </a>
 
             <button class="navbar-toggler border-0 mr-1" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -27,7 +29,33 @@
 
             <div class="user-info-menu row no-gutters">
                 <div class="profile-dropdown">
-                    <div class="profile-space"></div>
+                    <div class="profile-space">
+                        <div class="col-auto px-2 image-wrapper">
+                            <img class="border-circle" src="/img/profile.jpg" width="45" height="45"
+                                 title="Profile image"
+                                 alt="Profile image">
+                        </div>
+                        <div class="d-none d-lg-block profile-detail">
+                            <div class="name">
+                                Tammanoon Jomjaturong
+                            </div>
+                            <div class="user-progress pb-1">
+                                <div class="row no-gutters">
+                                    <div class="col-auto mr-1 level">L. 49</div>
+                                    <div class="col" style="margin-top: 3px;">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                 style="width: 50%" aria-valuenow="50"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="coin">
+                                <img class="icon" src="/img/icon/coin.png" alt="coin"> 9999
+                            </div>
+                        </div>
+                    </div>
                     <div class="profile-menu">
                         <div class="sub-menu">
                             <a href="/profile">
@@ -60,35 +88,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-auto px-2 image-wrapper">
-                    <img class="border-circle" src="/img/profile.jpg" width="40" height="40"
-                         title="Profile image"
-                         alt="Profile image">
-                </div>
-                <div class="col d-none d-lg-block profile-detail">
-                    <div class="name">
-                        Tammanoon Jomjaturong
-                    </div>
-                    <div class="user-progress pb-1">
-                        <div class="row no-gutters">
-                            <div class="col-auto mr-1 level">L. 49</div>
-                            <div class="col" style="margin-top: 3px;">
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar"
-                                         style="width: 50%" aria-valuenow="50"
-                                         aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-aut ml-1 levelup">50</div>
-                        </div>
-                    </div>
-                    <div class="coin">
-                        9999
-                    </div>
-                </div>
             </div>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+                <ul class="navbar-nav ml-auto mt-2 mr-1 mt-md-0">
                     <li class="nav-item">
                         <a id="home-menu" class="nav-link px-2 px-lg-3" href="/">Home</a>
                     </li>
@@ -117,7 +119,7 @@
 
     <div class="footer text-center text-md-left">
         <div class="footer-wrapper">
-            <h1 class="logo-name">MASTER STUDIO</h1>
+            <img src="/img/logo.png" alt="Master Studio" class="logo">
             <div class="row flex-column flex-sm-row">
                 <div class="col menu-list">
                     <div class="title">Menu</div>

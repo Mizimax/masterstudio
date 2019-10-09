@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i&display=swap');
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 // Variables
@@ -56,17 +56,23 @@ button:focus {
 .input-transparent {
 	border: 1px solid #fff;
 	background: transparent;
+	color: #ddd;
+	font-weight: 100;
 	border-radius: 30px;
+
 	&::-webkit-input-placeholder { /* Edge */
-		color: white;
+		color: #ddd;
+		font-weight: 100;
 	}
 
 	&:-ms-input-placeholder { /* Internet Explorer 10-11 */
-		color: white;
+		color: #ddd;
+		font-weight: 100;
 	}
 
 	&::placeholder {
-		color: white;
+		color: #ddd;
+		font-weight: 100;
 	}
 }
 
@@ -114,6 +120,14 @@ button:focus {
 	padding: 0 20px;
 	width: 100%;
 
+	.navbar-brand {
+		font-size: 0;
+
+		> .logo {
+
+		}
+	}
+
 	.navbar {
         @include shadow(0px, 0px, 15px, 0px, 0.1);
 		padding: 0.4rem 1rem;
@@ -131,9 +145,10 @@ button:focus {
 				color: #555;
 				text-align: center;
 				white-space: nowrap;
+				border-radius: 20px;
+				transition: .5s all;
 
 				&.active, &:hover {
-					border-radius: 20px;
 					background-color: $primary;
 					color: white;
 				}
@@ -142,14 +157,18 @@ button:focus {
 
 		.user-info-menu {
             font-size: 10px;
+			width: 50px;
+
+			@include desktop-up {
+				width: 166px;
+			}
 
             &:hover > .profile-dropdown {
                 max-height: 400px;
-                @include shadow(0px, 0px, 15px, 1px, 0.1);
                 width: 176px;
             }
 
-            &:hover > .profile-detail {
+			&:hover > .profile-dropdown > .profile-space > .profile-detail {
                 display: block !important;
             }
 
@@ -158,11 +177,12 @@ button:focus {
                 right: 0;
                 top: 0;
                 width: 70px;
-                max-height: 48px;
+	            max-height: 62px;
                 overflow: hidden;
                 background: white;
                 border-radius: 15px;
                 transition: all .3s;
+	            @include shadow(0px, 0px, 15px, 1px, 0.2);
 
                 @include desktop-up {
                     width: 176px;
@@ -170,6 +190,8 @@ button:focus {
 
                 > .profile-space {
                     height: 63px;
+	                display: flex;
+	                align-items: center;
                 }
 
                 > .profile-menu {
@@ -205,7 +227,8 @@ button:focus {
 			}
 
             .name {
-                font-weight: bold;
+	            font-weight: 300;
+	            font-size: 14px;
 				white-space: nowrap;
                 width: 100px;
 				overflow: hidden;
@@ -215,6 +238,7 @@ button:focus {
 				border-bottom: 1px solid #f2d5d0;
 
 				.level {
+					font-size: 10px;
 					font-weight: bold;
 				}
 
@@ -225,17 +249,28 @@ button:focus {
 				}
 
                 .progress {
-                    height: 10px;
+	                height: 5px;
 
                     > .progress-bar {
-                        background-color: #fcac42;
+	                    background-color: $primary;
                     }
                 }
 			}
 			.coin {
+				display: flex;
+				margin-top: 3px;
 				font-size: 10px;
 				color: $primary;
 				text-align: center;
+				align-items: center;
+				justify-content: center;
+				font-weight: bold;
+
+				> .icon {
+					width: 12px;
+					height: 12px;
+					margin-right: 3px;
+				}
 			}
 		}
 	}

@@ -9,4 +9,10 @@ $(document).ready(function () {
 
   //hover
   activityHover()
+
+  // $('.activity-detail-wrapper').hover(function () {
+  //   $(this).children('.activity-tabs').fadeToggle(500);
+  // },function () {
+  //   $(this).children('.activity-tabs').fadeToggle(500);
+  // })
 })

@@ -13,6 +13,7 @@
 		 */
 		public function up()
 		{
+
 			Schema::create('pictures', function (Blueprint $table) {
 				$table->bigIncrements('picture_id');
 				$table->string('picture_action');

@@ -1,4 +1,6 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap);@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i&display=swap);
+
+@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -11066,29 +11068,36 @@ button:focus {
 .input-transparent {
   border: 1px solid #fff;
   background: transparent;
+	color: #ddd;
+	font-weight: 100;
   border-radius: 30px;
 }
 
 .input-transparent::-webkit-input-placeholder {
   /* Edge */
-  color: white;
+	color: #ddd;
+	font-weight: 100;
 }
 
 .input-transparent:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: white;
+	color: #ddd;
+	font-weight: 100;
 }
 
 .input-transparent::-moz-placeholder {
-  color: white;
+	color: #ddd;
+	font-weight: 100;
 }
 
 .input-transparent::-ms-input-placeholder {
-  color: white;
+	color: #ddd;
+	font-weight: 100;
 }
 
 .input-transparent::placeholder {
-  color: white;
+	color: #ddd;
+	font-weight: 100;
 }
 
 .overlay {
@@ -11134,6 +11143,10 @@ button:focus {
   width: 100%;
 }
 
+.navbar-wrapper .navbar-brand {
+	font-size: 0;
+}
+
 .navbar-wrapper .navbar {
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 0.4rem 1rem;
@@ -11153,26 +11166,33 @@ button:focus {
   color: #555;
   text-align: center;
   white-space: nowrap;
+	border-radius: 20px;
+	transition: 0.5s all;
 }
 
 .navbar-wrapper .navbar .nav-item .nav-link.active,
 .navbar-wrapper .navbar .nav-item .nav-link:hover {
-  border-radius: 20px;
   background-color: #f14ea6;
   color: white;
 }
 
 .navbar-wrapper .navbar .user-info-menu {
   font-size: 10px;
+	width: 50px;
+}
+
+@media (min-width: 992px) {
+	.navbar-wrapper .navbar .user-info-menu {
+		width: 166px;
+	}
 }
 
 .navbar-wrapper .navbar .user-info-menu:hover > .profile-dropdown {
   max-height: 400px;
-  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
   width: 176px;
 }
 
-.navbar-wrapper .navbar .user-info-menu:hover > .profile-detail {
+.navbar-wrapper .navbar .user-info-menu:hover > .profile-dropdown > .profile-space > .profile-detail {
   display: block !important;
 }
 
@@ -11181,11 +11201,12 @@ button:focus {
   right: 0;
   top: 0;
   width: 70px;
-  max-height: 48px;
+	max-height: 62px;
   overflow: hidden;
   background: white;
   border-radius: 15px;
   transition: all 0.3s;
+	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 992px) {
@@ -11196,6 +11217,8 @@ button:focus {
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-space {
   height: 63px;
+	display: flex;
+	align-items: center;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu {
@@ -11231,7 +11254,8 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu .name {
-  font-weight: bold;
+	font-weight: 300;
+	font-size: 14px;
   white-space: nowrap;
   width: 100px;
   overflow: hidden;
@@ -11243,6 +11267,7 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .level {
+	font-size: 10px;
   font-weight: bold;
 }
 
@@ -11253,17 +11278,28 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .progress {
-  height: 10px;
+	height: 5px;
 }
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .progress > .progress-bar {
-  background-color: #fcac42;
+	background-color: #f14ea6;
 }
 
 .navbar-wrapper .navbar .user-info-menu .coin {
+	display: flex;
+	margin-top: 3px;
   font-size: 10px;
   color: #f14ea6;
   text-align: center;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+}
+
+.navbar-wrapper .navbar .user-info-menu .coin > .icon {
+	width: 12px;
+	height: 12px;
+	margin-right: 3px;
 }
 
 .footer {

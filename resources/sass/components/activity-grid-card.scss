@@ -42,12 +42,14 @@
 					transform: translateX(calc(-50% + 125px));
 				}
 
-				&.fixedmid {
+				&.fixedMid {
 					position: fixed;
+					top: 50%;
 					left: 50%;
-					width: 100%;
+					width: 90%;
+					margin: 0;
 					max-width: 700px;
-					transform: translateX(-50%);
+					transform: translate(-50%, -50%);
 				}
 
 				&.right {

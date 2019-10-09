@@ -273,36 +273,38 @@
 
 
                     > .header {
-                        font-size: 50px;
+	                    font-size: $activity-header-mobile;
                         font-weight: bold;
                         width: 100%;
                         text-align: center;
 
-                        @include mobile-up {
-                            font-size: 50px;
-                        }
-
                         @include tablet-up {
-                            font-size: 70px;
+	                        font-size: $activity-header;
 	                        margin-left: auto;
                         }
                     }
 
                     > .subheader {
-	                    font-size: 40px;
+	                    font-size: $activity-subheader-mobile;
                         width: 100%;
                         text-align: center;
 
                         @include mobile-up {
-	                        font-size: 44px;
+	                        font-size: $activity-subheader-mobile + 4px;
                         }
 
 	                    @include tablet-up {
 		                    width: 55%;
 		                    text-align: left;
-		                    font-size: 60px;
+		                    font-size: $activity-subheader;
                             margin-left: auto;
                         }
+
+	                    > .chef {
+		                    color: #f9fc04;
+		                    font-style: italic;
+		                    border-bottom: 1px #f9fc04 solid;
+	                    }
                     }
 
                     > .search-box-wrapper {
@@ -310,7 +312,6 @@
                         width: 100%;
 
                         @include mobile-up {
-                            font-size: 50px;
 	                        margin-left: auto;
                         }
 
@@ -321,7 +322,7 @@
 
                         > .search-box {
                             width: 80%;
-                            font-size: 16px;
+	                        font-size: $searchbox-mobile;
                             font-style: italic;
                             color: white;
                             margin-top: 10px;
@@ -330,7 +331,7 @@
                             @extend .input-transparent;
 
                             @include mobile-up {
-                                font-size: 24px;
+	                            font-size: $searchbox;
                                 margin-top: 20px;
                             }
                         }

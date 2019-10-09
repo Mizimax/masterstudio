@@ -12,7 +12,7 @@
         <div class="bg-header">
         </div>
         <div class="header-content">
-            <h1 class="header">Explore the real master...</h1>
+            <h1 class="header">Explore the real master</h1>
             <div class="search-box-wrapper">
                 <input class="search-box" placeholder="Search your activities..." type="text">
                 <button class="button">Explore</button>

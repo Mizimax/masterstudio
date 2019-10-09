@@ -13,6 +13,7 @@
 		 */
 		public function up()
 		{
+
 			Schema::create('videos', function (Blueprint $table) {
 				$table->bigIncrements('video_id');
 				$table->string('video_action');
