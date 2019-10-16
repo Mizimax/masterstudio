@@ -12,31 +12,14 @@
 	*/
 
 	Route::get('/', 'HomeController@index');
-	Route::get('/profile', function () {
-		return view('profile');
-	});
-	Route::get('/activity', function () {
-		return view('activity');
-	});
-	Route::get('/activity/{name}', function () {
-		return view('activity-detail');
-	});
-	Route::get('/master', function () {
-		return view('master');
-	});
-	Route::get('/master/{name}', function ($name) {
-		return view('master-detail', ['master' => ['master_name' => $name]]);
-	});
-	Route::get('/studio', function () {
-		return view('studio');
-	});
-	Route::get('/studio/{name}', function () {
-		return view('studio-detail');
-	});
-	Route::get('/become', function () {
-		return view('become');
-	});
-	Route::get('/content/activity/all', function () {
-		//?start=6&offset=12
-		return view('components.activity-grid-card', ['activities' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]);
-	});
+	Route::get('/profile', 'Auth\LoginController@me');
+	Route::get('/activity', 'ActivityController@index');
+	Route::get('/activity/{name}', 'ActivityController@show');
+	Route::get('/master', 'MasterController@index');
+	Route::get('/master/{name}', 'MasterController@show');
+	Route::get('/studio', 'StudioController@index');
+	Route::get('/studio/{name}', 'StudioController@show');
+	Route::get('/become', 'MasterController@create');
+	Route::get('/content/activity', 'ContentController@activity');
+
+	Auth::routes();

@@ -36,4 +36,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+	/**
+	 * Show current user profile.
+	 *
+	 * @return Illuminate\Http\Response
+	 */
+	public function me()
+	{
+		return view('profile');
+	}
 }

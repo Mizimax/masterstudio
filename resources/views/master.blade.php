@@ -210,6 +210,11 @@
           $(this).attr('played', !played)
         })
 
+        $('.interest-activity').click(function () {
+          $(this).toggleClass('active')
+        })
+
+
       })
     </script>
 @endsection

@@ -26,6 +26,49 @@
 		background: linear-gradient(to bottom right, transparent 50%, white 50%);
 	}
 
+	> .activity-name {
+		color: white;
+		position: absolute;
+		z-index: 1000;
+		padding: 0 20px;
+		left: 6%;
+		top: 20%;
+
+		@media (max-height: 640px) {
+			max-width: 480px;
+			width: 100%;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		> .header {
+			text-shadow: 2px 2px 5px #888;
+			font-size: $activity-header-mobile;
+			font-weight: bold;
+			display: block;
+			@include mobile-up {
+				font-size: $activity-header;
+			}
+		}
+
+		> .subheader {
+			text-shadow: 2px 2px 5px #888;
+			font-size: $activity-subheader-mobile;
+			font-weight: 300;
+			display: block;
+			@include mobile-up {
+				font-size: $activity-subheader;
+			}
+
+			> .chef {
+				color: #f9fc04;
+				font-style: italic;
+				border-bottom: 1px #f9fc04 solid;
+			}
+		}
+	}
+
 	> #carousel {
 		> .carousel-indicators {
 			margin-bottom: 10vh;
@@ -40,108 +83,78 @@
 				height: 100%;
 				object-fit: cover;
 			}
+
+			> .content-wrapper {
+				width: 100%;
+				top: 35%;
+				position: absolute;
+				z-index: 999;
+				padding: 0 20px;
+				left: 6%;
+				max-width: 600px;
+				width: 100%;
+
+				@include mobile-up {
+					top: 42%;
+				}
+
+				@media (max-height: 640px) {
+					display: none;
+				}
+
+				> .activity-detail-wrapper {
+					display: flex;
+					margin-top: 15%;
+
+					&:hover > .activity-tabs {
+						visibility: visible;
+						opacity: 1;
+					}
+
+					> .activity-tabs {
+						visibility: hidden;
+						opacity: 0;
+						transition: visibility 0.5s, opacity 0.5s linear;
+						padding-left: 20px;
+						color: white;
+
+						> .activity-tab {
+							display: flex;
+							cursor: pointer;
+							align-items: center;
+							margin-bottom: 15px;
+
+							&:last-child {
+								margin-bottom: 0;
+							}
+
+							> .text {
+								font-weight: bold;
+								font-style: italic;
+								font-size: 16px;
+								margin-left: 15px;
+								text-shadow: 2px 2px 5px #888;
+							}
+
+							.svg {
+								padding: 13px;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
-	> .content-wrapper {
-		width: 100%;
-		top: 55%;
-		transform: translateY(-50%);
-		position: absolute;
-		z-index: 999;
-		padding: 0 20px;
-		left: 0;
-		max-width: 600px;
-		width: 100%;
+}
 
-		@include mobile-up {
-			padding-left: 6%;
-		}
-
-		> .activity-name {
-			color: white;
-
-			> .header {
-				text-shadow: 1px 1px #ccc;
-				font-size: $activity-header-mobile;
-				font-weight: bold;
-				display: block;
-				@include mobile-up {
-					font-size: $activity-header;
-				}
-			}
-
-			> .subheader {
-				font-size: $activity-subheader-mobile;
-				font-weight: 300;
-				display: block;
-				@include mobile-up {
-					font-size: $activity-subheader;
-				}
-
-				> .chef {
-					color: #f9fc04;
-					font-style: italic;
-					border-bottom: 1px #f9fc04 solid;
-				}
-			}
-
-			> .search-box {
-				width: 100%;
-				font-size: $searchbox-mobile;
-				font-style: italic;
-				font-weight: 100;
-				color: #ddd;
-				margin-top: 10px;
-				padding: 10px 20px;
-				outline: none;
-				@extend .input-transparent;
-
-				@include mobile-up {
-					font-size: $searchbox;
-					margin-top: 20px;
-				}
-			}
-		}
-
-		> .activity-detail-wrapper {
-			display: flex;
-			margin-top: 15%;
-
-			&:hover > .activity-tabs {
-				visibility: visible;
-				opacity: 1;
-			}
-
-			> .activity-tabs {
-				visibility: hidden;
-				opacity: 0;
-				transition: visibility 0.5s, opacity 0.5s linear;
-				padding-left: 20px;
-				color: white;
-
-				> .activity-tab {
-					display: flex;
-					cursor: pointer;
-					align-items: center;
-					margin-bottom: 15px;
-
-					&:last-child {
-						margin-bottom: 0;
-					}
-
-					> .text {
-						font-weight: bold;
-						font-style: italic;
-						font-size: 16px;
-						margin-left: 15px;
-					}
-
-					.svg {
-						padding: 13px;
-					}
-				}
-			}
+.activity-you {
+	> .content {
+		.search-group {
+			max-width: 400px;
+			width: 100%;
+			margin: 0 auto;
+			text-align: left;
 		}
 	}
 }

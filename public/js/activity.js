@@ -2,21 +2,21 @@ function activityHover() {
   $('.activity-card > .video-wrapper').off('mouseenter').on('mouseenter', function () {
     var self = this
     var index = $(this).parent().parent().index()
-    $(this).addClass('hover')
-    $(this).removeClass('fixedMid')
-    $(this).removeClass('left')
-    $(this).removeClass('right')
-    $(this).removeClass('mid')
+    $(this).siblings('.master-profile').addClass('active')
+    $(this).parent().addClass('hover')
+    $(this).parent().removeClass('fixedMid')
+    $(this).parent().removeClass('left')
+    $(this).parent().removeClass('right')
+    $(this).parent().removeClass('mid')
     if ($(window).width() <= 809) {
-      $(this).addClass('fixedMid')
-      console.log($(window).width())
+      $(this).parent().addClass('fixedMid')
     } else {
       if (index % 3 === 0) {
-        $(this).addClass('left')
+        $(this).parent().addClass('left')
       } else if (index % 3 === 2) {
-        $(this).addClass('right')
+        $(this).parent().addClass('right')
       } else {
-        $(this).addClass('mid')
+        $(this).parent().addClass('mid')
       }
     }
 
@@ -35,8 +35,9 @@ function activityHover() {
     })
 
     $('.overlay.d-block').one('mouseenter', function () {
-      $(self).removeClass('hover')
+      $(self).parent().removeClass('hover')
       $(this).removeClass('d-block')
+      $(self).siblings('.master-profile').removeClass('active')
 
       $(self).children('.video').get(0).pause()
       $(self).children('.play-wrapper').addClass('d-none')
@@ -52,3 +53,11 @@ function hoverVideo(e) {
 function hideVideo(e) {
   $(this).get(0).pause()
 }
+
+$(document).ready(function () {
+  $('.master-profile').hover(function () {
+    $(this).children('.activity-detail').fadeIn()
+  }, function () {
+    $(this).children('.activity-detail').fadeOut()
+  })
+})

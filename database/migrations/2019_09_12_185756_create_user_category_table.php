@@ -4,7 +4,7 @@
 	use Illuminate\Database\Schema\Blueprint;
 	use Illuminate\Database\Migrations\Migration;
 
-	class CreateUserCategoryLevelTable extends Migration
+	class CreateUserCategoryTable extends Migration
 	{
 		/**
 		 * Run the migrations.
@@ -14,8 +14,8 @@
 		public function up()
 		{
 
-			Schema::create('user_category_level', function (Blueprint $table) {
-				$table->bigIncrements('user_category_level_id');
+			Schema::create('user_category', function (Blueprint $table) {
+				$table->bigIncrements('user_category_id');
 				$table->bigInteger('category_id')->unsigned();
 				$table->bigInteger('user_id')->unsigned();
 				$table->bigInteger('user_level')->default(1);
@@ -34,6 +34,6 @@
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('user_category_level');
+			Schema::dropIfExists('user_category');
 		}
 	}

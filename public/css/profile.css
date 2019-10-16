@@ -11050,6 +11050,21 @@ button:focus {
 	outline: none;
 }
 
+.noselect {
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	/* Konqueror HTML */
+	-moz-user-select: none;
+	/* Old versions of Firefox */
+	-ms-user-select: none;
+	/* Internet Explorer/Edge */
+	user-select: none;
+	/* Non-prefixed version, currently
+                supported by Chrome, Opera and Firefox */
+}
+
 .border-circle {
 	border-radius: 50%;
 }
@@ -11066,7 +11081,17 @@ button:focus {
 	color: black;
 }
 
-.input-transparent {
+.fadein {
+	-webkit-animation: fadein 3s;
+	/* Safari, Chrome and Opera > 12.1 */
+	/* Firefox < 16 */
+	/* Internet Explorer */
+	/* Opera < 12.1 */
+	animation: fadein 3s;
+}
+
+.input-transparent,
+.search-group > .search-box {
 	border: 1px solid #fff;
 	background: transparent;
 	color: #ddd;
@@ -11074,29 +11099,34 @@ button:focus {
 	border-radius: 30px;
 }
 
-.input-transparent::-webkit-input-placeholder {
+.input-transparent::-webkit-input-placeholder,
+.search-group > .search-box::-webkit-input-placeholder {
 	/* Edge */
 	color: #ddd;
 	font-weight: 100;
 }
 
-.input-transparent:-ms-input-placeholder {
+.input-transparent:-ms-input-placeholder,
+.search-group > .search-box:-ms-input-placeholder {
 	/* Internet Explorer 10-11 */
 	color: #ddd;
 	font-weight: 100;
 }
 
-.input-transparent::-moz-placeholder {
+.input-transparent::-moz-placeholder,
+.search-group > .search-box::-moz-placeholder {
 	color: #ddd;
 	font-weight: 100;
 }
 
-.input-transparent::-ms-input-placeholder {
+.input-transparent::-ms-input-placeholder,
+.search-group > .search-box::-ms-input-placeholder {
 	color: #ddd;
 	font-weight: 100;
 }
 
-.input-transparent::placeholder {
+.input-transparent::placeholder,
+.search-group > .search-box::placeholder {
 	color: #ddd;
 	font-weight: 100;
 }
@@ -11302,6 +11332,87 @@ button:focus {
 	width: 12px;
 	height: 12px;
 	margin-right: 3px;
+}
+
+.search-group {
+	position: relative;
+}
+
+.search-group:focus > .search-dropdown {
+	display: block;
+}
+
+.search-group > .search-box {
+	width: 100%;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: 100;
+	color: #ddd;
+	margin-top: 10px;
+	padding: 10px 20px;
+	outline: none;
+}
+
+.search-group > .search-box:focus + .search-dropdown {
+	display: block;
+}
+
+@media (min-width: 576px) {
+	.search-group > .search-box {
+		font-size: 20px;
+		margin-top: 20px;
+	}
+}
+
+.search-group > .search-dropdown {
+	position: absolute;
+	display: none;
+	top: 110%;
+	left: 0;
+	background: white;
+	border-radius: 15px;
+	padding: 10px;
+	color: #f14ea6;
+	width: 100%;
+	z-index: 999;
+}
+
+.search-group > .search-dropdown > .search-result {
+	display: flex;
+	align-items: center;
+	border-radius: 50px;
+	padding: 12px;
+	transition: background-color 0.5s;
+}
+
+.search-group > .search-dropdown > .search-result:hover {
+	background: #f14ea6;
+	color: white;
+	cursor: pointer;
+}
+
+.search-group > .search-dropdown > .search-result:hover .cls-1 {
+	fill: white;
+}
+
+.search-group > .search-dropdown > .search-result:hover > .svg {
+	border-right: 2px solid white;
+}
+
+.search-group > .search-dropdown > .search-result > .category {
+	flex: 1;
+	padding-left: 20px;
+}
+
+.search-group > .search-dropdown > .search-result > .svg {
+	width: 50px;
+	height: 30px;
+	border-right: 2px solid #f14ea6;
+	padding-right: 20px;
+}
+
+.search-group > .search-dropdown > .search-result .cls-1 {
+	fill: #f14ea6;
 }
 
 .footer {

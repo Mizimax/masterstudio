@@ -12,6 +12,10 @@
 		transition: all .5s;
 	}
 
+	&.--fade {
+		display: none;
+	}
+
 	@include tablet-up {
 		bottom: 15%;
 		top: auto;

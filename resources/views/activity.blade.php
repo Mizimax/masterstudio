@@ -31,17 +31,44 @@
                         <!-- Activity Name , Search -->
                         <div class="activity-name">
                             <h1 class="header">@Master Studio</h1>
-                            <h2 class="subheader">Meet Real <a class="chef" href="#">Chef</a>
+                            <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a class="chef"
+                                                                                    href="#">Chef</a>
                             </h2>
-                            <div class="search-box-wrapper">
-                                <input class="search-box" placeholder="Search your activities..." type="text">
+                            <div class="search-box-wrapper" align="left">
+                                <div class="search-group" tabindex="-1">
+                                    <input class="search-box"
+                                           placeholder="Search your activities..." type="text"
+                                           style="max-width: 433px">
+                                    <div class="search-dropdown">
+                                        <div class="search-result">
+                                            <img class="svg" src="/img/icon/badminton.svg">
+                                            <span class="category">Badminton</span>
+                                            <span class="nomaster">78 master</span>
+                                        </div>
+                                        <div class="search-result">
+                                            <img class="svg" src="/img/icon/golf.svg">
+                                            <span class="category">Golf</span>
+                                            <span class="nomaster">7 master</span>
+                                        </div>
+                                        <div class="search-result">
+                                            <img class="svg" src="/img/icon/chef.svg">
+                                            <span class="category">Chef</span>
+                                            <span class="nomaster">8 master</span>
+                                        </div>
+                                        <div class="search-result">
+                                            <img class="svg" src="/img/icon/badminton.svg">
+                                            <span class="category">Badminton</span>
+                                            <span class="nomaster">78 master</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- End Activity Name , Search ac-->
                         <div class="activity-detail-wrapper">
-                            <div class="activity-story justify-content-md-end justify-content-center">
+                            <div class="activity-story justify-content-start">
                                 @php
-                                    $activitys = [0,1,2]
+                                    $activitys = [0,1]
                                 @endphp
                                 @foreach ($activitys as $activity)
                                     <div class="activity-wrapper">
@@ -196,8 +223,31 @@
     <section class="all-activity">
         <div class="content">
             <h3 class="header">All activities</h3>
-            <input class="search input-transparent" placeholder="Search your activities..."
-                   type="text">
+            <div class="search-group" tabindex="-1" align="left">
+                <input class="search-box" placeholder="Search your activities..." type="text">
+                <div class="search-dropdown">
+                    <div class="search-result">
+                        <img class="svg" src="/img/icon/badminton.svg">
+                        <span class="category">Badminton</span>
+                        <span class="nomaster">78 master</span>
+                    </div>
+                    <div class="search-result">
+                        <img class="svg" src="/img/icon/golf.svg">
+                        <span class="category">Golf</span>
+                        <span class="nomaster">7 master</span>
+                    </div>
+                    <div class="search-result">
+                        <img class="svg" src="/img/icon/chef.svg">
+                        <span class="category">Chef</span>
+                        <span class="nomaster">8 master</span>
+                    </div>
+                    <div class="search-result">
+                        <img class="svg" src="/img/icon/badminton.svg">
+                        <span class="category">Badminton</span>
+                        <span class="nomaster">78 master</span>
+                    </div>
+                </div>
+            </div>
             <div class="activity-grid">
                 @php
                     $activities = [0,1,2,3,4,5]
@@ -223,5 +273,6 @@
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="/js/activity.js"></script>
     <script src="/js/activity-page.js"></script>
+    <script src="/js/category.js"></script>
 @endsection
 

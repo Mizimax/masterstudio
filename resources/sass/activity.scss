@@ -14,6 +14,12 @@
 
 .all-activity {
     @extend .activity-you;
+
+    .search-group {
+        max-width: 400px;
+        width: 100%;
+        margin: 0 auto;
+    }
 }
 
 .your-activity {
@@ -258,7 +264,8 @@
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                right: 0;
+                left: 0;
+                padding-left: 40%;
                 width: 100%;
 
 	            @media (min-height: 800px) {
@@ -276,28 +283,25 @@
 	                    font-size: $activity-header-mobile;
                         font-weight: bold;
                         width: 100%;
-                        text-align: center;
+                        text-align: left;
 
                         @include tablet-up {
 	                        font-size: $activity-header;
-	                        margin-left: auto;
                         }
                     }
 
                     > .subheader {
 	                    font-size: $activity-subheader-mobile;
                         width: 100%;
-                        text-align: center;
+                        font-weight: 300;
+                        text-align: left;
 
                         @include mobile-up {
 	                        font-size: $activity-subheader-mobile + 4px;
                         }
 
 	                    @include tablet-up {
-		                    width: 55%;
-		                    text-align: left;
 		                    font-size: $activity-subheader;
-                            margin-left: auto;
                         }
 
 	                    > .chef {
@@ -316,24 +320,13 @@
                         }
 
 	                    @include tablet-up {
-                            width: 50%;
+                            width: 100%;
 		                    text-align: left;
                         }
 
-                        > .search-box {
-                            width: 80%;
-	                        font-size: $searchbox-mobile;
-                            font-style: italic;
-                            color: white;
-                            margin-top: 10px;
-                            padding: 10px 20px;
-                            outline: none;
-                            @extend .input-transparent;
-
-                            @include mobile-up {
-	                            font-size: $searchbox;
-                                margin-top: 20px;
-                            }
+                        > .search-group {
+                            max-width: 400px;
+                            width: 100%;
                         }
                     }
                 }
@@ -353,7 +346,8 @@
 	                }
 
                     > .activity-story {
-	                    padding-top: 40px;
+                        padding: 40px 20px 40px 0;
+
 
                         > .activity-wrapper {
 	                        &:last-child {
@@ -363,20 +357,12 @@
                                     display: block;
                                 }
                             }
-
-	                        &:nth-child(1) {
-		                        display: none;
-
-		                        @include mobileFirst(750px) {
-			                        display: block;
-		                        }
-	                        }
                         }
 
                         .activity-card {
                             width: 250px;
                             height: 250px;
-                            margin: 0 30px;
+                            margin-right: 30px;
                         }
                     }
                 }

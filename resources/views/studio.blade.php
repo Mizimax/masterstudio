@@ -49,6 +49,11 @@
           elements_selector: '.lazy',
           // ... more custom settings?
         })
+
+        $('.interest-activity').click(function () {
+          $(this).toggleClass('active')
+        })
+
       })
     </script>
     <script>

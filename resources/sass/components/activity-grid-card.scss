@@ -18,99 +18,148 @@
 		color: black;
 		margin-right: 0;
 
-
-		> .video-wrapper {
-            cursor: pointer;
-			@include fadeout(.5s);
-
-			&.hover {
+		&.hover {
+			> .video-wrapper {
 				position: absolute;
 				width: 700px;
-                height: 400px;
-				margin: 0 20px;
+				height: 400px;
+				margin: 0;
 				z-index: 99;
 				@include fadein(.5s);
 
-				&.left {
+				> .activity-tabs {
+					display: block;
+					z-index: 999;
+				}
+
+				> .play-wrapper {
+					display: block;
+				}
+
+				> .button {
+					&.--detail {
+						position: absolute;
+						right: 20px;
+						bottom: 20px;
+						background: $primary;
+						border: none;
+						color: white;
+						padding: 17px 40px;
+						border-radius: 40px;
+					}
+				}
+			}
+
+			> .master-profile {
+				@include fadein(0.5s);
+
+				z-index: 999;
+				width: 700px;
+
+				> .activity-detail {
+					display: block !important;
+					width: 250px;
+					height: 290px;
+					padding: 5px 10px;
+				}
+
+			}
+
+			&.left {
+				> .video-wrapper {
 					top: 0;
 					left: 0;
 				}
 
-				&.mid {
-					top: 0;
+				> .master-profile {
 					left: 0;
-					transform: translateX(calc(-50% + 125px));
+				}
+			}
+
+			&.mid {
+				> .video-wrapper {
+					top: 0;
+					left: 50%;
+					transform: translateX(-50%);
 				}
 
-				&.fixedMid {
+				> .master-profile {
+					left: 50%;
+					transform: translateX(-50%);
+				}
+			}
+
+			&.fixedMid {
+				> .video-wrapper, .master-profile {
 					position: fixed;
 					top: 50%;
 					left: 50%;
 					width: 90%;
 					margin: 0;
 					max-width: 700px;
+					height: 400px;
 					transform: translate(-50%, -50%);
-				}
 
-				&.right {
+					> .activity-detail {
+						bottom: auto;
+					}
+				}
+			}
+
+			&.right {
+				> .video-wrapper {
 					top: 0;
 					right: 0;
 				}
 
-                > .activity-tabs {
-                    display: block;
-                }
+				> .master-profile {
+					right: 0;
+					left: auto;
+				}
+			}
+		}
 
-                > .play-wrapper {
-                    display: block;
-                }
+		> .video-wrapper {
+			cursor: pointer;
 
-                > .button {
-                    &.--detail {
-                        position: absolute;
-                        right: 20px;
-                        bottom: 20px;
-                        background: $primary;
-                        border: none;
-                        color: white;
-                        padding: 17px 40px;
-                        border-radius: 40px;
-                    }
-                }
-            }
+			.play-wrapper {
+				display: none;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: 60px;
+				height: 60px;
+				transform: translate(-50%, -50%);
 
-            .play-wrapper {
-                display: none;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 60px;
-                height: 60px;
-                transform: translate(-50%, -50%);
+				> .svg {
+					color: white;
+				}
+			}
 
-                > .svg {
-                    color: white;
-                }
-            }
+			> .activity-tabs {
+				display: none;
+				flex-direction: column;
+				position: absolute;
+				right: 20px;
+				top: 20px;
 
-            > .activity-tabs {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                left: 103%;
-                top: 50%;
-                transform: translateY(-50%);
+				@include mobileFirst(809px) {
+					padding-left: 3%;
+					left: 100%;
+					top: 50%;
+					transform: translateY(-50%);
+				}
 
-                > .icon-wrapper {
-                    margin: 10px 0;
-                }
-            }
+				> .icon-wrapper {
+					margin: 10px 0;
+				}
+			}
 		}
 
 		> .overlay {
 			position: fixed !important;
 			display: none;
-            background: rgba(0, 0, 0, 0.6);
+			background: rgba(0, 0, 0, 0.6);
 			z-index: 50;
 		}
 

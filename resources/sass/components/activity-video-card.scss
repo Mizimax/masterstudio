@@ -28,7 +28,7 @@
 		top: 0;
 		z-index: 9;
 
-		&:hover > .activity-detail {
+		> .activity-detail {
 			width: 250px;
 			height: 290px;
 			padding: 5px 10px;
@@ -65,10 +65,11 @@
 			> .participant {
 				width: 40px;
 				height: 40px;
-				margin-right: -20px;
+				margin-right: -13px;
 				border-radius: 50%;
-				border: 1px solid #ccc;
+				border: 1px solid #fff;
 				position: relative;
+				@extend .shadow;
 
 				> img {
 					position: absolute;

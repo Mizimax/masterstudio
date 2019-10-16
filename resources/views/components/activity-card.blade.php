@@ -1,8 +1,9 @@
 <!-- Activity Detail -->
 @php
     $size = !empty($size) ? $size : 100;
+    $activities = !empty($queryActivities) ? $queryActivities : (!empty($activities) ? $activities : '');
 @endphp
-<div class="activity-detail {{!empty($animate) ? '--animate' : '' }} justify-content-between flex-wrap">
+<div class="activity-detail {{!empty($animate) ? '--fade' : '' }} justify-content-between flex-wrap">
     <div class="activity-title" style="margin-left: 5px">
         <div class="image-wrapper" style="margin-top: -{{ $size/2.1 }}px; width: {{ $size }}px; height: {{ $size }}px">
             @if(empty($noimage))

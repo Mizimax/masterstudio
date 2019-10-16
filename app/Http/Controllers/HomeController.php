@@ -3,21 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Activity;
 
 class HomeController extends Controller
 {
-    //
-    public function index() {
-        return view('home');
-    }
+//    /**
+//     * Create a new controller instance.
+//     *
+//     * @return void
+//     */
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
-    public function activity()
+	/**
+	 * Show the application dashboard.
+	 *
+	 * @return \Illuminate\Contracts\Support\Renderable
+	 */
+	public function index()
     {
-        return view('activity');
-    }
-
-    public function getContent()
-    {
-        return view('components.activity-grid-card', ['activities' => [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]]);
+//    	$headActivities = Activity::get();
+		$headActivities = [1, 2, 3];
+		return view('home', ['headActivities' => $headActivities]);
     }
 }

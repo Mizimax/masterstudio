@@ -16,7 +16,7 @@
 
 			Schema::create('masters', function (Blueprint $table) {
 				$table->bigIncrements('master_id');
-				$table->string('master_name');
+				$table->string('master_name')->unique();
 				$table->string('master_nickname');
 				$table->string('master_background_action');
 				$table->date('master_birth');

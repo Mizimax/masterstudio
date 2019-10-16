@@ -4,24 +4,58 @@
     border-radius: 100px;
     padding: 20px;
     background: white;
+	position: relative;
 
-    > .interest-activity {
+	> .interest-group {
+		display: inline-flex;
+	}
+
+	.interest-activity {
         margin: 0 7px;
+		cursor: pointer;
+
+		&:hover {
+			> .icon {
+				border: none;
+				background: $primary;
+
+				.cls-1 {
+					fill: white;
+				}
+			}
+		}
+
+		&.active {
+			> .icon {
+				border: none;
+				background: orange;
+			}
+
+			.cls-1 {
+				fill: white !important;
+			}
+		}
 
         > .icon {
             border-radius: 50%;
             width: 50px;
             height: 50px;
+	        padding: 10px;
             border: 2px solid #888;
+	        transition: 0.5s background-color;
 
-            &.active {
-                border: none;
-                background: orange;
-                color: white;
+	        > .svg {
+		        width: 100%;
+		        height: 100%;
+	        }
+
+	        .cls-1 {
+		        fill: $primary;
             }
         }
 
         > .name {
+	        @extend .noselect;
             font-size: 10px;
             margin-top: 5px;
             color: #888;
@@ -31,9 +65,85 @@
     > .add-interest-activity {
         @extend .interest-activity;
 
-        > .icon {
+	    &:active {
+		    > .icon {
+			    transform: translate(1px, 1px);
+		    }
+	    }
+
+	    &:focus {
+		    & > .search-dropdown {
+
+			    display: block;
+
+		    }
+	    }
+
+	    > .icon {
+		    background: $primary;
             border: none;
+		    padding: 15px;
             @include shadow(5px, 5px, 15px, 0px, 0.2);
-        }
+
+		    .cls-1 {
+			    fill: white;
+		    }
+	    }
+
+	    > .search-dropdown {
+		    position: absolute;
+		    display: none;
+		    top: 110%;
+		    left: 50%;
+		    transform: translateX(-50%);
+		    background: white;
+		    border-radius: 15px;
+		    padding: 10px;
+		    color: $primary;
+		    min-width: 300px;
+		    width: 100%;
+		    z-index: 999;
+		    @include shadow(5px, 5px, 15px, 0px, 0.2);
+
+		    .search-result {
+			    display: flex;
+			    align-items: center;
+			    border-radius: 50px;
+			    padding: 12px;
+			    transition: background-color 0.5s;
+
+			    &:hover {
+				    cursor: pointer;
+
+				    > .add {
+					    background: $primary;
+					    color: white;
+				    }
+			    }
+
+			    > .category {
+				    flex: 1;
+				    padding-left: 20px;
+				    text-align: left;
+			    }
+
+			    > .add {
+				    padding: 7px 15px;
+				    border-radius: 20px;
+				    transition: 0.5s background-color;
+			    }
+
+			    > .svg {
+				    width: 50px;
+				    height: 30px;
+				    border-right: 2px solid $primary;
+				    padding-right: 20px;
+			    }
+
+			    .cls-1 {
+				    fill: $primary;
+			    }
+		    }
+	    }
     }
 }

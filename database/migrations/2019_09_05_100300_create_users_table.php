@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
 	        $table->bigInteger('user_coin')->default(0);
 	        $table->bigInteger('user_exp')->default(0);
 	        $table->integer('user_level')->default(1);
-	        $table->enum('user_type', ['user', 'master', 'admin']);
+	        $table->enum('user_type', ['user', 'master', 'admin'])->default('user');
 	        $table->boolean('activity_week_viewed')->default(0); // 7 day retention 0 = not view 1 = viewed
             $table->rememberToken();
             $table->timestamps();
