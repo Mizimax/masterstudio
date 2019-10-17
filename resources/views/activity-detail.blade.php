@@ -10,49 +10,50 @@
 @endsection
 
 @section('content')
+    @php
+        $activity['activity_benefit'] = json_decode($activity['activity_benefit'], true);
+        $activity['activity_video'] = json_decode($activity['activity_video'], true);
+        $activity['activity_routine_day'] = str_split($activity['activity_routine_day']);
+        $start = new DateTime($activity->activity_start);
+        $end = new DateTime($activity->activity_end);
+        $activity['activity_time_diff'] = $start->diff($end);
+        $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d . ' days' : $activity['activity_time_diff']->m . ' months';
+
+    @endphp
     <section class="activity-header">
         <!-- Carousel -->
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Indicators -->
             <ul class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
+                @foreach($activity['activity_video'] as $key => $video)
+                    <li data-target="#carousel" data-slide-to="{{ $key }}"
+                        class="{{ $loop->first ? 'active' : ''}}"></li>
+                @endforeach
             </ul>
             <!-- End Indicators -->
 
             <!-- Slideshow -->
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <video class="video video-fluid" autoplay loop muted>
-                        <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                type="video/mp4"/>
-                    </video>
-                </div>
-                <div class="carousel-item">
-                    <video class="video video-fluid" autoplay loop muted>
-                        <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                type="video/mp4"/>
-                    </video>
-                </div>
-                <div class="carousel-item">
-                    <video class="video video-fluid" autoplay loop muted>
-                        <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
-                                type="video/mp4"/>
-                    </video>
-                </div>
+                @foreach($activity['activity_video'] as $video)
+                    <div class="carousel-item {{ $loop->first ? 'active' : ''}}">
+                        <video class="video video-fluid" autoplay loop muted>
+                            <source src="{{ $video }}"
+                                    type="video/mp4" />
+                        </video>
+                    </div>
+                @endforeach
             </div>
             <!-- End Slideshow -->
             <div class="activity-header-detail">
                 @include('components/activity-card', ['size' => 80])
                 <div class="activity-action">
-                    <div class="price">THB 1,500</div>
+                    <div class="price">THB {{ $activity['activity_price'] }}</div>
                     <button class="join-button">Join activity</button>
                     <button class="milestone-button">Set as milestone</button>
                     <div class="availability-wrapper">
                         <div class="availability">
                             <div class="title">Availability</div>
-                            <div class="number">5/8</div>
+                            <div class="number">5/{{ $activity['activity_max'] }}</div>
                         </div>
                         <div class="activity-join">
                             <div class="participant image-wrapper">
@@ -87,25 +88,17 @@
 
         <div class="content">
             <div class="activity-section --header">
-                <h1 class="title">The spirit of the ingredient</h1>
-                <h2 class="subtitle">"Every ingredient have there own spirit and every fractral of
-                    spirit can differentiate
-                    the taste"</h2>
+                <h1 class="title">{{ $activity['activity_name'] }}</h1>
+                <h2 class="subtitle">{{ $activity['activity_description'] }}</h2>
             </div>
             <div class="activity-section --exp">
                 <div class="title">Activity Experiences</div>
                 <div class="benefit-wrapper">
-                    @php
-                        $activitys = [0,1,2]
-                    @endphp
-                    @foreach ($activitys as $key => $activity)
-                        <div class="benefit-card" style="background: url('/img/Deepsea.jpeg')">
-                            <img class="svg" src="/img/profile.jpg" alt="">
-                            <div class="name">secret of ingredients</div>
-                            <div class="description">Every ingredient have there own spirit and
-                                every fractral of spirit can
-                                differentiate the taste
-                            </div>
+                    @foreach ($activity['activity_benefit'] as $benefit)
+                        <div class="benefit-card" style="background: url('{{ $benefit['bg'] }}')">
+                            <img class="svg" src="{{ $benefit['pic'] }}" alt="">
+                            <div class="name">{{ $benefit['name'] }}</div>
+                            <div class="description">{{ $benefit['text'] }}</div>
                         </div>
                     @endforeach
                 </div>
@@ -122,13 +115,11 @@
                                 allowfullscreen=""></iframe>
                     </div>
                     <div class="studio-detail">
-                        <h3 class="title">Studio@</h3>
-                        <h4 class="sub-title">Piazzale italian dining school</h4>
+                        <h3 class="title">{{ $activity['studio_name'] }}</h3>
+                        <h4 class="sub-title">{{ $activity['studio_description'] }}</h4>
                         <div class="studio-section">
                             <div class="title">About studio</div>
-                            <div class="content">Italian food studio with 10years+ experience
-                                masters
-                            </div>
+                            <div class="content">{{ $activity['studio_description'] }}</div>
                         </div>
                         <div class="studio-section">
                             <div class="title">Studio promotion</div>
@@ -136,7 +127,7 @@
                                 @php
                                     $activitys = [0,1,2]
                                 @endphp
-                                @foreach ($activitys as $key => $activity)
+                                @foreach ($activitys as $key => $activityss)
                                     <div class="promo-code">
                                         <div class="name">first comer discount 10%</div>
                                         <div class="badge">10% off</div>
@@ -150,7 +141,7 @@
             <div class="activity-section --story">
                 <div class="title">Master story</div>
                 @php
-                    $stories = [0,1,2]
+                    $stories = [0,1,2];
                 @endphp
                 @include('components/activity-story', ['stories' => $stories])
             </div>
@@ -158,9 +149,7 @@
                 <div class="prepare-reward">
                     <div class="prepare-wrapper">
                         <div class="title">Preparation</div>
-                        <div class="content">
-
-                        </div>
+                        <div class="content">{!! $activity['activity_prepare'] !!}</div>
                     </div>
                     <div class="reward-wrapper">
                         <div class="title">System reward</div>
@@ -200,9 +189,6 @@
             <div class="activity-section --suggest">
                 <div class="title">Master suggestion next...</div>
                 <div class="suggest-wrapper">
-                    @php
-                        $activities = [0,1,2]
-                    @endphp
                     @include('components.activity-grid-card', ['activities'=>$activities, 'size' => 80])
                 </div>
             </div>
@@ -259,12 +245,13 @@
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script src="/js/activity.js"></script>
     <script>
-        $(document).ready(function () {
-            var lazyLoadInstance = new LazyLoad({
-                elements_selector: '.lazy',
-                // ... more custom settings?
-            })
+      $(document).ready(function () {
+        var lazyLoadInstance = new LazyLoad({
+          elements_selector: '.lazy',
+          // ... more custom settings?
         })
+      })
     </script>
 @endsection

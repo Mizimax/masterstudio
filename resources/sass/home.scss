@@ -13,6 +13,30 @@
 .video-header {
 	position: relative;
 
+	> .search-group {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		margin-top: -117px;
+		left: 6%;
+		margin-left: 20px;
+		z-index: 1000;
+
+		@media (max-height: 700px) {
+			margin-top: 50px;
+
+			@media (max-width: breakpoint-min(sm)) {
+				margin-top: 0 !important;
+			}
+		}
+
+		@media (max-width: breakpoint-min(sm)) {
+			margin-top: -130px;
+			max-width: 300px;
+		}
+
+	}
+
 
 	> .half-square {
 		position: absolute;
@@ -24,49 +48,6 @@
 		display: block;
 		background: white;
 		background: linear-gradient(to bottom right, transparent 50%, white 50%);
-	}
-
-	> .activity-name {
-		color: white;
-		position: absolute;
-		z-index: 1000;
-		padding: 0 20px;
-		left: 6%;
-		top: 20%;
-
-		@media (max-height: 640px) {
-			max-width: 480px;
-			width: 100%;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
-
-		> .header {
-			text-shadow: 2px 2px 5px #888;
-			font-size: $activity-header-mobile;
-			font-weight: bold;
-			display: block;
-			@include mobile-up {
-				font-size: $activity-header;
-			}
-		}
-
-		> .subheader {
-			text-shadow: 2px 2px 5px #888;
-			font-size: $activity-subheader-mobile;
-			font-weight: 300;
-			display: block;
-			@include mobile-up {
-				font-size: $activity-subheader;
-			}
-
-			> .chef {
-				color: #f9fc04;
-				font-style: italic;
-				border-bottom: 1px #f9fc04 solid;
-			}
-		}
 	}
 
 	> #carousel {
@@ -86,25 +67,59 @@
 
 			> .content-wrapper {
 				width: 100%;
-				top: 35%;
 				position: absolute;
 				z-index: 999;
 				padding: 0 20px;
 				left: 6%;
 				max-width: 600px;
 				width: 100%;
+				top: 50%;
+				transform: translateY(-50%);
 
-				@include mobile-up {
-					top: 42%;
-				}
 
-				@media (max-height: 640px) {
-					display: none;
+				> .activity-name {
+					color: white;
+
+					@media (max-height: 700px) {
+						max-width: 480px;
+						width: 100%;
+						margin-top: -100px;
+					}
+
+					> .header {
+						text-shadow: 2px 2px 5px #888;
+						font-size: $activity-header-mobile;
+						font-weight: bold;
+						display: block;
+						@include mobile-up {
+							font-size: $activity-header;
+						}
+					}
+
+					> .subheader {
+						text-shadow: 2px 2px 5px #888;
+						font-size: $activity-subheader-mobile;
+						font-weight: 300;
+						display: block;
+						@include mobile-up {
+							font-size: $activity-subheader;
+						}
+
+						> .chef {
+							color: #f9fc04;
+							font-style: italic;
+							border-bottom: 1px #f9fc04 solid;
+						}
+					}
 				}
 
 				> .activity-detail-wrapper {
 					display: flex;
-					margin-top: 15%;
+					margin-top: 120px;
+
+					@media (max-height: 700px) {
+						display: none;
+					}
 
 					&:hover > .activity-tabs {
 						visibility: visible;

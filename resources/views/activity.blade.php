@@ -35,7 +35,7 @@
                                                                                     href="#">Chef</a>
                             </h2>
                             <div class="search-box-wrapper" align="left">
-                                <div class="search-group" tabindex="-1">
+                                <div class="search-group" tabindex="-1" style="max-width: 450px">
                                     <input class="search-box"
                                            placeholder="Search your activities..." type="text"
                                            style="max-width: 433px">

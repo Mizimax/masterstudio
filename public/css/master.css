@@ -11066,7 +11066,7 @@ button:focus {
 	/* Internet Explorer/Edge */
 	user-select: none;
 	/* Non-prefixed version, currently
-				  supported by Chrome, Opera and Firefox */
+									 supported by Chrome, Opera and Firefox */
 }
 
 .border-circle {
@@ -11574,7 +11574,7 @@ button:focus {
 
 .activity-card > .master-profile > .activity-detail {
   width: 250px;
-	height: 290px;
+	height: 275px;
   padding: 5px 10px;
 }
 

@@ -13,26 +13,45 @@
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Indicators -->
             <ul class="carousel-indicators">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
+                @foreach($headActivities as $key => $headVideo)
+                    <li data-target="#carousel" data-slide-to="{{ $key }}"
+                        class="{{ $loop->first ? 'active' : ''}}"></li>
+                @endforeach
             </ul>
             <!-- End Indicators -->
 
             <!-- Slideshow -->
             <div class="carousel-inner">
                 @foreach($headActivities as $key => $headActivity)
-                    <div class="carousel-item {{ $key === 1 ? 'active' : ''}}">
+                    @php
+                        $headActivity['activity_benefit'] = json_decode($headActivity['activity_benefit'], true);
+                        $headActivity['activity_video'] = json_decode($headActivity['activity_video'], true)[0];
+			            $headActivity['activity_routine_day'] = str_split($headActivity['activity_routine_day']);
+			            $start = new DateTime($headActivity->activity_start);
+                        $end = new DateTime($headActivity->activity_end);
+                        $headActivity['activity_time_diff'] = $start->diff($end);
+			            $headActivity['activity_day_left'] = $headActivity['activity_time_diff']->m === 0 ? $headActivity['activity_time_diff']->d . ' days' : $headActivity['activity_time_diff']->m . ' months';
+                    @endphp
+                    <div class="carousel-item {{ $key === 0 ? 'active' : ''}}">
                         <video class="video video-fluid" autoplay loop muted>
-                            <source src="https://mdbootstrap.com/img/video/Tropical.mp4"
+                            <source src="{{ $headActivity['activity_video'] }}"
                                     type="video/mp4" />
                         </video>
                         <!-- Content Header -->
                         <div class="content-wrapper">
+                            <!-- Activity Name , Search -->
+                            <div class="activity-name">
+                                <h1 class="header">@Master Studio</h1>
+                                <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a class="chef"
+                                                                                        href="#">{{ $headActivity['category_name'] }}</a>
+                                </h2>
+                            </div>
+                            <!-- End Activity Name , Search -->
                             <div class="activity-detail-wrapper">
-                                @include('components.activity-card', ['size'=>80, 'activities'=> $headActivity])
+                                @include('components.activity-card', ['size'=>80, 'activity'=> $headActivity])
                                 <div class="activity-tabs d-none d-sm-block">
-                                    <div class="activity-tab">
+                                    <div class="activity-tab"
+                                         onclick="window.location.href= '/activity/{{ $headActivity['activity_url_name'] }}'">
                                         <div class="icon-wrapper --join">
                                         </div>
                                         <div class="text">Join activity</div>
@@ -74,41 +93,31 @@
             <!-- End Slideshow -->
         </div>
         <!-- End Carousel -->
-
-        <!-- Activity Name , Search -->
-        <div class="activity-name">
-            <h1 class="header">@Master Studio</h1>
-            <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a class="chef"
-                                                                    href="#">Chef</a>
-            </h2>
-            <div class="search-group" tabindex="-1">
-                <input class="search-box" placeholder="Search your activities..." type="text"
-                       tabindex="-2">
-                <div class="search-dropdown">
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/badminton.svg">
-                        <span class="category">Badminton</span>
-                        <span class="nomaster">78 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/golf.svg">
-                        <span class="category">Golf</span>
-                        <span class="nomaster">7 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/chef.svg">
-                        <span class="category">Chef</span>
-                        <span class="nomaster">8 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/badminton.svg">
-                        <span class="category">Badminton</span>
-                        <span class="nomaster">78 master</span>
-                    </div>
+        <div class="search-group" tabindex="-1" style="width: 450px">
+            <input class="search-box" placeholder="Search your activities..." type="text">
+            <div class="search-dropdown">
+                <div class="search-result">
+                    <img class="svg" src="/img/icon/badminton.svg">
+                    <span class="category">Badminton</span>
+                    <span class="nomaster">78 master</span>
+                </div>
+                <div class="search-result">
+                    <img class="svg" src="/img/icon/golf.svg">
+                    <span class="category">Golf</span>
+                    <span class="nomaster">7 master</span>
+                </div>
+                <div class="search-result">
+                    <img class="svg" src="/img/icon/chef.svg">
+                    <span class="category">Chef</span>
+                    <span class="nomaster">8 master</span>
+                </div>
+                <div class="search-result">
+                    <img class="svg" src="/img/icon/badminton.svg">
+                    <span class="category">Badminton</span>
+                    <span class="nomaster">78 master</span>
                 </div>
             </div>
         </div>
-        <!-- End Activity Name , Search -->
 
         <div class="half-square"></div>
     </section>
@@ -188,9 +197,6 @@
                 </div>
             </div>
             <div class="activity-grid">
-                @php
-                    $activities = [0,1,2,3,4,5]
-                @endphp
                 @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
             </div>
         </div>

@@ -15,10 +15,10 @@
 			DB::table('masters')->insert([
 				'master_name' => 'MasterName',
 				'master_nickname' => 'MasterMax',
-				'master_background_action' => 'MASTER_1_BG',
+				'master_background' => '["/img/bg.jpg"]',
 				'master_birth' => date("Y-m-d H:i:s"),
 				'master_activity_name' => 'Badminton challenge',
-				'master_activity_pic_action' => 'MASTER_1_ACT_PIC',
+				'master_activity_pic' => '["/img/activity/1.jpg"]',
 				'master_activity_describe' => 'Challenge badminton',
 				'master_talent' => 'NO.1 in master challenge',
 				'master_phone' => '0847440744',

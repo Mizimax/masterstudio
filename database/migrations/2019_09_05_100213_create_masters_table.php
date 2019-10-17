@@ -18,10 +18,10 @@
 				$table->bigIncrements('master_id');
 				$table->string('master_name')->unique();
 				$table->string('master_nickname');
-				$table->string('master_background_action');
+				$table->string('master_background'); //Array
 				$table->date('master_birth');
 				$table->string('master_activity_name');
-				$table->string('master_activity_pic_action');
+				$table->string('master_activity_pic'); //Array
 				$table->text('master_activity_describe');
 				$table->string('master_talent');
 				$table->string('master_phone');

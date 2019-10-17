@@ -2,6 +2,7 @@
 
 	namespace App\Http\Controllers;
 
+	use App\Activity;
 	use Illuminate\Http\Request;
 
 	class ActivityController extends Controller
@@ -27,7 +28,17 @@
 		 */
 		public function show($name)
 		{
-			return view('activity-detail');
+			$activity = Activity::from('activities as act')
+				->join('masters AS ms', 'act.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+				->join('studios AS st', 'act.studio_id', '=', 'st.studio_id')
+				->where('act.activity_url_name', $name)->first();
+			$activities = Activity::from('activities as act')
+				->join('masters AS ms', 'act.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')->take(3)->get();
+			if (empty($activity))
+				abort(404);
+			return view('activity-detail', ['activity' => $activity, 'activities' => $activities]);
 		}
 
 		/**

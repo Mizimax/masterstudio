@@ -4,7 +4,7 @@
 	use Illuminate\Database\Schema\Blueprint;
 	use Illuminate\Database\Migrations\Migration;
 
-	class CreateVideosTable extends Migration
+	class Pins extends Migration
 	{
 		/**
 		 * Run the migrations.
@@ -13,13 +13,7 @@
 		 */
 		public function up()
 		{
-
-			Schema::create('videos', function (Blueprint $table) {
-				$table->bigIncrements('video_id');
-				$table->string('video_action');
-				$table->string('video_url');
-				$table->timestamps();
-			});
+			//
 		}
 
 		/**
@@ -29,6 +23,6 @@
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('videos');
+			//
 		}
 	}
