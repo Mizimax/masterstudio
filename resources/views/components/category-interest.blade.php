@@ -1,55 +1,52 @@
+@php
+    $userCategories = \App\UserCategory::from('user_category as uc')
+                                        ->join('users as us', 'uc.user_id', 'us.user_id')
+                                        ->join('categories as cg', 'uc.category_id', 'cg.category_id')
+                                        ->where('uc.user_id', Auth::id())
+                                        ->get();
+
+    $categories = \App\UserCategory::from('categories as cg')
+                                        ->whereNotIn('cg.category_id', function($query){
+                                            $query->from('user_category as uc')
+                                                  ->where('uc.user_id', Auth::id())
+                                                  ->select('uc.category_id');
+                                        })
+                                        ->get();
+
+    $me = empty($me) ? true : $me;
+@endphp
 <div class="category-interest">
     <div class="interest-group">
-        <div class="interest-activity" tabindex="-1">
+        @foreach($userCategories as $userCategory)
+            <div class="interest-activity {{ $loop->first && !empty($active) && $active ? 'active' : '' }}"
+                 tabindex="-1">
+                <div class="icon">
+                    <img class="svg" src="{{ $userCategory['category_pic'] }}">
+                </div>
+                <div class="name">{{ $userCategory['category_name'] }}</div>
+                <input id="category-id" type="hidden" value="{{ $userCategory['category_id'] }}">
+            </div>
+        @endforeach
+    </div>
+    @if($me)
+        <div class="add-interest-activity" tabindex="-1">
             <div class="icon">
-                <img class="svg" src="/img/icon/badminton.svg">
+                <img class="svg" src="/img/icon/plus.svg">
             </div>
-            <div class="name">badminton</div>
-        </div>
-        {{--        <div class="interest-activity" tabindex="-1">--}}
-        {{--            <div class="icon">--}}
-        {{--                <img class="svg" src="/img/icon/golf.svg">--}}
-        {{--            </div>--}}
-        {{--            <div class="name">golf</div>--}}
-        {{--        </div>--}}
-        {{--        <div class="interest-activity" tabindex="-1">--}}
-        {{--            <div class="icon">--}}
-        {{--                <img class="svg" src="/img/icon/chef.svg">--}}
-        {{--            </div>--}}
-        {{--            <div class="name">chef</div>--}}
-        {{--        </div>--}}
-    </div>
-    <div class="add-interest-activity" tabindex="-1">
-        <div class="icon">
-            <img class="svg" src="/img/icon/plus.svg">
-        </div>
-        <div class="name">Add interest</div>
-        <div class="search-dropdown">
-            <div class="search-result">
-                <input type="hidden" value="1">
-                <img class="svg" src="/img/icon/badminton.svg">
-                <span class="category">Badminton</span>
-                <span class="add">Add</span>
-            </div>
-            <div class="search-result">
-                <input type="hidden" value="2">
-                <img class="svg" src="/img/icon/golf.svg">
-                <span class="category">Golf</span>
-                <span class="add">Add</span>
-            </div>
-            <div class="search-result">
-                <input type="hidden" value="3">
-                <img class="svg" src="/img/icon/chef.svg">
-                <span class="category">Chef</span>
-                <span class="add">Add</span>
-            </div>
-            <div class="search-result">
-                <input type="hidden" value="4">
-                <img class="svg" src="/img/icon/badminton.svg">
-                <span class="category">Badminton</span>
-                <span class="add">Add</span>
+            <div class="name">Add interest</div>
+            <div class="search-dropdown">
+                {{ $categories->isEmpty() ? 'You already selected all categories.' : '' }}
+                @foreach($categories as $category)
+                    <div class="search-result">
+                        <input type="hidden" class="category-id"
+                               value="{{ $category['category_id'] }}">
+                        <img class="svg" src="{{ $category['category_pic'] }}">
+                        <span class="category">{{ $category['category_name'] }}</span>
+                        <span class="add">Add</span>
+                    </div>
+                @endforeach
             </div>
         </div>
-    </div>
+    @endif
 </div>
 

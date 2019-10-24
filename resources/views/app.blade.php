@@ -5,6 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>@yield('title') - Master Studio</title>
     <link rel="stylesheet"
           href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,68 +30,90 @@
                 <span class="navbar-toggler-icon primary-color"></span>
             </button>
 
-            <div class="user-info-menu row no-gutters">
-                <div class="profile-dropdown">
-                    <div class="profile-space">
-                        <div class="col-auto px-2 image-wrapper">
-                            <img class="border-circle" src="/img/profile.jpg" width="45" height="45"
-                                 title="Profile image"
-                                 alt="Profile image">
-                        </div>
-                        <div class="d-none d-lg-block profile-detail">
-                            <div class="name">
-                                Tammanoon Jomjaturong
+            @if (Auth::check())
+                @php
+                    $user = Auth::user();
+                @endphp
+                <div class="user-info-menu row no-gutters">
+                    <div class="profile-dropdown">
+                        <div class="profile-space">
+                            <div class="col-auto px-2 image-wrapper">
+                                <img class="border-circle" src="{{ $user['user_pic'] }}" width="45"
+                                     height="45"
+                                     title="{{ $user['user_name'] }}"
+                                     alt="{{ $user['user_name'] }}">
                             </div>
-                            <div class="user-progress pb-1">
-                                <div class="row no-gutters">
-                                    <div class="col-auto mr-1 level">L. 49</div>
-                                    <div class="col" style="margin-top: 3px;">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar"
-                                                 style="width: 50%" aria-valuenow="50"
-                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="d-none d-lg-block profile-detail">
+                                <div class="name">
+                                    {{ $user['user_name'] }}
+                                </div>
+                                <div class="user-progress pb-1">
+                                    <div class="row no-gutters">
+                                        <div class="col-auto mr-1 level">
+                                            L. {{ $user['user_level'] }}</div>
+                                        <div class="col" style="margin-top: 3px;">
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar"
+                                                     style="width: 50%" aria-valuenow="50"
+                                                     aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="coin">
+                                    <img class="icon" src="/img/icon/coin.png"
+                                         alt="coin"> {{ $user['user_coin'] }}
+                                </div>
                             </div>
-                            <div class="coin">
-                                <img class="icon" src="/img/icon/coin.png" alt="coin"> 9999
+                        </div>
+                        <div class="profile-menu">
+                            <div class="sub-menu">
+                                <a href="/user/me">
+                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
+                                    |
+                                    <span class="menu-name">Your profile</span>
+                                </a>
                             </div>
-                        </div>
-                    </div>
-                    <div class="profile-menu">
-                        <div class="sub-menu">
-                            <a href="/profile">
-                                <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                |
-                                <span class="menu-name">Your profile</span>
-                            </a>
-                        </div>
-                        <div class="sub-menu">
-                            <a href="/profile">
-                                <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                |
-                                <span class="menu-name">My activities</span>
-                            </a>
-                        </div>
-                        <div class="sub-menu">
-                            <a href="/profile">
-                                <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                |
-                                <span class="menu-name">Following</span>
-                            </a>
-                        </div>
-                        <br><br>
-                        <div class="sub-menu">
-                            <a href="#">
-                                <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                |
-                                <span class="menu-name --logout">Logout</span>
-                            </a>
+                            <div class="sub-menu">
+                                <a href="/profile">
+                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
+                                    |
+                                    <span class="menu-name">My activities</span>
+                                </a>
+                            </div>
+                            <div class="sub-menu">
+                                <a href="/profile">
+                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
+                                    |
+                                    <span class="menu-name">Following</span>
+                                </a>
+                            </div>
+                            <br><br>
+                            <div class="sub-menu">
+                                <a href="#">
+                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
+                                    |
+                                    <span class="menu-name --logout">
+                                        <a href="{{ route('logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}"
+                                              method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </span>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="login">
+                    <a href="/login">Login here</a>
+                </div>
+            @endif
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mt-2 mr-1 mt-md-0">
                     <li class="nav-item">
@@ -181,15 +206,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js"></script>
     <script>
-        var MasterStudio = {
-            videoHover: {
-                play: false
-            },
-            videoPreview: {
-                play: false,
-                src: ''
-            }
-        }
+      var MasterStudio = {
+        videoHover: {
+          play: false,
+        },
+        videoPreview: {
+          play: false,
+          src: '',
+        },
+      }
     </script>
     <script src="/js/app.js"></script>
     <script>

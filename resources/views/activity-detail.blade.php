@@ -13,12 +13,12 @@
     @php
         $activity['activity_benefit'] = json_decode($activity['activity_benefit'], true);
         $activity['activity_video'] = json_decode($activity['activity_video'], true);
+        $activity['activity_sponsors'] = json_decode($activity['activity_sponsors'], true);
         $activity['activity_routine_day'] = str_split($activity['activity_routine_day']);
         $start = new DateTime($activity->activity_start);
         $end = new DateTime($activity->activity_end);
         $activity['activity_time_diff'] = $start->diff($end);
         $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d . ' days' : $activity['activity_time_diff']->m . ' months';
-
     @endphp
     <section class="activity-header">
         <!-- Carousel -->
@@ -159,7 +159,9 @@
                             </div>
                             <div class="reward-text">
                                 <div class="name">Experiences</div>
-                                <div class="reward">1,320 EXP (30 hours)</div>
+                                <div class="reward">{{ $activity['activity_hour']*300 }} EXP
+                                    ({{ $activity['activity_hour'] }} hours)
+                                </div>
                                 <div class="description"></div>
                             </div>
                         </div>
@@ -169,8 +171,8 @@
                             </div>
                             <div class="reward-text">
                                 <div class="name">Achievement</div>
-                                <div class="reward">Basic degree italian food and wine</div>
-                                <div class="description">3 level : bronze/silver/gold</div>
+                                <div class="reward">{{ $activity['achievement_name'] }}</div>
+                                <div class="description">{{ $activity['achievement_text'] }}</div>
                             </div>
                         </div>
                         <div class="reward-detail">
@@ -179,7 +181,8 @@
                             </div>
                             <div class="reward-text">
                                 <div class="name">Studio Reputation</div>
-                                <div class="reward">Middle class</div>
+                                <div class="reward">{{ $activity['activity_difficult'] }}class
+                                </div>
                                 <div class="description"></div>
                             </div>
                         </div>
@@ -231,9 +234,10 @@
             <div class="activity-section --sponsor">
                 <div class="title">Sponsors</div>
                 <div class="sponsor-wrapper">
-                    <img src="/img/sponsor.png" alt="" class="sponsor">
-                    <img src="/img/sponsor.png" alt="" class="sponsor">
-                    <img src="/img/sponsor.png" alt="" class="sponsor">
+                    @foreach($activity['activity_sponsors'] as $sponsor)
+                        <img src="{{ $sponsor['url'] }}" alt="" class="sponsor"
+                             onclick="window.location.href = '{{ $sponsor['link'] }}'">
+                    @endforeach
                 </div>
             </div>
         </div>

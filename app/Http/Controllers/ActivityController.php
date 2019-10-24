@@ -16,8 +16,11 @@
 		 */
 		public function index()
 		{
-
-			return view('activity');
+			$activities = Activity::from('activities as act')
+				->join('users AS us', 'act.user_id', '=', 'us.user_id')
+				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')->take(6)->get();
+			return view('activity', ['activities' => $activities]);
 		}
 
 		/**
@@ -32,6 +35,7 @@
 				->join('masters AS ms', 'act.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->join('studios AS st', 'act.studio_id', '=', 'st.studio_id')
+				->join('achievements AS ach', 'act.achievement_id', '=', 'ach.achievement_id')
 				->where('act.activity_url_name', $name)->first();
 			$activities = Activity::from('activities as act')
 				->join('masters AS ms', 'act.master_id', '=', 'ms.master_id')

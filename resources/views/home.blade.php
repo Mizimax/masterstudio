@@ -126,43 +126,53 @@
         <h3 class="header">Live Activity</h3>
         @include('components.category-interest')
         <div class="activity-story --hover">
-            @php
-                $activitys = [0,1,2,3,4,5,6,7,8,9,10]
-            @endphp
-            @foreach ($activitys as $activity)
+            @foreach ($stories as $story)
+                @php
+                    $story['activity_benefit'] = json_decode($story['activity_benefit'], true);
+                    $story['activity_routine_day'] = str_split($story['activity_routine_day']);
+                    $start = new DateTime($story->activity_start);
+                    $end = new DateTime($story->activity_end);
+                    $story['activity_time_diff'] = $start->diff($end);
+                    $story['activity_day_left'] = $story['activity_time_diff']->m === 0 ? $story['activity_time_diff']->d . ' days' : $story['activity_time_diff']->m . ' months';
+                    $storyCreated = new DateTime($story['story_created_at']);
+                    $now = new DateTime(date("Y-m-d H:i:s"));
+                    $story['story_day_ago'] = $storyCreated->diff($now);
+
+                    $activity['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
+
+                @endphp
                 <div class="activity-wrapper">
                     <div class="activity-card">
                         <div class="video-wrapper">
                             <video class="video lazy" loop muted>
-                                <source data-src="https://maxang.me/activity.mp4"
+                                <source data-src="{{ $story['activity_story_video'] }}"
                                         type="video/mp4" />
                             </video>
                         </div>
 
                         <div class="master-profile">
-                            @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true])
+                            @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true, 'activity' => $story])
                             @endcomponent
                             <div class="image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
+                                <img src="{{ $story['user_pic'] }}" alt="">
                             </div>
                         </div>
 
                         <div class="title-wrapper">
-                            <div class="title">Basic Italian Food</div>
+                            <div class="title">{{ $story['activity_name'] }}</div>
                             <div class="activity-join">
+                                @foreach($activity['users_activity'] as $usersStory)
                                 <div class="participant image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
+                                    <img src="{{ $usersStory['user_pic'] }}"
+                                         alt="{{ $usersStory['user_name'] }}"
+                                         onclick="window.location.href = '/profile/{{ $usersStory['user_id'] }}'">
                                 </div>
-                                <div class="participant image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
-                                <div class="participant image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-                    <div class="location">Yesterday: JAJA Studio</div>
+                    <div class="location">{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}{{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : '' }}
+                        ago: {{ $story['activity_location_name'] }}</div>
                 </div>
             @endforeach
         </div>

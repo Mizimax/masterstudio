@@ -1,5 +1,5 @@
 function getActivityPath() {
-  return '/content/activity/all'
+  return '/content/activity/' + (this.loadCount + 1)
 }
 
 function calculateTimeDuration(secs) {

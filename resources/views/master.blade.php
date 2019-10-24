@@ -214,6 +214,13 @@
           $(this).toggleClass('active')
         })
 
+        $('.master-detail').hover(function () {
+          $(this).children('.activity-detail').fadeIn()
+        }, function () {
+          $(this).children('.activity-detail').fadeOut()
+        })
+
+
 
       })
     </script>

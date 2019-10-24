@@ -18,6 +18,8 @@
 				$table->bigIncrements('category_id');
 				$table->string('category_name');
 				$table->string('category_pic');
+				$table->string('category_bg');
+				$table->string('category_video');
 				$table->timestamps();
 			});
 		}

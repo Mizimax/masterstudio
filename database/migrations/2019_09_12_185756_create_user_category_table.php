@@ -20,6 +20,7 @@
 				$table->bigInteger('user_id')->unsigned();
 				$table->bigInteger('user_level')->default(1);
 				$table->bigInteger('user_exp')->default(0);
+				$table->bigInteger('user_hour')->unsigned();
 				$table->timestamps();
 
 				$table->foreign('category_id')->references('category_id')->on('categories');

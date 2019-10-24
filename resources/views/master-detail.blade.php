@@ -30,10 +30,7 @@
                         </div>
                     </div>
                     <div class="activity-story">
-                        @php
-                            $activitys = [0,1,2,3,4,5,6,7,8,9,10]
-                        @endphp
-                        @foreach ($activitys as $activity)
+                        @foreach ($allActivities as $activity)
                             <div class="activity-wrapper">
                                 <div class="activity-card">
                                     <div class="video-wrapper">
@@ -119,20 +116,14 @@
                         <div class="now-activity">
                             <div class="header">Now Activities</div>
                             <div class="content">
-                                @php
-                                    $activities = [0]
-                                @endphp
-                                @include('components.activity-grid-card', ['activities'=>$activities])
+                                @include('components.activity-grid-card', ['size' => 80, 'activities'=>$nowActivities])
                             </div>
 
                         </div>
                         <div class="past-activity">
                             <div class="header">Past Activitie</div>
                             <div class="content">
-                                @php
-                                    $activities = [0,1]
-                                @endphp
-                                @include('components.activity-grid-card', ['activities'=>$activities])
+                                @include('components.activity-grid-card', ['size' => 80, 'activities'=>$pastActivities])
                             </div>
                         </div>
                     </div>
@@ -158,6 +149,12 @@
         var lazyLoadInstance = new LazyLoad({
           elements_selector: '.lazy',
           // ... more custom settings?
+        })
+
+        $('.master-profile').hover(function () {
+          $(this).children('.activity-detail').fadeIn()
+        }, function () {
+          $(this).children('.activity-detail').fadeOut()
         })
       })
     </script>

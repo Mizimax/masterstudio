@@ -79,7 +79,7 @@
                                                             type="video/mp4" />
                                                 </video>
                                             </div>
-
+                                            j
                                             <div class="master-profile">
                                                 @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true])
                                                 @endcomponent
@@ -249,9 +249,6 @@
                 </div>
             </div>
             <div class="activity-grid">
-                @php
-                    $activities = [0,1,2,3,4,5]
-                @endphp
                 @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
             </div>
             <div class="loading-wrapper">

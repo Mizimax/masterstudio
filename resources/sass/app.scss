@@ -170,6 +170,12 @@ button:focus {
 			}
 		}
 
+		.login {
+			@include tablet-up {
+				order: 3;
+			}
+		}
+
 		.user-info-menu {
             font-size: 10px;
 			width: 50px;

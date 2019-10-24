@@ -30,6 +30,6 @@
 		 */
 		public function down()
 		{
-			Schema::dropIfExists('achievements_');
+			Schema::dropIfExists('achievementse');
 		}
 	}

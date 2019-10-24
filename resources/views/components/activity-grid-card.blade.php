@@ -1,7 +1,6 @@
 @php
-    $size = !empty($size) ? $size : 100;
+    $size = !empty($size) ? $size : 80;
     $activities = !empty($queryActivities) ? $queryActivities : (!empty($activities) ? $activities : []);
-
 @endphp
 @foreach ($activities as $activity)
     @php
@@ -12,7 +11,6 @@
         $end = new DateTime($activity->activity_end);
         $activity['activity_time_diff'] = $start->diff($end);
         $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d . ' days' : $activity['activity_time_diff']->m . ' months';
-
     @endphp
     <div class="activity-card-wrapper">
         <div class="activity-card">
@@ -46,15 +44,15 @@
             </div>
             <div class="overlay"></div>
             <div class="master-profile">
-                @component('components.activity-card', ['noimage'=>true, 'size'=>$size, 'animate'=>true])
+                @component('components.activity-card', ['noimage'=>true, 'size'=>$size, 'animate'=>true, 'activity' => $activity])
                 @endcomponent
                 <div class="image-wrapper" style="width: {{$size/1.2}}px; height: {{$size/1.2}}px">
-                    <img src="/img/profile.jpg" alt="">
+                    <img src="{{ $activity['user_pic'] }}" alt="{{ $activity['master_name'] }}">
                 </div>
             </div>
 
             <div class="title-wrapper">
-                <div class="title">Basic Italian Food</div>
+                <div class="title">{{ $activity['activity_name'] }}</div>
             </div>
         </div>
     </div>

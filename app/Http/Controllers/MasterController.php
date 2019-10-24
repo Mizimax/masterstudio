@@ -2,6 +2,7 @@
 
 	namespace App\Http\Controllers;
 
+	use App\Activity;
 	use Illuminate\Http\Request;
 
 	class MasterController extends Controller
@@ -25,7 +26,19 @@
 		 */
 		public function show($name)
 		{
-			return view('master-detail');
+			$allActivities = Activity::from('activities as act')
+				->join('users AS us', 'act.user_id', '=', 'us.user_id')
+				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')->get();
+			$nowActivities = Activity::from('activities as act')
+				->join('users AS us', 'act.user_id', '=', 'us.user_id')
+				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')->take(1)->get();
+			$pastActivities = Activity::from('activities as act')
+				->join('users AS us', 'act.user_id', '=', 'us.user_id')
+				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')->take(2)->get();
+			return view('master-detail', ['nowActivities' => $nowActivities, 'pastActivities' => $pastActivities, 'allActivities' => $allActivities]);
 		}
 
 		/**

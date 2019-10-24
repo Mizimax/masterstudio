@@ -1,7 +1,14 @@
-@extends('layouts.app')
+@extends('app')
+
+@section('title', 'Register')
+@section('page', 'register')
+
+@section('style')
+    <link rel="stylesheet" href="/css/home.css">
+@endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="margin: 150px auto;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -17,15 +24,17 @@
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
-                                           class="form-control @error('email') is-invalid @enderror"
-                                           name="email" value="{{ old('email') }}" required
+                                           class="form-control @error('user_email') is-invalid @enderror"
+                                           name="user_email" value="{{ old('user_email') }}"
+                                           required
                                            autocomplete="email" autofocus>
 
-                                    @error('email')
+                                    @error('user_email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
+
                                 </div>
                             </div>
 
@@ -35,10 +44,10 @@
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror"
+                                           class="form-control @error('user_password') is-invalid @enderror"
                                            name="password" required autocomplete="current-password">
 
-                                    @error('password')
+                                    @error('user_password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -68,8 +77,8 @@
 
                                     @if (Route::has('password.request'))
                                         <a class="btn btn-link"
-                                           href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                           href="{{ route('register') }}">
+                                            {{ __('Register') }}
                                         </a>
                                     @endif
                                 </div>

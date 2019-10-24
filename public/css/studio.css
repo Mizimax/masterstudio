@@ -11216,6 +11216,12 @@ button:focus {
 	color: white;
 }
 
+@media (min-width: 768px) {
+	.navbar-wrapper .navbar .login {
+		order: 3;
+	}
+}
+
 .navbar-wrapper .navbar .user-info-menu {
 	font-size: 10px;
 	width: 50px;

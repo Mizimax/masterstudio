@@ -11220,6 +11220,12 @@ button:focus {
   color: white;
 }
 
+@media (min-width: 768px) {
+	.navbar-wrapper .navbar .login {
+		order: 3;
+	}
+}
+
 .navbar-wrapper .navbar .user-info-menu {
   font-size: 10px;
 	width: 50px;
@@ -12217,18 +12223,15 @@ button:focus {
   z-index: 1000;
 }
 
-.master-header > .header-content > .master-interest > .master-list > .master-category > .master-content > .master-detail:hover > .activity-detail {
-  width: 340px;
-  height: 440px;
-  padding: 20px;
-}
-
 .master-header > .header-content > .master-interest > .master-list > .master-category > .master-content > .master-detail > .activity-detail {
   color: black;
   position: absolute;
   top: 0;
   left: -20;
   z-index: 999;
+	width: 340px;
+	height: 440px;
+	padding: 20px;
 }
 
 .master-header > .header-content > .master-interest > .master-list > .master-category > .master-content > .master-detail > .image-wrapper {

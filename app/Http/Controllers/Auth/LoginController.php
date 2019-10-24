@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+	protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -37,13 +37,9 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-	/**
-	 * Show current user profile.
-	 *
-	 * @return Illuminate\Http\Response
-	 */
-	public function me()
+	public function username()
 	{
-		return view('profile');
+		return 'user_email';
 	}
+
 }

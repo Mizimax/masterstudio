@@ -12,7 +12,8 @@
 	*/
 
 	Route::get('/', 'HomeController@index');
-	Route::get('/profile', 'Auth\LoginController@me');
+	Route::get('/user/{userId}', 'UserController@show');
+	Route::post('/user/{userId}', 'UserController@follow');
 	Route::get('/activity', 'ActivityController@index');
 	Route::get('/activity/{name}', 'ActivityController@show');
 	Route::get('/master', 'MasterController@index');
@@ -20,6 +21,11 @@
 	Route::get('/studio', 'StudioController@index');
 	Route::get('/studio/{name}', 'StudioController@show');
 	Route::get('/become', 'MasterController@create');
-	Route::get('/content/activity', 'ContentController@activity');
+
+	Route::get('/content/activity/{offset}', 'ContentController@activity');
+	Route::get('/content/timeline/{category}/{userId}', 'ContentController@timeline');
+	Route::get('/content/achievement/{category}/{userId}', 'ContentController@achievement');
+
+	Route::post('/api/category/{categoryId}', 'CategoryController@addInterest');
 
 	Auth::routes();

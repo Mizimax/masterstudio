@@ -11210,6 +11210,12 @@ section.activity-detail-section > .content > .activity-section,
   color: white;
 }
 
+@media (min-width: 768px) {
+	.navbar-wrapper .navbar .login {
+		order: 3;
+	}
+}
+
 .navbar-wrapper .navbar .user-info-menu {
   font-size: 10px;
 	width: 50px;
@@ -12118,6 +12124,12 @@ section.activity-detail-section > .side-sponsor {
 	flex: 1;
 }
 
+@media (max-width: 1100px) {
+	section.activity-detail-section > .side-sponsor {
+		display: none;
+	}
+}
+
 section.activity-detail-section > .side-sponsor > .sponsor {
 	display: block;
 	margin: 0 auto 20px;
@@ -12128,6 +12140,12 @@ section.activity-detail-section > .side-sponsor > .sponsor {
 section.activity-detail-section > .side-advertise {
 	flex: 1;
 	margin: 50px 10px 0;
+}
+
+@media (max-width: 1100px) {
+	section.activity-detail-section > .side-advertise {
+		display: none;
+	}
 }
 
 section.activity-detail-section > .side-advertise > .googlea {
@@ -12141,6 +12159,12 @@ section.activity-detail-section > .side-advertise > .googlea {
 section.activity-detail-section > .content {
 	max-width: 750px;
 	width: 90%;
+}
+
+@media (max-width: 1100px) {
+	section.activity-detail-section > .content {
+		margin: 0 auto;
+	}
 }
 
 section.activity-detail-section > .content > .activity-section {
@@ -12568,6 +12592,7 @@ section.activity-detail-section > .content > .activity-section.\--sponsor > .spo
 }
 
 section.activity-detail-section > .content > .activity-section.\--sponsor > .sponsor-wrapper > .sponsor {
+	cursor: pointer;
 	width: 130px;
 	height: 130px;
 }

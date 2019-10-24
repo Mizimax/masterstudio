@@ -11210,6 +11210,12 @@ button:focus {
   color: white;
 }
 
+@media (min-width: 768px) {
+	.navbar-wrapper .navbar .login {
+		order: 3;
+	}
+}
+
 .navbar-wrapper .navbar .user-info-menu {
   font-size: 10px;
 	width: 50px;
@@ -12038,6 +12044,10 @@ button:focus {
   background: url("/img/Deepsea.jpeg");
   background-size: cover;
   position: relative;
+}
+
+.master-detail-section .activity-detail {
+	height: auto !important;
 }
 
 .master-detail-section > .master-container {

@@ -18,7 +18,7 @@
 				$table->bigIncrements('activity_story_id');
 				$table->bigInteger('activity_id')->unsigned();
 				$table->bigInteger('user_id')->unsigned();
-				$table->string('activity_story_video');
+				$table->text('activity_story_video');
 				$table->timestamps();
 
 				$table->foreign('activity_id')->references('activity_id')->on('activities');

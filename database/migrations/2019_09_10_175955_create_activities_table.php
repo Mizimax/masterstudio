@@ -17,7 +17,7 @@
 			Schema::create('activities', function (Blueprint $table) {
 				$table->bigIncrements('activity_id');
 				$table->bigInteger('studio_id')->unsigned()->nullable();
-				$table->bigInteger('master_id')->unsigned();
+				$table->bigInteger('user_id')->unsigned();
 				$table->bigInteger('category_id')->unsigned();
 				$table->bigInteger('achievement_id')->unsigned();
 				$table->string('activity_video'); //ARRAY
@@ -39,7 +39,7 @@
 				$table->integer('activity_hour');
 				$table->integer('activity_price');
 				$table->integer('activity_max');
-				$table->integer('activity_sponsors'); //ARRAY
+				$table->text('activity_sponsors'); //ARRAY
 				$table->string('activity_location_name');
 				$table->string('activity_location')->nullable();
 				$table->integer('activity_boost_priority')->nullable();
@@ -50,7 +50,7 @@
 				$table->timestamps();
 
 				$table->foreign('studio_id')->references('studio_id')->on('studios')->onDelete('set null');
-				$table->foreign('master_id')->references('master_id')->on('masters');
+				$table->foreign('user_id')->references('user_id')->on('users');
 				$table->foreign('category_id')->references('category_id')->on('categories');
 				$table->foreign('achievement_id')->references('achievement_id')->on('achievements');
 			});

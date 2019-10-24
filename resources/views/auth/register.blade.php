@@ -1,7 +1,14 @@
-@extends('layouts.app')
+@extends('app')
+
+@section('title', 'Register')
+@section('page', 'register')
+
+@section('style')
+    <link rel="stylesheet" href="/css/home.css">
+@endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="margin: 150px auto;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -16,12 +23,12 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text"
-                                           class="form-control @error('name') is-invalid @enderror"
-                                           name="name" value="{{ old('name') }}" required
+                                    <input id="user_name" type="text"
+                                           class="form-control @error('user_name') is-invalid @enderror"
+                                           name="user_name" value="{{ old('user_name') }}" required
                                            autocomplete="name" autofocus>
 
-                                    @error('name')
+                                    @error('user_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -34,12 +41,13 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email"
-                                           class="form-control @error('email') is-invalid @enderror"
-                                           name="email" value="{{ old('email') }}" required
+                                    <input id="user_email" type="email"
+                                           class="form-control @error('user_email') is-invalid @enderror"
+                                           name="user_email" value="{{ old('user_email') }}"
+                                           required
                                            autocomplete="email">
 
-                                    @error('email')
+                                    @error('user_email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -52,11 +60,12 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror"
-                                           name="password" required autocomplete="new-password">
+                                    <input id="user_password" type="password"
+                                           class="form-control @error('user_password') is-invalid @enderror"
+                                           name="user_password" required
+                                           autocomplete="new-password">
 
-                                    @error('password')
+                                    @error('user_password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -70,7 +79,7 @@
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password"
-                                           class="form-control" name="password_confirmation"
+                                           class="form-control" name="user_password_confirmation"
                                            required autocomplete="new-password">
                                 </div>
                             </div>
