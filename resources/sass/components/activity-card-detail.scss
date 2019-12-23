@@ -3,6 +3,7 @@
 	background: rgba(255, 255, 255, 0.9);
 	padding: 10px 15px;
 	position: relative;
+	@include shadow(0px, 0px, 15px, 1px, 0.2);
 
 	&.--animate {
 		width: 0;
@@ -44,6 +45,10 @@
 			> .title {
 				font-size: 18px;
 				font-weight: 300;
+				width: 150px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
 			}
 
 			> .badge {

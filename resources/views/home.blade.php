@@ -10,7 +10,8 @@
 @section('content')
     <section class="video-header">
         <!-- Carousel -->
-        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel"
+             data-interval="60000">
             <!-- Indicators -->
             <ul class="carousel-indicators">
                 @foreach($headActivities as $key => $headVideo)
@@ -29,12 +30,14 @@
 			            $headActivity['activity_routine_day'] = str_split($headActivity['activity_routine_day']);
 			            $start = new DateTime($headActivity->activity_start);
                         $end = new DateTime($headActivity->activity_end);
-                        $headActivity['activity_time_diff'] = $start->diff($end);
+                        $headActivity['activity_time_diff'] = $start->diff($end) ;
 			            $headActivity['activity_day_left'] = $headActivity['activity_time_diff']->m === 0 ? $headActivity['activity_time_diff']->d . ' days' : $headActivity['activity_time_diff']->m . ' months';
                     @endphp
                     <div class="carousel-item {{ $key === 0 ? 'active' : ''}}">
-                        <video class="video video-fluid" autoplay loop muted>
-                            <source src="{{ $headActivity['activity_video'] }}"
+                        <video class="video video-fluid lazy"
+                               style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
+                               autoplay loop muted>
+                            <source data-src="{{ $headActivity['category_video'] }}"
                                     type="video/mp4" />
                         </video>
                         <!-- Content Header -->
@@ -132,7 +135,7 @@
                     $story['activity_routine_day'] = str_split($story['activity_routine_day']);
                     $start = new DateTime($story->activity_start);
                     $end = new DateTime($story->activity_end);
-                    $story['activity_time_diff'] = $start->diff($end);
+                    $story['activity_time_diff'] = $start->diff($end) ;
                     $story['activity_day_left'] = $story['activity_time_diff']->m === 0 ? $story['activity_time_diff']->d . ' days' : $story['activity_time_diff']->m . ' months';
                     $storyCreated = new DateTime($story['story_created_at']);
                     $now = new DateTime(date("Y-m-d H:i:s"));
@@ -159,13 +162,13 @@
                         </div>
 
                         <div class="title-wrapper">
-                            <div class="title">{{ $story['activity_name'] }}</div>
+                            <div class="title" align="left">{{ $story['activity_name'] }}</div>
                             <div class="activity-join">
                                 @foreach($activity['users_activity'] as $usersStory)
                                 <div class="participant image-wrapper">
                                     <img src="{{ $usersStory['user_pic'] }}"
                                          alt="{{ $usersStory['user_name'] }}"
-                                         onclick="window.location.href = '/profile/{{ $usersStory['user_id'] }}'">
+                                         onclick="window.location.href = '/user/{{ $usersStory['user_id'] }}'">
                                 </div>
                                 @endforeach
                             </div>
@@ -219,5 +222,13 @@
     <script src="https://css-tricks.com/examples/HorzScrolling/jquery.mousewheel.js"></script>
     <script src="/js/activity.js"></script>
     <script src="/js/home-page.js"></script>
-    <script src="/js/category.js"></script>
+
+    <script>
+      $('#carousel').on('slide.bs.carousel', function () {
+        $('.carousel-item.active > .video').get(0).pause()
+      })
+      $('#carousel').on('slid.bs.carousel', function () {
+        $('.carousel-item.active > .video').get(0).play()
+      })
+    </script>
 @endsection

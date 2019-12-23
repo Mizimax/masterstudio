@@ -5,6 +5,12 @@
 
 @section('style')
     <link rel="stylesheet" href="/css/master-detail.css">
+    <style>
+        #map {
+            margin-top: 20px;
+            height: 500px !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -20,38 +26,51 @@
                 </div>
                 <div class="master-profile-card">
                     <div class="master-info" align="center">
-                        <div class="title">Mistrio Waso</div>
-                        <div class="badge">Italian Food Master</div>
+                        <div class="title">{{ $master['master_name'] }}</div>
+                        <div class="badge">{{ $master['category_name'] }} Master</div>
                         <div class="master-badge">
-                            <div class="badge --basic">Most basic recommended</div>
-                            <div class="badge --advance" style="margin-top: 5px">Most advance
-                                recommended
-                            </div>
+                            @if($master['master_most_recommend'] !== 0)
+                                <div class="badge {{ $master['master_most_recommend'] === 1 ? '--basic' : '--advance' }}">
+                                    Most {{ $master['master_most_recommend'] === 1 ? 'basic' : 'advance' }}
+                                    recommended
+                                </div>
+                            @endif
+                            @if($master['master_recommend'] !== 0)
+                                <div class="badge {{ $master['master_recommend'] === 1 ? '--basic' : '--advance' }}"
+                                     style="margin-top: 5px">
+                                    {{ $master['master_recommend'] === 1 ? 'basic' : 'advance' }}
+                                    recommended
+                                </div>
+                            @endif
                         </div>
                     </div>
-                    <div class="activity-story">
-                        @foreach ($allActivities as $activity)
+                    <div class="activity-story" style="margin-top:0;">
+                        @if($stories->isEmpty())
+                            <div class="no-story">No story now.</div>
+                        @endif
+                        @foreach ($stories as $story)
+                            @php
+                                $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
+                            @endphp
                             <div class="activity-wrapper">
                                 <div class="activity-card">
                                     <div class="video-wrapper">
                                         <video class="video lazy" loop muted>
-                                            <source data-src="https://maxang.me/activity.mp4"
+                                            <source data-src="{{ $story['activity_story_video'] }}"
                                                     type="video/mp4" />
                                         </video>
                                     </div>
 
                                     <div class="title-wrapper">
-                                        <div class="title">Basic Italian Food</div>
+                                        <div class="title">{{ $story['activity_name'] }}</div>
                                         <div class="activity-join">
-                                            <div class="participant image-wrapper">
-                                                <img src="/img/profile.jpg" alt="">
-                                            </div>
-                                            <div class="participant image-wrapper">
-                                                <img src="/img/profile.jpg" alt="">
-                                            </div>
-                                            <div class="participant image-wrapper">
-                                                <img src="/img/profile.jpg" alt="">
-                                            </div>
+                                            @foreach($story['users_activity'] as $usersStory)
+                                                <div class="participant image-wrapper">
+                                                    <img src="{{ $usersStory['user_pic'] }}"
+                                                         alt="{{ $usersStory['user_name'] }}"
+                                                         onclick="window.location.href = '/user/{{ $usersStory['user_id'] }}'">
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -64,17 +83,27 @@
                                 <button class="join-button">Join<br>Activity</button>
                                 <span>1 Activity available</span>
                             </div>
-                            <div class="follow-wrapper">
-                                <div class="follow-icon">
-                                    <img src="/img/icon/caret-down-solid.svg" alt="Follow ..."
-                                         class="svg">
+                            @if(!$me)
+                                @if(!$isFollower)
+                                    <form id="followMaster" action="{{ url()->current() }}"
+                                          method="post">
+                                        @csrf
+                                    </form>
+                                @endif
+                                <div class="follow-wrapper"
+                                     onclick="$('#followMaster').submit()">
+                                    <div class="follow-icon {{ $isFollower ? 'followed' : '' }}">
+                                        <img src="/img/icon/footstep.svg" alt="Follow ..."
+                                             class="svg">
+                                    </div>
+                                    <div class="text"> {{ $isFollower ? 'Followed' : 'Follow' }}</div>
                                 </div>
-                                <div class="text">Follow</div>
-                            </div>
+
+                            @endif
+
                         </div>
-                        <div class="core-actions">
+                        <div class="core-actions" style="margin-top: 70px">
                             <button class="request-button">Request<br>custom activity</button>
-                            <button class="view-profile-button">view profile</button>
                         </div>
                     </div>
                 </div>
@@ -84,21 +113,21 @@
                     <div class="header">
                         Disciples
                     </div>
-                    <div class="detail">700</div>
+                    <div class="detail">{{ number_format($master['master_disciple']) }}</div>
                 </div>
                 <div class="master-stat">
                     <div class="header">
                         Followers
                     </div>
                     <div class="detail --start">
-                        2,000
+                        {{ number_format($master['master_follower']) }}
                     </div>
                 </div>
                 <div class="master-stat">
                     <div class="header">
                         Mastered
                     </div>
-                    <div class="detail">4</div>
+                    <div class="detail">{{ number_format($master['master_mastered']) }}</div>
                 </div>
             </div>
             <div class="nav-tab nav nav-pill">
@@ -116,27 +145,49 @@
                         <div class="now-activity">
                             <div class="header">Now Activities</div>
                             <div class="content">
-                                @include('components.activity-grid-card', ['size' => 80, 'activities'=>$nowActivities])
+                                @if($nowActivities->isEmpty())
+                                    <div class="no-act">No activity now.</div>
+                                @endif
+                                @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$nowActivities])
                             </div>
 
                         </div>
                         <div class="past-activity">
                             <div class="header">Past Activitie</div>
                             <div class="content">
-                                @include('components.activity-grid-card', ['size' => 80, 'activities'=>$pastActivities])
+                                @if($nowActivities->isEmpty())
+                                    <div class="no-act">No activity now.</div>
+                                @endif
+                                @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$pastActivities])
                             </div>
                         </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="gallery">
-                    <div class="activity-wrapper d-flex pt-4">
-                        <img class="mr-3" src="/img/Deepsea.jpeg" width="200" height="200" alt="">
-                        <img class="mx-3" src="/img/Deepsea.jpeg" width="200" height="200" alt="">
-                        <img class="mx-3" src="/img/Deepsea.jpeg" width="200" height="200" alt="">
+                    <div class="gallery-wrapper">
+                        <div class="gallery-flex">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                        </div>
+                        <div class="gallery-flex --second">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                            <img src="/img/Deepsea.jpeg" class="image">
+                        </div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="studio">studio</div>
-                <div role="tabpanel" class="tab-pane fade" id="suggest">suggest</div>
+                <div role="tabpanel" class="tab-pane fade" id="studio">
+                    @include('components.map', ['active' => true])
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="suggest">
+                </div>
             </div>
         </div>
     </section>
@@ -155,6 +206,12 @@
           $(this).children('.activity-detail').fadeIn()
         }, function () {
           $(this).children('.activity-detail').fadeOut()
+        })
+
+        $('.activity-wrapper .video').hover(function () {
+          $(this).get(0).play()
+        }, function () {
+          $(this).get(0).pause()
         })
       })
     </script>

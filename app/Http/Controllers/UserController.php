@@ -2,11 +2,12 @@
 
 	namespace App\Http\Controllers;
 
+	use App\ActivityStory;
 	use App\Follow;
-	use App\UserActivity;
-	use Illuminate\Http\Request;
-	use Auth;
 	use App\User;
+	use App\UserActivity;
+	use Auth;
+	use Illuminate\Http\Request;
 
 	class UserController extends Controller
 	{
@@ -21,14 +22,20 @@
 
 			$isFollower = false;
 			$userme = Auth::user();
-			if ($userme['user_id'] == $userId) {
+			if ($userme['user_id'] === $userId) {
 				return redirect('/user/me');
+			}
+			if ($userme['master_id'] === $userId || $userId === 'me') {
+				return redirect('/master/me');
 			}
 			if ($userId === 'me') {
 				$user = $userme;
 				$me = true;
 			} else {
 				$user = User::where('user_id', $userId)->first();
+				if (!empty($user['master_id'])) {
+					return redirect('/master/' . $user['master_id']);
+				}
 				$me = false;
 			}
 			if (!$user) {
@@ -68,5 +75,37 @@
 				return back()->withErrors(['error', "Can't follow this user"]);
 			}
 			return back();
+		}
+
+
+		protected function more()
+		{
+			$data = Request::all();
+			User::where('user_id', Auth::id())
+				->update([
+					'user_goal' => $data['user_goal'],
+					'user_base_in_th' => $data['user_base_in_th'],
+					'user_interest_type' => $data['user_interest_type'],
+					'user_prof_rate' => $data['user_prof_rate']
+				]);
+			return redirect('/');
+		}
+
+		protected function story(Request $request, $id)
+		{
+			$fileName = time() . '.webm';
+
+			$request->file('video-blob')->move(public_path('video/upload'), $fileName);
+
+			ActivityStory::create([
+				'activity_id' => $id,
+				'user_id' => \Auth::id(),
+				'activity_story_video' => '/video/upload/' . $fileName
+			]);
+
+			return response()->json([
+				'status' => 200,
+				'message' => 'Upload success.'
+			], 200);
 		}
 	}

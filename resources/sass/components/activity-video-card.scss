@@ -29,8 +29,8 @@
 		z-index: 9;
 
 		> .activity-detail {
-			width: 250px;
-			height: 275px;
+			//width: 250px;
+			height: auto;
 			padding: 5px 10px;
 		}
 
@@ -69,6 +69,7 @@
 				border-radius: 50%;
 				border: 1px solid #fff;
 				position: relative;
+				cursor: pointer;
 				@extend .shadow;
 
 				> img {

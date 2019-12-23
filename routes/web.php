@@ -13,19 +13,31 @@
 
 	Route::get('/', 'HomeController@index');
 	Route::get('/user/{userId}', 'UserController@show');
-	Route::post('/user/{userId}', 'UserController@follow');
 	Route::get('/activity', 'ActivityController@index');
 	Route::get('/activity/{name}', 'ActivityController@show');
 	Route::get('/master', 'MasterController@index');
-	Route::get('/master/{name}', 'MasterController@show');
+	Route::get('/master/{id}', 'MasterController@show');
 	Route::get('/studio', 'StudioController@index');
-	Route::get('/studio/{name}', 'StudioController@show');
+	Route::get('/studio/{id}', 'StudioController@show');
 	Route::get('/become', 'MasterController@create');
 
-	Route::get('/content/activity/{offset}', 'ContentController@activity');
-	Route::get('/content/timeline/{category}/{userId}', 'ContentController@timeline');
-	Route::get('/content/achievement/{category}/{userId}', 'ContentController@achievement');
+	Route::group(['middleware' => 'auth'], function () {
+		Route::post('/user/{userId}', 'UserController@follow');
+		Route::post('/master/{userId}', 'MasterController@follow');
+		Route::post('/studio/{id}', 'StudioController@follow');
+		Route::post('/add/more', 'UserController@more');
+		Route::get('/content/timeline/{category}/{userId}', 'ContentController@timeline');
+		Route::get('/content/allActivity', 'ContentController@allActivity');
+		Route::get('/content/follow/master', 'ContentController@follow');
+		Route::post('/api/category/{categoryId}', 'CategoryController@addInterest');
+		Route::post('/studio/{id}/review', 'StudioController@review');
+		Route::post('/activity/{id}/story', 'UserController@story');
+		Route::post('/activity/{id}/comment', 'ActivityController@comment');
+	});
 
-	Route::post('/api/category/{categoryId}', 'CategoryController@addInterest');
+	Route::get('/content/activity/{offset}', 'ContentController@activity');
+	Route::get('/content/achievement/{category}/{userId}', 'ContentController@achievement');
+	Route::get('/content/map', 'ContentController@map');
+	Route::get('/content/studio/{id}/master', 'ContentController@studioMaster');
 
 	Auth::routes();

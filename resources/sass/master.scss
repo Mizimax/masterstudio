@@ -6,7 +6,6 @@
 @import 'components/activity-card-detail';
 @import 'components/master-card';
 @import 'components/category-interest';
-@import 'components/master-action';
 
 .master-header {
     position: relative;
@@ -20,7 +19,7 @@
 
     > .header-content {
         text-align: center;
-        max-width: 700px;
+	    max-width: 750px;
         width: 100%;
         padding: 0 20px;
         color: white;
@@ -37,6 +36,15 @@
             display: flex;
             text-align: center;
             margin-top: 30px;
+	        position: relative;
+
+	        > .svg {
+		        position: absolute;
+		        top: 10px;
+		        left: 17px;
+		        width: 25px;
+		        height: 25px;
+	        }
 
             > .search-box {
                 flex: 1;
@@ -45,6 +53,7 @@
                 color: white;
                 padding: 10px 20px;
                 outline: none;
+	            padding-left: 50px;
                 @extend .input-transparent;
             }
 
@@ -92,6 +101,7 @@
 
                         > .master-detail {
                             position: relative;
+	                        flex: 1;
 
                             &.right > .activity-detail {
                                 right: -20px;
@@ -143,17 +153,27 @@
                             }
 
                             > .name {
+	                            white-space: nowrap;
+	                            width: 120px;
+	                            overflow: hidden;
+	                            text-overflow: ellipsis;
                                 margin-top: 85px;
                             }
 
                             > .badge {
-                                display: block;
-                                background: orange;
-                                color: black;
-                                font-size: 6px;
+	                            display: inline-block;
+	                            color: white;
+	                            font-size: 10px;
                                 border-radius: 10px;
                                 padding: 5px;
-                                font-weight: bold;
+
+	                            &.--rec {
+		                            background: #f785c1;
+	                            }
+
+	                            &.--most {
+		                            background: $primary;
+	                            }
                             }
                         }
                     }
@@ -202,6 +222,13 @@
                 align-items: center;
                 height: 50px;
 
+	            > .svg {
+		            position: absolute;
+		            left: 15px;
+		            width: 20px;
+		            height: 20px;
+	            }
+
                 > .search-box {
                     margin: 0 20px;
                     width: 100%;
@@ -220,132 +247,5 @@
 		    height: 107px;
             z-index: 5;
 	    }
-
-        > .master-profile-wrapper {
-            margin-bottom: 40px;
-
-            > .master-profile {
-                display: flex;
-                justify-content: space-evenly;
-                max-width: 1100px;
-                width: 100%;
-                margin: 0 auto;
-                padding: 0 20px;
-
-                .your-activity-timeline {
-                    position: relative;
-                    display: flex;
-                    background: white;
-
-                    > .image-container {
-                        padding-left: 50px;
-
-                        > .your-image {
-                            position: absolute;
-                            top: 50%;
-                            left: 0;
-                            z-index: 3;
-                            transform: translateY(-50%);
-                        }
-                    }
-
-                    > .your-info {
-                        z-index: 2;
-                        background: white;
-                        border-radius: 15px;
-                        padding: 20px;
-                        padding-left: 90px;
-                        @include shadow(0px, 0px, 15px, 1px, 0.17);
-
-                        > * {
-                            margin: 5px 0;
-                        }
-
-                        span {
-                            display: block;
-                        }
-
-                        > .name {
-                            font-size: 20px;
-                            font-style: italic;
-                        }
-
-                        > .category {
-                            border-radius: 20px;
-                            border: 1px solid #000;
-                            font-size: 13px;
-                        }
-
-                        > .master-stat {
-                            border-radius: 20px;
-                            margin: 0 5px;
-	                        padding: 5px 0;
-                            text-align: center;
-                            cursor: pointer;
-
-                            &:hover {
-                                background-color: $primary;
-                                color: white;
-
-	                            > .header {
-		                            color: white;
-	                            }
-                            }
-
-                            > .header {
-                                font-size: 10px;
-                                color: $primary;
-                            }
-
-                            > .detail {
-                                font-size: 20px;
-                                font-weight: bold;
-                            }
-                        }
-                    }
-                }
-
-                > .master-video {
-                    flex: 1;
-                    position: relative;
-                    cursor: pointer;
-
-                    > .video-wrapper {
-                        position: absolute;
-                        right: 0;
-                        top: 0;
-                        z-index: 1;
-                        width: 102%;
-                        height: 100%;
-
-                        > video {
-                            width: 100%;
-                            height: 100%;
-                            display: block;
-                            border-radius: 0 20px 20px 0;
-                            object-fit: cover;
-                        }
-
-                        > .play-wrapper {
-                            position: absolute;
-                            left: 43%;
-                            top: 50%;
-                            width: 60px;
-                            height: 60px;
-                            transform: translate(-50%, -50%);
-
-                            > .svg {
-                                color: white;
-                            }
-                        }
-                    }
-
-                    > .overlay {
-                        border-radius: 20px;
-                        background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.5) 100%);
-                    }
-                }
-            }
-        }
     }
 }

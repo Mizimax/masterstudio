@@ -1,7 +1,7 @@
 <!-- Activity Detail -->
 @php
     $size = !empty($size) ? $size : 100;
-    $data = [1];
+    $data = !empty($data) ? $data : [];
 @endphp
 @if(!empty($data))
     <div class="activity-detail {{!empty($animate) ? '--fade' : '' }} justify-content-between flex-wrap">
@@ -12,12 +12,12 @@
             @endif
         </div>
         <div class="title-wrapper">
-            <div class="title">Mistrio Waso</div>
-            <div class="badge">Italian food master</div>
+            <div class="title">{{ $data['master_name'] }}</div>
+            <div class="badge">{{ $data['category_name'] }} master</div>
         </div>
         <div class="follow-wrapper">
             <div class="follow-icon">
-                <img src="/img/icon/caret-down-solid.svg" alt="Follow ..." class="svg">
+                <img src="/img/icon/footstep.svg" alt="Follow ..." class="svg">
             </div>
             <div class="text">Follow</div>
         </div>
@@ -27,49 +27,56 @@
                 <div class="header">
                     Disciples
                 </div>
-                <div class="detail">700</div>
+                <div class="detail">{{ $data['master_disciple'] }}</div>
             </div>
             <div class="master-stat">
                 <div class="header">
                     Followers
                 </div>
                 <div class="detail --start">
-                    2,000
+                    {{ $data['master_follower'] }}
                 </div>
             </div>
             <div class="master-stat">
                 <div class="header">
                     Mastered
             </div>
-                <div class="detail">4</div>
+                <div class="detail">{{ $data['master_mastered'] }}</div>
         </div>
     </div>
         <div class="activity-story">
             @php
-                $activitys = [0,1,2,3,4,5,6,7,8,9,10]
+                $stories = \App\ActivityStory::from('activity_stories as as')
+				->join('activities as act', 'as.activity_id', 'act.activity_id')
+				->where('act.user_id', $data['user_id'])
+				->get();
             @endphp
-            @foreach ($activitys as $activity)
+            @if($stories->isEmpty())
+                <div class="no-act" align="center">No activity now.</div>
+            @endif
+            @foreach ($stories as $story)
+                @php
+                    $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
+                @endphp
                 <div class="activity-wrapper">
                     <div class="activity-card">
                         <div class="video-wrapper">
                             <video class="video lazy" loop muted>
-                                <source data-src="https://maxang.me/activity.mp4"
+                                <source data-src="{{ $story['activity_story_video'] }}"
                                         type="video/mp4" />
                             </video>
                         </div>
 
                         <div class="title-wrapper">
-                            <div class="title">Basic Italian Food</div>
+                            <div class="title">{{ $story['activity_name'] }}</div>
                             <div class="activity-join">
-                                <div class="participant image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
-                                <div class="participant image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
-                                <div class="participant image-wrapper">
-                                    <img src="/img/profile.jpg" alt="">
-                                </div>
+                                @foreach($story['users_activity'] as $usersStory)
+                                    <div class="participant image-wrapper">
+                                        <img src="{{ $usersStory['user_pic'] }}"
+                                             alt="{{ $usersStory['user_name'] }}"
+                                             onclick="window.location.href = '/user/{{ $usersStory['user_id'] }}'">
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -78,7 +85,9 @@
         </div>
         <div class="button-wrapper my-1" align="center">
             <button class="button mr-2">Request<br>custom activity</button>
-            <button class="button ml-2" onclick="window.location='/master/1'">view profile</button>
+            <button class="button ml-2"
+                    onclick="window.location='/master/{{ $data['master_id'] }}'">view profile
+            </button>
     </div>
 </div>
 @endif

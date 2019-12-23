@@ -30,11 +30,13 @@
                         {{--                            <img src="/img/icon/caret-down-solid.svg" alt="Follow ..." class="svg">--}}
                         {{--                        </div>--}}
                         @if(!$me)
-                            <form action="{{ url()->current() }}" method="post">
-                                @csrf
-                                <button class="follow-btn {{ $isFollower ? 'followed' : '' }}">{{ $isFollower ? 'Followed' : '+ Follow' }}</button>
-                            </form>
-                        @endif
+                            @if(!$isFollower)
+                                <form action="{{ url()->current() }}" method="post">
+                                    @endif
+                                    @csrf
+                                    <button class="follow-btn {{ $isFollower ? 'followed' : '' }}">{{ $isFollower ? 'Followed' : '+ Follow' }}</button>
+                                </form>
+                            @endif
                     </div>
                     <div class="master-stat-wrapper">
                         <div class="master-stat">
@@ -59,10 +61,10 @@
                 </div>
             </div>
             @if($isFollower)
-                <div class="profile-card-wrapper" style="display: block">
+                <div class="profile-card-wrapper --timeline" style="display: block">
                     <div class="header-tab">
-                        @include('components.category-interest', ['active' => true, 'me' => $me])
-                        <div class="achievement-tab">
+                        @include('components.category-interest', ['active' => true, 'me' => $me ? 1 : 2])
+                        <div class="achievement-tab d-none">
                             <div class="achievement">Achievement</div>
                             <div id="achievement" class="d-flex flex-grow-1"></div>
                         </div>
@@ -72,7 +74,8 @@
             @endif
             <div class="profile-card-wrapper" style="display: block">
                 <div class="nav-tab nav nav-pill">
-                    <a class="tab-link active" href="#activity" role="tab" data-toggle="tab">User
+                    <a class="tab-link active" href="#activity" role="tab"
+                       data-toggle="tab">{{ $me ? 'Your' : 'User' }}
                         Activities</a>
                     <a class="tab-link" href="#gallery" role="tab" data-toggle="tab">Gallery</a>
                     <a class="tab-link" href="#studio" role="tab" data-toggle="tab">Visited</a>
@@ -86,30 +89,42 @@
                             <div class="now-activity">
                                 <div class="header">Now Activities</div>
                                 <div class="content">
-                                    @include('components.activity-grid-card', ['activities'=>$nowActivities, 'size' => 80])
+                                    @include('components.activity-grid-card', ['activities'=>$nowActivities, 'size' => 80, 'nohover' => '55'])
                                 </div>
 
                             </div>
                             <div class="past-activity">
                                 <div class="header">Past Activitie</div>
                                 <div class="content">
-                                    @include('components.activity-grid-card', ['activities'=>$pastActivities, 'size' => 80])
+                                    @include('components.activity-grid-card', ['activities'=>$pastActivities, 'size' => 80, 'nohover' => '55'])
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="gallery">
-                        <div class="activity-wrapper d-flex pt-4">
-                            <img class="mr-3" src="/img/Deepsea.jpeg" width="200" height="200"
-                                 alt="">
-                            <img class="mx-3" src="/img/Deepsea.jpeg" width="200" height="200"
-                                 alt="">
-                            <img class="mx-3" src="/img/Deepsea.jpeg" width="200" height="200"
-                                 alt="">
+                    <div role="tabpanel" class="tab-pane fade in" id="gallery">
+                        <div class="gallery-wrapper">
+                            <div class="gallery-flex">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                            </div>
+                            <div class="gallery-flex --second">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                                <img src="/img/Deepsea.jpeg" class="image">
+                            </div>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="studio">studio</div>
-                    <div role="tabpanel" class="tab-pane fade" id="suggest">suggest</div>
+                    <div role="tabpanel" class="tab-pane fade" id="studio">
+                        @include('components.map', ['active' => true, 'me' => $me ? 1 : 2])
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="suggest"></div>
                 </div>
             </div>
         </div>
@@ -124,6 +139,42 @@
         var lazyLoadInstance = new LazyLoad({
           elements_selector: '.lazy',
           // ... more custom settings?
+        })
+
+        $('.add-interest-activity > .search-dropdown > .search-result').click(function () {
+          var categoryName = $(this).children('.category').text()
+          var categoryPic = $(this).children('.svg')[0].outerHTML
+          var categoryId = parseInt($(this).children('.category-id').val(), 10)
+
+          $.ajax({
+            url: '/api/category/' + categoryId,
+            type: 'post',
+            dataType: 'json',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+          })
+
+          var html = `
+       <div class="interest-activity" tabindex="-1" onclick="$(this).toggleClass('active')">
+            <div class="icon">
+                ${categoryPic}
+            </div>
+            <div class="name">${categoryName}</div>
+       </div>
+    `
+
+          MasterStudio.myCategory = { categoryId, categoryName, categoryPic }
+          $('.category-interest > .interest-group').append(html)
+
+          if ($(this).parent().children().length !== 1) {
+            $(this).remove()
+          } else {
+            $(this).parent().text('You already selected all categories.')
+          }
+
         })
 
         $.ajax({
@@ -148,11 +199,12 @@
           },
           error: function (error) {
             console.log(error)
+            $('.profile-card-wrapper.--timeline').addClass('d-none')
           },
         })
 
         $.ajax({
-          url: 'http://localhost/content/achievement/1' + '{{ $user['user_id'] }}',
+          url: 'http://localhost/content/achievement/1/' + '{{ $user['user_id'] }}',
           type: 'get',
           processData: false,
           contentType: 'application/json',
@@ -160,10 +212,16 @@
             '_token': $('meta[name="csrf-token"]').attr('content'),
           }),
           success: function (data) {
+
             $('#achievement').html(data)
+            $('#achievement').parent().removeClass('d-none')
+
           },
           error: function (error) {
             console.log(error)
+            $('#achievement').html('')
+            $('#achievement').parent().addClass('d-none')
+            $('.category-interest')
           },
         })
 

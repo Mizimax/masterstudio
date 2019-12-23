@@ -22,6 +22,10 @@
 				.cls-1 {
 					fill: white;
 				}
+
+				#Layer_1 {
+					fill: white !important;
+				}
 			}
 		}
 
@@ -34,6 +38,10 @@
 			.cls-1 {
 				fill: white !important;
 			}
+
+			#Layer_1 {
+				fill: white !important;
+			}
 		}
 
         > .icon {
@@ -41,6 +49,7 @@
             width: 50px;
             height: 50px;
 	        padding: 10px;
+	        margin: 0 auto;
             border: 2px solid #888;
 	        transition: 0.5s background-color;
 
@@ -52,6 +61,10 @@
 	        .cls-1 {
 		        fill: $primary;
             }
+
+	        #Layer_1 {
+		        fill: $primary;
+	        }
         }
 
         > .name {
@@ -82,10 +95,14 @@
 	    > .icon {
 		    background: $primary;
             border: none;
-		    padding: 15px;
+		    padding: 12px;
             @include shadow(5px, 5px, 15px, 0px, 0.2);
 
 		    .cls-1 {
+			    fill: white;
+		    }
+
+		    #Layer_1 {
 			    fill: white;
 		    }
 	    }
@@ -141,6 +158,10 @@
 			    }
 
 			    .cls-1 {
+				    fill: $primary;
+			    }
+
+			    #Layer_1 {
 				    fill: $primary;
 			    }
 		    }

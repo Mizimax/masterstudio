@@ -18,8 +18,11 @@
 				$table->bigIncrements('user_activity_id');
 				$table->bigInteger('activity_id')->unsigned();
 				$table->bigInteger('user_id')->unsigned();
-				// 0 =
+				// 0 = now, 1 = pass
 				$table->tinyInteger('user_activity_status')->default(0);
+				// 0 = no pay/interest, 1 pay
+				$table->tinyInteger('user_activity_paid')->default(0);
+
 				$table->timestamps();
 
 				$table->foreign('activity_id')->references('activity_id')->on('activities');

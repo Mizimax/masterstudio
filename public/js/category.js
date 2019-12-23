@@ -1,5 +1,4 @@
-$(document).ready(function () {
-
+var categoryInit = function () {
   $('.add-interest-activity > .search-dropdown > .search-result').click(function () {
     var categoryName = $(this).children('.category').text()
     var categoryPic = $(this).children('.svg')[0].outerHTML
@@ -39,5 +38,8 @@ $(document).ready(function () {
   $('.interest-activity').click(function () {
     $(this).toggleClass('active')
   })
+}
 
+$(document).ready(function () {
+  categoryInit()
 })

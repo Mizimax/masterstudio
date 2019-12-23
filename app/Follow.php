@@ -8,6 +8,6 @@
 	{
 		//
 		protected $fillable = [
-			'following_id', 'follower_id'
+			'following_id', 'follower_id', 'follow_type', 'studio_id'
 		];
 	}

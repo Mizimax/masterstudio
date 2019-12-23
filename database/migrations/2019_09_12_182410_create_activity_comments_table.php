@@ -20,8 +20,8 @@
 				$table->bigInteger('user_id')->unsigned();
 				$table->text('comment_text');
 				$table->integer('comment_agree')->default(0);
-				$table->enum('comment_rate', ['most recommended', 'recommended']);
-				$table->string('comment_pic'); //Array
+				$table->enum('comment_rate', ['most recommended', 'recommended', 'normal'])->default('normal');
+				$table->text('comment_pic')->default([]); //Array
 				$table->timestamps();
 
 				$table->foreign('activity_id')->references('activity_id')->on('activities');

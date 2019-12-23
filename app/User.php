@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-	    'user_name', 'user_email', 'user_password',
+	    'user_name', 'user_email', 'user_password', 'user_birth'
     ];
 
     /**
@@ -44,13 +44,5 @@ class User extends Authenticatable
 	{
 		return $this->user_password;
 	}
-//
-//	public function getEmailAttribute() {
-//		return $this->attributes['user_email'];
-//	}
-//
-//	public function setEmailAttribute($value) {
-//		$this->attributes['user_email'] = $value;
-//	}
 
 }

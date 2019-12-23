@@ -54,9 +54,9 @@
 			}
 
 			> .tab-content {
-				padding: 10px 0 100px;
 
 				> #activity {
+					padding: 10px 0 50px;
 					> .activity-wrapper {
 						display: flex;
 
@@ -78,6 +78,33 @@
 						.header {
 							padding: 10px 0;
 							border-bottom: 1px solid black;
+						}
+					}
+				}
+
+				> #gallery {
+					padding: 20px 0 20px;
+
+					> .gallery-wrapper {
+						position: relative;
+						z-index: 999;
+						margin: 0 auto;
+						overflow-x: auto;
+						width: 100%;
+						max-width: 580px;
+
+						> .gallery-flex {
+							display: flex;
+
+							&.--second {
+								> .image {
+									height: 160px;
+								}
+							}
+
+							> .image {
+								height: 140px;
+							}
 						}
 					}
 				}
@@ -178,6 +205,7 @@
 						@extend .shadow;
 
 						&.followed {
+							cursor: auto;
 							background: rgba(241, 78, 166, 0.7);
 						}
 					}

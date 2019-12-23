@@ -11,6 +11,7 @@ function calculateTimeDuration(secs) {
   return min + ':' + sec
 }
 
+
 $(document).ready(function () {
 
   var mediaStream
@@ -53,20 +54,29 @@ $(document).ready(function () {
       }
     })
 
+    navigator.getUserMedia = (navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia ||
+      navigator.msGetUserMedia)
+
     navigator.getUserMedia({
         video: true,
         audio: true,
       },
       function (stream) {
-        let recorder = RecordRTC(stream, {
+        var recorder = RecordRTC(stream, {
           type: 'video',
         })
         mediaStream = stream
-        $('.video-preview > video')[0].srcObject = stream
+        var video = $('.video-preview > video')[0]
+        video.srcObject = stream
+
+
         $('.record-btn').off('click').on('click', function () {
             console.log('record')
             if (!MasterStudio.videoPreview.play) {
               recorder.startRecording()
+              $('#upload-btn').addClass('d-none')
               $(this).text('Stop recording...')
 
               var sec = 0
@@ -78,7 +88,39 @@ $(document).ready(function () {
             } else {
               recorder.stopRecording(function () {
                 let blob = recorder.getBlob()
-                invokeSaveAsDialog(blob)
+                // we need to upload "File" --- not "Blob"
+                var fileObject = new File([blob], 'video', {
+                  type: 'video/mp4',
+                })
+
+                var URL = window.URL || window.webkitURL
+                var src = URL.createObjectURL(fileObject)
+
+                var video = $('.video-preview > video')[0]
+                video.src = src
+
+                $('#upload-btn').removeClass('d-none')
+
+                $('#upload-btn').off('click').on('click', function () {
+                  var formData = new FormData()
+                  formData.append('video-blob', fileObject)
+                  formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
+
+                  $.ajax({
+                    url: '/activity/' + $('#activity-story').val() + '/story',
+                    type: 'post',
+                    headers: {
+                      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                    },
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                      window.location.reload()
+                    },
+                  })
+                })
+
               })
               $(this).text('Start recording')
               clearInterval(countup)

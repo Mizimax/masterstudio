@@ -21,7 +21,8 @@
                         ];
 @endphp
 @if(!empty($activity))
-    <div class="activity-detail {{!empty($animate) ? '--fade' : '' }} justify-content-between flex-wrap">
+    <div class="activity-detail {{!empty($animate) ? '--fade' : '' }} justify-content-between flex-wrap"
+         style="max-width: 290px">
         <div class="activity-title" style="margin-left: 5px">
             <div class="image-wrapper"
                  style="margin-top: -{{ $size/2.1 }}px; width: {{ $size }}px; height: {{ $size }}px">
@@ -81,8 +82,15 @@
                 </div>
             </div>
             <div class="badge-wrapper">
-                <div class="badge mr-2">{{ $activity['activity_day_left'] }} activity</div>
-                <div class="badge">Basic - {{ $activity['activity_difficult'] }}</div>
+                <div class="badge mr-2">
+                    @if($activity['activity_time_type'] === 1)
+                        Routine
+                    @else
+                        {{ $activity['activity_day_left'] }}
+                    @endif
+                    activity
+                </div>
+                <div class="badge">Difficult - {{ $activity['activity_difficult'] }}</div>
             </div>
         </div>
     </div>

@@ -17,8 +17,8 @@
         $activity['activity_routine_day'] = str_split($activity['activity_routine_day']);
         $start = new DateTime($activity->activity_start);
         $end = new DateTime($activity->activity_end);
-        $activity['activity_time_diff'] = $start->diff($end);
-        $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d . ' days' : $activity['activity_time_diff']->m . ' months';
+        $activity['activity_time_diff'] = $start->diff($end) ;
+        $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d + 1 . ' days' : $activity['activity_time_diff']->m . ' months';
     @endphp
     <section class="activity-header">
         <!-- Carousel -->
@@ -47,8 +47,9 @@
             <div class="activity-header-detail">
                 @include('components/activity-card', ['size' => 80])
                 <div class="activity-action">
-                    <div class="price">THB {{ $activity['activity_price'] }}</div>
-                    <button class="join-button">Join activity</button>
+                    <div class="price">
+                        THB {{ $activity['activity_price'] }} {{ $activity['activity_price_type'] === 0 ? '' : '/ Hour' }}</div>
+                    <button class="join-button" onclick="modal('join')">Join activity</button>
                     <button class="milestone-button">Set as milestone</button>
                     <div class="availability-wrapper">
                         <div class="availability">
@@ -81,9 +82,10 @@
 
     <section class="activity-detail-section">
         <div class="side-sponsor">
-            <img src="/img/sponsor.png" alt="" class="sponsor">
-            <img src="/img/sponsor.png" alt="" class="sponsor">
-            <img src="/img/sponsor.png" alt="" class="sponsor">
+            @foreach($activity['activity_sponsors'] as $sponsor)
+                <img src="{{ $sponsor['url'] }}" alt="" class="sponsor"
+                     onclick="window.location.href='{{ $sponsor['link'] }}'">
+            @endforeach
         </div>
 
         <div class="content">
@@ -95,56 +97,66 @@
                 <div class="title">Activity Experiences</div>
                 <div class="benefit-wrapper">
                     @foreach ($activity['activity_benefit'] as $benefit)
-                        <div class="benefit-card" style="background: url('{{ $benefit['bg'] }}')">
-                            <img class="svg" src="{{ $benefit['pic'] }}" alt="">
-                            <div class="name">{{ $benefit['name'] }}</div>
-                            <div class="description">{{ $benefit['text'] }}</div>
+                        <div class="benefit-card"
+                             style="background-image: url('{{ $benefit['bg'] }}'); padding-top: {{ $benefit['text'] != '' ? '' : '180px' }}">
+                            <div class="overlay" style="border-radius: 10px;"></div>
+                            <div class="content">
+                                <img class="svg" src="{{ $benefit['pic'] }}" alt="">
+                                <div class="name">{{ $benefit['name'] }}</div>
+                                @if($benefit['text'] != '')
+                                    <div class="description">{{ $benefit['text'] }}</div>
+                                @endif
+                            </div>
                         </div>
                     @endforeach
                 </div>
-                <button class="more-button">More detail <img class="svg"
-                                                             src="/img/icon/caret-down-solid.svg">
-                </button>
+                {{--                <button class="more-button">More detail <img class="svg"--}}
+                {{--                                                             src="/img/icon/caret-down-solid.svg">--}}
+                {{--                </button>--}}
             </div>
             <div class="activity-section --studio">
-                <div class="studio-wrapper">
-                    <div class="google-map">
+                <div class="studio-wrapper"
+                     style="flex-direction: {{ $activity['studio_id'] ? 'row' : 'column-reverse' }}">
+                    <div class="google-map"
+                         style="{{ $activity['studio_id'] ? '' : 'margin-top: 20px; flex: 1;' }}">
                         <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13041.000141488994!2d100.49078499776775!3d13.650917617558623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a251bb6b0cf1%3A0xf656e94ff13324ad!2sKing%20Mongkut%E2%80%99s%20University%20of%20Technology%20Thonburi!5e0!3m2!1sen!2sth!4v1569249162314!5m2!1sen!2sth"
+                                src="{{ $activity['activity_location'] }}"
                                 height="320" frameborder="0" style="border:0;"
                                 allowfullscreen=""></iframe>
                     </div>
                     <div class="studio-detail">
-                        <h3 class="title">{{ $activity['studio_name'] }}</h3>
-                        <h4 class="sub-title">{{ $activity['studio_description'] }}</h4>
-                        <div class="studio-section">
-                            <div class="title">About studio</div>
-                            <div class="content">{{ $activity['studio_description'] }}</div>
-                        </div>
-                        <div class="studio-section">
-                            <div class="title">Studio promotion</div>
-                            <div class="content">
-                                @php
-                                    $activitys = [0,1,2]
-                                @endphp
-                                @foreach ($activitys as $key => $activityss)
-                                    <div class="promo-code">
-                                        <div class="name">first comer discount 10%</div>
-                                        <div class="badge">10% off</div>
-                                    </div>
-                                @endforeach
+
+                        <h3 class="title">{{ $activity['studio_name'] ? $activity['studio_name'] : $activity['activity_location_name'] }}</h3>
+                        @if($activity['studio_id'])
+                            <h4 class="sub-title">{{ $activity['studio_description'] }}</h4>
+                            <div class="studio-section">
+                                <div class="title">About studio</div>
+                                <div class="content">{{ $activity['studio_description'] }}</div>
                             </div>
-                        </div>
+                            <div class="studio-section">
+                                <div class="title">Studio promotion</div>
+                                <div class="content">
+                                    @php
+                                        $activitys = [0,1,2]
+                                    @endphp
+                                    @foreach ($activitys as $key => $activityss)
+                                        <div class="promo-code">
+                                            <div class="name">first comer discount 10%</div>
+                                            <div class="badge">10% off</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="activity-section --story">
-                <div class="title">Master story</div>
-                @php
-                    $stories = [0,1,2];
-                @endphp
-                @include('components/activity-story', ['stories' => $stories])
-            </div>
+            @if(!$stories->isEmpty())
+                <div class="activity-section --story">
+                    <div class="title">Master story</div>
+                    @include('components/activity-story', ['stories' => $stories])
+                </div>
+            @endif
             <div class="activity-section --prepward">
                 <div class="prepare-reward">
                     <div class="prepare-wrapper">
@@ -159,8 +171,13 @@
                             </div>
                             <div class="reward-text">
                                 <div class="name">Experiences</div>
-                                <div class="reward">{{ $activity['activity_hour']*300 }} EXP
-                                    ({{ $activity['activity_hour'] }} hours)
+                                <div class="reward">{{ $activity['activity_hour'] * $activity['category_exp'] }}
+                                    EXP
+                                    @if($activity['activity_price_type'] === 0)
+                                        ({{ $activity['activity_hour'] }} hours)
+                                    @else
+                                        / Hour
+                                    @endif
                                 </div>
                                 <div class="description"></div>
                             </div>
@@ -181,7 +198,7 @@
                             </div>
                             <div class="reward-text">
                                 <div class="name">Studio Reputation</div>
-                                <div class="reward">{{ $activity['activity_difficult'] }}class
+                                <div class="reward">{{ $activity['activity_difficult'] }} class
                                 </div>
                                 <div class="description"></div>
                             </div>
@@ -192,51 +209,65 @@
             <div class="activity-section --suggest">
                 <div class="title">Master suggestion next...</div>
                 <div class="suggest-wrapper">
-                    @include('components.activity-grid-card', ['activities'=>$activities, 'size' => 80])
+                    @include('components.activity-grid-card', ['activities'=>$activities, 'size' => 80, 'nohover' => '55'])
                 </div>
             </div>
-            <div class="activity-section --comment">
-                <div class="title">Disciple Commented</div>
-                @php
-                    $comments = [0,1,2]
-                @endphp
-                @foreach($comments as $key => $comment)
-                    <div class="comment-wrapper">
-                        <div class="disciple-profile">
-                            <div class="image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
+            @if(!$comments->isEmpty())
+                <div class="activity-section --comment">
+                    <div class="title">Disciple Commented</div>
+                    @foreach($comments as $key => $comment)
+                        <div class="comment-wrapper">
+                            <div class="disciple-profile">
+                                <div class="image-wrapper">
+                                    <img src="{{ $comment['user_pic'] }}" alt="">
+                                </div>
+                                <div class="name">{{ $comment['user_name'] }}</div>
+                                <span class="category-level">{{ $comment['category_name'] }} level {{ $comment['user_level'] }}</span>
+                                <div class="agree-no">
+                                    <img src="/img/icon/plus-solid.svg"
+                                         class="svg"> {{ $comment['comment_agree'] }} agree
+                                </div>
                             </div>
-                            <div class="name">monotone</div>
-                            <span class="category-level">Italian level 9</span>
-                            <div class="agree-no">
-                                <img src="/img/icon/plus-solid.svg" class="svg"> 139 agree
+                            <div class="comment-detail">
+                                @if($comment['comment_rate'] != 'normal')
+                                    <span class="badge {{ $comment['comment_rate'] === 'recommended' ? '': '--mostly'}}">{{ $comment['comment_rate'] }}</span>
+                                @endif
+                                <div class="title">{{ $comment['comment_title'] }}</div>
+                                <div class="comment">
+                                    {{ $comment['comment_text'] }}
+                                </div>
+                                @if(strlen($comment['comment_text']) > 170)
+                                    <button class="readmore">read more...</button>
+                                @endif
+                                <div class="join-since">join activity at : 1 year ago</div>
+                            </div>
+                            <div class="comment-image">
+                                @php
+                                    $comment['comment_pic'] = json_decode($comment['comment_pic'], true);
+                                @endphp
+                                @foreach($comment['comment_pic'] as $commentImg)
+                                    <div class="image-wrapper">
+                                        <img class="image" src="{{ $commentImg }}">
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                        <div class="comment-detail">
-                        <span
-                                class="badge {{ $key === 0 ? '--mostly': ''}}">{{ $key === 0 ? 'mostly': ''}} recommended</span>
-                            <div class="title">Most recommend for beginner</div>
-                            <div class="comment">
-                                Most recommend for beginner Most recommend for beginner Most
-                                recommend for beginner Most
-                                recommend for beginner
-                            </div>
-                            <button class="readmore">read more...</button>
-                            <div class="join-since">join activity at : 1 year ago</div>
-                        </div>
-                        <div class="comment-image">
-                            <img class="image" src="/img/Deepsea.jpeg">
-                            <img class="image" src="/img/Deepsea.jpeg">
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                    @if($isJoined)
+                        <button class="add-comment" onclick="$('#modal').modal('toggle')">+ Add
+                            comment
+                        </button>
+                    @endif
+                </div>
+            @endif
             <div class="activity-section --sponsor">
                 <div class="title">Sponsors</div>
                 <div class="sponsor-wrapper">
                     @foreach($activity['activity_sponsors'] as $sponsor)
-                        <img src="{{ $sponsor['url'] }}" alt="" class="sponsor"
-                             onclick="window.location.href = '{{ $sponsor['link'] }}'">
+                        <div class="sponsor">
+                            <img src="{{ $sponsor['url'] }}" alt=""
+                                 onclick="window.location.href = '{{ $sponsor['link'] }}'">
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -245,6 +276,45 @@
             <div class="googlea">Google ads</div>
         </div>
     </section>
+    @if($isJoined)
+        <!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="logo-wrapper">
+                            <img src="/img/logo.png" alt="Master Studio" class="logo">
+                        </div>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reviewForm" class="review-form">
+                            @csrf
+                            <div class="form-group">
+                                <label for="review_text" style="padding-left: 0; font-size: 14px;">Commented
+                                    by
+                                    : {{ Auth::user()->user_name }}</label>
+                                <textarea required id="comment_text" name="comment_text"
+                                          class="form-control" placeholder="Comment..."></textarea>
+                                <input type="file" class="img-input">
+                                <input type="file" class="img-input">
+                                <input type="file" class="img-input">
+                            </div>
+
+                            <div class="modal-action justify-content-center">
+                                <button type="button" class="primary-button" onclick="addComment()">
+                                    Add comment
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 @endsection
 
 @section('script')
@@ -256,6 +326,51 @@
           elements_selector: '.lazy',
           // ... more custom settings?
         })
+
+        $('.video-wrapper .video').hover(function () {
+          $(this).get(0).play()
+        }, function () {
+          $(this).get(0).pause()
+        })
       })
+    </script>
+
+    <script>
+
+      var addComment = function () {
+        var formData = new FormData()
+
+        formData.append('comment_text', $('#comment_text').val())
+
+        $('.img-input').each(function (index, element) {
+          var value = element.files[0]
+          formData.append('comment_pic_' + index, value)
+        })
+
+        $.ajax({
+          url: '/activity/{{ $activity['activity_id'] }}/comment',
+          type: 'post',
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          },
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (res) {
+            var reviewHtml = `
+                    <div class="review-card" id="newReview">
+                        <img src="{{ !empty($user) ? $user->user_pic : '' }}" class="image" />
+                        <div class="name">{{ !empty($user) ? $user->user_name : '' }}</div>
+                        <div class="review">
+                            ${$('#review_text').val()}
+                        </div>
+                    </div>
+                `
+            $('.review-wrapper').prepend(reviewHtml)
+            $('#modal').modal('toggle')
+            // window.location.hash = '#newReview';
+          },
+        })
+      }
     </script>
 @endsection

@@ -4,8 +4,10 @@
 
 	use App\Activity;
 	use App\ActivityStory;
+	use App\Follow;
+	use App\Master;
 	use App\UserAchievement;
-	use App\UserCategory;
+	use App\UserActivity;
 	use Auth;
 
 	class ContentController extends Controller
@@ -43,6 +45,8 @@
 				->where('uc.user_id', $userId)
 				->where('as.user_id', $userId)
 				->where('cg.category_id', $category)->get();
+			if ($timelines->isEmpty())
+				return response()->view('components.category-timeline', ['timelines' => $timelines, 'user' => $user], 404);
 			return view('components.category-timeline', ['timelines' => $timelines, 'user' => $user]);
 		}
 
@@ -54,6 +58,60 @@
 				->where('ua.category_id', $category)
 				->select('a.achievement_pic')
 				->get();
+			if ($achievements->isEmpty())
+				return response()->view('components.achievement', ['achievements' => $achievements], 404);
 			return view('components.achievement', ['achievements' => $achievements]);
 		}
+
+		public function map()
+		{
+			return view('components.map');
+		}
+
+		public function allActivity()
+		{
+			$user_id = Auth::id();
+			$nowActivities = UserActivity::from('user_activities as ua')
+				->join('activities as ac', 'ac.activity_id', 'ua.activity_id')
+				->join('users as us', 'us.user_id', 'ac.user_id')
+				->join('masters as ms', 'us.master_id', 'ms.master_id')
+				->join('categories as cg', 'ac.category_id', 'cg.category_id')
+				->where('ua.user_id', $user_id)
+				->where('ua.user_activity_status', 0)->get();
+			$pastActivities = UserActivity::from('user_activities as ua')
+				->join('activities as ac', 'ac.activity_id', 'ua.activity_id')
+				->join('users as us', 'us.user_id', 'ac.user_id')
+				->join('masters as ms', 'us.master_id', 'ms.master_id')
+				->join('categories as cg', 'ac.category_id', 'cg.category_id')
+				->where('ua.user_id', $user_id)
+				->where('ua.user_activity_paid', 1)
+				->where('ua.user_activity_status', 1)->get();
+
+			return view('components.all-activity', ['nowActivities' => $nowActivities, 'pastActivities' => $pastActivities]);
+		}
+
+		public function follow()
+		{
+			$masters = Follow::from('follows AS fl')
+				->join('users AS us', 'fl.following_id', '=', 'us.user_id')
+				->join('activities AS act', 'act.user_id', '=', 'fl.following_id')
+				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+				->where('fl.follower_id', Auth::id())
+				->where('fl.follow_type', 'master')
+				->groupBy('following_id')
+				->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
+				->get();
+
+			return view('components.follow', ['masters' => $masters]);
+		}
+
+		public function studioMaster($studio_id)
+		{
+			$masters = Master::join('users as us', 'us.master_id', '=', 'masters.master_id')
+				->where('masters.studio_id', $studio_id)->get();
+
+			return view('components.master-map', ['masters' => $masters]);
+		}
+
 	}

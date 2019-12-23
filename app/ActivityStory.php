@@ -7,4 +7,7 @@
 	class ActivityStory extends Model
 	{
 		//
+		protected $fillable = [
+			'activity_id', 'user_id', 'activity_story_video'
+		];
 	}

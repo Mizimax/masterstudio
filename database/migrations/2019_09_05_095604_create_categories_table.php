@@ -17,9 +17,11 @@
 			Schema::create('categories', function (Blueprint $table) {
 				$table->bigIncrements('category_id');
 				$table->string('category_name');
-				$table->string('category_pic');
-				$table->string('category_bg');
-				$table->string('category_video');
+				$table->text('category_pic');
+				// category bg video for background show
+				$table->text('category_bg')->default('/img/category/default.jpg');
+				$table->text('category_video')->nullable();
+				$table->integer('category_exp')->default(1500);
 				$table->timestamps();
 			});
 		}
