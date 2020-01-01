@@ -1,5 +1,5 @@
 function activityHover() {
-  $('.activity-card > .video-wrapper').off('mouseenter').on('mouseenter', function () {
+  $('#activity-wrapper').delegate('.video-wrapper', 'mouseenter', function () {
     var self = this
     var index = $(this).parent().parent().index()
     $(this).siblings('.master-profile').addClass('active')
@@ -55,9 +55,10 @@ function hideVideo(e) {
 }
 
 $(document).ready(function () {
-  $('.master-profile').hover(function () {
+  $('#activity-wrapper').delegate('.master-profile', 'mouseenter', function () {
     $(this).children('.activity-detail').fadeIn()
-  }, function () {
+  })
+  $('#activity-wrapper').delegate('.master-profile', 'mouseleave', function () {
     $(this).children('.activity-detail').fadeOut()
   })
 })

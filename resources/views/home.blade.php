@@ -1,3 +1,6 @@
+@php
+    $categories = \App\Category::from('categories as cg')->select(\DB::raw('cg.*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))->get();
+@endphp
 @extends('app')
 
 @section('title', 'Home')
@@ -8,6 +11,7 @@
 @endsection
 
 @section('content')
+
     <section class="video-header">
         <!-- Carousel -->
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel"
@@ -97,28 +101,10 @@
         </div>
         <!-- End Carousel -->
         <div class="search-group" tabindex="-1" style="width: 450px">
-            <input class="search-box" placeholder="Search your activities..." type="text">
-            <div class="search-dropdown">
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/badminton.svg">
-                    <span class="category">Badminton</span>
-                    <span class="nomaster">78 master</span>
-                </div>
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/golf.svg">
-                    <span class="category">Golf</span>
-                    <span class="nomaster">7 master</span>
-                </div>
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/chef.svg">
-                    <span class="category">Chef</span>
-                    <span class="nomaster">8 master</span>
-                </div>
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/badminton.svg">
-                    <span class="category">Badminton</span>
-                    <span class="nomaster">78 master</span>
-                </div>
+            <input class="search-box" placeholder="Search your activities..." type="text"
+                   onKeyUp="handleChange(this)">
+            <div class="search-dropdown --header">
+
             </div>
         </div>
 
@@ -128,93 +114,79 @@
     <section class="live-activity">
         <h3 class="header">Live Activity</h3>
         @include('components.category-interest')
-        <div class="activity-story --hover">
-            @foreach ($stories as $story)
-                @php
-                    $story['activity_benefit'] = json_decode($story['activity_benefit'], true);
-                    $story['activity_routine_day'] = str_split($story['activity_routine_day']);
-                    $start = new DateTime($story->activity_start);
-                    $end = new DateTime($story->activity_end);
-                    $story['activity_time_diff'] = $start->diff($end) ;
-                    $story['activity_day_left'] = $story['activity_time_diff']->m === 0 ? $story['activity_time_diff']->d . ' days' : $story['activity_time_diff']->m . ' months';
-                    $storyCreated = new DateTime($story['story_created_at']);
-                    $now = new DateTime(date("Y-m-d H:i:s"));
-                    $story['story_day_ago'] = $storyCreated->diff($now);
+        <div class="wrapper">
+            <div class="activity-story --hover">
+                @foreach ($stories as $story)
+                    @php
+                        $story['activity_benefit'] = json_decode($story['activity_benefit'], true);
+                        $story['activity_routine_day'] = str_split($story['activity_routine_day']);
+                        $start = new DateTime($story->activity_start);
+                        $end = new DateTime($story->activity_end);
+                        $story['activity_time_diff'] = $start->diff($end) ;
+                        $story['activity_day_left'] = $story['activity_time_diff']->m === 0 ? $story['activity_time_diff']->d . ' days' : $story['activity_time_diff']->m . ' months';
+                        $storyCreated = new DateTime($story['story_created_at']);
+                        $now = new DateTime(date("Y-m-d H:i:s"));
+                        $story['story_day_ago'] = $storyCreated->diff($now);
 
-                    $activity['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
+                        $activity['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
 
-                @endphp
-                <div class="activity-wrapper">
-                    <div class="activity-card">
-                        <div class="video-wrapper">
-                            <video class="video lazy" loop muted>
-                                <source data-src="{{ $story['activity_story_video'] }}"
-                                        type="video/mp4" />
-                            </video>
-                        </div>
-
-                        <div class="master-profile">
-                            @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true, 'activity' => $story])
-                            @endcomponent
-                            <div class="image-wrapper">
-                                <img src="{{ $story['user_pic'] }}" alt="">
+                    @endphp
+                    <div class="activity-wrapper">
+                        <div class="activity-card">
+                            <div class="video-wrapper">
+                                <video class="video lazy" loop muted>
+                                    <source data-src="{{ $story['activity_story_video'] }}"
+                                            type="video/mp4" />
+                                </video>
                             </div>
-                        </div>
 
-                        <div class="title-wrapper">
-                            <div class="title" align="left">{{ $story['activity_name'] }}</div>
-                            <div class="activity-join">
-                                @foreach($activity['users_activity'] as $usersStory)
-                                <div class="participant image-wrapper">
-                                    <img src="{{ $usersStory['user_pic'] }}"
-                                         alt="{{ $usersStory['user_name'] }}"
-                                         onclick="window.location.href = '/user/{{ $usersStory['user_id'] }}'">
+                            <div class="master-profile">
+                                @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true, 'activity' => $story])
+                                @endcomponent
+                                <div class="image-wrapper">
+                                    <img src="{{ $story['user_pic'] }}" alt="">
                                 </div>
-                                @endforeach
+                            </div>
+
+                            <div class="title-wrapper">
+                                <div class="title" align="left">{{ $story['activity_name'] }}</div>
+                                <div class="activity-join">
+                                    @foreach($activity['users_activity'] as $usersStory)
+                                        <div class="participant image-wrapper">
+                                            <img src="{{ $usersStory['user_pic'] }}"
+                                                 alt="{{ $usersStory['user_name'] }}"
+                                                 onclick="window.location.href = '/user/{{ $usersStory['user_id'] }}'">
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
+                        <div class="location">{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}{{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : '' }}
+                            ago: {{ $story['activity_location_name'] }}</div>
                     </div>
-                    <div class="location">{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}{{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : '' }}
-                        ago: {{ $story['activity_location_name'] }}</div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
+        <section id="activity" class="activity-you"
+                 style="background-image: url('{{ $categories[0]->category_bg }}')">
+            <div class="content">
+                <h3 class="header">Activity for you</h3>
+                <div class="search-group" tabindex="-1" style="max-width: 400px">
+                    <input class="search-box" placeholder="Search your activities..." type="text"
+                           onKeyUp="handleChange(this)">
+                    <div class="search-dropdown --activity">
+
+                    </div>
+                </div>
+                <div id="activity-wrapper" class="activity-grid">
+                    @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
+                </div>
+            </div>
+            <div class="overlay"></div>
+        </section>
     </section>
 
-    <section class="activity-you">
-        <div class="content">
-            <h3 class="header">Activity for you</h3>
-            <div class="search-group" tabindex="-1" style="max-width: 400px">
-                <input class="search-box" placeholder="Search your activities..." type="text">
-                <div class="search-dropdown">
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/badminton.svg">
-                        <span class="category">Badminton</span>
-                        <span class="nomaster">78 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/golf.svg">
-                        <span class="category">Golf</span>
-                        <span class="nomaster">7 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/chef.svg">
-                        <span class="category">Chef</span>
-                        <span class="nomaster">8 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/badminton.svg">
-                        <span class="category">Badminton</span>
-                        <span class="nomaster">78 master</span>
-                    </div>
-                </div>
-            </div>
-            <div class="activity-grid">
-                @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
-            </div>
-        </div>
-        <div class="overlay"></div>
-    </section>
+
 @endsection
 
 @section('script')
@@ -224,11 +196,168 @@
     <script src="/js/home-page.js"></script>
 
     <script>
-      $('#carousel').on('slide.bs.carousel', function () {
-        $('.carousel-item.active > .video').get(0).pause()
+      var categoryHtml = `
+            @foreach($categories as $category)
+        <div onclick="getActivityCategory({{ $category['category_id'] }})"
+                     class="search-result">
+                <img class="svg" src="{{ $category['category_pic'] }}">
+                <span class="category">{{ $category['category_name'] }}</span>
+                <span class="nomaster">{{ $category['master_count'] }} master</span>
+            </div>
+            @endforeach
+        `
+      var loadingHtml = `
+            <div class="activity-loading">Loading...</div>
+        `
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $('#carousel').on('slide.bs.carousel', function () {
+          $('.carousel-item.active > .video').get(0).pause()
+        })
+        $('#carousel').on('slid.bs.carousel', function () {
+          $('.carousel-item.active > .video').get(0).play()
+        })
+
+        $('.search-result').click(function () {
+          $(this).parent().parent().blur()
+        })
+
+        $('.search-dropdown.--activity, .search-dropdown.--header').html(categoryHtml)
+        replaceSvg()
       })
-      $('#carousel').on('slid.bs.carousel', function () {
-        $('.carousel-item.active > .video').get(0).play()
-      })
+    </script>
+
+    <script>
+      MasterStudio.myCategory = {
+      @foreach($categories as $category)
+      {{$category['category_id']}} : @json($category),
+      @endforeach
+      }
+
+    </script>
+
+    <script>
+      var getActivityCategory = function (category_id) {
+        goTo('activity')
+        $('#activity-wrapper').html(loadingHtml)
+        $.ajax({
+          url: '/content/activities?category=' + category_id,
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#activity-wrapper').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+          },
+          error: function (error) {
+            console.log(error)
+          },
+        })
+      }
+
+      var interestSelected = function () {
+        goTo('activity')
+
+        $('#activity').css('background-image', 'url(' + MasterStudio.myCategory[MasterStudio.categorySelected[0]]['category_bg'] + ')')
+
+        $('#activity-wrapper').html(loadingHtml)
+        $.ajax({
+          url: '/content/activities?category=[' + MasterStudio.categorySelected.toString() + ']',
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#activity-wrapper').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+          },
+          error: function (error) {
+            console.log(error)
+          },
+        })
+      }
+
+    </script>
+
+    <script>
+      function debounce(f, ms) {
+
+        let timer = null
+
+        return function (...args) {
+          const onComplete = () => {
+            f.apply(this, args)
+            timer = null
+          }
+
+          if (timer) {
+            clearTimeout(timer)
+          }
+
+          timer = setTimeout(onComplete, ms)
+        }
+      }
+
+      var handleChange = function (e) {
+        $(e).next().html(
+          '<div class="search-result">Loading...</div>',
+        )
+
+        debounce(function () {
+          const val = e.value
+
+          if (val === '') {
+            $(e).next().html(categoryHtml)
+            replaceSvg()
+            return
+          }
+
+          $.ajax({
+            url: '/activity/search?keyword=' + val,
+            type: 'get',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+            success: function (res) {
+              var result = res.data
+              var searchHtml
+              if (result.length != 0) {
+                searchHtml = result.map(function (value, index) {
+                  return `
+                    <div onclick="window.location.href = '/activity/${value.activity_url_name}'" class="search-result">
+                        <img class="svg" src="${value.category_pic}">
+                        <span class="category">${value.activity_name}</span>
+                    </div>
+                `
+                }).join('\n')
+              } else {
+                searchHtml = '<div class="search-result">No result.</div>'
+              }
+              $(e).next().html(searchHtml)
+              replaceSvg()
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+
+        }, 700)()
+      }
+
     </script>
 @endsection

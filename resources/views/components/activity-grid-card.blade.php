@@ -1,16 +1,19 @@
 @php
     $size = !empty($size) ? $size : 80;
     $activities = !empty($queryActivities) ? $queryActivities : (!empty($activities) ? $activities : []);
+
 @endphp
 @foreach ($activities as $activity)
     @php
-        $activity['activity_benefit'] = json_decode($activity['activity_benefit'], true);
-        $activity['activity_video'] = json_decode($activity['activity_video'], true)[0];
-        $activity['activity_routine_day'] = str_split($activity['activity_routine_day']);
-        $start = new DateTime($activity->activity_start);
-        $end = new DateTime($activity->activity_end);
-        $activity['activity_time_diff'] = $start->diff($end) ;
-        $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d + 1 . ' days' : $activity['activity_time_diff']->m . ' months';
+        if(!is_array($activity['activity_benefit'])) {
+                $activity['activity_benefit'] = json_decode($activity['activity_benefit'], true);
+                $activity['activity_video'] = json_decode($activity['activity_video'], true)[0];
+                $activity['activity_routine_day'] = str_split($activity['activity_routine_day']);
+                $start = new DateTime($activity->activity_start);
+                $end = new DateTime($activity->activity_end);
+                $activity['activity_time_diff'] = $start->diff($end) ;
+                $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d + 1 . ' days' : $activity['activity_time_diff']->m . ' months';
+    }
     @endphp
     <div class="activity-card-wrapper"
          onclick="window.location.href='/activity/{{ $activity['activity_url_name'] }}'">

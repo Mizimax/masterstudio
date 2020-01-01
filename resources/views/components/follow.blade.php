@@ -1,3 +1,6 @@
+@if($masters->isEmpty())
+    <div class="no-follow">No followed master.</div>
+@endif
 @foreach ($masters as $key => $master)
     @php
         $master['activity_video'] = json_decode($master['activity_video'], true)[0];

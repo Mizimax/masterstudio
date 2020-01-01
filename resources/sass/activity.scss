@@ -12,6 +12,17 @@
 @import 'components/master-card';
 @import 'components/category-interest';
 
+.category-interest {
+	position: sticky;
+	top: 100px;
+	z-index: 999;
+}
+
+.activity-loading {
+	text-align: center;
+	padding: 200px 0;
+}
+
 .all-activity {
 	@extend .activity-you;
 
@@ -35,6 +46,7 @@
 
 		@include tablet-up {
 			transform: translateX(0);
+			left: 40%;
 		}
 
 		@media (max-height: 739px) {

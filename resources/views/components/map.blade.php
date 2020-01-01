@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/studio.css">
 <style>
-    img[src='/img/abc.jpg'], img[src='/img/food.jpg'], img[src='/img/afteryou.jpg'], img[src='/img/cooking.jpg'], img[src='/img/cookingstudio.jpg'] {
+    img[src^='/img/studio'] {
         border-radius: 50%;
         object-fit: cover;
     }
@@ -10,48 +10,8 @@
 
 </div>
 
-<div class="map-detail" style="display: none; position: fixed;">
-    <div class="map-card">
-        <div class="map-header">
-            <div class="title">Windshire studio</div>
-            <div class="subtitle">chinese bayy</div>
-            <div class="follow-wrapper">
-                <img src="/img/icon/footstep.svg" alt="" class="svg">
-            </div>
-        </div>
-        <div id="carousel" style="margin: 10px 0" class="carousel slide carousel-fade"
-             data-ride="carousel" data-interval="2000">
-            <!-- Indicators -->
-            <ul class="carousel-indicators" style="margin-bottom: 10px">
-                <li data-target="#carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#carousel" data-slide-to="1"></li>
-                <li data-target="#carousel" data-slide-to="2"></li>
-            </ul>
-            <!-- End Indicators -->
+<div class="map-detail" style="display: none">
 
-            <!-- Slideshow -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="gallery" src="/img/Deepsea.jpeg">
-                </div>
-                <div class="carousel-item">
-                    <img class="gallery" src="/img/profile.jpg">
-                </div>
-                <div class="carousel-item">
-                    <img class="gallery" src="/img/Deepsea.jpeg">
-                </div>
-            </div>
-        </div>
-        <div class="master-list">
-            <img class="master" src="/img/profile.jpg" alt="">
-            <img class="master" src="/img/profile.jpg" alt="">
-            <img class="master" src="/img/profile.jpg" alt="">
-            <img class="master" src="/img/profile.jpg" alt="">
-        </div>
-    </div>
-    <a href="/studio/1">
-        <button class="studio-button">view studio profile</button>
-    </a>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
@@ -74,6 +34,60 @@
     })
 
   })
+</script>
+<script>
+
+  var mapCard = function (studio, i) {
+    var pics = JSON.parse(studio.studio_pic)
+
+    var carouselIndicators = pics.map(function (value, index) {
+      return `<li data-target="#carousel" data-slide-to="${index}" class="${index === 0
+                                                                            ? 'active'
+                                                                            : ''}"></li>`
+    }).join('\n')
+
+    var carouselText = pics.map(function (value, index) {
+      return `
+        <div class="carousel-item ${index === 0 ? 'active' : ''}">
+          <img class="gallery" src="${value}">
+        </div>
+        `
+    }).join('\n')
+
+    // var masterText = studio.masters.map(function (value, index) {
+    //   return `
+    //   <img class="master" src="${value}">
+    // `
+    // }).join('\n');
+    return `
+            <div class="map-card" id="studioId" val="${studio.studio_id}">
+            <div class="map-header">
+                <div class="title">${studio.studio_name}</div>
+                <div class="subtitle">${studio.studio_title}</div>
+                <div class="follow-wrapper">
+                    <img src="/img/icon/footstep.svg" alt="" class="svg">
+                </div>
+            </div>
+            <div id="carousel" style="margin: 10px 0" class="carousel slide carousel-fade"
+                 data-ride="carousel" data-interval="2000">
+
+              <ul class="carousel-indicators" style="margin-bottom: 10px">
+                  ${carouselIndicators}
+              </ul>
+
+                <div class="carousel-inner">
+                    ${carouselText}
+                </div>
+            </div>
+          <div class="master-list">
+
+          </div>
+          </div>
+          <a href="/studio/${studio.studio_id}">
+          <button class="studio-button">view studio profile</button>
+          </a>
+        `
+  }
 </script>
 <script>
   var map
@@ -159,46 +173,17 @@
       })
 
     var studios = [
+            @foreach($studios as $studio)
       {
-        lat: 13.758054,
-        long: 100.5445439,
+        lat: {{ $studio['studio_lat' ]}},
+        long: {{ $studio['studio_long' ]}},
+        studio: @json($studio),
         icon: {
-          url: '/img/abc.jpg', // url
+          url: '{{ $studio['studio_icon'] }}', // url
           scaledSize: new google.maps.Size(50, 50), // scaled size
         },
       },
-      {
-        lat: 13.720896,
-        long: 100.5026186,
-        icon: {
-          url: '/img/afteryou.jpg', // url
-          scaledSize: new google.maps.Size(50, 50), // scaled size
-        },
-      },
-      {
-        lat: 13.6759147,
-        long: 100.5217145,
-        icon: {
-          url: '/img/cooking.jpg', // url
-          scaledSize: new google.maps.Size(50, 50), // scaled size
-        },
-      },
-      {
-        lat: 13.7759147,
-        long: 100.5217145,
-        icon: {
-          url: '/img/cookingstudio.jpg', // url
-          scaledSize: new google.maps.Size(50, 50), // scaled size
-        },
-      },
-      {
-        lat: 13.2059147,
-        long: 100.8217145,
-        icon: {
-          url: '/img/food.jpg', // url
-          scaledSize: new google.maps.Size(50, 50), // scaled size
-        },
-      },
+        @endforeach
     ]
 
     // Create markers.
@@ -212,7 +197,6 @@
       marker.addListener('mouseover', function (e) {
         var lat = Math.round(e.latLng.lat() * 10000000) / 10000000
         var long = Math.round(e.latLng.lng() * 10000000) / 10000000
-
         var x = e.ya.x
         var y = e.ya.y
 
@@ -225,9 +209,21 @@
         $('.map-detail').css('top', y)
         $('.map-detail').css('left', x)
 
+        if ($('.map-detail').html().trim() === '' || $('.map-detail #studioId').attr('val') != studio.studio.studio_id) {
+          $('.map-detail').html(mapCard(studio.studio))
+          $.ajax({
+            url: '/content/studio/' + studio.studio.studio_id + '/master',
+            type: 'get',
+            success: function (res) {
+              $('.map-detail .master-list').html(res)
+            },
+          })
+        }
+
       })
       marker.addListener('mouseout', function () {
-        $('.map-detail').css('display', 'none')
+
+        $('.map-detail').css('display', {{ empty($show) ? 'none' : 'block' }})
       })
 
     }

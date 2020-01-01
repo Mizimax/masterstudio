@@ -10,6 +10,12 @@
 @import 'components/activity-story-section';
 @import 'components/category-interest';
 
+.category-interest {
+	position: sticky;
+	top: 100px;
+	z-index: 999;
+}
+
 .video-header {
 	position: relative;
 
@@ -171,5 +177,12 @@
 			margin: 0 auto;
 			text-align: left;
 		}
+	}
+}
+
+#activity-wrapper {
+	.activity-loading {
+		text-align: center;
+		padding: 200px 0;
 	}
 }

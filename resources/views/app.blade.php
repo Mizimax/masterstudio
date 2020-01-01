@@ -1,7 +1,4 @@
-@php
-    $categories = \App\Category::get();
-@endphp
-        <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -522,6 +519,7 @@
           })
         } else if (tab === 'studioTab' || tab === 'masterTab') {
           $('.modal-dialog').css('max-width', '900px')
+          $('.modal-dialog').css('width', '95%')
           if ($('#studioTab').html().trim() === '') {
             getMap()
           }
@@ -666,7 +664,6 @@
               </div>
               <div class="tab-pane fade" id="interestTab" role="tabpanel" aria-labelledby="interest-tab">
               <div class="interest-modal" align="center">
-                        <div class="headerName">Registration</div>
                         <h3 class="header">What you interested?</h3>
                         <div class="sub-header">can choose more than 1</div>
                         <input class="search-interest" type="text"
@@ -868,11 +865,11 @@
                             <div class="category-wrapper my-4" align="center">
                                 @include('components.category-interest')
         </div>
-        <div class="tab-pane fade in show active" id="masterTab" role="tabpanel"
-             aria-labelledby="register-tab">
+        <div class="tab-pane py-3 fade in show active" id="masterTab" role="tabpanel"
+             aria-labelledby="register-tab" align="center">
 
         </div>
-        <div class="tab-pane py-3 fade in" id="studioTab" role="tabpanel">
+        <div class="tab-pane py-3 fade in" id="studioTab" role="tabpanel" align="center">
 
         </div>
     </div>
@@ -1043,6 +1040,20 @@
       }
 
       selectButton()
+    </script>
+    <script>
+      var goTo = function (name) {
+        $('html, body').animate({
+          scrollTop: $('#' + name).offset().top,
+        }, 500)
+      }
+      $(document).on('click', 'a[href^="#"]', function (event) {
+        event.preventDefault()
+
+        $('html, body').animate({
+          scrollTop: $($.attr(this, 'href')).offset().top,
+        }, 500)
+      })
     </script>
     @yield('script')
 </body>

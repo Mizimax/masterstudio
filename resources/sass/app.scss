@@ -169,6 +169,10 @@ button:focus {
 
 		.navbar-toggler {
 			margin-left: auto;
+
+			@media (max-width: 392px) {
+				display: none;
+			}
 		}
 
 		.nav-item {
@@ -354,7 +358,7 @@ button:focus {
 
 		&:focus {
 			& + .search-dropdown {
-				display: block;
+				display: block !important;
 			}
 		}
 

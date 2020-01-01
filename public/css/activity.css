@@ -11261,7 +11261,7 @@ img {
 	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt {
 	display: flex;
 	align-items: center;
 	border-radius: 50px;
@@ -11269,39 +11269,39 @@ img {
 	transition: background-color 0.5s;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result:hover {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt:hover {
 	cursor: pointer;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result:hover > .add {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt:hover > .add {
 	background: #f14ea6;
 	color: white;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .category {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .category {
 	flex: 1;
 	padding-left: 20px;
 	text-align: left;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .add {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .add {
 	padding: 7px 15px;
 	border-radius: 20px;
 	transition: 0.5s background-color;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .svg {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .svg {
 	width: 50px;
 	height: 30px;
 	border-right: 2px solid #f14ea6;
 	padding-right: 20px;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result .cls-1 {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt .cls-1 {
 	fill: #f14ea6;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result #Layer_1 {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt #Layer_1 {
 	fill: #f14ea6;
 }
 
@@ -11495,6 +11495,12 @@ button:focus {
   margin-left: auto;
 }
 
+@media (max-width: 392px) {
+	.navbar-wrapper .navbar .navbar-toggler {
+		display: none;
+	}
+}
+
 .navbar-wrapper .navbar .nav-item {
   margin: 2px;
 }
@@ -11682,7 +11688,7 @@ button:focus {
 }
 
 .search-group > .search-box:focus + .search-dropdown {
-  display: block;
+	display: block !important;
 }
 
 @media (min-width: 576px) {
@@ -12916,7 +12922,8 @@ form .error-msg > .text {
   position: relative;
   padding: 50px 0;
   text-align: center;
-  background: url("/img/italian.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
   background-attachment: fixed;
 }
 
@@ -12949,10 +12956,24 @@ form .error-msg > .text {
   position: relative;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-evenly;
-  max-width: 900px;
+	justify-content: flex-start;
+	max-width: 810px;
   margin: 20px auto 0;
   color: white;
+}
+
+@media (max-width: 810px) {
+	.activity-you > .content > .activity-grid,
+	.all-activity > .content > .activity-grid {
+		max-width: 540px;
+	}
+}
+
+@media (max-width: 540px) {
+	.activity-you > .content > .activity-grid,
+	.all-activity > .content > .activity-grid {
+		justify-content: center;
+	}
 }
 
 .activity-you > .content > .activity-grid > .activity-card-wrapper,
@@ -12962,11 +12983,8 @@ form .error-msg > .text {
 
 .live-activity,
 .your-activity {
-  padding: 70px 0;
   text-align: center;
-  max-width: 960px;
-  width: 100%;
-  margin: 0 auto;
+	padding-top: 70px;
 }
 
 .live-activity > .header,
@@ -12974,6 +12992,15 @@ form .error-msg > .text {
   font-weight: bold;
   font-size: 48px;
   margin-bottom: 30px;
+}
+
+.live-activity > .wrapper,
+.your-activity > .wrapper {
+	text-align: center;
+	max-width: 960px;
+	width: 100%;
+	margin: 0 auto;
+	padding-bottom: 70px;
 }
 
 .loading-wrapper {
@@ -13351,7 +13378,7 @@ form .error-msg > .text {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt {
   display: flex;
   align-items: center;
   border-radius: 50px;
@@ -13359,40 +13386,52 @@ form .error-msg > .text {
   transition: background-color 0.5s;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result:hover {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt:hover {
   cursor: pointer;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result:hover > .add {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt:hover > .add {
   background: #f14ea6;
   color: white;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .category {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .category {
   flex: 1;
   padding-left: 20px;
   text-align: left;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .add {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .add {
   padding: 7px 15px;
   border-radius: 20px;
   transition: 0.5s background-color;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .svg {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .svg {
   width: 50px;
   height: 30px;
   border-right: 2px solid #f14ea6;
   padding-right: 20px;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result .cls-1 {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt .cls-1 {
   fill: #f14ea6;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result #Layer_1 {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt #Layer_1 {
 	fill: #f14ea6;
+}
+
+.category-interest {
+	position: -webkit-sticky;
+	position: sticky;
+	top: 100px;
+	z-index: 999;
+}
+
+.activity-loading {
+	text-align: center;
+	padding: 200px 0;
 }
 
 .all-activity .search-group {
@@ -13415,6 +13454,7 @@ form .error-msg > .text {
 @media (min-width: 768px) {
 	.activity-header .search-group {
 		transform: translateX(0);
+		left: 40%;
 	}
 }
 

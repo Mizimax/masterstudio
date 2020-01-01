@@ -1,3 +1,6 @@
+@php
+    $categories = \App\Category::get();
+@endphp
 @extends('app')
 
 @section('title', 'Activities')
@@ -134,7 +137,9 @@
                 <a class="tab-link active" href="#activity" role="tab" data-toggle="tab">Master
                     Activities</a>
                 <a class="tab-link" href="#gallery" role="tab" data-toggle="tab">Gallery</a>
-                <a class="tab-link" href="#studio" role="tab" data-toggle="tab">Studio</a>
+                @if($master['studio_id'])
+                    <a class="tab-link" href="#studio" role="tab" data-toggle="tab">Studio</a>
+                @endif
                 <a class="tab-link" href="#suggest" role="tab" data-toggle="tab">Master
                     Suggestion</a>
             </div>
@@ -155,7 +160,7 @@
                         <div class="past-activity">
                             <div class="header">Past Activitie</div>
                             <div class="content">
-                                @if($nowActivities->isEmpty())
+                                @if($pastActivities->isEmpty())
                                     <div class="no-act">No activity now.</div>
                                 @endif
                                 @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$pastActivities])
@@ -166,27 +171,29 @@
                 <div role="tabpanel" class="tab-pane fade" id="gallery">
                     <div class="gallery-wrapper">
                         <div class="gallery-flex">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
+                            @for($i = 0; $i < count($master['master_activity_pic'])/2; $i++)
+                                <img src="{{ $master['master_activity_pic'][$i] }}" class="image">
+                            @endfor
                         </div>
-                        <div class="gallery-flex --second">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                            <img src="/img/Deepsea.jpeg" class="image">
-                        </div>
+                        @if(count($master['master_activity_pic']) != 1)
+                            <div class="gallery-flex --second">
+                                @for($i = count($master['master_activity_pic'])/2; $i < count($master['master_activity_pic']); $i++)
+                                    <img src="{{ $master['master_activity_pic'][$i] }}"
+                                         class="image">
+                                @endfor
+                            </div>
+                        @endif
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane fade" id="studio">
-                    @include('components.map', ['active' => true])
-                </div>
+                @if($master['studio_id'])
+                    <div role="tabpanel" class="tab-pane fade" id="studio">
+                        @include('components.map', ['active' => true, 'studios' => [$master], 'show' => true])
+                    </div>
+                @endif
                 <div role="tabpanel" class="tab-pane fade" id="suggest">
+                    <div class="d-flex flex-wrap">
+                        @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$nowActivities])
+                    </div>
                 </div>
             </div>
         </div>

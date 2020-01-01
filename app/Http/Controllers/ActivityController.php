@@ -80,6 +80,30 @@
 		}
 
 		/**
+		 * Show a searching activity json.
+		 *
+		 * @param string $name
+		 * @return Illuminate\Http\Response
+		 */
+		public function search(Request $request)
+		{
+			$search = $request->query('keyword');
+			$activity = Activity::from('activities as act')
+				->join('users AS u', 'u.user_id', '=', 'act.user_id')
+				->join('masters AS ms', 'u.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+				->leftJoin('studios AS st', 'ms.studio_id', '=', 'st.studio_id')
+				->join('achievements AS ach', 'act.achievement_id', '=', 'ach.achievement_id')
+				->where('act.activity_name', 'LIKE', "%{$search}%")->get();
+
+			return response()->json([
+				'status' => 200,
+				'data' => $activity,
+				'message' => 'Search ' . $search . ' success.'
+			], 200);
+		}
+
+		/**
 		 * Show the form for creating a new activity.
 		 *
 		 * @return \Illuminate\Http\Response

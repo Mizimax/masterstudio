@@ -25,7 +25,7 @@
 			if ($userme['user_id'] === $userId) {
 				return redirect('/user/me');
 			}
-			if ($userme['master_id'] === $userId || $userId === 'me') {
+			if ($userme['master_id'] === $userId || ($userId === 'me' && $userme['master_id'])) {
 				return redirect('/master/me');
 			}
 			if ($userId === 'me') {
@@ -47,9 +47,11 @@
 			$isFollower = !!$follow;
 			$followers = Follow::where('following_id', $user['user_id'])
 				->count();
-			$masters = Follow::where('following_id', $user['user_id'])
+			$masters = Follow::join('users as u', 'u.user_id', 'follows.following_id')
+				->join('masters as m', 'm.master_id', 'u.master_id')
+				->where('follower_id', $userme['user_id'])
 				->where('follow_type', 'master')
-				->count();
+				->get();
 			$nowActivities = UserActivity::from('user_activities as ua')
 				->join('activities as ac', 'ac.activity_id', 'ua.activity_id')
 				->join('users as us', 'us.user_id', 'ac.user_id')

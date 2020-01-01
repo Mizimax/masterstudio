@@ -1,3 +1,6 @@
+@php
+    $categories = \App\Category::get();
+@endphp
 @extends('app')
 
 @section('title', 'Studio')
@@ -36,11 +39,11 @@
     </div>
 
 
-        @include('components/category-interest')
-        <div class="search-box-wrapper">
-            <input class="search-box" placeholder="Search your activities..." type="text">
-            <button class="button">Explore</button>
-        </div>
+    @include('components/category-interest')
+    <div class="search-box-wrapper">
+        <input class="search-box" placeholder="Search your activities..." type="text">
+        <button class="button">Explore</button>
+    </div>
 
 @endsection
 

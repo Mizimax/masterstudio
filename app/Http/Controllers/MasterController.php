@@ -83,12 +83,14 @@
 			}
 			$master = Master::join('users as us', 'us.master_id', '=', 'masters.master_id')
 				->join('categories as cg', 'cg.category_id', '=', 'masters.category_id')
+				->leftJoin('studios as st', 'st.studio_id', '=', 'masters.studio_id')
 				->where('masters.master_id', $id)
 				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = masters.master_id) AS master_follower'))
 				->first();
 			if (!$master) {
 				return abort(404);
 			}
+			$master['master_activity_pic'] = json_decode($master['master_activity_pic'], true);
 			$follow = Follow::where('following_id', $master['user_id'])
 				->where('follower_id', $userme['user_id'])
 				->first();

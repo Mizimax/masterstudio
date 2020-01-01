@@ -11258,7 +11258,7 @@ img {
 	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt {
 	display: flex;
 	align-items: center;
 	border-radius: 50px;
@@ -11266,39 +11266,39 @@ img {
 	transition: background-color 0.5s;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result:hover {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt:hover {
 	cursor: pointer;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result:hover > .add {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt:hover > .add {
 	background: #f14ea6;
 	color: white;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .category {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .category {
 	flex: 1;
 	padding-left: 20px;
 	text-align: left;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .add {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .add {
 	padding: 7px 15px;
 	border-radius: 20px;
 	transition: 0.5s background-color;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result > .svg {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt > .svg {
 	width: 50px;
 	height: 30px;
 	border-right: 2px solid #f14ea6;
 	padding-right: 20px;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result .cls-1 {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt .cls-1 {
 	fill: #f14ea6;
 }
 
-.category-interest > .add-interest-activity > .search-dropdown .search-result #Layer_1 {
+.category-interest > .add-interest-activity > .search-dropdown .search-resultt #Layer_1 {
 	fill: #f14ea6;
 }
 
@@ -11489,6 +11489,12 @@ button:focus {
 	margin-left: auto;
 }
 
+@media (max-width: 392px) {
+	.navbar-wrapper .navbar .navbar-toggler {
+		display: none;
+	}
+}
+
 .navbar-wrapper .navbar .nav-item {
 	margin: 2px;
 }
@@ -11676,7 +11682,7 @@ button:focus {
 }
 
 .search-group > .search-box:focus + .search-dropdown {
-	display: block;
+	display: block !important;
 }
 
 @media (min-width: 576px) {
@@ -13180,6 +13186,7 @@ form .error-msg > .text {
 	position: relative;
 	z-index: 999;
 	margin: 0 auto;
+	padding: 20px 0;
 	overflow-x: auto;
 	width: 100%;
 	max-width: 580px;

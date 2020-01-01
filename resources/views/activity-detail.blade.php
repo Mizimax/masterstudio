@@ -1,3 +1,6 @@
+@php
+    $categories = \App\Category::get();
+@endphp
 @extends('app')
 
 @section('title', 'Activities')

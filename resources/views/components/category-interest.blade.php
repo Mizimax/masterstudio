@@ -45,7 +45,7 @@
                 <div class="search-dropdown">
                     {{ $categories->isEmpty() ? 'You already selected all categories.' : '' }}
                     @foreach($categories as $category)
-                        <div class="search-result">
+                        <div class="search-resultt">
                             <input type="hidden" class="category-id"
                                    value="{{ $category['category_id'] }}">
                             <img class="svg" src="{{ $category['category_pic'] }}">

@@ -9,6 +9,7 @@
 	use App\UserAchievement;
 	use App\UserActivity;
 	use Auth;
+	use Illuminate\Http\Request;
 
 	class ContentController extends Controller
 	{
@@ -28,6 +29,31 @@
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->skip($offset * $limit)->take($limit)->get();
+
+			if ($queryActivities->isEmpty()) {
+				abort(404);
+			}
+			return view('components.activity-grid-card', ['queryActivities' => $queryActivities]);
+		}
+
+		/**
+		 * Show some activity to grid view.
+		 *
+		 * @return Illuminate\Http\Response
+		 */
+		public function activities(Request $request)
+		{
+			$category_id = $request->query('category');
+			$category_id = json_decode($category_id, true);
+			if (!is_array($category_id)) {
+				$category_id = [$category_id];
+			}
+			$queryActivities = Activity::from('activities as act')
+				->join('users AS us', 'act.user_id', '=', 'us.user_id')
+				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+				->whereIn('act.category_id', $category_id)
+				->get();
 
 			if ($queryActivities->isEmpty()) {
 				abort(404);
@@ -65,7 +91,17 @@
 
 		public function map()
 		{
-			return view('components.map');
+			$studios = Follow::from('follows AS fl')
+				->join('studios AS st', 'st.studio_id', '=', 'fl.studio_id')
+				->where('fl.follower_id', Auth::id())
+				->where('fl.follow_type', 'studio')
+				->get();
+
+			if ($studios->isEmpty()) {
+				return response('No followed studio.');
+			}
+
+			return view('components.map', ['studios' => $studios]);
 		}
 
 		public function allActivity()

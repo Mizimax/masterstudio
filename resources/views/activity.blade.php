@@ -1,3 +1,6 @@
+@php
+    $categories = \App\Category::from('categories as cg')->select(\DB::raw('cg.*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))->get();
+@endphp
 @extends('app')
 
 @section('title', 'Activities')
@@ -97,28 +100,10 @@
         </div>
         <!-- End Carousel -->
         <div class="search-group" tabindex="-1" style="width: 450px">
-            <input class="search-box" placeholder="Search your activities..." type="text">
-            <div class="search-dropdown">
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/badminton.svg">
-                    <span class="category">Badminton</span>
-                    <span class="nomaster">78 master</span>
-                </div>
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/golf.svg">
-                    <span class="category">Golf</span>
-                    <span class="nomaster">7 master</span>
-                </div>
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/chef.svg">
-                    <span class="category">Chef</span>
-                    <span class="nomaster">8 master</span>
-                </div>
-                <div class="search-result">
-                    <img class="svg" src="/img/icon/badminton.svg">
-                    <span class="category">Badminton</span>
-                    <span class="nomaster">78 master</span>
-                </div>
+            <input class="search-box" placeholder="Search your activities..." type="text"
+                   onKeyUp="handleChange(this)">
+            <div class="search-dropdown --header">
+
             </div>
         </div>
         <div class="half-square"></div>
@@ -158,9 +143,9 @@
                 </div>
                 <div class="activity-story">
                     @foreach ($stories as $story)
-					    <?php
-					    $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
-					    ?>
+						<?php
+						$story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
+						?>
                         <div class="activity-wrapper">
                             <div class="activity-card">
                                 <div class="video-wrapper">
@@ -200,6 +185,31 @@
                 </div>
             </div>
         @endif
+        <section id="activity" class="all-activity"
+                 style="margin-top: 70px; background-image: url('{{ $categories[0]->category_bg }}')">
+            <div class="content">
+                <h3 class="header">All activities</h3>
+                <div class="search-group" tabindex="-1" align="left">
+                    <input class="search-box" placeholder="Search your activities..." type="text"
+                           onKeyUp="handleChange(this)">
+                    <div class="search-dropdown --activity">
+
+                    </div>
+                </div>
+                <div id="activity-wrapper" class="activity-grid">
+                    @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
+                </div>
+                <div class="loading-wrapper">
+                    <div class="lds-ellipsis infinite-scroll-request">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay"></div>
+        </section>
     </section>
 
     <div class="record-video">
@@ -224,49 +234,6 @@
         </div>
         {{--        <div class="overlay"></div>--}}
     </div>
-
-    <section class="all-activity">
-        <div class="content">
-            <h3 class="header">All activities</h3>
-            <div class="search-group" tabindex="-1" align="left">
-                <input class="search-box" placeholder="Search your activities..." type="text">
-                <div class="search-dropdown">
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/badminton.svg">
-                        <span class="category">Badminton</span>
-                        <span class="nomaster">78 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/golf.svg">
-                        <span class="category">Golf</span>
-                        <span class="nomaster">7 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/chef.svg">
-                        <span class="category">Chef</span>
-                        <span class="nomaster">8 master</span>
-                    </div>
-                    <div class="search-result">
-                        <img class="svg" src="/img/icon/badminton.svg">
-                        <span class="category">Badminton</span>
-                        <span class="nomaster">78 master</span>
-                    </div>
-                </div>
-            </div>
-            <div class="activity-grid">
-                @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
-            </div>
-            <div class="loading-wrapper">
-                <div class="lds-ellipsis infinite-scroll-request">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-        </div>
-        <div class="overlay"></div>
-    </section>
 @endsection
 
 @section('script')
@@ -275,5 +242,172 @@
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="/js/activity.js"></script>
     <script src="/js/activity-page.js"></script>
+
+    <script>
+      var categoryHtml = `
+            @foreach($categories as $category)
+        <div onclick="getActivityCategory({{ $category['category_id'] }})"
+                     class="search-result">
+                <img class="svg" src="{{ $category['category_pic'] }}">
+                <span class="category">{{ $category['category_name'] }}</span>
+                <span class="nomaster">{{ $category['master_count'] }} master</span>
+            </div>
+            @endforeach
+        `
+      var loadingHtml = `
+            <div class="activity-loading">Loading...</div>
+        `
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $('.search-result').click(function () {
+          $(this).parent().parent().blur()
+        })
+
+        $('.search-dropdown.--activity, .search-dropdown.--header').html(categoryHtml)
+        replaceSvg()
+      })
+    </script>
+
+    <script>
+      MasterStudio.myCategory = {
+      @foreach($categories as $category)
+      {{$category['category_id']}} : @json($category),
+      @endforeach
+      }
+
+    </script>
+
+    <script>
+      var loadingHtml = `
+            <div class="activity-loading" align="center">Loading...</div>
+        `
+
+      var getActivityCategory = function (category_id) {
+        goTo('activity')
+
+        $('#activity').css('background-image', 'url(' + MasterStudio.myCategory[category_id]['category_bg'] + ')')
+
+        $('#activity-wrapper').html(loadingHtml)
+        $.ajax({
+          url: '/content/activities?category=' + category_id,
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#activity-wrapper').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+          },
+          error: function (error) {
+            console.log(error)
+          },
+        })
+      }
+
+      var interestSelected = function () {
+        goTo('activity')
+
+        $('#activity').css('background-image', 'url(' + MasterStudio.myCategory[MasterStudio.categorySelected[0]]['category_bg'] + ')')
+
+        $('#activity-wrapper').html(loadingHtml)
+        $.ajax({
+          url: '/content/activities?category=[' + MasterStudio.categorySelected.toString() + ']',
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#activity-wrapper').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+          },
+          error: function (error) {
+            console.log(error)
+          },
+        })
+      }
+
+    </script>
+
+    <script>
+
+      function debounce(f, ms) {
+
+        let timer = null
+
+        return function (...args) {
+          const onComplete = () => {
+            f.apply(this, args)
+            timer = null
+          }
+
+          if (timer) {
+            clearTimeout(timer)
+          }
+
+          timer = setTimeout(onComplete, ms)
+        }
+      }
+
+      var handleChange = function (e) {
+        $(e).next().html(
+          '<div class="search-result">Loading...</div>',
+        )
+
+        debounce(function () {
+          const val = e.value
+
+          if (val === '') {
+            $(e).next().html(categoryHtml)
+            replaceSvg()
+            return
+          }
+
+          $.ajax({
+            url: '/activity/search?keyword=' + val,
+            type: 'get',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+            success: function (res) {
+              var result = res.data
+              var searchHtml
+              if (result.length != 0) {
+                searchHtml = result.map(function (value, index) {
+                  return `
+                    <div onclick="window.location.href = '/activity/${value.activity_url_name}'" class="search-result">
+                        <img class="svg" src="${value.category_pic}">
+                        <span class="category">${value.activity_name}</span>
+                    </div>
+                `
+                }).join('\n')
+              } else {
+                searchHtml = '<div class="search-result">No result.</div>'
+              }
+              $(e).next().html(searchHtml)
+              replaceSvg()
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+
+        }, 700)()
+      }
+
+    </script>
 @endsection
 

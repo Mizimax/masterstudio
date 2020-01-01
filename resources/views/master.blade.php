@@ -1,3 +1,6 @@
+@php
+    $categories = \App\Category::get();
+@endphp
 @extends('app')
 
 @section('title', 'Master')
@@ -22,22 +25,22 @@
                 <h2 class="header">Master you may interest</h2>
                 <div class="master-list">
                     @foreach($masters as $keyMaster => $master)
-                    <div class="master-category">
-                        <h3 class="header">{{ $master[0]['category_name'] }} master</h3>
-                        <div class="master-content">
-                            @foreach($master as $key => $mst)
-                                <div class="master-detail {{ ($keyMaster * 2) + ($key) >= 3 ? 'right' : '' }}">
-                                    @component('components.master-card', ['noimage'=>true, 'animate'=>true, 'size'=>70, 'data'=>$mst])
-                                @endcomponent
-                                <div class="image-wrapper">
-                                    <img src="{{ $mst['user_pic'] }}" alt="">
-                                </div>
-                                    <div class="name">{{ $mst['master_name'] }}</div>
-                                    <div class="badge {{ $mst['master_most_recommend'] !== 0 ? '--most' : ($mst['master_recommend'] !== 0 ? '--rec' : '')}}">{{ $mst['master_most_recommend'] !== 0 ? 'Most recommended' : ($mst['master_recommend'] !== 0 ? 'Recommended' : '')}}</div>
-                                </div>
-                            @endforeach
+                        <div class="master-category">
+                            <h3 class="header">{{ $master[0]['category_name'] }} master</h3>
+                            <div class="master-content">
+                                @foreach($master as $key => $mst)
+                                    <div class="master-detail {{ ($keyMaster * 2) + ($key) >= 3 ? 'right' : '' }}">
+                                        @component('components.master-card', ['noimage'=>true, 'animate'=>true, 'size'=>70, 'data'=>$mst])
+                                        @endcomponent
+                                        <div class="image-wrapper">
+                                            <img src="{{ $mst['user_pic'] }}" alt="">
+                                        </div>
+                                        <div class="name">{{ $mst['master_name'] }}</div>
+                                        <div class="badge {{ $mst['master_most_recommend'] !== 0 ? '--most' : ($mst['master_recommend'] !== 0 ? '--rec' : '')}}">{{ $mst['master_most_recommend'] !== 0 ? 'Most recommended' : ($mst['master_recommend'] !== 0 ? 'Recommended' : '')}}</div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -172,8 +175,6 @@
         }, function () {
           $(this).children('.activity-detail').fadeOut()
         })
-
-
 
       })
     </script>

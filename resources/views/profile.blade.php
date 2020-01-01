@@ -1,3 +1,6 @@
+@php
+    $categories = \App\Category::get();
+@endphp
 @extends('app')
 
 @section('title', 'Studio')
@@ -49,7 +52,7 @@
                             <div class="header">
                                 Masters
                             </div>
-                            <div class="detail">{{ $masters }}</div>
+                            <div class="detail">{{ count($masters) }}</div>
                         </div>
                         <div class="master-stat">
                             <div class="header">
@@ -89,6 +92,9 @@
                             <div class="now-activity">
                                 <div class="header">Now Activities</div>
                                 <div class="content">
+                                    @if($nowActivities->isEmpty())
+                                        <div class="no-act">No activity now.</div>
+                                    @endif
                                     @include('components.activity-grid-card', ['activities'=>$nowActivities, 'size' => 80, 'nohover' => '55'])
                                 </div>
 
@@ -96,6 +102,9 @@
                             <div class="past-activity">
                                 <div class="header">Past Activitie</div>
                                 <div class="content">
+                                    @if($pastActivities->isEmpty())
+                                        <div class="no-act">No activity now.</div>
+                                    @endif
                                     @include('components.activity-grid-card', ['activities'=>$pastActivities, 'size' => 80, 'nohover' => '55'])
                                 </div>
                             </div>
@@ -122,9 +131,21 @@
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="studio">
-                        @include('components.map', ['active' => true, 'me' => $me ? 1 : 2])
+
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="suggest"></div>
+                    <div role="tabpanel" class="tab-pane fade" id="suggest">
+                        <div class="follow-wrapper">
+                            @foreach($masters as $master)
+                                <div class="followed-master"
+                                     onclick="window.location.href='/master/{{ $master['master_id'] }}'">
+                                    <div class="image-wrapper">
+                                        <img src="{{ $master['user_pic'] }}" alt="">
+                                    </div>
+                                    <div class="name">{{ $master['master_name'] }}</div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -14,6 +14,7 @@
 	Route::get('/', 'HomeController@index');
 	Route::get('/user/{userId}', 'UserController@show');
 	Route::get('/activity', 'ActivityController@index');
+	Route::get('/activity/search', 'ActivityController@search');
 	Route::get('/activity/{name}', 'ActivityController@show');
 	Route::get('/master', 'MasterController@index');
 	Route::get('/master/{id}', 'MasterController@show');
@@ -36,6 +37,7 @@
 	});
 
 	Route::get('/content/activity/{offset}', 'ContentController@activity');
+	Route::get('/content/activities', 'ContentController@activities');
 	Route::get('/content/achievement/{category}/{userId}', 'ContentController@achievement');
 	Route::get('/content/map', 'ContentController@map');
 	Route::get('/content/studio/{id}/master', 'ContentController@studioMaster');

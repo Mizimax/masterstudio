@@ -7,6 +7,8 @@
 
 .master-detail-section {
 	padding-top: 150px;
+	padding-left: 20px;
+	padding-right: 20px;
 	background: url('/img/Deepsea.jpeg');
 	background-size: cover;
 	position: relative;
@@ -139,6 +141,7 @@
 			display: flex;
 			justify-content: center;
 			padding: 10px;
+			flex-wrap: nowrap;
 
 			> .master-stat {
 				margin: 30px;
@@ -204,6 +207,7 @@
 			> #activity {
 				> .activity-wrapper {
 					display: flex;
+					flex-wrap: wrap;
 
 					> .now-activity {
 						flex: 1;
@@ -214,6 +218,10 @@
 						flex-grow: 3;
 						margin-left: 20px;
 
+						@media (max-width: 630px) {
+							margin-left: 0;
+						}
+
 						> .content {
 							display: flex;
 							flex-wrap: wrap;
@@ -222,6 +230,7 @@
 
 					.no-act {
 						padding: 50px 0 20px;
+						width: 250px;
 					}
 
 					.header {
@@ -235,6 +244,7 @@
 				position: relative;
 				z-index: 999;
 				margin: 20px auto 0;
+				padding: 20px 0;
 				overflow-x: auto;
 				width: 100%;
 				max-width: 580px;

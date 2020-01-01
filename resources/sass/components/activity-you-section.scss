@@ -2,7 +2,8 @@
 	position: relative;
 	padding: 50px 0;
 	text-align: center;
-	background: url('/img/italian.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
 	background-attachment: fixed;
 
 	> .content {
@@ -29,10 +30,18 @@
 			position: relative;
 			display: flex;
 			flex-flow: row wrap;
-			justify-content: space-evenly;
-			max-width: 900px;
+			justify-content: flex-start;
+			max-width: 810px;
 			margin: 20px auto 0;
 			color: white;
+
+			@media (max-width: 810px) {
+				max-width: 540px;
+			}
+
+			@media (max-width: 540px) {
+				justify-content: center;
+			}
 
 			> .activity-card-wrapper {
 				margin: 80px 10px 0;
