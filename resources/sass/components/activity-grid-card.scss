@@ -2,13 +2,13 @@
 .activity-card-wrapper {
 	margin: 50px 10px 0;
 
+	@media (max-width: 540px) {
+		width: 100%;
+	}
+
 	&:hover > .activity-tabs {
 		opacity: 1;
 		z-index: 1;
-	}
-
-	> .overlay {
-		display: none;
 	}
 
 	> .activity-card {
@@ -17,6 +17,12 @@
 		height: 250px;
 		color: black;
 		margin-right: 0;
+
+		@media (max-width: 540px) {
+			width: 90%;
+			height: 300px;
+			margin: 0 auto;
+		}
 
 		&.hover {
 			> .video-wrapper {
@@ -36,23 +42,16 @@
 					display: block;
 				}
 
-				> .button {
-					&.--detail {
-						position: absolute;
-						right: 20px;
-						bottom: 20px;
-						background: $primary;
-						border: none;
-						color: white;
-						padding: 17px 40px;
-						border-radius: 40px;
-					}
+				> .video {
+					height: 400px;
 				}
 			}
+
 
 			> .master-profile {
 				@include fadein(0.5s);
 
+				position: absolute;
 				z-index: 999;
 				width: 700px;
 
@@ -61,6 +60,20 @@
 					width: 250px;
 					height: auto;
 					padding: 5px 10px;
+				}
+
+				> .button {
+					&.--detail {
+						position: absolute;
+						right: 20px;
+						top: 0;
+						margin-top: 320px;
+						background: $primary;
+						border: none;
+						color: white;
+						padding: 17px 40px;
+						border-radius: 40px;
+					}
 				}
 
 			}
@@ -130,6 +143,7 @@
 				width: 60px;
 				height: 60px;
 				transform: translate(-50%, -50%);
+				cursor: pointer;
 
 				> .svg {
 					color: white;
@@ -157,10 +171,16 @@
 		}
 
 		> .overlay {
-			position: fixed !important;
-			display: none;
-			background: rgba(0, 0, 0, 0.6);
+			position: fixed;
 			z-index: 50;
+			background: rgba(0, 0, 0, 0.6);
+
+			&.--hover {
+				position: absolute;
+				background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.8) 100%);
+				z-index: 0;
+
+			}
 		}
 
 	}

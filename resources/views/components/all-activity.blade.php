@@ -1,7 +1,7 @@
-@if(count($nowActivities) === 0 && count($pastActivities) === 0)
+@if($nowActivities->isEmpty() && $pastActivities->isEmpty())
     <div style="padding:100px; font-size: 25px" align="center">No activity now.</div>
 @endif
-@if(count($nowActivities) !== 0)
+@if(!$nowActivities->isEmpty())
     <h3 class="header">Your next activity</h3>
     @foreach($nowActivities as $nowActivity)
         @php
@@ -43,7 +43,7 @@
         </div>
     @endforeach
 @endif
-@if(count($pastActivities) !== 0)
+@if(!$pastActivities->isEmpty())
     <h3 class="header">Your passed activity</h3>
     @foreach($pastActivities as $pastActivity)
         @php

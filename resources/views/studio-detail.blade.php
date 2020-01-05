@@ -133,7 +133,7 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active show" id="description">
                             <div class="video-wrapper" played="false">
-                                <video class="video lazy" loop muted>
+                                <video class="video lazy pointer" loop muted>
                                     <source data-src="{{ $studio['studio_video'][0] }}"
                                             type="video/mp4" />
                                 </video>
@@ -173,7 +173,9 @@
                                     @endforeach
                                 </div>
                             @else
-                                <div class="no-review">No review now.</div>
+                                <div class="review-wrapper" align="centerz">
+                                    <div class="no-review">No review now.</div>
+                                </div>
                             @endif
                             @if(Auth::check())
                                 <button class="add-review" onclick="$('#modal').modal()">Add your
@@ -314,9 +316,9 @@
         $('.video-wrapper').click(function () {
           var played = $(this).attr('played') == 'true'
           if (!played) {
-            $(this).get(0).play()
+            $(this).children().get(0).play()
           } else {
-            $(this).get(0).pause()
+            $(this).children().get(0).pause()
           }
           $(this).children('.play-wrapper').toggleClass('d-none')
           $(this).attr('played', !played)
@@ -366,7 +368,8 @@
                         </div>
                     </div>
                 `
-            $('.review-wrapper').prepend(reviewHtml)
+            if ($('.review-wrapper > '))
+              $('.review-wrapper').prepend(reviewHtml)
             $('#modal').modal('toggle')
             // window.location.hash = '#newReview';
           },

@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="title-wrapper">
-                            <div class="title">{{ $story['activity_name'] }}</div>
+                            <div class="title" align="left">{{ $story['activity_name'] }}</div>
                             <div class="activity-join">
                                 @foreach($story['users_activity'] as $usersStory)
                                     <div class="participant image-wrapper">

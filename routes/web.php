@@ -17,6 +17,7 @@
 	Route::get('/activity/search', 'ActivityController@search');
 	Route::get('/activity/{name}', 'ActivityController@show');
 	Route::get('/master', 'MasterController@index');
+
 	Route::get('/master/{id}', 'MasterController@show');
 	Route::get('/studio', 'StudioController@index');
 	Route::get('/studio/{id}', 'StudioController@show');
@@ -35,7 +36,8 @@
 		Route::post('/activity/{id}/story', 'UserController@story');
 		Route::post('/activity/{id}/comment', 'ActivityController@comment');
 	});
-
+	Route::get('/content/master/search', 'MasterController@search');
+	Route::get('/content/master/category', 'MasterController@category');
 	Route::get('/content/activity/{offset}', 'ContentController@activity');
 	Route::get('/content/activities', 'ContentController@activities');
 	Route::get('/content/achievement/{category}/{userId}', 'ContentController@achievement');

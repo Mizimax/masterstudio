@@ -128,6 +128,50 @@
 			return back();
 		}
 
+		/**
+		 * Show searching activity html.
+		 *
+		 * @param string $name
+		 * @return Illuminate\Http\Response
+		 */
+		public function search(Request $request)
+		{
+			$search = $request->query('keyword');
+			$masters = User::from('users AS us')
+				->join('masters AS ms', 'ms.master_id', '=', 'us.master_id')
+				->join('activities AS act', 'act.user_id', '=', 'us.user_id')
+				->join('categories AS cg', 'ms.category_id', '=', 'cg.category_id')
+				->groupBy('us.user_id')
+				->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
+				->where('ms.master_name', 'LIKE', "%{$search}%")->get();
+
+			return view('components.master-list', ['masters' => $masters]);
+		}
+
+		/**
+		 * Show a searching activity html.
+		 *
+		 * @param string $name
+		 * @return Illuminate\Http\Response
+		 */
+		public function category(Request $request)
+		{
+			$category_id = $request->query('category');
+			$category_id = json_decode($category_id, true);
+			if (!is_array($category_id)) {
+				$category_id = [$category_id];
+			}
+			$masters = User::from('users AS us')
+				->join('masters AS ms', 'ms.master_id', '=', 'us.master_id')
+				->join('activities AS act', 'act.user_id', '=', 'us.user_id')
+				->join('categories AS cg', 'ms.category_id', '=', 'cg.category_id')
+				->groupBy('us.user_id')
+				->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
+				->whereIn('ms.category_id', $category_id)->get();
+
+			return view('components.master-list', ['masters' => $masters]);
+		}
+
 
 		/**
 		 * Show the form for creating a new master.

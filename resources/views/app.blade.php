@@ -31,6 +31,7 @@
         <nav class="navbar navbar-light navbar-expand-md bg-white">
             <a class="navbar-brand primary-color" href="/">
                 <img src="/img/logo.png" alt="Master Studio" class="logo">
+                <img src="/img/logo-mobile.png" alt="Master Studio" class="logo-mobile">
             </a>
 
             <button class="navbar-toggler border-0 mr-1" type="button" data-toggle="collapse"
@@ -750,7 +751,7 @@
                         </div>
 
                     <div class="modal-action justify-content-center">
-                        <button type="button" class="primary-button" onclick="modal('register')">Register</button>
+                        <button type="button" class="primary-button --outline" onclick="modal('register')">Register</button>
                         <button type="submit" class="primary-button">Login</button>
                     </div>
             </form>
@@ -1047,13 +1048,6 @@
           scrollTop: $('#' + name).offset().top,
         }, 500)
       }
-      $(document).on('click', 'a[href^="#"]', function (event) {
-        event.preventDefault()
-
-        $('html, body').animate({
-          scrollTop: $($.attr(this, 'href')).offset().top,
-        }, 500)
-      })
     </script>
     @yield('script')
 </body>

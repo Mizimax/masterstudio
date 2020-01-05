@@ -57,7 +57,7 @@
                     <div class="availability-wrapper">
                         <div class="availability">
                             <div class="title">Availability</div>
-                            <div class="number">5/{{ $activity['activity_max'] }}</div>
+                            <div class="number">/{{ $activity['activity_max'] }}</div>
                         </div>
                         <div class="activity-join">
                             <div class="participant image-wrapper">
@@ -73,12 +73,14 @@
                     </div>
                 </div>
             </div>
-            <div class="vr-exp">
-                <div class="image-wrapper">
-                    <img class="svg" src="/img/icon/play-circle-solid.svg" alt="">
+            @if($activity['activity_vr'])
+                <div class="vr-exp">
+                    <div class="image-wrapper">
+                        <img class="svg" src="/img/icon/play-circle-solid.svg" alt="">
+                    </div>
+                    <div class="text">VR experience</div>
                 </div>
-                <div class="text">VR experience</div>
-            </div>
+            @endif
         </div>
         <!-- End Carousel -->
     </section>

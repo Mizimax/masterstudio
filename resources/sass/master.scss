@@ -58,7 +58,7 @@
             }
 
             > .button {
-	            margin-left: 15px;
+	            margin-left: 10px;
                 height: 100%;
                 border: none;
                 border-radius: 40px;
@@ -88,6 +88,7 @@
 
                 > .master-category {
                     padding: 0 20px;
+	                min-width: 240px;
 
                     > .header {
                         font-size: 22px;
@@ -131,7 +132,7 @@
                                 left: -20;
                                 z-index: 999;
 	                            width: 340px;
-	                            height: 440px;
+	                            height: 410px;
 	                            padding: 20px;
                             }
 
@@ -157,7 +158,7 @@
 	                            width: 120px;
 	                            overflow: hidden;
 	                            text-overflow: ellipsis;
-                                margin-top: 85px;
+	                            margin: 85px auto 0;
                             }
 
                             > .badge {
@@ -187,6 +188,11 @@
 .master-profile-section {
     z-index: 1;
 
+	.search-result {
+		text-align: center;
+		padding: 100px 0;
+	}
+
     .section-container {
         padding: 70px 0;
         max-width: 900px;
@@ -196,31 +202,30 @@
         > .search-wrapper {
             display: flex;
             align-item: center;
+	        flex-wrap: wrap;
+	        justify-content: center;
             padding: 0 20px;
 
             > .category-name {
                 display: flex;
                 align-items: center;
-                font-size: 20px;
+	            font-size: 28px;
                 font-weight: bold;
+	            justify-content: center;
                 flex: 1;
-                justify-content: flex-end;
-                margin-right: 20px;
-
-                @include mobile-up {
-                    font-size: 28px;
-                }
+	            margin: 20px 0;
             }
 
             > .search-box-wrapper {
-                flex: 2;
-                width: 100%;
+	            width: 100%;
+	            max-width: 600px;
                 font-style: italic;
                 border-radius: 25px;
                 border: 1px solid #555;
                 display: flex;
                 align-items: center;
                 height: 50px;
+	            margin: 20px 0;
 
 	            > .svg {
 		            position: absolute;
@@ -230,7 +235,7 @@
 	            }
 
                 > .search-box {
-                    margin: 0 20px;
+	                margin: 0 20px 0 40px;
                     width: 100%;
                     border: none;
 

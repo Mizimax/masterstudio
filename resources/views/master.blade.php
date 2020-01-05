@@ -18,8 +18,9 @@
             <h1 class="header">Explore the real master</h1>
             <div class="search-box-wrapper">
                 <img src="/img/icon/search-solid.svg" class="svg">
-                <input class="search-box" placeholder="Master name / Activity you like" type="text">
-                <button class="button">Explore</button>
+                <input class="search-box" placeholder="Master name / Activity you like" type="text"
+                       onKeyUp="handleChange(this)">
+                <button class="button" onclick="goTo('master')">Explore</button>
             </div>
             <div class="master-interest">
                 <h2 class="header">Master you may interest</h2>
@@ -46,106 +47,23 @@
             </div>
         </div>
     </section>
-    <section class="master-profile-section">
+    <section id="master" class="master-profile-section">
         <div class="section-container">
             <div class="search-wrapper">
                 <div class="category-name">Italian Master</div>
                 <div class="search-box-wrapper" style="position:relative">
                     <img src="/img/icon/search-solid.svg" class="svg">
                     <input class="search-box" placeholder="Master name / Activity you like"
-                           type="text">
+                           type="text" onKeyUp="handleChange(this)">
                 </div>
             </div>
             <div class="filter-category" align="center">
                 @include('components.category-interest')
             </div>
 
-            @foreach ($allMasters as $key => $allMaster)
-                @php
-                    $allMaster['activity_video'] = json_decode($allMaster['activity_video'], true)[0];
-                @endphp
-                <div class="master-profile-wrapper"
-                     style="{{ $key == 0 ? 'margin-top: -40px': ''}}">
-                    <div class="master-profile">
-                        <div class="your-activity-timeline">
-                            <div class="image-container">
-                                <div class="your-image image-wrapper">
-                                    <img class="border-circle shadow"
-                                         src="{{ $allMaster['user_pic'] }}"
-                                         width="120"
-                                         height="120"
-                                         title="Profile image"
-                                         alt="Profile image">
-                                </div>
-                            </div>
-                            <div class="your-info" align="center">
-                                <h3 class="name">{{ $allMaster['master_name'] }}</h3>
-                                <span class="category">{{ $allMaster['category_name'] }}</span>
-                                <div class="master-stat">
-                                    <div class="header">
-                                        Disciples
-                                    </div>
-                                    <div class="detail">{{ number_format($allMaster['master_disciple']) }}</div>
-                                </div>
-                                <div class="master-stat">
-                                    <div class="header">
-                                        Followers
-                                    </div>
-                                    <div class="detail --start">
-                                        {{ number_format($allMaster['master_follower']) }}
-                                    </div>
-                                </div>
-                                <div class="master-stat">
-                                    <div class="header">
-                                        Mastered
-                                    </div>
-                                    <div class="detail">{{ number_format($allMaster['master_mastered']) }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="master-video" played="false">
-                            <div class="video-wrapper">
-                                <video class="video video-fluid" loop muted>
-                                    <source src="{{ $allMaster['activity_video'] }}"
-                                            type="video/mp4" />
-                                </video>
-
-                                <div class="play-wrapper">
-                                    <img src="/img/icon/play-circle-solid.svg" class="svg">
-                                </div>
-                            </div>
-                            <div class="overlay"></div>
-                            <div class="master-action">
-                                <div class="actions">
-                                    <div class="action-wrapper">
-                                        <button class="join-button"
-                                                onclick="window.location='/activity/{{ $allMaster['activity_url_name'] }}'">
-                                            Join<br>Activity
-                                        </button>
-                                        <span>1 Activity available</span>
-                                    </div>
-                                    <div class="follow-wrapper">
-                                        <div class="follow-icon">
-                                            <img src="/img/icon/footstep.svg"
-                                                 alt="Follow ..."
-                                                 class="svg">
-                                        </div>
-                                        <div class="text">Follow</div>
-                                    </div>
-                                </div>
-                                <div class="core-actions">
-                                    <button class="request-button">Request<br>custom activity
-                                    </button>
-                                    <button class="view-profile-button"
-                                            onclick="window.location='/master/{{ $allMaster['master_id'] }}'">
-                                        view profile
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+            <div class="master-wrapper">
+                @include('components.master-list', ['masters' => $allMasters])
+            </div>
         </div>
     </section>
 @endsection
@@ -159,7 +77,7 @@
           // ... more custom settings?
         })
         // video click
-        var figure = $('.master-video').click(function () {
+        var figure = $('.master-wrapper').delegate('.master-video', 'click', function () {
           var played = $(this).attr('played') == 'true'
           if (!played) {
             $(this).children('.video-wrapper').children('.video').get(0).play()
@@ -177,5 +95,85 @@
         })
 
       })
+
+    </script>
+
+    <script>
+      var interestSelected = function () {
+        goTo('master')
+
+        $.ajax({
+          url: '/content/master/category?category=[' + MasterStudio.categorySelected.toString() + ']',
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('.master-wrapper').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+            replaceSvg()
+          },
+          error: function (error) {
+            console.log(error)
+          },
+        })
+      }
+    </script>
+
+    <script>
+      function debounce(f, ms) {
+        let timer = null
+
+        return function (...args) {
+          const onComplete = () => {
+            f.apply(this, args)
+            timer = null
+          }
+
+          if (timer) {
+            clearTimeout(timer)
+          }
+
+          timer = setTimeout(onComplete, ms)
+        }
+      }
+
+      var handleChange = function (e) {
+        $('.master-wrapper').html(
+          '<div class="search-result">Loading...</div>',
+        )
+
+        debounce(function () {
+          const val = e.value
+
+          $.ajax({
+            url: '/content/master/search?keyword=' + val,
+            type: 'get',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+            success: function (res) {
+              $('.master-wrapper').html(res)
+              var lazyLoadInstance = new LazyLoad({
+                elements_selector: '.lazy',
+                // ... more custom settings?
+              })
+              replaceSvg()
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+
+        }, 700)()
+      }
+
     </script>
 @endsection

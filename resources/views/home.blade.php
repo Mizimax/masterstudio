@@ -45,7 +45,7 @@
                                     type="video/mp4" />
                         </video>
                         <!-- Content Header -->
-                        <div class="content-wrapper">
+                        <div class="content-wrapper" style="z-index: 10;">
                             <!-- Activity Name , Search -->
                             <div class="activity-name">
                                 <h1 class="header">@Master Studio</h1>
@@ -107,8 +107,10 @@
 
             </div>
         </div>
-
+        <div class="overlay --header"
+             style="z-index: 9; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.8) 100%);"></div>
         <div class="half-square"></div>
+
     </section>
 
     <section class="live-activity">
@@ -220,7 +222,7 @@
           $('.carousel-item.active > .video').get(0).play()
         })
 
-        $('.search-result').click(function () {
+        $('.search-dropdown').delegate('.search-result', 'click', function () {
           $(this).parent().parent().blur()
         })
 

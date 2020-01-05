@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/css/studio.css">
 <style>
     img[src^='/img/studio'] {
         border-radius: 50%;
@@ -6,8 +5,7 @@
     }
 </style>
 
-<div id="map" style="width: 100%; height: 100vh">
-
+<div id="map" style="width: 100%; height: 500px">
 </div>
 
 <div class="map-detail" style="display: none">

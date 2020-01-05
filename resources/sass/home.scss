@@ -10,12 +10,6 @@
 @import 'components/activity-story-section';
 @import 'components/category-interest';
 
-.category-interest {
-	position: sticky;
-	top: 100px;
-	z-index: 999;
-}
-
 .video-header {
 	position: relative;
 
@@ -23,7 +17,7 @@
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
-		margin-top: -137px;
+		margin-top: -120px;
 		left: 6%;
 		margin-left: 20px;
 		z-index: 1000;
@@ -33,6 +27,7 @@
 
 			@media (max-width: breakpoint-min(sm)) {
 				margin-top: 0 !important;
+				top: 70%;
 			}
 		}
 
@@ -82,6 +77,11 @@
 				top: 50%;
 				transform: translateY(-50%);
 
+				@media (max-height: 700px) {
+					@media (max-width: 460px) {
+						top: 70%;
+					}
+				}
 
 				> .activity-name {
 					color: white;
@@ -173,7 +173,7 @@
 	> .content {
 		.search-group {
 			max-width: 400px;
-			width: 100%;
+			width: 90%;
 			margin: 0 auto;
 			text-align: left;
 		}

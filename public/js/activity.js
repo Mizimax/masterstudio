@@ -1,30 +1,31 @@
-function activityHover() {
-  $('#activity-wrapper').delegate('.video-wrapper', 'mouseenter', function () {
-    var self = this
-    var index = $(this).parent().parent().index()
-    $(this).siblings('.master-profile').addClass('active')
-    $(this).parent().addClass('hover')
-    $(this).parent().removeClass('fixedMid')
-    $(this).parent().removeClass('left')
-    $(this).parent().removeClass('right')
-    $(this).parent().removeClass('mid')
+function hoverActivity(event) {
+  return function () {
+    var ele = $(this).siblings('.video-wrapper')
+    var index = ele.parent().parent().index()
+    ele.siblings('.master-profile').addClass('active')
+    ele.siblings('.master-profile').children('.button').removeClass('d-none')
+    ele.parent().addClass('hover')
+    ele.parent().removeClass('fixedMid')
+    ele.parent().removeClass('left')
+    ele.parent().removeClass('right')
+    ele.parent().removeClass('mid')
     if ($(window).width() <= 809) {
-      $(this).parent().addClass('fixedMid')
+      ele.parent().addClass('fixedMid')
     } else {
       if (index % 3 === 0) {
-        $(this).parent().addClass('left')
+        ele.parent().addClass('left')
       } else if (index % 3 === 2) {
-        $(this).parent().addClass('right')
+        ele.parent().addClass('right')
       } else {
-        $(this).parent().addClass('mid')
+        ele.parent().addClass('mid')
       }
     }
 
-    $(this).children('.video').get(0).play()
+    ele.children('.video').get(0).play()
     MasterStudio.videoHover.play = true
 
-    $(this).parent().children('.overlay').addClass('d-block')
-    $(this).off('click').on('click', function () {
+    ele.parent().children('.overlay').removeClass('--hover')
+    ele.off('click').on('click', function () {
       if (!MasterStudio.videoHover.play) {
         $(this).children('.video').get(0).play()
       } else {
@@ -34,16 +35,31 @@ function activityHover() {
       MasterStudio.videoHover.play = !MasterStudio.videoHover.play
     })
 
-    $('.overlay.d-block').one('mouseenter', function () {
-      $(self).parent().removeClass('hover')
-      $(this).removeClass('d-block')
-      $(self).siblings('.master-profile').removeClass('active')
+    ele.parent().children('.overlay').one(event, function () {
+      ele.parent().removeClass('hover')
+      setTimeout(() => {
+        $(this).addClass('--hover')
+      }, 100)
+      ele.siblings('.master-profile').removeClass('active')
+      ele.siblings('.master-profile').children('.button').addClass('d-none')
 
-      $(self).children('.video').get(0).pause()
-      $(self).children('.play-wrapper').addClass('d-none')
+      ele.children('.video').get(0).pause()
+      ele.children('.play-wrapper').addClass('d-none')
       MasterStudio.videoHover.play = false
     })
-  })
+  }
+}
+
+function activityHover() {
+
+  var tap = ('ontouchstart' in document.documentElement)
+
+  if (tap) {
+    $('#activity-wrapper').delegate('.activity-overlay.--hover', 'touchend', hoverActivity('touchend'))
+  } else {
+    $('#activity-wrapper').delegate('.activity-overlay.--hover', 'mouseenter', hoverActivity('mouseenter'))
+  }
+
 }
 
 function hoverVideo(e) {

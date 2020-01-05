@@ -106,6 +106,8 @@
 
             </div>
         </div>
+        <div class="overlay --header"
+             style="z-index: 9; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.8) 100%);"></div>
         <div class="half-square"></div>
     </section>
 
@@ -261,7 +263,7 @@
 
     <script>
       $(document).ready(function () {
-        $('.search-result').click(function () {
+        $('.search-dropdown').delegate('.search-result', 'click', function () {
           $(this).parent().parent().blur()
         })
 

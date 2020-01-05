@@ -16,7 +16,7 @@
     }
     @endphp
     <div class="activity-card-wrapper"
-         onclick="window.location.href='/activity/{{ $activity['activity_url_name'] }}'">
+            {{ !empty($nohover) ? 'onclick="window.location.href="/activity/'.$activity['activity_url_name'] : ''}}>
         <div class="activity-card">
             <div class="video-wrapper">
                 <video class="video lazy" loop muted>
@@ -26,12 +26,6 @@
                 <div class="fadeoutpper d-none">
                     <img src="/img/icon/play-circle-solid.svg" class="svg">
                 </div>
-                @if(empty($nohover))
-                    <button class="button --detail"
-                            onclick="window.location.href = '/activity/{{ $activity['activity_url_name']  }}'">
-                        view detail
-                    </button>
-                @endif
                 <div class="activity-tabs">
                     <div class="icon-wrapper --join"
                          onclick="window.location.href = '/activity/{{ $activity['activity_url_name']  }}'">
@@ -48,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overlay"></div>
+            <div class="overlay activity-overlay --hover"></div>
             <div class="master-profile">
                 @if(empty($nohover))
                     @component('components.activity-card', ['noimage'=>true, 'size'=>$size, 'animate'=>true, 'activity' => $activity])
@@ -57,6 +51,13 @@
                 <div class="image-wrapper" style="width: {{$size/1.2}}px; height: {{$size/1.2}}px">
                     <img src="{{ $activity['user_pic'] }}" alt="{{ $activity['master_name'] }}">
                 </div>
+
+                @if(empty($nohover))
+                    <button class="button --detail d-none"
+                            onclick="window.location.href = '/activity/{{ $activity['activity_url_name']  }}'">
+                        view detail
+                    </button>
+                @endif
             </div>
 
             <div class="title-wrapper">
