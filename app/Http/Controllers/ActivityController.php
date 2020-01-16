@@ -88,7 +88,10 @@
 		public function search(Request $request)
 		{
 			$search = $request->query('keyword');
-			$activity = Activity::from('activities as act')
+			if (!$search) {
+				$search = $request->query('key') ? $request->query('key') : '';
+			}
+			$activities = Activity::from('activities as act')
 				->join('users AS u', 'u.user_id', '=', 'act.user_id')
 				->join('masters AS ms', 'u.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
@@ -96,10 +99,34 @@
 				->join('achievements AS ach', 'act.achievement_id', '=', 'ach.achievement_id')
 				->where('act.activity_name', 'LIKE', "%{$search}%")->get();
 
+			if ($request->query('key') || $search === '') {
+				return view('components.activity-grid-card', ['activities' => $activities]);
+			}
+
 			return response()->json([
 				'status' => 200,
-				'data' => $activity,
+				'data' => $activities,
 				'message' => 'Search ' . $search . ' success.'
+			], 200);
+		}
+
+		/**
+		 * Show a searching activity json.
+		 *
+		 * @param string $name
+		 * @return Illuminate\Http\Response
+		 */
+		public function pin(Request $request, $id)
+		{
+			UserActivity::create([
+				'activity_id' => $id,
+				'user_id' => \Auth::id(),
+				'user_activity_status' => 0,
+				'user_activity_paid' => 0
+			]);
+			return response()->json([
+				'status' => 200,
+				'message' => 'Pin activity id : ' . $id . ' success.'
 			], 200);
 		}
 

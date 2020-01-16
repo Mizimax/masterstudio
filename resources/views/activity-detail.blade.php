@@ -53,7 +53,10 @@
                     <div class="price">
                         THB {{ $activity['activity_price'] }} {{ $activity['activity_price_type'] === 0 ? '' : '/ Hour' }}</div>
                     <button class="join-button" onclick="modal('join')">Join activity</button>
-                    <button class="milestone-button">Set as milestone</button>
+                    <button class="milestone-button"
+                            onclick="pinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}')">
+                        Set as milestone
+                    </button>
                     <div class="availability-wrapper">
                         <div class="availability">
                             <div class="title">Availability</div>
@@ -217,7 +220,7 @@
                     @include('components.activity-grid-card', ['activities'=>$activities, 'size' => 80, 'nohover' => '55'])
                 </div>
             </div>
-            @if(!$comments->isEmpty())
+
                 <div class="activity-section --comment">
                     <div class="title">Disciple Commented</div>
                     @foreach($comments as $key => $comment)
@@ -264,7 +267,7 @@
                         </button>
                     @endif
                 </div>
-            @endif
+
             <div class="activity-section --sponsor">
                 <div class="title">Sponsors</div>
                 <div class="sponsor-wrapper">
@@ -304,9 +307,9 @@
                                     : {{ Auth::user()->user_name }}</label>
                                 <textarea required id="comment_text" name="comment_text"
                                           class="form-control" placeholder="Comment..."></textarea>
-                                <input type="file" class="img-input">
-                                <input type="file" class="img-input">
-                                <input type="file" class="img-input">
+                                <input type="file" accept="image/*" class="img-input">
+                                <input type="file" accept="image/*" class="img-input">
+                                <input type="file" accept="image/*" class="img-input">
                             </div>
 
                             <div class="modal-action justify-content-center">
@@ -374,6 +377,32 @@
             $('.review-wrapper').prepend(reviewHtml)
             $('#modal').modal('toggle')
             // window.location.hash = '#newReview';
+          },
+        })
+      }
+
+      var pinActivity = function (activity, name) {
+        $.ajax({
+          url: '/activity/' + activity + '/pin',
+          type: 'post',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            modal('all')
+            var alertHtml = `
+            <div class="alert alert-success" role="alert">
+              Activity ${name} was pinned !
+            </div>
+            `
+            $('#my-activity').append(alertHtml)
+          },
+          error: function (err) {
+            if (err.status === 401) {
+              modal('login')
+            }
           },
         })
       }

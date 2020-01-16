@@ -4,6 +4,7 @@
 @import 'components/activity-video-card';
 @import 'components/activity-grid-card';
 @import 'components/activity-card-detail';
+@import 'components/map.scss';
 
 .master-detail-section {
 	padding-top: 150px;
@@ -48,10 +49,98 @@
 					top: 50%;
 					transform: translate(-50%, -50%);
 
+					> #image-profile {
+						object-fit: cover;
+					}
+
+					> .edit-wrapper {
+						position: absolute;
+						right: 5px;
+						bottom: 5px;
+
+						&:focus {
+							& > .edit-dropdown {
+								display: block;
+							}
+						}
+
+						> .edit-pic {
+							width: 25px;
+							height: 25px;
+							background-color: #ccc;
+							border-radius: 50%;
+							border: 1px solid #fff;
+							cursor: pointer;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+
+							> .icon {
+								width: 15px;
+								height: 15px;
+							}
+						}
+
+						#profile-img {
+							opacity: 0;
+							position: absolute;
+							top: 35px;
+							left: 0;
+							width: 166px;
+							height: 31px;
+							z-index: 10;
+							cursor: pointer;
+
+							&:hover + .edit-dropdown > .edit-menu.edit {
+								color: white;
+								background: $primary;
+							}
+						}
+
+						> .edit-dropdown {
+							display: none;
+							position: absolute;
+							background: white;
+							top: 35px;
+							left: 0;
+							font-size: 14px;
+							border-radius: 10px;
+							@include shadow(5px, 5px, 15px, 0px, 0.17);
+
+							> .edit-menu {
+								padding: 7px 15px;
+								cursor: pointer;
+								white-space: nowrap;
+								position: relative;
+
+								&:hover {
+									color: white;
+									background: $primary;
+								}
+
+								&:first-child {
+									border-top-left-radius: 10px;
+									border-top-right-radius: 10px;
+								}
+
+								&:last-child {
+									border-bottom-left-radius: 10px;
+									border-bottom-right-radius: 10px;
+								}
+
+								&:not(:first-child) {
+									border-top: 1px solid #ccc;
+								}
+							}
+						}
+					}
+
 					> img {
 						width: 100%;
 						height: 100%;
 						border-radius: 50%;
+						border: 1px solid #ccc;
+						@include shadow(5px, 5px, 15px, 0px, 0.17);
 					}
 				}
 			}

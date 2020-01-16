@@ -381,7 +381,7 @@ button:focus {
 
 		&:focus {
 			& + .search-dropdown {
-				display: block !important;
+				display: block;
 			}
 		}
 
@@ -1041,10 +1041,51 @@ button:focus {
 			}
 		}
 
+		> .master-action-mobile {
+			padding: 5px 0 5px 15px;
+
+			.action {
+				text-align: center;
+				margin: 10px 0;
+				width: 50px;
+				height: 50px;
+				font-size: 10px;
+				color: white;
+				border-radius: 50%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				cursor: pointer;
+				@include shadow(0px, 0px, 15px, 1px, 0.17);
+
+				&.--join {
+					background-color: #f25b27;
+				}
+
+				&.--follow {
+					background-color: $primary;
+				}
+
+				&.--custom {
+					background-color: $primary;
+				}
+
+				&.--profile {
+					background-color: #fff;
+					color: $primary;
+				}
+			}
+		}
+
 		> .master-video {
 			flex: 1;
 			position: relative;
 			cursor: pointer;
+			display: none;
+
+			@include mobile-up {
+				display: block;
+			}
 
 			> .video-wrapper {
 				position: absolute;
@@ -1131,5 +1172,147 @@ form .error-msg {
 
 	> .text {
 		margin-top: 3px;
+	}
+}
+
+.payment-wrapper {
+
+	> .header {
+		text-align: center;
+		font-weight: 300;
+	}
+
+	> .badge-wrapper {
+		display: flex;
+		padding: 25px 0;
+		overflow-x: auto;
+
+		> .payment-badge {
+			flex: 0 0 120px;
+			text-align: center;
+			padding: 10px 0;
+			color: $primary;
+			background: white;
+			border-radius: 20px;
+			cursor: pointer;
+
+			margin-right: 10px;
+			@include shadow(5px, 5px, 15px, 0px, 0.17);
+
+			&:hover, &.active {
+				background: $primary;
+				color: white;
+
+				> .name {
+					color: white;
+				}
+
+				//> .svg {
+				//	.cls-1 {
+				//		fill: white;
+				//	}
+				//}
+			}
+
+			> .svg {
+				width: 70px;
+				height: 70px;
+			}
+
+			> .name {
+				font-size: 12px;
+				color: black;
+
+				> .card-icon {
+					width: 40px;
+					height: 13px;
+				}
+
+				> .card-number {
+					font-size: 10px;
+				}
+			}
+		}
+	}
+
+	> .form-card-wrapper {
+		> .card-support {
+			display: flex;
+			justify-content: center;
+
+			> .card-icon {
+				margin: 0 5px;
+				width: 50px;
+				height: 20px;
+			}
+		}
+
+		.form-group {
+			margin: 10px 0 0;
+
+			> label {
+				padding-left: 15px;
+				padding-bottom: 5px;
+				color: #555;
+				font-weight: 300;
+			}
+
+			> input {
+				border: none;
+				border-radius: 15px;
+				font-weight: 300;
+				@include shadow(5px, 5px, 15px, 0px, 0.1);
+
+				&::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+					color: #ccc;
+				}
+
+				&:-ms-input-placeholder { /* Internet Explorer 10-11 */
+					color: #ccc;
+				}
+
+				&::-ms-input-placeholder { /* Microsoft Edge */
+					color: #ccc;
+				}
+
+				&:focus {
+					@include shadow(5px, 5px, 15px, 0px, 0.3);
+				}
+			}
+		}
+
+
+	}
+}
+
+.payment-success {
+	color: $primary;
+
+	> .header {
+		text-align: center;
+		font-weight: 300;
+		color: black;
+	}
+
+	> .svg {
+		margin-top: 20px;
+		width: 150px;
+		height: 150px;
+		color: $primary;
+	}
+
+	> .thx {
+		margin: 15px 0;
+		font-size: 28px;
+	}
+
+	> .price {
+		margin: 10px 0;
+		font-size: 20px;
+		font-weight: bold;
+	}
+
+	> .activity-image {
+		width: 150px;
 	}
 }

@@ -11714,7 +11714,7 @@ button:focus {
 }
 
 .search-group > .search-box:focus + .search-dropdown {
-	display: block !important;
+	display: block;
 }
 
 @media (min-width: 576px) {
@@ -12410,10 +12410,53 @@ button:focus {
 	font-weight: bold;
 }
 
+.master-profile-wrapper > .master-profile > .master-action-mobile {
+	padding: 5px 0 5px 15px;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action {
+	text-align: center;
+	margin: 10px 0;
+	width: 50px;
+	height: 50px;
+	font-size: 10px;
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.17);
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--join {
+	background-color: #f25b27;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--follow {
+	background-color: #f14ea6;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--custom {
+	background-color: #f14ea6;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--profile {
+	background-color: #fff;
+	color: #f14ea6;
+}
+
 .master-profile-wrapper > .master-profile > .master-video {
 	flex: 1;
 	position: relative;
 	cursor: pointer;
+	display: none;
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile > .master-video {
+		display: block;
+	}
 }
 
 .master-profile-wrapper > .master-profile > .master-video > .video-wrapper {
@@ -12497,6 +12540,159 @@ form .error-msg > .svg {
 
 form .error-msg > .text {
 	margin-top: 3px;
+}
+
+.payment-wrapper > .header {
+	text-align: center;
+	font-weight: 300;
+}
+
+.payment-wrapper > .badge-wrapper {
+	display: flex;
+	padding: 25px 0;
+	overflow-x: auto;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge {
+	flex: 0 0 120px;
+	text-align: center;
+	padding: 10px 0;
+	color: #f14ea6;
+	background: white;
+	border-radius: 20px;
+	cursor: pointer;
+	margin-right: 10px;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.17);
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge:hover,
+.payment-wrapper > .badge-wrapper > .payment-badge.active {
+	background: #f14ea6;
+	color: white;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge:hover > .name,
+.payment-wrapper > .badge-wrapper > .payment-badge.active > .name {
+	color: white;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .svg {
+	width: 70px;
+	height: 70px;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name {
+	font-size: 12px;
+	color: black;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name > .card-icon {
+	width: 40px;
+	height: 13px;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name > .card-number {
+	font-size: 10px;
+}
+
+.payment-wrapper > .form-card-wrapper > .card-support {
+	display: flex;
+	justify-content: center;
+}
+
+.payment-wrapper > .form-card-wrapper > .card-support > .card-icon {
+	margin: 0 5px;
+	width: 50px;
+	height: 20px;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group {
+	margin: 10px 0 0;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > label {
+	padding-left: 15px;
+	padding-bottom: 5px;
+	color: #555;
+	font-weight: 300;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input {
+	border: none;
+	border-radius: 15px;
+	font-weight: 300;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-webkit-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-moz-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:-ms-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-ms-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:focus {
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.payment-success {
+	color: #f14ea6;
+}
+
+.payment-success > .header {
+	text-align: center;
+	font-weight: 300;
+	color: black;
+}
+
+.payment-success > .svg {
+	margin-top: 20px;
+	width: 150px;
+	height: 150px;
+	color: #f14ea6;
+}
+
+.payment-success > .thx {
+	margin: 15px 0;
+	font-size: 28px;
+}
+
+.payment-success > .price {
+	margin: 10px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.payment-success > .activity-image {
+	width: 150px;
 }
 
 .icon-wrapper {
@@ -12835,7 +13031,8 @@ form .error-msg > .text {
 
 @media (min-width: 809px) {
   .activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs {
-    padding-left: 3%;
+	  width: 57.5px;
+	  padding-left: 7.5px;
     left: 100%;
     top: 50%;
     transform: translateY(-50%);
@@ -13193,36 +13390,6 @@ form .error-msg > .text {
 	background: rgba(255, 255, 255, 0.95);
 }
 
-.activity-detail .follow-wrapper {
-  margin-left: auto;
-  cursor: pointer;
-}
-
-.activity-detail .follow-wrapper > .follow-icon {
-  background: #f14ea6;
-  border-radius: 50%;
-  font-size: 0;
-  width: 30px;
-  height: 30px;
-  margin: 0 auto;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.activity-detail .follow-wrapper > .follow-icon > .svg {
-	fill: white;
-  color: white;
-	width: 65%;
-	height: 65%;
-}
-
-.activity-detail .follow-wrapper > .text {
-  margin-top: 3px;
-  color: #f14ea6;
-  font-size: 10px;
-}
-
 .activity-detail > .master-stat-wrapper {
   display: flex;
   justify-content: center;
@@ -13483,6 +13650,7 @@ form .error-msg > .text {
 .activity-loading {
 	text-align: center;
 	padding: 200px 0;
+	width: 100%;
 }
 
 .all-activity .search-group {
@@ -13493,19 +13661,19 @@ form .error-msg > .text {
 
 .activity-header .search-group {
 	position: absolute;
+	max-width: 300px;
+	width: 90%;
 	top: 50%;
-	transform: translateY(-50%);
-	margin-top: -150px;
-	left: 50%;
-	transform: translateX(-50%);
+	margin-top: -180px;
+	right: 6%;
 	margin-left: 10px;
 	z-index: 1000;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
 	.activity-header .search-group {
-		transform: translateX(0);
-		left: 40%;
+		margin-top: -150px;
+		max-width: 450px;
 	}
 }
 
@@ -13524,13 +13692,6 @@ form .error-msg > .text {
 @media (max-height: 700px) and (max-width: 576px) {
 	.activity-header .search-group {
 		top: 60%;
-	}
-}
-
-@media (max-width: 768px) {
-	.activity-header .search-group {
-		margin-top: -180px;
-		max-width: 300px;
 	}
 }
 
@@ -13806,8 +13967,7 @@ form .error-msg > .text {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 0;
-  padding-left: 40%;
+	right: 6%;
   width: 100%;
 	padding-right: 20px;
 }
@@ -13825,12 +13985,6 @@ form .error-msg > .text {
   }
 }
 
-@media (max-width: 767px) {
-	.activity-header > #carousel .carousel-item > .content-wrapper {
-		padding: 0;
-	}
-}
-
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name {
   color: white;
   width: 100%;
@@ -13838,16 +13992,15 @@ form .error-msg > .text {
 }
 
 .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-  font-size: 34px;
   font-weight: bold;
+	font-size: 34px;
   width: 100%;
-	text-align: center;
+	text-align: right;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 576px) {
   .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
     font-size: 60px;
-	  text-align: left;
   }
 }
 
@@ -13855,19 +14008,12 @@ form .error-msg > .text {
   font-size: 23.8px;
   width: 100%;
   font-weight: 300;
-	text-align: center;
+	text-align: right;
 }
 
 @media (min-width: 576px) {
   .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-    font-size: 27.8px;
-  }
-}
-
-@media (min-width: 768px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
     font-size: 42px;
-	  text-align: left;
   }
 }
 
@@ -13904,14 +14050,7 @@ form .error-msg > .text {
 	margin-top: 150px;
   justify-content: flex-end;
 	margin-right: 20px;
-	max-width: 600px;
   display: none;
-}
-
-@media (min-width: 768px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
-    margin-right: 40px;
-  }
 }
 
 @media (min-height: 740px) {

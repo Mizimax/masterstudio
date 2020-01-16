@@ -48,8 +48,8 @@
                             <!-- Activity Name , Search -->
                             <div class="activity-name">
                                 <h1 class="header">@Master Studio</h1>
-                                <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a class="chef"
-                                                                                        href="#">{{ $headActivity['category_name'] }}</a>
+                                <h2 class="subheader">Meet Real <a class="chef"
+                                                                   href="#">{{ $headActivity['category_name'] }}</a>
                                 </h2>
                             </div>
                             <!-- End Activity Name , Search -->
@@ -61,17 +61,18 @@
                                         </div>
                                         <div class="text">Join activity</div>
                                     </div>
-                                    <div class="activity-tab">
+                                    <div class="activity-tab"
+                                         onclick="pinActivity({{ $headActivity['activity_id'] }}, '{{ $headActivity["activity_name"] }}')">
                                         <div class="icon-wrapper --pin">
                                         </div>
                                         <div class="text">Pin activity</div>
                                     </div>
-                                    <div class="activity-tab">
+                                    <div class="activity-tab" onclick="inviteFriend()">
                                         <div class="icon-wrapper --invite">
                                         </div>
                                         <div class="text">Invite friend</div>
                                     </div>
-                                    <div class="activity-tab">
+                                    <div class="activity-tab" onclick="shareActivity()">
                                         <div class="icon-wrapper --share">
                                         </div>
                                         <div class="text">Share</div>
@@ -99,7 +100,7 @@
             <!-- End Slideshow -->
         </div>
         <!-- End Carousel -->
-        <div class="search-group" tabindex="-1" style="width: 450px">
+        <div class="search-group" tabindex="-1">
             <input class="search-box" placeholder="Search your activities..." type="text"
                    onKeyUp="handleChange(this)">
             <div class="search-dropdown --header">
@@ -193,10 +194,7 @@
                 <h3 class="header">All activities</h3>
                 <div class="search-group" tabindex="-1" align="left">
                     <input class="search-box" placeholder="Search your activities..." type="text"
-                           onKeyUp="handleChange(this)">
-                    <div class="search-dropdown --activity">
-
-                    </div>
+                           onKeyUp="activityHandleChange(this)">
                 </div>
                 <div id="activity-wrapper" class="activity-grid">
                     @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
@@ -316,7 +314,15 @@
       var interestSelected = function () {
         goTo('activity')
 
-        $('#activity').css('background-image', 'url(' + MasterStudio.myCategory[MasterStudio.categorySelected[0]]['category_bg'] + ')')
+        var selectedCategory = MasterStudio.categorySelected.length !== 0
+                               ? MasterStudio.categorySelected[0]
+                               : 0
+        if (selectedCategory === 0) {
+          $('#activity').css('background-image', 'url(\'/img/default-bg.jpg\')')
+        } else {
+          var categoryBg = MasterStudio.myCategory[selectedCategory]['category_bg']
+          $('#activity').css('background-image', 'url(' + categoryBg + ')')
+        }
 
         $('#activity-wrapper').html(loadingHtml)
         $.ajax({
@@ -343,7 +349,6 @@
     </script>
 
     <script>
-
       function debounce(f, ms) {
 
         let timer = null
@@ -408,6 +413,61 @@
           })
 
         }, 700)()
+      }
+
+      var activityHandleChange = function (e) {
+        $('#activity-wrapper').html(loadingHtml)
+
+        debounce(function () {
+          const val = e.value
+
+          $.ajax({
+            url: '/activity/search?key=' + val,
+            type: 'get',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+            success: function (data) {
+              $('#activity-wrapper').html(data)
+              var lazyLoadInstance = new LazyLoad({
+                elements_selector: '.lazy',
+                // ... more custom settings?
+              })
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+
+        }, 700)()
+      }
+
+      var pinActivity = function (activity, name) {
+        $.ajax({
+          url: '/activity/' + activity + '/pin',
+          type: 'post',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            modal('all')
+            var alertHtml = `
+            <div class="alert alert-success" role="alert">
+              Activity ${name} was pinned !
+            </div>
+            `
+            $('#my-activity').append(alertHtml)
+          },
+          error: function (err) {
+            if (err.status === 401) {
+              modal('login')
+            }
+          },
+        })
       }
 
     </script>

@@ -15,6 +15,7 @@
 .activity-loading {
 	text-align: center;
 	padding: 200px 0;
+	width: 100%;
 }
 
 .all-activity {
@@ -30,17 +31,17 @@
 .activity-header {
 	.search-group {
 		position: absolute;
+		max-width: 300px;
+		width: 90%;
 		top: 50%;
-		transform: translateY(-50%);
-		margin-top: -150px;
-		left: 50%;
-		transform: translateX(-50%);
+		margin-top: -180px;
+		right: 6%;
 		margin-left: 10px;
 		z-index: 1000;
 
-		@include tablet-up {
-			transform: translateX(0);
-			left: 40%;
+		@include mobile-up {
+			margin-top: -150px;
+			max-width: 450px;
 		}
 
 		@media (max-height: 739px) {
@@ -54,11 +55,6 @@
 			@media (max-width: breakpoint-min(sm)) {
 				top: 60%;
 			}
-		}
-
-		@media (max-width: breakpoint-min(md)) {
-			margin-top: -180px;
-			max-width: 300px;
 		}
 
 	}
@@ -350,8 +346,7 @@
 				position: absolute;
 				top: 50%;
 				transform: translateY(-50%);
-				left: 0;
-				padding-left: 40%;
+				right: 6%;
 				width: 100%;
 				padding-right: 20px;
 
@@ -367,9 +362,6 @@
 					transform: translateY(0);
 				}
 
-				@media (max-width: 767px) {
-					padding: 0;
-				}
 
 				> .activity-name {
 					color: white;
@@ -378,14 +370,13 @@
 
 
 					> .header {
-						font-size: $activity-header-mobile;
 						font-weight: bold;
+						font-size: $activity-header-mobile;
 						width: 100%;
-						text-align: center;
+						text-align: right;
 
-						@include tablet-up {
+						@include mobile-up {
 							font-size: $activity-header;
-							text-align: left;
 						}
 					}
 
@@ -393,15 +384,10 @@
 						font-size: $activity-subheader-mobile;
 						width: 100%;
 						font-weight: 300;
-						text-align: center;
+						text-align: right;
 
 						@include mobile-up {
-							font-size: $activity-subheader-mobile + 4px;
-						}
-
-						@include tablet-up {
 							font-size: $activity-subheader;
-							text-align: left;
 						}
 
 						> .chef {
@@ -435,11 +421,10 @@
 					margin-top: 150px;
 					justify-content: flex-end;
 					margin-right: 20px;
-					max-width: 600px;
 					display: none;
 
 					@include tablet-up {
-						margin-right: 40px;
+
 					}
 
 					@media (min-height: 740px) {

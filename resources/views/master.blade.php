@@ -14,11 +14,12 @@
     <section class="master-header">
         <div class="bg-header">
         </div>
+        <div class="overlay"></div>
         <div class="header-content">
-            <h1 class="header">Explore the real master</h1>
+            <h1 class="header">Explore the real master ...</h1>
             <div class="search-box-wrapper">
                 <img src="/img/icon/search-solid.svg" class="svg">
-                <input class="search-box" placeholder="Master name / Activity you like" type="text"
+                <input class="search-box" placeholder="Master name" type="text"
                        onKeyUp="handleChange(this)">
                 <button class="button" onclick="goTo('master')">Explore</button>
             </div>
@@ -31,7 +32,7 @@
                             <div class="master-content">
                                 @foreach($master as $key => $mst)
                                     <div class="master-detail {{ ($keyMaster * 2) + ($key) >= 3 ? 'right' : '' }}">
-                                        @component('components.master-card', ['noimage'=>true, 'animate'=>true, 'size'=>70, 'data'=>$mst])
+                                        @component('components.master-card', ['noimage'=>true, 'animate'=>true, 'size'=>70, 'data'=>$mst, 'isFollower' => ($mst['follower'] === 1 ? true : false), 'me' => ($mst['user_id'] === $userme['user_id'])])
                                         @endcomponent
                                         <div class="image-wrapper">
                                             <img src="{{ $mst['user_pic'] }}" alt="">
@@ -48,12 +49,39 @@
         </div>
     </section>
     <section id="master" class="master-profile-section">
+        <div class="master-interest --carousel carousel slide" id="carousel-mobile"
+             data-ride="carousel">
+            <ol class="carousel-indicators" style="bottom: -40px">
+                <li data-target="#carousel-mobile" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-mobile" data-slide-to="1"></li>
+                <li data-target="#carousel-mobile" data-slide-to="2"></li>
+            </ol>
+            <h2 class="header" style="font-size: 28px;">Master you may interest</h2>
+            <div class="master-list carousel-inner" style="display: block">
+                @foreach($masters as $keyMaster => $master)
+                    <div class="master-category carousel-item {{ $keyMaster === 0 ? 'active' : '' }}">
+                        <h3 class="header">{{ $master[0]['category_name'] }} master</h3>
+                        <div class="master-content">
+                            @foreach($master as $key => $mst)
+                                <div class="master-detail --carousel {{ ($keyMaster * 2) + ($key) >= 3 ? 'right' : '' }}">
+                                    <div class="image-wrapper">
+                                        <img src="{{ $mst['user_pic'] }}" alt="">
+                                    </div>
+                                    <div class="name">{{ $mst['master_name'] }}</div>
+                                    <div class="badge {{ $mst['master_most_recommend'] !== 0 ? '--most' : ($mst['master_recommend'] !== 0 ? '--rec' : '')}}">{{ $mst['master_most_recommend'] !== 0 ? 'Most recommended' : ($mst['master_recommend'] !== 0 ? 'Recommended' : '')}}</div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
         <div class="section-container">
             <div class="search-wrapper">
                 <div class="category-name">Italian Master</div>
                 <div class="search-box-wrapper" style="position:relative">
                     <img src="/img/icon/search-solid.svg" class="svg">
-                    <input class="search-box" placeholder="Master name / Activity you like"
+                    <input class="search-box" placeholder="Master name"
                            type="text" onKeyUp="handleChange(this)">
                 </div>
             </div>
@@ -62,7 +90,7 @@
             </div>
 
             <div class="master-wrapper">
-                @include('components.master-list', ['masters' => $allMasters])
+                @include('components.master-list', ['masters' => $allMasters, 'userme' => $userme])
             </div>
         </div>
     </section>
@@ -94,14 +122,18 @@
           $(this).children('.activity-detail').fadeOut()
         })
 
+        $('.activity-wrapper .video').hover(function () {
+          $(this).get(0).play()
+        }, function () {
+          $(this).get(0).pause()
+        })
+
       })
 
     </script>
 
     <script>
       var interestSelected = function () {
-        goTo('master')
-
         $.ajax({
           url: '/content/master/category?category=[' + MasterStudio.categorySelected.toString() + ']',
           type: 'get',

@@ -296,7 +296,7 @@
             <section class="studio-activity">
                 <h4 class="title">Activity happening here</h4>
                 <div class="activity-wrapper">
-                    @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
+                    @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80, 'nohover' => '55'])
                 </div>
             </section>
         @endif

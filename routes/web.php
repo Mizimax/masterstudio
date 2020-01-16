@@ -12,6 +12,7 @@
 	*/
 
 	Route::get('/', 'HomeController@index');
+	Route::post('/logout/back', 'UserController@getLogout');
 	Route::get('/user/{userId}', 'UserController@show');
 	Route::get('/activity', 'ActivityController@index');
 	Route::get('/activity/search', 'ActivityController@search');
@@ -26,6 +27,7 @@
 	Route::group(['middleware' => 'auth'], function () {
 		Route::post('/user/{userId}', 'UserController@follow');
 		Route::post('/master/{userId}', 'MasterController@follow');
+		Route::post('/user/{userId}/{action}', 'UserController@editProfile');
 		Route::post('/studio/{id}', 'StudioController@follow');
 		Route::post('/add/more', 'UserController@more');
 		Route::get('/content/timeline/{category}/{userId}', 'ContentController@timeline');
@@ -35,6 +37,7 @@
 		Route::post('/studio/{id}/review', 'StudioController@review');
 		Route::post('/activity/{id}/story', 'UserController@story');
 		Route::post('/activity/{id}/comment', 'ActivityController@comment');
+		Route::post('/activity/{id}/pin', 'ActivityController@pin');
 	});
 	Route::get('/content/master/search', 'MasterController@search');
 	Route::get('/content/master/category', 'MasterController@category');

@@ -48,12 +48,20 @@
 			if (!is_array($category_id)) {
 				$category_id = [$category_id];
 			}
-			$queryActivities = Activity::from('activities as act')
-				->join('users AS us', 'act.user_id', '=', 'us.user_id')
-				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
-				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
-				->whereIn('act.category_id', $category_id)
-				->get();
+			if (empty($category_id)) {
+				$queryActivities = Activity::from('activities as act')
+					->join('users AS us', 'act.user_id', '=', 'us.user_id')
+					->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+					->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+					->take(6)->get();
+			} else {
+				$queryActivities = Activity::from('activities as act')
+					->join('users AS us', 'act.user_id', '=', 'us.user_id')
+					->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
+					->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+					->whereIn('act.category_id', $category_id)
+					->get();
+			}
 
 			if ($queryActivities->isEmpty()) {
 				abort(404);
@@ -113,7 +121,8 @@
 				->join('masters as ms', 'us.master_id', 'ms.master_id')
 				->join('categories as cg', 'ac.category_id', 'cg.category_id')
 				->where('ua.user_id', $user_id)
-				->where('ua.user_activity_status', 0)->get();
+				->where('ua.user_activity_status', 0)
+				->orderBy('ua.user_activity_id', 'desc')->get();
 			$pastActivities = UserActivity::from('user_activities as ua')
 				->join('activities as ac', 'ac.activity_id', 'ua.activity_id')
 				->join('users as us', 'us.user_id', 'ac.user_id')

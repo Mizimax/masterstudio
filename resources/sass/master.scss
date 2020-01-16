@@ -7,180 +7,285 @@
 @import 'components/master-card';
 @import 'components/category-interest';
 
+.carousel-indicators {
+	li {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		border: 1px solid #888;
+
+		&.active {
+			background: #888;
+		}
+	}
+}
+
+.follow-wrapper {
+	margin-left: auto;
+	cursor: pointer;
+
+	&.followed {
+		cursor: auto !important;
+
+		> .follow-icon {
+			background: rgba(241, 78, 166, 0.7) !important;
+		}
+
+	}
+
+	> .follow-icon {
+		background: $primary;
+		border-radius: 50%;
+		font-size: 0;
+		width: 30px;
+		height: 30px;
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		> .svg {
+			fill: white;
+			color: white;
+			width: 65%;
+			height: 65%;
+		}
+	}
+
+	> .text {
+		margin-top: 3px;
+		color: $primary;
+		font-size: 10px;
+	}
+}
+
+.master-interest {
+	display: none;
+	margin-top: 13vh;
+	text-align: center;
+
+	&.--carousel {
+		@include tablet-up {
+			display: none
+		}
+		margin-top: 50px !important;
+		display: block;
+	}
+
+	@include tablet-up {
+		display: block;
+	}
+
+	> .header {
+		font-size: 34px;
+		font-weight: bold;
+		margin: 0 0 20px;
+	}
+
+	> .master-list {
+		display: flex;
+		justify-content: center;
+
+		> .master-category {
+			padding: 0 20px;
+			min-width: 240px;
+
+			> .header {
+				font-size: 22px;
+				margin: 15px 0;
+				font-style: italic;
+			}
+
+			> .master-content {
+				display: flex;
+				justify-content: center;
+
+				> .master-detail {
+					position: relative;
+					flex: 1;
+
+					&.--carousel {
+						flex: 0 1 auto;
+					}
+
+					&.right > .activity-detail {
+						right: -20px;
+
+						> .activity-title {
+							flex-direction: row-reverse;
+
+							> .follow-wrapper {
+								margin: 0 auto 0 0;
+							}
+
+							> .title-wrapper {
+								margin-right: 40px;
+							}
+						}
+					}
+
+					&:hover > .image-wrapper {
+						z-index: 1000;
+					}
+
+
+					> .activity-detail {
+						color: black;
+						position: absolute;
+						top: 0;
+						left: -20;
+						z-index: 999;
+						width: 340px;
+						height: 410px;
+						padding: 20px;
+					}
+
+					> .image-wrapper {
+						position: absolute;
+						left: 50%;
+						transform: translateX(-50%);
+						z-index: 1;
+						width: 75px;
+						height: 75px;
+						margin: 0 auto;
+
+
+						> img {
+							border-radius: 50%;
+							width: 100%;
+							height: 100%;
+						}
+					}
+
+					> .name {
+						white-space: nowrap;
+						width: 120px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						margin: 85px auto 0;
+					}
+
+					> .badge {
+						display: inline-block;
+						color: white;
+						font-size: 10px;
+						border-radius: 10px;
+						padding: 5px;
+
+						&.--rec {
+							background: #f785c1;
+						}
+
+						&.--most {
+							background: $primary;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
 .master-header {
-    position: relative;
-    z-index: 9;
+	position: relative;
+	z-index: 9;
 
-    > .bg-header {
-        height: 100vh;
-        background: url('/img/Deepsea.jpeg');
-        background-position: center;
-    }
+	> .bg-header {
+		height: 100vh;
+		background: url('/img/Deepsea.jpeg');
+		background-position: center;
+	}
 
-    > .header-content {
-        text-align: center;
-	    max-width: 750px;
-        width: 100%;
-        padding: 0 20px;
-        color: white;
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+	> .overlay {
+		background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.2) 60%, rgba(0, 0, 0, 0.8) 100%);
+		display: none;
 
-        > .header {
-	        font-size: $activity-header;
-        }
+		@media (max-height: 700px) {
+			@media (max-width: breakpoint-min(sm)) {
+				display: block;
+			}
+		}
+	}
 
-        > .search-box-wrapper {
-            display: flex;
-            text-align: center;
-            margin-top: 30px;
-	        position: relative;
+	> .header-content {
+		text-align: center;
+		max-width: 750px;
+		width: 100%;
+		padding: 0 20px;
+		color: white;
+		position: absolute;
+		z-index: 9;
+		top: 55%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 
-	        > .svg {
-		        position: absolute;
-		        top: 10px;
-		        left: 17px;
-		        width: 25px;
-		        height: 25px;
-	        }
+		@media (max-height: 700px) {
+			@media (max-width: breakpoint-min(sm)) {
+				top: auto;
+				bottom: 60px;
+			}
+		}
 
-            > .search-box {
-                flex: 1;
-                font-size: 16px;
-                font-style: italic;
-                color: white;
-                padding: 10px 20px;
-                outline: none;
-	            padding-left: 50px;
-                @extend .input-transparent;
-            }
+		> .header {
+			font-size: 24px;
+			text-align: left;
 
-            > .button {
-	            margin-left: 10px;
-                height: 100%;
-                border: none;
-                border-radius: 40px;
-                padding: 15px 40px;
-                background: #2aace2;
-                color: white;
-            }
-        }
+			@include tablet-up {
+				font-size: $activity-header;
+			}
+		}
 
-        > .master-interest {
-            display: none;
-            margin-top: 13vh;
+		> .search-box-wrapper {
+			display: flex;
+			text-align: center;
+			margin-top: 30px;
+			position: relative;
 
-            @include desktop-up {
-                display: block;
-            }
+			> .svg {
+				position: absolute;
+				top: 8px;
+				left: 17px;
+				width: 20px;
+				height: 20px;
 
-            > .header {
-                font-size: 34px;
-                font-weight: bold;
-                margin: 0 0 20px;
-            }
+				@include tablet-up {
+					top: 10px;
+					width: 25px;
+					height: 25px;
+				}
+			}
 
-            > .master-list {
-                display: flex;
-                justify-content: center;
+			> .search-box {
+				flex: 1;
+				font-size: 12px;
+				font-style: italic;
+				color: white;
+				padding: 10px 20px;
+				outline: none;
+				padding-left: 50px;
+				@extend .input-transparent;
 
-                > .master-category {
-                    padding: 0 20px;
-	                min-width: 240px;
+				@include tablet-up {
+					font-size: 16px;
+				}
+			}
 
-                    > .header {
-                        font-size: 22px;
-                        margin: 15px 0;
-                        font-style: italic;
-                    }
+			> .button {
+				margin-left: 10px;
+				height: 100%;
+				border: none;
+				border-radius: 40px;
+				padding: 10px 25px;
+				font-size: 12px;
+				background: #2aace2;
+				color: white;
 
-                    > .master-content {
-                        display: flex;
-                        justify-content: center;
-
-                        > .master-detail {
-                            position: relative;
-	                        flex: 1;
-
-                            &.right > .activity-detail {
-                                right: -20px;
-
-                                > .activity-title {
-                                    flex-direction: row-reverse;
-
-                                    > .follow-wrapper {
-                                        margin: 0 auto 0 0;
-                                    }
-
-                                    > .title-wrapper {
-                                        margin-right: 40px;
-                                    }
-                                }
-                            }
-
-                            &:hover > .image-wrapper {
-                                z-index: 1000;
-                            }
-
-
-                            > .activity-detail {
-                                color: black;
-                                position: absolute;
-                                top: 0;
-                                left: -20;
-                                z-index: 999;
-	                            width: 340px;
-	                            height: 410px;
-	                            padding: 20px;
-                            }
-
-                            > .image-wrapper {
-                                position: absolute;
-                                left: 50%;
-                                transform: translateX(-50%);
-                                z-index: 1;
-                                width: 75px;
-                                height: 75px;
-                                margin: 0 auto;
-
-
-                                > img {
-                                    border-radius: 50%;
-                                    width: 100%;
-                                    height: 100%;
-                                }
-                            }
-
-                            > .name {
-	                            white-space: nowrap;
-	                            width: 120px;
-	                            overflow: hidden;
-	                            text-overflow: ellipsis;
-	                            margin: 85px auto 0;
-                            }
-
-                            > .badge {
-	                            display: inline-block;
-	                            color: white;
-	                            font-size: 10px;
-                                border-radius: 10px;
-                                padding: 5px;
-
-	                            &.--rec {
-		                            background: #f785c1;
-	                            }
-
-	                            &.--most {
-		                            background: $primary;
-	                            }
-                            }
-                        }
-                    }
-                }
-            }
-
+				@include tablet-up {
+					padding: 15px 40px;
+					font-size: 16px;
+				}
+			}
         }
     }
 }

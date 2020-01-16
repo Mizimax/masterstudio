@@ -24,7 +24,23 @@
             <div class="master-profile-card-wrapper">
                 <div class="image-container">
                     <div class="image-wrapper">
-                        <img src="/img/profile.jpg" alt="">
+                        <img id="image-profile" src="{{ $master['user_pic'] }}" alt="">
+                        @if($me)
+                            <div class="edit-wrapper" tabindex="-1">
+                                <div class="edit-pic">
+                                    <img class="icon" src="/img/icon/edit.png">
+                                </div>
+                                <input type="file" accept="image/*" id="profile-img">
+                                <div class="edit-dropdown">
+                                    <div class="edit-menu edit">Change profile
+                                        picture
+                                    </div>
+                                    <div class="edit-menu" onclick="deleteProfile()">Delete profile
+                                        picture
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="master-profile-card">
@@ -220,6 +236,45 @@
         }, function () {
           $(this).get(0).pause()
         })
+
+        $('#profile-img').change(function () {
+          changeProfile()
+        })
       })
+
+      function changeProfile() {
+        var formData = new FormData()
+        formData.append('image', $('#profile-img')[0].files[0])
+
+        $.ajax({
+          url: '/user/{{ Auth::id() }}/change',
+          type: 'post',
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          },
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (res) {
+            $('#image-profile').attr('src', res['image_url'])
+          },
+        })
+      }
+
+      function deleteProfile() {
+        $.ajax({
+          url: '/user/' + {{ Auth::id() }} +'/delete',
+          type: 'post',
+          dataType: 'json',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (res) {
+            $('#image-profile').attr('src', res['image_url'])
+          },
+        })
+      }
     </script>
 @endsection

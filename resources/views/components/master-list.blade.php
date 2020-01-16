@@ -4,6 +4,8 @@
 @foreach ($masters as $key => $master)
     @php
         $master['activity_video'] = json_decode($master['activity_video'], true)[0];
+        $isFollower = ($master['follower'] === 1 ? true : false);
+        $me = ($master['user_id'] === $userme['user_id']);
     @endphp
     <div class="master-profile-wrapper"
          style="{{ $key == 0 ? 'margin-top: -40px': ''}}">
@@ -44,6 +46,12 @@
                     </div>
                 </div>
             </div>
+            <div class="master-action-mobile d-block d-sm-none">
+                <div class="action --join">Join<br />Activity</div>
+                <div class="action --follow">Follow</div>
+                <div class="action --custom">Custom<br />Activity</div>
+                <div class="action --profile">View<br />Profile</div>
+            </div>
             <div class="master-video" played="false">
                 <div class="video-wrapper">
                     <video class="video video-fluid" loop muted>
@@ -65,14 +73,23 @@
                             </button>
                             <span>1 Activity available</span>
                         </div>
-                        <div class="follow-wrapper">
-                            <div class="follow-icon">
-                                <img src="/img/icon/footstep.svg"
-                                     alt="Follow ..."
-                                     class="svg">
+                        @if(!$me)
+                            @if(!$isFollower)
+                                <form id="followMaster" action="/master/{{ $master['master_id'] }}"
+                                      method="post">
+                                    @csrf
+                                </form>
+                            @endif
+                            <div class="follow-wrapper {{ $isFollower ? 'followed' : '' }}"
+                                 onclick="$(this).prev().submit()">
+                                <div class="follow-icon">
+                                    <img src="/img/icon/footstep.svg" alt="Follow ..."
+                                         class="svg">
+                                </div>
+                                <div class="text"> {{ $isFollower ? 'Followed' : 'Follow' }}</div>
                             </div>
-                            <div class="text">Follow</div>
-                        </div>
+
+                        @endif
                     </div>
                     <div class="core-actions">
                         <button class="request-button">Request<br>custom activity

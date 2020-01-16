@@ -21,6 +21,7 @@
 		 */
 		public function index()
 		{
+			$userme = Auth::user() ? Auth::user() : ['user_id' => 0];
 			$master1 = Master::join('categories as cg', 'cg.category_id', '=', 'masters.category_id')
 				->join('users', 'users.master_id', '=', 'masters.master_id')
 				->where('masters.category_id', 1)
@@ -29,7 +30,7 @@
 						->orWhere('masters.master_most_recommend', '!=', 0);
 
 				})
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = masters.master_id) AS master_follower'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = masters.master_id) AS master_follower, (SELECT COUNT(*) FROM follows WHERE follower_id = ' . $userme['user_id'] . ' AND following_id = users.user_id) AS follower'))
 				->take(2)->get();
 			$master2 = Master::join('categories as cg', 'cg.category_id', '=', 'masters.category_id')
 				->join('users', 'users.master_id', '=', 'masters.master_id')
@@ -39,7 +40,7 @@
 						->orWhere('masters.master_most_recommend', '!=', 0);
 
 				})
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = masters.master_id) AS master_follower'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = masters.master_id) AS master_follower, (SELECT COUNT(*) FROM follows WHERE follower_id = ' . $userme['user_id'] . ' AND following_id = users.user_id) AS follower'))
 				->take(2)->get();
 			$master3 = Master::join('categories as cg', 'cg.category_id', '=', 'masters.category_id')
 				->join('users', 'users.master_id', '=', 'masters.master_id')
@@ -49,7 +50,7 @@
 						->orWhere('masters.master_most_recommend', '!=', 0);
 
 				})
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = masters.master_id) AS master_follower'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = masters.master_id) AS master_follower, (SELECT COUNT(*) FROM follows WHERE follower_id = ' . $userme['user_id'] . ' AND following_id = users.user_id) AS follower'))
 				->take(2)->get();
 
 			$allMasters = User::from('users AS us')
@@ -57,10 +58,10 @@
 				->join('activities AS act', 'act.user_id', '=', 'us.user_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->groupBy('us.user_id')
-				->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
+				->select(\DB::raw('ms.*, us.user_id, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower, (SELECT COUNT(*) FROM follows WHERE follower_id = ' . $userme['user_id'] . ' AND following_id = us.user_id) AS follower'))
 				->get();
 
-			return view('master', ['masters' => [$master1, $master2, $master3], 'allMasters' => $allMasters]);
+			return view('master', ['masters' => [$master1, $master2, $master3], 'allMasters' => $allMasters, 'userme' => $userme]);
 		}
 
 		/**
@@ -136,6 +137,7 @@
 		 */
 		public function search(Request $request)
 		{
+			$userme = Auth::user() ? Auth::user() : ['user_id' => 0];
 			$search = $request->query('keyword');
 			$masters = User::from('users AS us')
 				->join('masters AS ms', 'ms.master_id', '=', 'us.master_id')
@@ -145,7 +147,7 @@
 				->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
 				->where('ms.master_name', 'LIKE', "%{$search}%")->get();
 
-			return view('components.master-list', ['masters' => $masters]);
+			return view('components.master-list', ['masters' => $masters, 'userme' => $userme]);
 		}
 
 		/**
@@ -161,13 +163,23 @@
 			if (!is_array($category_id)) {
 				$category_id = [$category_id];
 			}
-			$masters = User::from('users AS us')
-				->join('masters AS ms', 'ms.master_id', '=', 'us.master_id')
-				->join('activities AS act', 'act.user_id', '=', 'us.user_id')
-				->join('categories AS cg', 'ms.category_id', '=', 'cg.category_id')
-				->groupBy('us.user_id')
-				->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
-				->whereIn('ms.category_id', $category_id)->get();
+			if (count($category_id) !== 0) {
+				$masters = User::from('users AS us')
+					->join('masters AS ms', 'ms.master_id', '=', 'us.master_id')
+					->join('activities AS act', 'act.user_id', '=', 'us.user_id')
+					->join('categories AS cg', 'ms.category_id', '=', 'cg.category_id')
+					->groupBy('us.user_id')
+					->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
+					->whereIn('ms.category_id', $category_id)->get();
+			} else {
+				$masters = User::from('users AS us')
+					->join('masters AS ms', 'ms.master_id', '=', 'us.master_id')
+					->join('activities AS act', 'act.user_id', '=', 'us.user_id')
+					->join('categories AS cg', 'ms.category_id', '=', 'cg.category_id')
+					->groupBy('us.user_id')
+					->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
+					->get();
+			}
 
 			return view('components.master-list', ['masters' => $masters]);
 		}

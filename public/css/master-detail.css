@@ -11705,7 +11705,7 @@ button:focus {
 }
 
 .search-group > .search-box:focus + .search-dropdown {
-	display: block !important;
+	display: block;
 }
 
 @media (min-width: 576px) {
@@ -12401,10 +12401,53 @@ button:focus {
 	font-weight: bold;
 }
 
+.master-profile-wrapper > .master-profile > .master-action-mobile {
+	padding: 5px 0 5px 15px;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action {
+	text-align: center;
+	margin: 10px 0;
+	width: 50px;
+	height: 50px;
+	font-size: 10px;
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.17);
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--join {
+	background-color: #f25b27;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--follow {
+	background-color: #f14ea6;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--custom {
+	background-color: #f14ea6;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--profile {
+	background-color: #fff;
+	color: #f14ea6;
+}
+
 .master-profile-wrapper > .master-profile > .master-video {
 	flex: 1;
 	position: relative;
 	cursor: pointer;
+	display: none;
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile > .master-video {
+		display: block;
+	}
 }
 
 .master-profile-wrapper > .master-profile > .master-video > .video-wrapper {
@@ -12488,6 +12531,159 @@ form .error-msg > .svg {
 
 form .error-msg > .text {
 	margin-top: 3px;
+}
+
+.payment-wrapper > .header {
+	text-align: center;
+	font-weight: 300;
+}
+
+.payment-wrapper > .badge-wrapper {
+	display: flex;
+	padding: 25px 0;
+	overflow-x: auto;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge {
+	flex: 0 0 120px;
+	text-align: center;
+	padding: 10px 0;
+	color: #f14ea6;
+	background: white;
+	border-radius: 20px;
+	cursor: pointer;
+	margin-right: 10px;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.17);
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge:hover,
+.payment-wrapper > .badge-wrapper > .payment-badge.active {
+	background: #f14ea6;
+	color: white;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge:hover > .name,
+.payment-wrapper > .badge-wrapper > .payment-badge.active > .name {
+	color: white;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .svg {
+	width: 70px;
+	height: 70px;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name {
+	font-size: 12px;
+	color: black;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name > .card-icon {
+	width: 40px;
+	height: 13px;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name > .card-number {
+	font-size: 10px;
+}
+
+.payment-wrapper > .form-card-wrapper > .card-support {
+	display: flex;
+	justify-content: center;
+}
+
+.payment-wrapper > .form-card-wrapper > .card-support > .card-icon {
+	margin: 0 5px;
+	width: 50px;
+	height: 20px;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group {
+	margin: 10px 0 0;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > label {
+	padding-left: 15px;
+	padding-bottom: 5px;
+	color: #555;
+	font-weight: 300;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input {
+	border: none;
+	border-radius: 15px;
+	font-weight: 300;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-webkit-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-moz-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:-ms-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-ms-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:focus {
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.payment-success {
+	color: #f14ea6;
+}
+
+.payment-success > .header {
+	text-align: center;
+	font-weight: 300;
+	color: black;
+}
+
+.payment-success > .svg {
+	margin-top: 20px;
+	width: 150px;
+	height: 150px;
+	color: #f14ea6;
+}
+
+.payment-success > .thx {
+	margin: 15px 0;
+	font-size: 28px;
+}
+
+.payment-success > .price {
+	margin: 10px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.payment-success > .activity-image {
+	width: 150px;
 }
 
 .activity-story {
@@ -12768,7 +12964,8 @@ form .error-msg > .text {
 
 @media (min-width: 809px) {
 	.activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs {
-		padding-left: 3%;
+		width: 57.5px;
+		padding-left: 7.5px;
 		left: 100%;
 		top: 50%;
 		transform: translateY(-50%);
@@ -12945,6 +13142,87 @@ form .error-msg > .text {
   padding: 3px 0;
 }
 
+.map-detail {
+	position: absolute;
+	z-index: 9;
+	width: 250px;
+}
+
+.map-detail > .map-card {
+	text-align: center;
+	background: rgba(255, 255, 255, 0.9);
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.map-detail > .map-card > .map-header {
+	position: relative;
+}
+
+.map-detail > .map-card > .map-header > .title {
+	font-size: 20px;
+	color: #555;
+}
+
+.map-detail > .map-card > .map-header > .subtitle {
+	font-size: 12px;
+	color: #aaa;
+}
+
+.map-detail > .map-card > .map-header > .follow-wrapper {
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	right: -3px;
+	top: -3px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background: #f14ea6;
+	color: white;
+	cursor: pointer;
+}
+
+.map-detail > .map-card > .map-header > .follow-wrapper > .svg {
+	fill: white;
+	width: 60%;
+	height: 60%;
+}
+
+.map-detail > .map-card .gallery {
+	width: 100%;
+	height: 172px;
+	border-radius: 10px;
+	margin-right: 5px;
+}
+
+.map-detail > .map-card > .master-list {
+	display: flex;
+	overflow-x: auto;
+	padding: 15px 0;
+	border-top: 1px solid #ccc;
+}
+
+.map-detail > .map-card > .master-list > .master {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.map-detail .studio-button {
+	margin-top: 10px;
+	display: block;
+	border-radius: 20px;
+	width: 100%;
+	padding: 13px 0;
+	background: #29ace2;
+	color: white;
+	font-size: 18px;
+}
+
 .master-detail-section {
   padding-top: 150px;
 	padding-left: 20px;
@@ -12995,10 +13273,97 @@ form .error-msg > .text {
   transform: translate(-50%, -50%);
 }
 
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > #image-profile {
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper:focus > .edit-dropdown {
+	display: block;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-pic {
+	width: 25px;
+	height: 25px;
+	background-color: #ccc;
+	border-radius: 50%;
+	border: 1px solid #fff;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-pic > .icon {
+	width: 15px;
+	height: 15px;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper #profile-img {
+	opacity: 0;
+	position: absolute;
+	top: 35px;
+	left: 0;
+	width: 166px;
+	height: 31px;
+	z-index: 10;
+	cursor: pointer;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper #profile-img:hover + .edit-dropdown > .edit-menu.edit {
+	color: white;
+	background: #f14ea6;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-dropdown {
+	display: none;
+	position: absolute;
+	background: white;
+	top: 35px;
+	left: 0;
+	font-size: 14px;
+	border-radius: 10px;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.17);
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-dropdown > .edit-menu {
+	padding: 7px 15px;
+	cursor: pointer;
+	white-space: nowrap;
+	position: relative;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-dropdown > .edit-menu:hover {
+	color: white;
+	background: #f14ea6;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-dropdown > .edit-menu:first-child {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-dropdown > .edit-menu:last-child {
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > .edit-wrapper > .edit-dropdown > .edit-menu:not(:first-child) {
+	border-top: 1px solid #ccc;
+}
+
 .master-detail-section > .master-container > .master-profile-card-wrapper > .image-container > .image-wrapper > img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+	border: 1px solid #ccc;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.17);
 }
 
 .master-detail-section > .master-container > .master-profile-card-wrapper > .master-profile-card {

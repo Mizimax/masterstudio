@@ -11701,7 +11701,7 @@ button:focus {
 }
 
 .search-group > .search-box:focus + .search-dropdown {
-	display: block !important;
+	display: block;
 }
 
 @media (min-width: 576px) {
@@ -12397,10 +12397,53 @@ button:focus {
 	font-weight: bold;
 }
 
+.master-profile-wrapper > .master-profile > .master-action-mobile {
+	padding: 5px 0 5px 15px;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action {
+	text-align: center;
+	margin: 10px 0;
+	width: 50px;
+	height: 50px;
+	font-size: 10px;
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.17);
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--join {
+	background-color: #f25b27;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--follow {
+	background-color: #f14ea6;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--custom {
+	background-color: #f14ea6;
+}
+
+.master-profile-wrapper > .master-profile > .master-action-mobile .action.\--profile {
+	background-color: #fff;
+	color: #f14ea6;
+}
+
 .master-profile-wrapper > .master-profile > .master-video {
 	flex: 1;
 	position: relative;
 	cursor: pointer;
+	display: none;
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile > .master-video {
+		display: block;
+	}
 }
 
 .master-profile-wrapper > .master-profile > .master-video > .video-wrapper {
@@ -12484,5 +12527,158 @@ form .error-msg > .svg {
 
 form .error-msg > .text {
 	margin-top: 3px;
+}
+
+.payment-wrapper > .header {
+	text-align: center;
+	font-weight: 300;
+}
+
+.payment-wrapper > .badge-wrapper {
+	display: flex;
+	padding: 25px 0;
+	overflow-x: auto;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge {
+	flex: 0 0 120px;
+	text-align: center;
+	padding: 10px 0;
+	color: #f14ea6;
+	background: white;
+	border-radius: 20px;
+	cursor: pointer;
+	margin-right: 10px;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.17);
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge:hover,
+.payment-wrapper > .badge-wrapper > .payment-badge.active {
+	background: #f14ea6;
+	color: white;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge:hover > .name,
+.payment-wrapper > .badge-wrapper > .payment-badge.active > .name {
+	color: white;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .svg {
+	width: 70px;
+	height: 70px;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name {
+	font-size: 12px;
+	color: black;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name > .card-icon {
+	width: 40px;
+	height: 13px;
+}
+
+.payment-wrapper > .badge-wrapper > .payment-badge > .name > .card-number {
+	font-size: 10px;
+}
+
+.payment-wrapper > .form-card-wrapper > .card-support {
+	display: flex;
+	justify-content: center;
+}
+
+.payment-wrapper > .form-card-wrapper > .card-support > .card-icon {
+	margin: 0 5px;
+	width: 50px;
+	height: 20px;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group {
+	margin: 10px 0 0;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > label {
+	padding-left: 15px;
+	padding-bottom: 5px;
+	color: #555;
+	font-weight: 300;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input {
+	border: none;
+	border-radius: 15px;
+	font-weight: 300;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-webkit-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-moz-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:-ms-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-ms-input-placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: #ccc;
+}
+
+.payment-wrapper > .form-card-wrapper .form-group > input:focus {
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
+}
+
+.payment-success {
+	color: #f14ea6;
+}
+
+.payment-success > .header {
+	text-align: center;
+	font-weight: 300;
+	color: black;
+}
+
+.payment-success > .svg {
+	margin-top: 20px;
+	width: 150px;
+	height: 150px;
+	color: #f14ea6;
+}
+
+.payment-success > .thx {
+	margin: 15px 0;
+	font-size: 28px;
+}
+
+.payment-success > .price {
+	margin: 10px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.payment-success > .activity-image {
+	width: 150px;
 }
 

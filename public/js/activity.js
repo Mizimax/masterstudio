@@ -77,4 +77,12 @@ $(document).ready(function () {
   $('#activity-wrapper').delegate('.master-profile', 'mouseleave', function () {
     $(this).children('.activity-detail').fadeOut()
   })
+
+  $('.activity-story .master-profile').on('mouseenter', function () {
+    console.log('>> : ')
+    $(this).children('.activity-detail').fadeIn()
+  })
+  $('.activity-story .master-profile').on('mouseleave', function () {
+    $(this).children('.activity-detail').fadeOut()
+  })
 })

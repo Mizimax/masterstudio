@@ -1,8 +1,10 @@
 @php
     $size = !empty($size) ? $size : 80;
     $activities = !empty($queryActivities) ? $queryActivities : (!empty($activities) ? $activities : []);
-
 @endphp
+@if($activities->isEmpty())
+    <div class="activity-loading">No result.</div>
+@endif
 @foreach ($activities as $activity)
     @php
         if(!is_array($activity['activity_benefit'])) {
@@ -31,13 +33,14 @@
                          onclick="window.location.href = '/activity/{{ $activity['activity_url_name']  }}'">
 
                     </div>
-                    <div class="icon-wrapper --pin">
+                    <div class="icon-wrapper --pin"
+                         onclick="pinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}')">
 
                     </div>
-                    <div class="icon-wrapper --invite">
+                    <div class="icon-wrapper --invite" onclick="inviteFriend()">
 
                     </div>
-                    <div class="icon-wrapper --share">
+                    <div class="icon-wrapper --share" onclick="shareActivity()">
 
                     </div>
                 </div>

@@ -63,17 +63,18 @@
                                         </div>
                                         <div class="text">Join activity</div>
                                     </div>
-                                    <div class="activity-tab">
+                                    <div class="activity-tab"
+                                         onclick="pinActivity({{ $headActivity['activity_id'] }}, '{{ $headActivity["activity_name"] }}')">
                                         <div class="icon-wrapper --pin">
                                         </div>
                                         <div class="text">Pin activity</div>
                                     </div>
-                                    <div class="activity-tab">
+                                    <div class="activity-tab" onclick="inviteFriend()">
                                         <div class="icon-wrapper --invite">
                                         </div>
                                         <div class="text">Invite friend</div>
                                     </div>
-                                    <div class="activity-tab">
+                                    <div class="activity-tab" onclick="shareActivity()">
                                         <div class="icon-wrapper --share">
                                         </div>
                                         <div class="text">Share</div>
@@ -146,7 +147,8 @@
                                 @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true, 'activity' => $story])
                                 @endcomponent
                                 <div class="image-wrapper">
-                                    <img src="{{ $story['user_pic'] }}" alt="">
+                                    <img onclick="window.location.href='/'"
+                                         src="{{ $story['user_pic'] }}" alt="">
                                 </div>
                             </div>
 
@@ -175,10 +177,7 @@
                 <h3 class="header">Activity for you</h3>
                 <div class="search-group" tabindex="-1" style="max-width: 400px">
                     <input class="search-box" placeholder="Search your activities..." type="text"
-                           onKeyUp="handleChange(this)">
-                    <div class="search-dropdown --activity">
-
-                    </div>
+                           onKeyUp="activityHandleChange(this)">
                 </div>
                 <div id="activity-wrapper" class="activity-grid">
                     @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80])
@@ -268,7 +267,15 @@
       var interestSelected = function () {
         goTo('activity')
 
-        $('#activity').css('background-image', 'url(' + MasterStudio.myCategory[MasterStudio.categorySelected[0]]['category_bg'] + ')')
+        var selectedCategory = MasterStudio.categorySelected.length !== 0
+                               ? MasterStudio.categorySelected[0]
+                               : 0
+        if (selectedCategory === 0) {
+          $('#activity').css('background-image', 'url(\'/img/default-bg.jpg\')')
+        } else {
+          var categoryBg = MasterStudio.myCategory[selectedCategory]['category_bg']
+          $('#activity').css('background-image', 'url(' + categoryBg + ')')
+        }
 
         $('#activity-wrapper').html(loadingHtml)
         $.ajax({
@@ -360,6 +367,62 @@
 
         }, 700)()
       }
+
+      var activityHandleChange = function (e) {
+        $('#activity-wrapper').html(loadingHtml)
+
+        debounce(function () {
+          const val = e.value
+
+          $.ajax({
+            url: '/activity/search?key=' + val,
+            type: 'get',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+            success: function (data) {
+              $('#activity-wrapper').html(data)
+              var lazyLoadInstance = new LazyLoad({
+                elements_selector: '.lazy',
+                // ... more custom settings?
+              })
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+
+        }, 700)()
+      }
+
+      var pinActivity = function (activity, name) {
+        $.ajax({
+          url: '/activity/' + activity + '/pin',
+          type: 'post',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            modal('all')
+            var alertHtml = `
+            <div class="alert alert-success" role="alert">
+              Activity ${name} was pinned !
+            </div>
+            `
+            $('#my-activity').append(alertHtml)
+          },
+          error: function (err) {
+            if (err.status === 401) {
+              modal('login')
+            }
+          },
+        })
+      }
+
 
     </script>
 @endsection

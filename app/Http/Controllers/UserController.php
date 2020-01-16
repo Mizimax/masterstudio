@@ -110,4 +110,46 @@
 				'message' => 'Upload success.'
 			], 200);
 		}
+
+		public function editProfile(Request $request, $user_id, $action)
+		{
+			$editProfile = 0;
+
+			if ($action == 'delete') {
+				$path = '/img/';
+				$fileName = 'profile.jpg';
+				$editProfile = User::where('user_id', $user_id)->update([
+					'user_pic' => '/img/profile.jpg',
+				]);
+			} else {
+				$path = '/img/upload/profile/';
+				$fileName = time() . '.jpg';
+				$request->file('image')->move(public_path($path), $fileName);
+				$editProfile = User::where('user_id', $user_id)->update([
+					'user_pic' => $path . $fileName,
+				]);
+			}
+
+			if ($editProfile === 0) {
+				return response()->json([
+					'status' => 400,
+					'message' => "Can't edit profile picture"
+				], 400);
+			}
+
+			return response()->json([
+				'status' => 200,
+				'image_url' => $path . $fileName,
+				'message' => 'Edit profile success.'
+			], 200);
+		}
+
+		public function getLogout()
+		{
+			Auth::logout();
+
+			return redirect()->back();
+		}
+
+
 	}

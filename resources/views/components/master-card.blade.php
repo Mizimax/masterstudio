@@ -15,12 +15,23 @@
             <div class="title">{{ $data['master_name'] }}</div>
             <div class="badge">{{ $data['category_name'] }} master</div>
         </div>
-        <div class="follow-wrapper">
-            <div class="follow-icon">
-                <img src="/img/icon/footstep.svg" alt="Follow ..." class="svg">
+        @if(!$me)
+            @if(!$isFollower)
+                <form id="followMaster" action="/master/{{ $data['master_id'] }}"
+                      method="post">
+                    @csrf
+                </form>
+            @endif
+            <div class="follow-wrapper {{ $isFollower ? 'followed' : '' }}"
+                 onclick="$('#followMaster').submit()">
+                <div class="follow-icon">
+                    <img src="/img/icon/footstep.svg" alt="Follow ..."
+                         class="svg">
+                </div>
+                <div class="text"> {{ $isFollower ? 'Followed' : 'Follow' }}</div>
             </div>
-            <div class="text">Follow</div>
-        </div>
+
+        @endif
     </div>
         <div class="master-stat-wrapper">
             <div class="master-stat">
