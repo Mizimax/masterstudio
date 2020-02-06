@@ -229,7 +229,7 @@
                 </div>
             </div>
 
-            @if(!$comments->isEmpty())
+            @if(!$comments->isEmpty() || $isJoined)
                 <div class="activity-section --comment">
                     <div class="title">Disciple Commented</div>
                     @foreach($comments as $key => $comment)
