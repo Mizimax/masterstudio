@@ -537,18 +537,7 @@
             interestMaster.push(interestId)
           })
         } else if (tab === 'become2Tab') {
-          $('input:file').change(function () {
-            $(this).attr('title', '')
-            var self = $(this)
-            var file = this.files[0]
-            var fileReader = new FileReader()
-            fileReader.readAsDataURL(file)
-
-            fileReader.onload = function (e) {
-              self.css('background', 'url(' + e.target.result + ')')
-            }
-
-          })
+          uploadBox()
         }
 
       }
@@ -558,6 +547,21 @@
           $(this).parent().children('.active').removeClass('active')
           $(this).toggleClass('active')
           $(this).siblings('input[type="hidden"]').val($(this).attr('value'))
+        })
+      }
+
+      var uploadBox = function () {
+        $('.form-box').change(function () {
+          $(this).attr('title', '')
+          var self = $(this)
+          var file = this.files[0]
+          var fileReader = new FileReader()
+          fileReader.readAsDataURL(file)
+
+          fileReader.onload = function (e) {
+            self.css('background-image', 'url(' + e.target.result + ')')
+          }
+
         })
       }
 
@@ -1006,7 +1010,7 @@
     <div class="modal-action justify-content-end">
         <button class="primary-button --outline" onclick="activeTab('become1Tab')">Back
         </button>
-        <button class="primary-button" onclick="activeTab('become2Tab')">
+        <button class="primary-button" onclick="closeModal()">
             Send request
         </button>
     </div>
@@ -1072,6 +1076,7 @@
           $('.modal-dialog').css('max-width', '450px')
           $('.modal-body').html(becomeModal)
           activeTab('become1Tab')
+          selectButton()
         }
       }
 

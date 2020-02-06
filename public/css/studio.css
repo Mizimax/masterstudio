@@ -12537,6 +12537,7 @@ button:focus {
   box-sizing: border-box;
   margin-right: 10px;
   border: 1px dashed #f14ea6 !important;
+	background-size: cover;
 }
 
 .form-box:after {

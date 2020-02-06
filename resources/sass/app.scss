@@ -1164,6 +1164,7 @@ button:focus {
 	box-sizing: border-box;
 	margin-right: 10px;
 	border: 1px dashed $primary !important;
+	background-size: cover;
 
 	&:after {
 		content: attr(title);

@@ -12536,6 +12536,7 @@ section.activity-detail-section > .content > .activity-section,
 	box-sizing: border-box;
 	margin-right: 10px;
 	border: 1px dashed #f14ea6 !important;
+	background-size: cover;
 }
 
 .form-box:after {
@@ -13910,7 +13911,6 @@ section.activity-detail-section > .content > .activity-section.\--comment > .com
 
 @media (min-width: 687px) {
 	section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-image {
-    border-left: 1px solid #ccc;
     margin-top: 0;
 		flex: 0 0 auto;
 	}

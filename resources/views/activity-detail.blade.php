@@ -271,7 +271,8 @@
                         </div>
                     @endforeach
                     @if($isJoined)
-                        <button class="add-comment" onclick="$('#modal').modal('toggle')">+ Add
+                        <button class="add-comment"
+                                onclick="$('#modal').modal('toggle'); uploadBox();">+ Add
                             comment
                         </button>
                     @endif
@@ -309,7 +310,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="reviewForm" class="review-form">
+                        <form id="reviewForm" method="post" onsubmit="addComment(); return false;"
+                              class="review-form">
                             @csrf
                             <div class="form-group">
                                 <label for="review_text" style="padding-left: 0; font-size: 14px;">Commented
@@ -317,13 +319,24 @@
                                     : {{ Auth::user()->user_name }}</label>
                                 <textarea required id="comment_text" name="comment_text"
                                           class="form-control" placeholder="Comment..."></textarea>
-                                <input type="file" accept="image/*" class="img-input">
-                                <input type="file" accept="image/*" class="img-input">
-                                <input type="file" accept="image/*" class="img-input">
+                                <br />
+                                <label for="review_text" style="padding-left: 0; font-size: 14px;">Add
+                                    activity picture</label>
+                                <div class="d-flex">
+                                    <input title="Upload" type="file" accept="image/*"
+                                           class="form-control form-box img-input"
+                                           placeholder="card number">
+                                    <input title="Upload" type="file" accept="image/*"
+                                           class="form-control form-box img-input"
+                                           placeholder="card number">
+                                    <input title="Upload" type="file" accept="image/*"
+                                           class="form-control form-box img-input"
+                                           placeholder="card number">
+                                </div>
                             </div>
 
                             <div class="modal-action justify-content-center">
-                                <button type="button" class="primary-button" onclick="addComment()">
+                                <button type="submit" class="primary-button">
                                     Add comment
                                 </button>
                             </div>
@@ -368,7 +381,7 @@
 
     <script>
 
-                @if(!$isJoined)
+                @if($isJoined)
       var addComment = function () {
           var formData = new FormData()
 
@@ -389,18 +402,7 @@
             contentType: false,
             processData: false,
             success: function (res) {
-              var reviewHtml = `
-                    <div class="review-card" id="newReview">
-                        <img src="{{ !empty($user) ? $user->user_pic : '' }}" class="image" />
-                        <div class="name">{{ !empty($user) ? $user->user_name : '' }}</div>
-                        <div class="review">
-                            ${$('#review_text').val()}
-                        </div>
-                    </div>
-                `
-              $('.review-wrapper').prepend(reviewHtml)
-              $('#modal').modal('toggle')
-              // window.location.hash = '#newReview';
+              window.location.reload()
             },
           })
 
