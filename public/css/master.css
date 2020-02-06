@@ -11088,7 +11088,7 @@ img {
 
 .master-action > .actions > .follow-wrapper > .follow-icon.followed {
 	cursor: auto;
-	background: rgba(241, 78, 166, 0.7);
+	background: #edb7d6;
 }
 
 .master-action > .actions > .follow-wrapper > .text {
@@ -12292,7 +12292,8 @@ button:focus {
 	margin: 30px 0;
 }
 
-.pay-button {
+.pay-button,
+.omise-checkout-button {
 	margin-top: 10px;
 	width: 100%;
 	padding: 15px 0;
@@ -12303,24 +12304,38 @@ button:focus {
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
 }
 
-.pay-button.\--outline {
+.pay-button.\--outline,
+.omise-checkout-button.\--outline {
 	background: white;
 	color: #f14ea6;
 	border: 1px solid #f14ea6;
 }
 
 .pay-button.\--outline:hover,
-.pay-button.\--outline.active {
+.pay-button.\--outline.active,
+.omise-checkout-button.\--outline:hover,
+.omise-checkout-button.\--outline.active {
 	background: #f14ea6;
 	color: white !important;
 }
 
-.pay-button.\--orange {
+.pay-button.\--orange,
+.omise-checkout-button.\--orange {
 	background: #f7931f;
 }
 
 .master-profile-wrapper {
 	margin-bottom: 40px;
+}
+
+.master-profile-wrapper.\--first {
+	margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+	.master-profile-wrapper.\--first {
+		margin-top: -40px;
+	}
 }
 
 .master-profile-wrapper > .master-profile {
@@ -12350,13 +12365,29 @@ button:focus {
 	transform: translateY(-50%);
 }
 
+.master-profile-wrapper > .master-profile .your-activity-timeline > .image-container > .your-image > img {
+	width: 100px;
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile .your-activity-timeline > .image-container > .your-image > img {
+		width: 120px;
+	}
+}
+
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info {
 	z-index: 2;
 	background: white;
 	border-radius: 15px;
 	padding: 20px;
-	padding-left: 90px;
+	padding-left: 50px;
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.17);
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile .your-activity-timeline > .your-info {
+		padding-left: 90px;
+	}
 }
 
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > * {
@@ -12370,10 +12401,16 @@ button:focus {
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .name {
 	font-size: 20px;
 	font-style: italic;
-	width: 150px;
+	width: 130px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .name {
+		width: 150px;
+	}
 }
 
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .category {
@@ -12666,32 +12703,57 @@ form .error-msg > .text {
 	color: #f14ea6;
 }
 
-.payment-success > .header {
-	text-align: center;
-	font-weight: 300;
+.payment-success.\--confirm > .thx {
+	font-size: 18px;
+	color: black;
+	margin: 10px 0;
+}
+
+.payment-success.\--confirm > .name {
 	color: black;
 }
 
-.payment-success > .svg {
-	margin-top: 20px;
-	width: 150px;
-	height: 150px;
+.payment-success.\--confirm > .total {
+	color: black;
+	margin: 10px 0;
+}
+
+.payment-success.\--confirm .price {
 	color: #f14ea6;
 }
 
+.payment-success .booking {
+	color: black;
+}
+
+.payment-success > .header {
+	text-align: center;
+	font-weight: 600;
+	font-size: 28px;
+	color: #f14ea6;
+	padding: 20px 0;
+}
+
+.payment-success > .svg {
+	width: 150px;
+	height: 150px;
+	color: #21b632;
+}
+
 .payment-success > .thx {
+	color: black;
 	margin: 15px 0;
 	font-size: 28px;
 }
 
-.payment-success > .price {
+.payment-success .price {
 	margin: 10px 0;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: bold;
 }
 
 .payment-success > .activity-image {
-	width: 150px;
+	width: 230px;
 }
 
 .activity-story {
@@ -12802,9 +12864,9 @@ form .error-msg > .text {
 }
 
 .activity-card > .title-wrapper > .title {
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
+	font-size: 16px !important;
+	font-weight: bold !important;
+	color: white !important;
 }
 
 .activity-detail {
@@ -13228,7 +13290,7 @@ form .error-msg > .text {
 }
 
 .follow-wrapper.followed > .follow-icon {
-	background: rgba(241, 78, 166, 0.7) !important;
+	background: #edb7d6 !important;
 }
 
 .follow-wrapper > .follow-icon {
@@ -13561,10 +13623,10 @@ form .error-msg > .text {
   }
 }
 
-.master-profile-section .section-container > .filter-category {
+.master-profile-section .section-container > .category-interest {
+	left: 50%;
+	transform: translateX(-50%);
   margin-top: 25px;
-  position: relative;
-  height: 107px;
   z-index: 5;
 }
 

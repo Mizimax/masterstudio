@@ -80,7 +80,7 @@
             <div class="action">
                 <span class="price-status">{{ number_format($pastActivity['activity_price']) }} Bath paid</span>
                 <button class="pay-button">View activity detail</button>
-                <button class="pay-button --orange">View progress</button>
+                <button class="pay-button --orange" onclick="window.locaiton">View progress</button>
             </div>
         </div>
     @endforeach

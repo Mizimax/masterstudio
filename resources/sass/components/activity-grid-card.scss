@@ -167,6 +167,25 @@
 
 				> .icon-wrapper {
 					margin: 10px 0;
+
+					&.--share {
+						position: relative;
+
+						&:focus > .share-dropdown {
+							display: block;
+						}
+					}
+
+					> .share-dropdown {
+						position: absolute;
+						display: none;
+						top: 50px;
+						left: 0;
+
+						> .icon-wrapper {
+							margin-top: 10px;
+						}
+					}
 				}
 			}
 		}

@@ -180,10 +180,66 @@
 					->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
 					->get();
 			}
+			$userme = Auth::user() ? Auth::user() : ['user_id' => 0];
 
-			return view('components.master-list', ['masters' => $masters]);
+			return view('components.master-list', ['masters' => $masters, 'userme' => $userme]);
 		}
 
+		/**
+		 * Update gallery image.
+		 *
+		 * @return \Illuminate\Http\Response
+		 */
+		public function delGallery(Request $request, $id)
+		{
+			if (\Auth::user()->master_id == $id) {
+				Master::where('master_id', $id)
+					->update([
+						'master_activity_pic' => json_encode($request->input('master_activity_pic'))
+					]);
+			} else {
+				return response()->json([
+					'status' => 401,
+					'message' => 'Unauthorized.'
+				], 401);
+			}
+			return response()->json([
+				'status' => 200,
+				'message' => 'Update gallery success.'
+			], 200);
+		}
+
+		/**
+		 * Update gallery image.
+		 *
+		 * @return \Illuminate\Http\Response
+		 */
+		public function addGallery(Request $request, $id)
+		{
+			$master_activity_pic = $request->input('master_activity_pic');
+
+			if (\Auth::user()->master_id == $id) {
+				$path = '/img/upload/master/' . $id . '/gallery/';
+				$fileName = time() . '.jpg';
+				$request->file('image')->move(public_path($path), $fileName);
+				$master_activity_pic = json_decode($master_activity_pic, true);
+				$master_activity_pic[] = $path . $fileName;
+				Master::where('master_id', $id)
+					->update([
+						'master_activity_pic' => json_encode($master_activity_pic)
+					]);
+			} else {
+				return response()->json([
+					'status' => 401,
+					'message' => 'Unauthorized.'
+				], 401);
+			}
+			return response()->json([
+				'status' => 200,
+				'data' => ['filename' => $path . $fileName],
+				'message' => 'add gallery success.'
+			], 200);
+		}
 
 		/**
 		 * Show the form for creating a new master.

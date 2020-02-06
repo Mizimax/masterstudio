@@ -926,7 +926,7 @@ button:focus {
 	}
 }
 
-.pay-button {
+.pay-button, .omise-checkout-button {
 	margin-top: 10px;
 	width: 100%;
 	padding: 15px 0;
@@ -956,6 +956,14 @@ button:focus {
 .master-profile-wrapper {
 	margin-bottom: 40px;
 
+	&.--first {
+		margin-top: 40px;
+
+		@include tablet-up {
+			margin-top: -40px;
+		}
+	}
+
 	> .master-profile {
 		display: flex;
 		justify-content: space-evenly;
@@ -978,6 +986,14 @@ button:focus {
 					left: 0;
 					z-index: 3;
 					transform: translateY(-50%);
+
+					> img {
+						width: 100px;
+
+						@include mobile-up {
+							width: 120px;
+						}
+					}
 				}
 			}
 
@@ -986,8 +1002,12 @@ button:focus {
 				background: white;
 				border-radius: 15px;
 				padding: 20px;
-				padding-left: 90px;
+				padding-left: 50px;
 				@include shadow(0px, 0px, 15px, 1px, 0.17);
+
+				@include mobile-up {
+					padding-left: 90px;
+				}
 
 				> * {
 					margin: 5px 0;
@@ -1000,10 +1020,14 @@ button:focus {
 				> .name {
 					font-size: 20px;
 					font-style: italic;
-					width: 150px;
+					width: 130px;
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					overflow: hidden;
+
+					@include mobile-up {
+						width: 150px;
+					}
 				}
 
 				> .category {
@@ -1288,31 +1312,59 @@ form .error-msg {
 .payment-success {
 	color: $primary;
 
-	> .header {
-		text-align: center;
-		font-weight: 300;
+	&.--confirm {
+
+		> .thx {
+			font-size: 18px;
+			color: black;
+			margin: 10px 0;
+		}
+
+		> .name {
+			color: black;
+		}
+
+		> .total {
+			color: black;
+			margin: 10px 0;
+		}
+
+		.price {
+			color: $primary;
+		}
+	}
+
+	.booking {
 		color: black;
 	}
 
+	> .header {
+		text-align: center;
+		font-weight: 600;
+		font-size: 28px;
+		color: $primary;
+		padding: 20px 0;
+	}
+
 	> .svg {
-		margin-top: 20px;
 		width: 150px;
 		height: 150px;
-		color: $primary;
+		color: #21b632;
 	}
 
 	> .thx {
+		color: black;
 		margin: 15px 0;
 		font-size: 28px;
 	}
 
-	> .price {
+	.price {
 		margin: 10px 0;
-		font-size: 20px;
+		font-size: 24px;
 		font-weight: bold;
 	}
 
 	> .activity-image {
-		width: 150px;
+		width: 230px;
 	}
 }

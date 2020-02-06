@@ -7,16 +7,13 @@
         $isFollower = ($master['follower'] === 1 ? true : false);
         $me = ($master['user_id'] === $userme['user_id']);
     @endphp
-    <div class="master-profile-wrapper"
-         style="{{ $key == 0 ? 'margin-top: -40px': ''}}">
+    <div class="master-profile-wrapper {{ $key == 0 && !isset($noFollow) ? '--first': ''}}">
         <div class="master-profile">
             <div class="your-activity-timeline">
                 <div class="image-container">
                     <div class="your-image image-wrapper">
                         <img class="border-circle shadow"
                              src="{{ $master['user_pic'] }}"
-                             width="120"
-                             height="120"
                              title="Profile image"
                              alt="Profile image">
                     </div>
@@ -47,10 +44,25 @@
                 </div>
             </div>
             <div class="master-action-mobile d-block d-sm-none">
-                <div class="action --join">Join<br />Activity</div>
-                <div class="action --follow">Follow</div>
+                <div class="action --join"
+                     onclick="window.location='/activity/{{ $master['activity_url_name'] }}'">
+                    Join<br />Activity
+                </div>
+                @if(!isset($noFollow))
+                    @if(!$me)
+                        @if(!$isFollower)
+                            <form action="/master/{{ $master['master_id'] }}"
+                                  method="post">
+                                @csrf
+                            </form>
+                        @endif
+                        <div class="action --follow">Follow</div>
+                    @endif
+                @endif
                 <div class="action --custom">Custom<br />Activity</div>
-                <div class="action --profile">View<br />Profile</div>
+                <div class="action --profile"
+                     onclick="window.location='/master/{{ $master['master_id'] }}'">View<br />Profile
+                </div>
             </div>
             <div class="master-video" played="false">
                 <div class="video-wrapper">
@@ -73,22 +85,24 @@
                             </button>
                             <span>1 Activity available</span>
                         </div>
-                        @if(!$me)
-                            @if(!$isFollower)
-                                <form id="followMaster" action="/master/{{ $master['master_id'] }}"
-                                      method="post">
-                                    @csrf
-                                </form>
-                            @endif
-                            <div class="follow-wrapper {{ $isFollower ? 'followed' : '' }}"
-                                 onclick="$(this).prev().submit()">
-                                <div class="follow-icon">
-                                    <img src="/img/icon/footstep.svg" alt="Follow ..."
-                                         class="svg">
+                        @if(!isset($noFollow))
+                            @if(!$me)
+                                @if(!$isFollower)
+                                    <form action="/master/{{ $master['master_id'] }}"
+                                          method="post">
+                                        @csrf
+                                    </form>
+                                @endif
+                                <div class="follow-wrapper {{ $isFollower ? 'followed' : '' }}"
+                                     onclick="$(this).prev().submit()">
+                                    <div class="follow-icon">
+                                        <img src="/img/icon/footstep.svg" alt="Follow ..."
+                                             class="svg">
+                                    </div>
+                                    <div class="text"> {{ $isFollower ? 'Followed' : 'Follow' }}</div>
                                 </div>
-                                <div class="text"> {{ $isFollower ? 'Followed' : 'Follow' }}</div>
-                            </div>
 
+                            @endif
                         @endif
                     </div>
                     <div class="core-actions">

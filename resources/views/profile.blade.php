@@ -1,5 +1,6 @@
 @php
     $categories = \App\Category::get();
+    $user['user_gallery'] = json_decode($user['user_gallery'], true);
 @endphp
 @extends('app')
 
@@ -91,16 +92,31 @@
                     <div id="category-timeline" class="category-timeline-wrapper"></div>
                 </div>
             @endif
+            <div class="nav-tab nav nav-pill justify-content-sm-center justify-content-start flex-nowrap d-none d-sm-flex"
+                 align="center">
+                <a class="tab-link active" href="#activity" role="tab"
+                   data-toggle="tab">{{ $me ? 'Your' : 'User' }}
+                    Activities</a>
+                <a class="tab-link" href="#gallery" role="tab" data-toggle="tab">Gallery</a>
+                <a class="tab-link" href="#studio" role="tab" data-toggle="tab">Visited</a>
+                <a class="tab-link" href="#suggest" role="tab" data-toggle="tab">Followed
+                    master</a>
+            </div>
+            <div class="nav-tab-mobile nav-tab nav nav-pill justify-content-sm-center justify-content-start flex-nowrap d-flex d-sm-none"
+                 align="center">
+                <a order="1" class="tab-link col-sm-auto col-4 active" href="#activity"
+                   role="tab"
+                   data-toggle="tab">{{ $me ? 'Your' : 'User' }}
+                    Activities</a>
+                <a order="2" class="tab-link col-sm-auto col-4" href="#gallery" role="tab"
+                   data-toggle="tab">Gallery</a>
+                <a order="3" class="tab-link col-sm-auto col-4" href="#studio" role="tab"
+                   data-toggle="tab">Visited</a>
+                <a order="4"
+                   class="tab-link col-sm-auto col-4" href="#suggest" role="tab"
+                   data-toggle="tab">Followed master</a>
+            </div>
             <div class="profile-card-wrapper" style="display: block">
-                <div class="nav-tab nav nav-pill">
-                    <a class="tab-link active" href="#activity" role="tab"
-                       data-toggle="tab">{{ $me ? 'Your' : 'User' }}
-                        Activities</a>
-                    <a class="tab-link" href="#gallery" role="tab" data-toggle="tab">Gallery</a>
-                    <a class="tab-link" href="#studio" role="tab" data-toggle="tab">Visited</a>
-                    <a class="tab-link" href="#suggest" role="tab" data-toggle="tab">Followed
-                        master</a>
-                </div>
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active show" id="activity">
@@ -111,7 +127,9 @@
                                     @if($nowActivities->isEmpty())
                                         <div class="no-act">No activity now.</div>
                                     @endif
-                                    @include('components.activity-grid-card', ['activities'=>$nowActivities, 'size' => 80, 'nohover' => '55'])
+                                    <div class="activity-wrapper">
+                                        @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$nowActivities])
+                                    </div>
                                 </div>
 
                             </div>
@@ -121,38 +139,62 @@
                                     @if($pastActivities->isEmpty())
                                         <div class="no-act">No activity now.</div>
                                     @endif
-                                    @include('components.activity-grid-card', ['activities'=>$pastActivities, 'size' => 80, 'nohover' => '55'])
+                                    <div class="activity-wrapper">
+                                        @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$pastActivities])
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade in" id="gallery">
                         <div class="gallery-wrapper">
-                            <div class="gallery-flex">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
+                            <div class="gallery-flex --first">
+                                @php
+                                    $count = count($user['user_gallery']);
+                                    if(count($user['user_gallery']) === 1)
+                                        $count = 2;
+                                @endphp
+                                @for($i = 0; $i < floor($count/2); $i++)
+                                    <div class="image-container {{ $me ? 'me' : '' }}"
+                                         tabindex="-1">
+                                        <img src="{{ $user['user_gallery'][$i] }}"
+                                             class="image">
+                                        @if($me)
+                                            <button class="delete-btn"
+                                                    onclick="deletePicGallery({{ $i }}, this)"></button>
+                                        @endif
+                                    </div>
+                                @endfor
                             </div>
                             <div class="gallery-flex --second">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
-                                <img src="/img/Deepsea.jpeg" class="image">
+                                @for($i = floor(count($user['user_gallery'])/2); $i < count($user['user_gallery']); $i++)
+                                    <div class="image-container {{ $me ? 'me' : '' }}"
+                                         tabindex="-1">
+                                        <img src="{{ $user['user_gallery'][$i] }}"
+                                             class="image">
+                                        @if($me)
+                                            <button class="delete-btn"
+                                                    onclick="deletePicGallery({{ $i }}, this)"></button>
+                                        @endif
+                                    </div>
+                                @endfor
                             </div>
+
                         </div>
+                        @if($me)
+                            <div class="add-button">
+                                <img src="/img/icon/plus-solid.svg" class="svg">
+                                <input type="file" accept="image/*" class="add-file">
+                            </div>
+                        @endif
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="studio">
 
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="suggest">
-                        <div class="follow-wrapper">
+                        <div class="follow-wrapper" style="margin-top: 20px">
                             @foreach($masters as $master)
-                                <div class="followed-master"
+                                <div class="followed-master col-sm-6 col-md-3 col-12"
                                      onclick="window.location.href='/master/{{ $master['master_id'] }}'">
                                     <div class="image-wrapper">
                                         <img src="{{ $master['user_pic'] }}" alt="">
@@ -268,6 +310,18 @@
           $(this).children('.activity-detail').fadeOut()
         })
 
+        var curTrans = 33.33
+
+        $('.nav-tab-mobile > .tab-link').click(function () {
+          var curOrder = parseInt($('.nav-tab-mobile >.tab-link.active').attr('order'))
+          var targetOrder = parseInt($(this).attr('order'))
+          var result = targetOrder - curOrder
+          var trans = curTrans - 33.33 * result
+          curTrans = trans
+          console.log('>> curTrans: ', curTrans)
+          $(this).parent().css('transform', 'translateX(' + trans + '%)')
+        })
+
         $('.interest-activity').click(function () {
           $('.interest-activity.active').removeClass('active')
           $(this).toggleClass('active')
@@ -315,14 +369,37 @@
         $('#profile-img').change(function () {
           changeProfile()
         })
+
+        $('.add-file').change(addPicGallery)
       })
 
-      function changeProfile() {
+      var user_gallery = @json($user['user_gallery'])
+
+      function deletePicGallery(id, ele) {
+        user_gallery.splice(id, 1)
+        $.ajax({
+          url: '/user/{{ $user['user_id'] }}/gallery',
+          type: 'delete',
+          dataType: 'json',
+          processData: false,
+          contentType: 'application/json',
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          },
+          data: JSON.stringify({ 'user_gallery': user_gallery }),
+          success: function (res) {
+            $(ele).parent().remove()
+          },
+        })
+      }
+
+      function addPicGallery() {
         var formData = new FormData()
-        formData.append('image', $('#profile-img')[0].files[0])
+        formData.append('image', $('.add-file')[0].files[0])
+        formData.append('user_gallery', JSON.stringify(user_gallery))
 
         $.ajax({
-          url: '/user/{{ Auth::id() }}/change',
+          url: '/user/{{ $user['user_id'] }}/gallery',
           type: 'post',
           headers: {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
@@ -331,25 +408,29 @@
           contentType: false,
           processData: false,
           success: function (res) {
-            $('#image-profile').attr('src', res['image_url'])
+            var dataResult = res.data
+            var firstGallery = $('.gallery-flex.--first').children().length
+            var secondGallery = $('.gallery-flex.--second').children().length
+            user_gallery.push(dataResult['filename'])
+            var galleryHtml = `
+                <div class="image-container {{ $me ? 'me' : '' }}" tabindex="-1">
+                                    <img src="${dataResult['filename']}"
+                                         class="image">
+                                    @if($me)
+              <button class="delete-btn"
+                      onclick="deletePicGallery(${user_gallery.length - 1}, this)"></button>
+                                        @endif
+              </div>
+`
+            if (firstGallery < secondGallery) {
+              $('.gallery-flex.--first').append(galleryHtml)
+            } else {
+              $('.gallery-flex.--second').append(galleryHtml)
+            }
           },
         })
       }
 
-      function deleteProfile() {
-        $.ajax({
-          url: '/user/' + {{ Auth::id() }} +'/delete',
-          type: 'post',
-          dataType: 'json',
-          processData: false,
-          contentType: 'application/json',
-          data: JSON.stringify({
-            '_token': $('meta[name="csrf-token"]').attr('content'),
-          }),
-          success: function (res) {
-            $('#image-profile').attr('src', res['image_url'])
-          },
-        })
-      }
+
     </script>
 @endsection

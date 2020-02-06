@@ -54,28 +54,46 @@
                             </div>
                             <!-- End Activity Name , Search -->
                             <div class="activity-detail-wrapper">
-                                <div class="activity-tabs d-none d-sm-block">
+
+                                <div class="activity-tabs d-none d-sm-flex">
                                     <div class="activity-tab"
                                          onclick="window.location.href= '/activity/{{ $headActivity['activity_url_name'] }}'">
                                         <div class="icon-wrapper --join">
                                         </div>
                                         <div class="text">Join activity</div>
                                     </div>
-                                    <div class="activity-tab"
-                                         onclick="pinActivity({{ $headActivity['activity_id'] }}, '{{ $headActivity["activity_name"] }}')">
+
+                                    <div class="activity-tab --pinact {{ $headActivity['activity_pin'] !== 0 ? 'd-none' : '' }}"
+                                         onclick="pinActivity({{ $headActivity['activity_id'] }}, '{{ $headActivity["activity_name"] }}', this)">
                                         <div class="icon-wrapper --pin">
                                         </div>
                                         <div class="text">Pin activity</div>
                                     </div>
-                                    <div class="activity-tab" onclick="inviteFriend()">
-                                        <div class="icon-wrapper --invite">
+                                    <div class="activity-tab --pinact {{ $headActivity['activity_pin'] === 0 ? 'd-none' : '' }}"
+                                         onclick="unpinActivity({{ $headActivity['activity_id'] }}, '{{ $headActivity["activity_name"] }}', this)">
+                                        <div class="icon-wrapper --unpin">
                                         </div>
-                                        <div class="text">Invite friend</div>
+                                        <div class="text">Unpin activity</div>
                                     </div>
-                                    <div class="activity-tab" onclick="shareActivity()">
+
+                                    <div class="activity-tab --share" tabindex="-1">
                                         <div class="icon-wrapper --share">
                                         </div>
                                         <div class="text">Share</div>
+                                        <div class="share-dropdown">
+                                            <div class="icon-wrapper --dropdown --copy"
+                                                 onclick="copy()" data-toggle="tooltip"
+                                                 data-placement="bottom" title="Click to copy">
+                                            </div>
+                                            <div class="icon-wrapper --dropdown --facebook"
+                                                 onclick="facebook()" data-toggle="tooltip"
+                                                 data-placement="bottom" title="Facebook share">
+                                            </div>
+                                            <div class="icon-wrapper --dropdown --email"
+                                                 onclick="email()" data-toggle="tooltip"
+                                                 data-placement="bottom" title="Email share">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 @include('components.activity-card', ['size'=>80, 'activity'=> $headActivity])
@@ -113,6 +131,7 @@
     </section>
 
     <section class="your-activity">
+        <textarea style="opacity:0; height: 0; padding: 0;" id="url"></textarea>
         <h3 class="header">Your Activity</h3>
         @include('components.category-interest')
         @if(!empty($user))
@@ -145,6 +164,13 @@
                                                              class="svg"></div>
                 </div>
                 <div class="activity-story">
+                    @if($stories->isEmpty())
+                        <div class="no-story">
+                            <img src="/img/icon/camera-solid.svg" class="svg">
+                            <p class="title">Share your first journey. Click!</p>
+                            <br>
+                        </div>
+                    @endif
                     @foreach ($stories as $story)
 						<?php
 						$story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
@@ -181,11 +207,13 @@
                     @endforeach
                 </div>
 
+                @if(!$stories->isEmpty())
                 <div class="add-activity-story">
                     <div class="add-button">
                         <img src="/img/icon/plus-solid.svg" class="svg">
                     </div>
                 </div>
+                @endif
             </div>
         @endif
         <section id="activity" class="all-activity"
@@ -242,6 +270,8 @@
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="/js/activity.js"></script>
     <script src="/js/activity-page.js"></script>
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js">
+    </script>
 
     <script>
       var categoryHtml = `
@@ -444,7 +474,7 @@
         }, 700)()
       }
 
-      var pinActivity = function (activity, name) {
+      var pinActivity = function (activity, name, ele) {
         $.ajax({
           url: '/activity/' + activity + '/pin',
           type: 'post',
@@ -461,6 +491,32 @@
             </div>
             `
             $('#my-activity').append(alertHtml)
+
+            $(ele).parent().children('.--pinact').toggleClass('d-none')
+
+          },
+          error: function (err) {
+            if (err.status === 401) {
+              modal('login')
+            } else if (err.status === 500) {
+              modal('all')
+              $(ele).parent().children('.--pinact').toggleClass('d-none')
+            }
+          },
+        })
+      }
+
+      var unpinActivity = function (activity, name, ele) {
+        $.ajax({
+          url: '/activity/' + activity + '/unpin',
+          type: 'post',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $(ele).parent().children('.--pinact').toggleClass('d-none')
           },
           error: function (err) {
             if (err.status === 401) {
@@ -469,6 +525,20 @@
           },
         })
       }
+
+      var copy = function () {
+        var Url = document.getElementById('url')
+        Url.innerHTML = window.location.href
+        Url.select()
+        document.execCommand('copy')
+        console.log('>> : ')
+      }
+
+      var email = function () {
+        var url = window.location.href
+        window.location.href = 'mailto:?subject=I wanted you to see this site&body=Check out this site ' + url
+      }
+
 
     </script>
 @endsection

@@ -233,6 +233,7 @@
           //]]>
         </script>
     @endif
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script>
@@ -291,6 +292,10 @@
         $('.footer #' + page + '-footer').addClass('active')
 
         replaceSvg()
+
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip()
+        })
 
       })
     </script>
@@ -388,7 +393,6 @@
             'password': $('#user_password').val(),
           }),
           complete: function (res) {
-            console.log('>> err: ', res)
             if (res.status === 200) {
               window.location.reload()
             } else {
@@ -404,7 +408,6 @@
           type: 'post',
           data: $('#registerForm').serialize(),
           success: function (res) {
-            console.log('>> res: ', res)
             activeTab('interestTab')
           },
           error: function (err) {
@@ -441,7 +444,6 @@
           url: '/content/map',
           type: 'get',
           success: function (res) {
-            console.log('>> res: ', res)
             $('#studioTab').html(res)
           },
         })
@@ -508,6 +510,7 @@
         } else if (tab === 'moreTab') {
           selectButton()
         } else if (tab === 'paymentTab') {
+          $('.modal-header').removeClass('d-none')
           replaceSvg()
           $('.payment-badge').off('click').on('click', function () {
             $(this).parent().children('.active').removeClass('active')
@@ -756,34 +759,47 @@
                     </div>
             </form>
           `
-      var paymentModal = `
+      var paymentModal = function (activity) {
+
+        return `
 <ul class="nav nav-tabs d-none" id="paymentTabLink" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="payment-tab" data-toggle="tab" href="#paymentTab" role="tab" aria-controls="payment" aria-selected="true">Payment</a>
+    <a class="nav-link active" id="confirm-tab" data-toggle="tab" href="#confirmTab" role="tab" aria-controls="confirm" aria-selected="true">Confirm</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="payment-tab" data-toggle="tab" href="#paymentTab" role="tab" aria-controls="payment" aria-selected="true">Payment</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" id="payment-success-tab" data-toggle="tab" href="#paymentSuccessTab" role="tab" aria-controls="payment-success" aria-selected="false">Payment success</a>
   </li>
 </ul>
 <div class="tab-content" id="paymentTabPane">
-<div class="tab-pane fade active show" id="paymentTab" role="tabpanel" aria-labelledby="payment-tab">
-         <div class="payment-wrapper">
+<div class="tab-pane fade active show" id="confirmTab" role="tabpanel" aria-labelledby="confirm-tab">
+    <div class="payment-success --confirm" align="center">
+        <h3 class="header">Booking Confirmation</h3>
+        <img src="/img/Deepsea.jpeg" class="activity-image">
+        <p class="thx">You are joining </p>
+        <h3 class="name">"${activity.name}"</h3>
+        <p class="total">total amount : <span class="price">${activity.priceName} Bath</span></p>
+        <div class="d-flex">
+        <button class="pay-button --outline mb-3 mr-1" onclick="closeModal()">Cancel</button>
+         <form style="width: 100%" id="omiseForm" name="checkoutForm" method="POST" action="/activity/${activity.id}/payment">
+         @csrf
+          <input type="hidden" name="amount" value="${activity.price}">
+    </form>
+</div>
+    </div>
+</div>
+<div class="tab-pane fade" id="paymentTab" role="tabpanel" aria-labelledby="payment-tab">
+
+<div class="payment-wrapper">
                         <h3 class="header">Payment method</h3>
                         <div class="badge-wrapper">
                             <div class="payment-badge active" id="newCard">
                                 <img src="/img/icon/credit-card-regular.svg" class="svg">
                                 <div class="name">new<br />debit/credit</div>
                             </div>
-                            <div class="payment-badge">
-                                <img src="/img/icon/credit-card-regular.svg" class="svg">
-                                <div class="name"><img class="card-icon" src="/img/visa.png"><br /><span
-                                            class="card-number">4125 03** **** 9234</span></div>
-                            </div>
-                            <div class="payment-badge">
-                                <img src="/img/icon/credit-card-regular.svg" class="svg">
-                                <div class="name"><img class="card-icon" src="/img/visa.png"><br /><span
-                                            class="card-number">4125 03** **** 9234</span></div>
-                            </div>
+                            ${activity.cardHtml}
                         </div>
                         <div class="form-card-wrapper">
                             <div class="card-support">
@@ -827,8 +843,8 @@
         <h3 class="header">Payment Confirmation</h3>
         <img src="/img/icon/check-circle-solid.svg" class="svg">
         <h5 class="thx">Thank you !</h5>
-        <p>You just booked "Basic cooking class by Adam"</p>
-        <h5 class="price">1000 Bath</h5>
+        <p class="booking">You just booked "Basic cooking class by Adam"</p>
+        <h5 class="price">${activity.price} Bath</h5>
         <img src="/img/Deepsea.jpeg" class="activity-image">
         <button class="pay-button" onclick="modal('all')">View all activity</button>
         <button class="pay-button mb-3 --outline" onclick="closeModal()">Back to homepage</button>
@@ -836,6 +852,7 @@
 </div>
 </div>
       `
+      }
 
       var allActivityModal = `
         <div id="my-activity" class="my-activity">
@@ -864,7 +881,7 @@
                         </ul>
                         <div class="tab-content" id="followTabPane">
                             <div class="category-wrapper my-4" align="center">
-                                @include('components.category-interest')
+{{--                                @include('components.category-interest')--}}
         </div>
         <div class="tab-pane py-3 fade in show active" id="masterTab" role="tabpanel"
              aria-labelledby="register-tab" align="center">
@@ -997,7 +1014,9 @@
 </div>
 `
 
-      var modal = function (name) {
+      var omiseV = 1
+
+      var modal = function (name, options) {
         $('#modal').modal('show')
         $('.modal-header').removeClass('d-none')
 
@@ -1016,8 +1035,28 @@
             register()
           })
         } else if (name === 'join') {
-          $('.modal-body').html(paymentModal)
-          activeTab('paymentTab')
+
+          $('.modal-body').html(paymentModal(options['data']))
+          $('.modal-header').addClass('d-none')
+          if (options['payment'] === 'success') {
+            activeTab('paymentSuccessTab')
+            replaceSvg()
+          } else {
+            activeTab('confirmTab')
+          }
+          var script = `
+            <script id="omise" type="text/javascript" src="https://cdn.omise.co/omise.js?v=${omiseV}"
+                        data-key="pkey_test_5ikuyw9bd25g1ku53mh"
+                        data-image="http://bit.ly/customer_image"
+                        data-frame-label="@Master Studio"
+                        data-button-label="Pay now"
+                        data-submit-label="Submit"
+                        data-location="no"
+                        data-amount="${options.data.price * 100}"
+                        data-currency="thb" />
+          `
+          $('#omiseForm').append(script)
+          omiseV++
         } else if (name === 'all') {
           $('.modal-dialog').css('max-width', '800px')
           $('.modal-header').addClass('d-none')

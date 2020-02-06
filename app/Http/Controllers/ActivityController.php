@@ -20,23 +20,29 @@
 		 */
 		public function index()
 		{
-			$user = \Auth::user();
+			$user = \Auth::user() ? \Auth::user() : ['user_id' => 0];
 			$headActivities = Activity::from('activities as act')
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0) AS activity_pin'))
 				->whereIn('act.activity_id', [1, 2, 3])->get();
 			$activities = Activity::from('activities as act')
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
-				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')->take(6)->get();
+				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0) AS activity_pin'))
+				->take(6)->get();
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 				->where('as.user_id', $user['user_id'])
 				->get();
 			$myActivities = UserActivity::from('user_activities as ua')
 				->join('activities as ac', 'ua.activity_id', 'ac.activity_id')
-				->where('ua.user_id', \Auth::id())->get();
+				->where('ua.user_id', $user['user_id'])->get();
+			if ($user['user_id'] === 0) {
+				$user = [];
+			}
 			return view('activity', ['activities' => $activities, 'headActivities' => $headActivities, 'stories' => $stories, 'user' => $user, 'myActivities' => $myActivities]);
 		}
 
@@ -48,14 +54,20 @@
 		 */
 		public function show($name)
 		{
-			$user = \Auth::user();
+
+			$user = \Auth::user() ? \Auth::user() : [];
 			$activity = Activity::from('activities as act')
 				->join('users AS u', 'u.user_id', '=', 'act.user_id')
 				->join('masters AS ms', 'u.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->leftJoin('studios AS st', 'ms.studio_id', '=', 'st.studio_id')
 				->join('achievements AS ach', 'act.achievement_id', '=', 'ach.achievement_id')
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . (!empty($user) ? $user['user_id'] : 0) . ' AND ua.user_activity_status = 0) AS activity_pin'))
 				->where('act.activity_url_name', $name)->first();
+			$joinUsers = UserActivity::from('user_activities as ua')
+				->join('users AS u', 'u.user_id', '=', 'ua.user_id')
+				->where('ua.activity_id', $activity['activity_id'])
+				->where('ua.user_activity_paid', 1)->get();
 			$activities = Activity::from('activities as act')
 				->join('users AS u', 'u.user_id', '=', 'act.user_id')
 				->join('masters AS ms', 'u.master_id', '=', 'ms.master_id')
@@ -63,6 +75,7 @@
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 				->where('as.activity_id', $activity['activity_id'])
+				->where('as.user_id', $activity['user_id'])
 				->groupBy('as.activity_id')->get();
 			$comments = ActivityComment::from('activity_comments as acm')
 				->join('activities as ac', 'acm.activity_id', 'ac.activity_id')
@@ -72,11 +85,17 @@
 				->groupBy('acm.comment_id')
 				->where('ac.activity_url_name', $name)
 				->get();
-			$isJoined = !!UserActivity::where('user_id', $user)->where('activity_id', $activity['activity_id'])->first();
+			$cards = \DB::table('payment_card as pc')
+				->join('users AS us', 'pc.user_id', '=', 'us.user_id')
+				->where('us.user_id', !empty($user) ? $user['user_id'] : 0)->get();
+			$isJoined = !!UserActivity::where('user_id', !empty($user) ? $user['user_id'] : 0)
+				->where('activity_id', $activity['activity_id'])
+				->where('user_activity_paid', 1)
+				->first();
 
 			if (empty($activity))
 				abort(404);
-			return view('activity-detail', ['activity' => $activity, 'activities' => $activities, 'stories' => $stories, 'comments' => $comments, 'user' => $user, 'isJoined' => $isJoined]);
+			return view('activity-detail', ['activity' => $activity, 'activities' => $activities, 'stories' => $stories, 'comments' => $comments, 'user' => $user, 'isJoined' => $isJoined, 'joinUsers' => $joinUsers, 'cards' => $cards]);
 		}
 
 		/**
@@ -87,6 +106,7 @@
 		 */
 		public function search(Request $request)
 		{
+			$user_id = \Auth::id() ? \Auth::id() : 0;
 			$search = $request->query('keyword');
 			if (!$search) {
 				$search = $request->query('key') ? $request->query('key') : '';
@@ -97,10 +117,11 @@
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->leftJoin('studios AS st', 'ms.studio_id', '=', 'st.studio_id')
 				->join('achievements AS ach', 'act.achievement_id', '=', 'ach.achievement_id')
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0) AS activity_pin'))
 				->where('act.activity_name', 'LIKE', "%{$search}%")->get();
 
 			if ($request->query('key') || $search === '') {
-				return view('components.activity-grid-card', ['activities' => $activities]);
+				return view('components.activity-grid-card', ['activities' => $activities, 'isSearching' => true]);
 			}
 
 			return response()->json([
@@ -127,6 +148,22 @@
 			return response()->json([
 				'status' => 200,
 				'message' => 'Pin activity id : ' . $id . ' success.'
+			], 200);
+		}
+
+		/**
+		 * Show a searching activity json.
+		 *
+		 * @param string $name
+		 * @return Illuminate\Http\Response
+		 */
+		public function unpin(Request $request, $id)
+		{
+			UserActivity::where('activity_id', $id)->where('user_id', \Auth::id())->delete();
+
+			return response()->json([
+				'status' => 200,
+				'message' => 'Unpin activity id : ' . $id . ' success.'
 			], 200);
 		}
 

@@ -138,6 +138,9 @@
 						transition: visibility 0.5s, opacity 0.5s linear;
 						padding-left: 20px;
 						color: white;
+						justify-content: center;
+						align-items: flex-start;
+						flex-direction: column;
 
 						> .activity-tab {
 							display: flex;
@@ -159,6 +162,25 @@
 
 							.svg {
 								padding: 13px;
+							}
+
+							&.--share {
+								position: relative;
+
+								&:focus > .share-dropdown {
+									display: flex;
+								}
+							}
+
+							> .share-dropdown {
+								position: absolute;
+								display: none;
+								top: 60px;
+								left: 0;
+
+								> .icon-wrapper {
+									margin-right: 10px;
+								}
 							}
 						}
 					}

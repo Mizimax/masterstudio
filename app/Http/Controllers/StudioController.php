@@ -66,6 +66,9 @@
 				->where('follower_id', \Auth::id())
 				->first();
 			$isFollower = !!$follow;
+
+//			$distance = \DB::select('SELECT (6371 * acos(cos(radians(' . $lat . ')) * cos(radians(studio_lat)) * cos(radians(studio_long) - radians(' . $long . ')) + sin(radians(' . $lat . ')) * sin(radians(studio_lat)))) AS distance  FROM studios HAVING distance <= 1');
+//			dd($distance);
 			return view('studio-detail', ['studio' => $studio, 'activities' => $activities, 'stories' => $stories, 'reviews' => $reviews, 'masters' => $masters, 'isFollower' => $isFollower]);
 		}
 

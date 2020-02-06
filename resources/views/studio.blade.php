@@ -20,11 +20,12 @@
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
+
         }
 
         .category-interest {
             bottom: 180px;
-            z-index: 8;
+            z-index: 99;
         }
     </style>
 @endsection
@@ -38,12 +39,24 @@
 
     </div>
 
+    <div class="overlay d-block d-sm-none"
+         onclick="$(this).addClass('d-none');$(this).removeClass('d-block')"
+         style="background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.8) 100%);">
+
+    </div>
 
     @include('components/category-interest')
-    <div class="search-box-wrapper">
-        <input class="search-box" placeholder="Search your activities..." type="text">
-        <button class="button">Explore</button>
+    <div class="search-box-wrapper row align-items-center no-gutters">
+        <div class="col-sm-8">
+            <input id="search-studio" class="search-box" placeholder="Search your activities..."
+                   type="text">
+        </div>
+        <div class="col-sm-4">
+            <button class="button" onclick="searchStudio()">Explore</button>
+        </div>
     </div>
+
+
 
 @endsection
 
@@ -54,10 +67,6 @@
         var lazyLoadInstance = new LazyLoad({
           elements_selector: '.lazy',
           // ... more custom settings?
-        })
-
-        $('.interest-activity').click(function () {
-          $(this).toggleClass('active')
         })
 
         $('.map-detail').hover(function () {
@@ -71,7 +80,6 @@
     <script>
 
       var mapCard = function (studio, i) {
-        console.log('>> studio: ', studio)
         var pics = JSON.parse(studio.studio_pic)
 
         var carouselIndicators = pics.map(function (value, index) {
@@ -124,9 +132,26 @@
       }
     </script>
     <script>
+      var allStudios
       var map
 
-      function initMap() {
+      function initMap(studios) {
+        if (!studios) {
+          allStudios = [
+                  @foreach($studios as $studio)
+            {
+              lat: {{ $studio['studio_lat' ]}},
+              long: {{ $studio['studio_long' ]}},
+              studio: @json($studio),
+              icon: {
+                url: '{{ $studio['studio_icon'] }}', // url
+                scaledSize: new google.maps.Size(50, 50), // scaled size
+              },
+            },
+              @endforeach
+          ]
+          studios = allStudios
+        }
         map = new google.maps.Map(
           document.getElementById('map'),
           {
@@ -206,20 +231,6 @@
             }],
           })
 
-        var studios = [
-                @foreach($studios as $studio)
-          {
-            lat: {{ $studio['studio_lat' ]}},
-            long: {{ $studio['studio_long' ]}},
-            studio: @json($studio),
-            icon: {
-              url: '{{ $studio['studio_icon'] }}', // url
-              scaledSize: new google.maps.Size(50, 50), // scaled size
-            },
-          },
-            @endforeach
-        ]
-
         // Create markers.
         for (var i = 0; i < studios.length; i++) {
           var marker =
@@ -228,11 +239,21 @@
               icon: studios[i].icon,
               map: map,
             })
+
+          studios[i]['marker'] = marker
+
           marker.addListener('mouseover', function (e) {
             var lat = Math.round(e.latLng.lat() * 10000000) / 10000000
             var long = Math.round(e.latLng.lng() * 10000000) / 10000000
-            var x = e.ya.x
-            var y = e.ya.y
+
+            var mouseE
+            for (var ppt in e) {
+              if (e[ppt] instanceof MouseEvent) {
+                mouseE = ppt
+              }
+            }
+            var x = e[mouseE].x
+            var y = e[mouseE].y
 
             var studio = studios.find(function (studio) {
               return studio.lat == lat && studio.long == long
@@ -262,6 +283,30 @@
         }
 
       }
+
+      function interestSelected() {
+        var selectedCategory = MasterStudio.categorySelected
+        if (selectedCategory.length !== 0) {
+          var filterStudios = allStudios.filter(function (studio) {
+            return selectedCategory.indexOf(studio.studio.category_id) !== -1
+          })
+          console.log('>> filterStudios: ', filterStudios)
+          initMap(filterStudios)
+        } else {
+          initMap(allStudios)
+        }
+      }
+
+      function searchStudio() {
+        var searchText = $('#search-studio').val()
+        var studio = allStudios.find(function (studio) {
+          return studio.studio.studio_name.toLowerCase().indexOf(searchText) !== -1
+        })
+
+        map.panTo(studio.marker.getPosition())
+        map.setZoom(14)
+      }
+
     </script>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCKX_QDAbkV66e1NLEnJ2KDH0b1bALvIc&callback=initMap">

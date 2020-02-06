@@ -40,7 +40,7 @@
 
                             <div class="modal-action justify-content-center">
                                 <button type="button" class="primary-button" onclick="addReview()">
-                                    Add review
+                                    Add your review
                                 </button>
                             </div>
                         </form>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="action-button">
                         @if(!$isFollower)
-                            <form id="followMaster" action="{{ url()->current() }}"
+                            <form action="{{ url()->current() }}"
                                   method="post">
                                 @csrf
                             </form>
@@ -197,105 +197,15 @@
         @if(!empty($masters) && count($masters) !== 0)
             <section class="studio-master">
                 <h4 class="title">Master @Studio</h4>
-                @foreach($masters as $master)
-                    @php
-                        $isFollower = !!$master['isFollow'];
-                    @endphp
-                    <div class="master-profile-card-wrapper">
-                        <div class="image-container">
-                            <div class="image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="master-profile-card" style="width: 100%;">
-                            <div class="master-info" style="flex: 0 0 280px" align="center">
-                                <div class="title">{{ $master['master_name'] }}</div>
-                                <div class="badge">{{ $master['category_name'] }} Master</div>
-                                <div class="master-badge">
-                                    @if($master['master_most_recommend'] !== 0)
-                                        <div class="badge {{ $master['master_most_recommend'] === 1 ? '--basic' : '--advance' }}">
-                                            Most {{ $master['master_most_recommend'] === 1 ? 'basic' : 'advance' }}
-                                            recommended
-                                        </div>
-                                    @endif
-                                    @if($master['master_recommend'] !== 0)
-                                        <div class="badge {{ $master['master_recommend'] === 1 ? '--basic' : '--advance' }}"
-                                             style="margin-top: 5px">
-                                            {{ $master['master_recommend'] === 1 ? 'basic' : 'advance' }}
-                                            recommended
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="activity-story" style="margin-top:0;">
-                                @if($stories->isEmpty())
-                                    <div class="no-story">No story now.</div>
-                                @endif
-                                @foreach ($stories as $story)
-                                    @php
-                                        $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
-                                    @endphp
-                                    <div class="activity-wrapper">
-                                        <div class="activity-card">
-                                            <div class="video-wrapper">
-                                                <video class="video lazy" loop muted>
-                                                    <source data-src="{{ $story['activity_story_video'] }}"
-                                                            type="video/mp4" />
-                                                </video>
-                                            </div>
-
-                                            <div class="title-wrapper">
-                                                <div class="title">{{ $story['activity_name'] }}</div>
-                                                <div class="activity-join">
-                                                    @foreach($story['users_activity'] as $usersStory)
-                                                        <div class="participant image-wrapper">
-                                                            <img src="{{ $usersStory['user_pic'] }}"
-                                                                 alt="{{ $usersStory['user_name'] }}"
-                                                                 onclick="window.location.href = '/user/{{ $usersStory['user_id'] }}'">
-                                                        </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <div class="master-action">
-                                <div class="actions">
-                                    <div class="action-wrapper">
-                                        <button class="join-button">Join<br>Activity</button>
-                                        <span>1 Activity available</span>
-                                    </div>
-                                    @if(!$isFollower)
-                                        <form id="followMaster"
-                                              action="/master/{{ $master['master_id'] }}"
-                                              method="post">
-                                            @csrf
-                                        </form>
-                                    @endif
-                                    <div class="follow-wrapper"
-                                         onclick="$('#followMaster').submit()">
-                                        <div class="follow-icon {{ $isFollower ? 'followed' : '' }}">
-                                            <img src="/img/icon/footstep.svg" alt="Follow ..."
-                                                 class="svg">
-                                        </div>
-                                        <div class="text"> {{ $isFollower ? 'Followed' : 'Follow' }}</div>
-                                    </div>
-                                </div>
-                                <div class="core-actions" style="margin-top: 70px">
-                                    <button class="request-button">Request<br>custom activity
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                <div class="master-studio-padding">
+                    @include('components.master-list', ['masters' => $masters, 'userme' => Auth::user()])
+                </div>
             </section>
         @endif
         @if(!empty($masters) && count($masters) !== 0)
             <section class="studio-activity">
                 <h4 class="title">Activity happening here</h4>
-                <div class="activity-wrapper">
+                <div class="activity-wrapper flex-wrap">
                     @include('components.activity-grid-card', ['activities'=>$activities, 'size'=>80, 'nohover' => '55'])
                 </div>
             </section>
@@ -342,6 +252,12 @@
           $(this).get(0).pause()
         })
 
+        $('.activity-overlay').hover(function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).play()
+        }, function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+        })
+
       })
     </script>
 
@@ -368,8 +284,9 @@
                         </div>
                     </div>
                 `
-            if ($('.review-wrapper > '))
+            if ($('.review-wrapper > ')) {
               $('.review-wrapper').prepend(reviewHtml)
+            }
             $('#modal').modal('toggle')
             // window.location.hash = '#newReview';
           },

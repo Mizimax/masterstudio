@@ -23,10 +23,10 @@
 		z-index: 99;
 
 		> .studio-header-content {
-			max-width: 475px;
+			max-width: 500px;
 			width: 100%;
 			color: white;
-			padding: 20px;
+			padding: 40px;
 			margin-left: auto;
 			margin-right: 5vw;
 
@@ -90,7 +90,7 @@
 
 						&.followed {
 							cursor: auto;
-							background: rgba(241, 78, 166, 0.7);
+							background: #edb7d6;
 						}
 
 						> .svg {
@@ -351,6 +351,14 @@
 	}
 
 	> .studio-master {
+
+		> .master-studio-padding {
+			padding-top: 0;
+
+			@include mobile-up {
+				padding-top: 40px;
+			}
+		}
 
 		> .title {
 			margin: 40px 0;

@@ -144,6 +144,62 @@
 			], 200);
 		}
 
+		/**
+		 * Update gallery image.
+		 *
+		 * @return \Illuminate\Http\Response
+		 */
+		public function delGallery(Request $request, $id)
+		{
+			if (\Auth::id() == $id) {
+				User::where('user_id', $id)
+					->update([
+						'user_gallery' => json_encode($request->input('user_gallery'))
+					]);
+			} else {
+				return response()->json([
+					'status' => 401,
+					'message' => 'Unauthorized.'
+				], 401);
+			}
+			return response()->json([
+				'status' => 200,
+				'message' => 'Update gallery success.'
+			], 200);
+		}
+
+		/**
+		 * Update gallery image.
+		 *
+		 * @return \Illuminate\Http\Response
+		 */
+		public function addGallery(Request $request, $id)
+		{
+			$user_gallery = $request->input('user_gallery');
+
+			if (\Auth::id() == $id) {
+				$path = '/img/upload/user/' . $id . '/gallery/';
+				$fileName = time() . '.jpg';
+				$request->file('image')->move(public_path($path), $fileName);
+				$user_gallery = json_decode($user_gallery, true);
+				$user_gallery[] = $path . $fileName;
+				User::where('user_id', $id)
+					->update([
+						'user_gallery' => json_encode($user_gallery)
+					]);
+			} else {
+				return response()->json([
+					'status' => 401,
+					'message' => 'Unauthorized.'
+				], 401);
+			}
+			return response()->json([
+				'status' => 200,
+				'data' => ['filename' => $path . $fileName],
+				'message' => 'add gallery success.'
+			], 200);
+		}
+
 		public function getLogout()
 		{
 			Auth::logout();

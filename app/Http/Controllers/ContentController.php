@@ -43,6 +43,7 @@
 		 */
 		public function activities(Request $request)
 		{
+			$user_id = \Auth::id() ? \Auth::id() : 0;
 			$category_id = $request->query('category');
 			$category_id = json_decode($category_id, true);
 			if (!is_array($category_id)) {
@@ -53,12 +54,14 @@
 					->join('users AS us', 'act.user_id', '=', 'us.user_id')
 					->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 					->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+					->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0) AS activity_pin'))
 					->take(6)->get();
 			} else {
 				$queryActivities = Activity::from('activities as act')
 					->join('users AS us', 'act.user_id', '=', 'us.user_id')
 					->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 					->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
+					->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0) AS activity_pin'))
 					->whereIn('act.category_id', $category_id)
 					->get();
 			}
@@ -66,7 +69,7 @@
 			if ($queryActivities->isEmpty()) {
 				abort(404);
 			}
-			return view('components.activity-grid-card', ['queryActivities' => $queryActivities]);
+			return view('components.activity-grid-card', ['queryActivities' => $queryActivities, 'isSearching' => true]);
 		}
 
 		public function timeline($category, $userId)
@@ -137,6 +140,7 @@
 
 		public function follow()
 		{
+			$userme = Auth::user() ? Auth::user() : ['user_id' => 0];
 			$masters = Follow::from('follows AS fl')
 				->join('users AS us', 'fl.following_id', '=', 'us.user_id')
 				->join('activities AS act', 'act.user_id', '=', 'fl.following_id')
@@ -148,7 +152,7 @@
 				->select(\DB::raw('ms.*, us.user_pic, cg.category_name, act.activity_video, act.activity_url_name, (SELECT COUNT(*) FROM follows AS fls WHERE fls.following_id = ms.master_id) AS master_follower'))
 				->get();
 
-			return view('components.follow', ['masters' => $masters]);
+			return view('components.master-list', ['masters' => $masters, 'userme' => $userme, 'noFollow' => 'true']);
 		}
 
 		public function studioMaster($studio_id)

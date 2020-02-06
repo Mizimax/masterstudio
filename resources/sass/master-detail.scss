@@ -43,11 +43,16 @@
 				}
 
 				> .image-wrapper {
-					width: 120px;
-					height: 120px;
+					width: 100px;
+					height: 100px;
 					position: absolute;
 					top: 50%;
 					transform: translate(-50%, -50%);
+
+					@include mobile-up {
+						width: 120px;
+						height: 120px;
+					}
 
 					> #image-profile {
 						object-fit: cover;
@@ -153,8 +158,15 @@
 				min-width: 0px;
 
 				> .master-info {
-					padding: 25px 10px 0 70px;
-					flex: 0 0 220px;
+					padding: 25px 10px 0 20px;
+
+					@include mobileFirst(350px) {
+						padding-left: 40px;
+					}
+
+					@include mobile-up {
+						padding-left: 60px;
+					}
 
 					> .title {
 						font-size: 20px;
@@ -218,6 +230,42 @@
 					}
 				}
 			}
+
+			> .master-action-mobile {
+				padding: 5px 0 5px 15px;
+
+				.action {
+					text-align: center;
+					margin: 10px 0;
+					width: 50px;
+					height: 50px;
+					font-size: 10px;
+					color: white;
+					border-radius: 50%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					cursor: pointer;
+					@include shadow(0px, 0px, 15px, 1px, 0.17);
+
+					&.--join {
+						background-color: #f25b27;
+					}
+
+					&.--follow {
+						background-color: $primary;
+					}
+
+					&.--custom {
+						background-color: $primary;
+					}
+
+					&.--profile {
+						background-color: #fff;
+						color: $primary;
+					}
+				}
+			}
 		}
 
 		.master-action {
@@ -230,9 +278,8 @@
 			display: flex;
 			justify-content: center;
 			padding: 10px;
-			flex-wrap: nowrap;
 
-			> .master-stat {
+			.master-stat {
 				margin: 30px;
 				border-radius: 30px;
 				padding: 7px 25px;
@@ -267,24 +314,40 @@
 
 		> .nav-tab {
 			display: flex;
+			transform: translateX(33.33%);
+			transition: transform .5s;
+
+			@include mobile-up {
+				transform: translateX(0);
+				transition: none;
+			}
 
 			> .tab-link {
 				color: white;
-				font-size: 24px;
-				padding: 10px 30px;
-				border-right: 1px solid #fff;
+				font-size: 20px;
+				padding: 10px 0;
 				font-weight: 300;
 
-				&.active {
-					font-weight: bold;
-				}
-
 				&:first-child {
-					padding: 10px 30px 10px 0;
+					padding: 10px 0;
 				}
 
-				&:last-child {
-					border-right: none;
+				@include mobile-up {
+					padding: 10px 30px;
+					border-right: 1px solid #fff;
+
+					&:first-child {
+						padding: 10px 30px 10px 0;
+					}
+
+					&:last-child {
+						border-right: none;
+					}
+				}
+
+				&.active {
+					font-weight: 500;
+					font-size: 24px;
 				}
 			}
 		}
@@ -295,21 +358,19 @@
 
 			> #activity {
 				> .activity-wrapper {
-					display: flex;
-					flex-wrap: wrap;
+
+					.activity-wrapper {
+						display: flex;
+						flex-wrap: wrap;
+					}
 
 					> .now-activity {
-						flex: 1;
+
+
 					}
 
 					> .past-activity {
-						flex: 1;
-						flex-grow: 3;
-						margin-left: 20px;
-
-						@media (max-width: 630px) {
-							margin-left: 0;
-						}
+						margin-top: 20px;
 
 						> .content {
 							display: flex;
@@ -329,6 +390,48 @@
 				}
 			}
 
+			.location-iframe {
+				width: 100%;
+				height: 500px;
+				margin-top: 20px;
+			}
+
+			.add-button {
+				@extend .shadow;
+				position: absolute;
+				right: 0px;
+				bottom: 40px;
+				display: flex;
+				flex-basis: 80px;
+				align-items: center;
+				text-align: center;
+				justify-content: center;
+				border-radius: 50%;
+				width: 60px;
+				height: 60px;
+				background: #1db6fd;
+				cursor: pointer;
+				z-index: 99;
+
+				> .svg {
+					width: 20px;
+					height: 30px;
+					color: #fff;
+				}
+
+				> .add-file {
+					position: absolute;
+					left: 0;
+					top: 0;
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+					opacity: 0;
+					cursor: pointer;
+				}
+			}
+
+
 			.gallery-wrapper {
 				position: relative;
 				z-index: 999;
@@ -337,6 +440,7 @@
 				overflow-x: auto;
 				width: 100%;
 				max-width: 580px;
+
 
 				> .gallery-flex {
 					display: flex;
@@ -347,11 +451,76 @@
 						}
 					}
 
-					> .image {
-						height: 140px;
+					> .image-container {
+						position: relative;
+						flex-shrink: 0;
+
+						&.active {
+							border: 1px solid #f25923;
+
+							> .delete-btn {
+								display: block;
+							}
+						}
+
+						&.me {
+							&:hover {
+								border: 1px solid #f25923;
+
+								> .delete-btn {
+									display: block;
+								}
+							}
+						}
+
+						> .delete-btn {
+							position: absolute;
+							right: 10px;
+							bottom: 10px;
+							display: none;
+							padding: 10px;
+							color: white;
+							background-color: #f25923;
+							border-radius: 50%;
+							cursor: pointer;
+
+							&:before {
+								content: "-";
+								font-weight: bold;
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+							}
+						}
+
+						> .image {
+							height: 140px;
+						}
 					}
 				}
 			}
 		}
 	}
+}
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+	display: flex;
+}
+
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+	transform: translateX(33.33%);
+}
+
+.carousel-inner .carousel-item-left.active,
+.carousel-inner .carousel-item-prev {
+	transform: translateX(-33.33%)
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+	transform: translateX(0);
 }

@@ -28,7 +28,7 @@
 		cursor: auto !important;
 
 		> .follow-icon {
-			background: rgba(241, 78, 166, 0.7) !important;
+			background: #edb7d6 !important;
 		}
 
 	}
@@ -351,10 +351,10 @@
             }
         }
 
-	    > .filter-category {
+	    > .category-interest {
+		    left: 50%;
+		    transform: translateX(-50%);
 		    margin-top: 25px;
-		    position: relative;
-		    height: 107px;
             z-index: 5;
 	    }
     }

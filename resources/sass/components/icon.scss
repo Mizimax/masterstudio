@@ -22,11 +22,33 @@
 		background-image: url('/img/icon/pin.png');
 	}
 
+	&.--unpin {
+		background-image: url('/img/icon/unpin.svg');
+		background-color: #edb7d6;
+	}
+
 	&.--invite {
 		background-image: url('/img/icon/invite.png');
 	}
 
 	&.--share {
 		background-image: url('/img/icon/share.png');
+	}
+
+	&.--dropdown {
+		background-color: #9d1f6a;
+		z-index: 999;
+	}
+
+	&.--copy {
+		background-image: url('/img/icon/copy.svg');
+	}
+
+	&.--facebook {
+		background-image: url('/img/icon/facebook.svg');
+	}
+
+	&.--email {
+		background-image: url('/img/icon/email.svg');
 	}
 }

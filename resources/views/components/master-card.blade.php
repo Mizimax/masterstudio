@@ -17,7 +17,7 @@
         </div>
         @if(!$me)
             @if(!$isFollower)
-                <form id="followMaster" action="/master/{{ $data['master_id'] }}"
+                <form action="/master/{{ $data['master_id'] }}"
                       method="post">
                     @csrf
                 </form>

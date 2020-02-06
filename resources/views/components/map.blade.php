@@ -12,8 +12,8 @@
 
 </div>
 
+<script src="/js/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
-<script src="/js/category.js"></script>
 <script>
   $(document).ready(function () {
     var lazyLoadInstance = new LazyLoad({
@@ -192,11 +192,22 @@
           icon: studios[i].icon,
           map: map,
         })
+
+      if (studios.length === 1) {
+        map.setCenter(marker.getPosition())
+      }
+
       marker.addListener('mouseover', function (e) {
         var lat = Math.round(e.latLng.lat() * 10000000) / 10000000
         var long = Math.round(e.latLng.lng() * 10000000) / 10000000
-        var x = e.ya.x
-        var y = e.ya.y
+        var mouseE
+        for (var ppt in e) {
+          if (e[ppt] instanceof MouseEvent) {
+            mouseE = ppt
+          }
+        }
+        var x = e[mouseE].x
+        var y = e[mouseE].y
 
         var studio = studios.find(function (studio) {
           return studio.lat == lat && studio.long == long

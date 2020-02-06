@@ -28,6 +28,7 @@
 				$table->string('master_talent');
 				$table->string('master_phone');
 				$table->text('master_objective');
+				$table->text('master_location')->nullable();
 				$table->tinyInteger('master_recommend')->default(0); //0 = no, 1 = basic, 2 = ] advance
 				$table->tinyInteger('master_most_recommend')->default(0); //0 = no, 1 = basic, 2 = advance
 				$table->integer('master_disciple')->default(0);

@@ -63,7 +63,8 @@
                         <h3 class="header">{{ $master[0]['category_name'] }} master</h3>
                         <div class="master-content">
                             @foreach($master as $key => $mst)
-                                <div class="master-detail --carousel {{ ($keyMaster * 2) + ($key) >= 3 ? 'right' : '' }}">
+                                <div class="master-detail --carousel pointer"
+                                     onclick="window.location.href='/master/{{ $mst['master_id'] }}'">
                                     <div class="image-wrapper">
                                         <img src="{{ $mst['user_pic'] }}" alt="">
                                     </div>
@@ -85,9 +86,8 @@
                            type="text" onKeyUp="handleChange(this)">
                 </div>
             </div>
-            <div class="filter-category" align="center">
-                @include('components.category-interest')
-            </div>
+
+            @include('components.category-interest')
 
             <div class="master-wrapper">
                 @include('components.master-list', ['masters' => $allMasters, 'userme' => $userme])

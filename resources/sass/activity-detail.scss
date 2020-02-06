@@ -165,6 +165,8 @@ section.activity-detail-section {
 			height: 100px;
 			cursor: pointer;
 			border-radius: 50%;
+
+			@include shadow(0px, 0px, 10px, 1px, 0.1);
 		}
 	}
 
@@ -200,10 +202,10 @@ section.activity-detail-section {
 			padding: 25px;
 			@extend .shadow;
 
-			> .title {
+			.title {
 				color: #555;
-				font-size: 38px;
-				font-weight: bold;
+				font-size: 28px;
+				font-weight: 500;
 			}
 
 			&.--header {
@@ -234,9 +236,13 @@ section.activity-detail-section {
 						color: white;
 						border-radius: 10px;
 						background-size: cover;
-						flex: 0 0 200px;
+						width: 100%;
 						//height: 240px;
 						align-self: flex-end;
+
+						@include mobile-up {
+							max-width: 200px;
+						}
 
 						> .content {
 							position: relative;
@@ -308,12 +314,6 @@ section.activity-detail-section {
 							margin-top: 0;
 						}
 
-						> .title {
-							color: #555;
-							font-weight: bold;
-							font-size: 38px;
-						}
-
 						> .sub-title {
 							margin: 15px 0 20px;
 							font-size: 18px;
@@ -325,8 +325,8 @@ section.activity-detail-section {
 							text-align: left;
 
 							> .title {
-								font-weight: bold;
 								margin-bottom: 10px;
+								text-align: center;
 							}
 
 							> .content {
@@ -370,11 +370,6 @@ section.activity-detail-section {
 					> .prepare-wrapper {
 						flex: 1;
 
-						> .title {
-							color: #555;
-							font-size: 30px;
-							font-weight: bold;
-						}
 
 						> .content {
 							margin-top: 30px;
@@ -389,21 +384,14 @@ section.activity-detail-section {
 
 					> .reward-wrapper {
 						flex: 0 1 300px;
-						text-align: left;
 						margin-top: 20px;
 
 						@include tablet-up {
 							margin-top: 0;
 						}
 
-						> .title {
-							text-align: center;
-							color: #555;
-							font-size: 30px;
-							font-weight: bold;
-						}
-
 						> .reward-detail {
+							text-align: left;
 							display: flex;
 							margin-top: 10px;
 							align-items: center;
@@ -433,11 +421,12 @@ section.activity-detail-section {
 
 								> .name {
 									font-size: 12px;
+									color: #ccc;
 								}
 
 								> .reward {
 									font-size: 20px;
-									font-weight: bold;
+									font-weight: 500;
 								}
 
 								> .description {
@@ -515,7 +504,7 @@ section.activity-detail-section {
 
 						> .name {
 							margin-top: 7px;
-							font-weight: bold;
+							font-weight: 500;
 						}
 
 						> .category-level {
@@ -575,7 +564,7 @@ section.activity-detail-section {
 						}
 
 						> .title {
-							font-weight: bold;
+							font-weight: 500;
 							font-size: 20px;
 						}
 

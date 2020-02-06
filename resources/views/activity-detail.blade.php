@@ -22,6 +22,7 @@
         $end = new DateTime($activity->activity_end);
         $activity['activity_time_diff'] = $start->diff($end) ;
         $activity['activity_day_left'] = $activity['activity_time_diff']->m === 0 ? $activity['activity_time_diff']->d + 1 . ' days' : $activity['activity_time_diff']->m . ' months';
+
     @endphp
     <section class="activity-header">
         <!-- Carousel -->
@@ -51,27 +52,34 @@
                 @include('components/activity-card', ['size' => 80])
                 <div class="activity-action">
                     <div class="price">
-                        THB {{ $activity['activity_price'] }} {{ $activity['activity_price_type'] === 0 ? '' : '/ Hour' }}</div>
-                    <button class="join-button" onclick="modal('join')">Join activity</button>
-                    <button class="milestone-button"
-                            onclick="pinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}')">
-                        Set as milestone
-                    </button>
+                        THB {{ number_format($activity['activity_price']) }} {{ $activity['activity_price_type'] === 0 ? '' : '/ Hour' }}</div>
+                    @if(!$isJoined)
+                        <button class="join-button" onclick="joinActivity()">Join activity</button>
+
+                        <button class="milestone-button --pinact {{ $activity['activity_pin'] !== 0 ? 'd-none' : '' }}"
+                                onclick="pinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}', this)">
+                            Pin Activity
+                        </button>
+
+                        <button class="milestone-button --pinact {{ $activity['activity_pin'] === 0 ? 'd-none' : '' }}"
+                                onclick="unpinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}', this)">
+                            Unpin Activity
+                        </button>
+
+                    @endif
                     <div class="availability-wrapper">
                         <div class="availability">
                             <div class="title">Availability</div>
-                            <div class="number">/{{ $activity['activity_max'] }}</div>
+                            <div class="number">{{ count($joinUsers) }}
+                                /{{ $activity['activity_max'] }}</div>
                         </div>
                         <div class="activity-join">
-                            <div class="participant image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
-                            </div>
-                            <div class="participant image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
-                            </div>
-                            <div class="participant image-wrapper">
-                                <img src="/img/profile.jpg" alt="">
-                            </div>
+                            @foreach($joinUsers as $user)
+                                <div class="participant image-wrapper pointer"
+                                     onclick="window.location.href='/user/{{ $user['user_id'] }}'">
+                                    <img src="{{ $user['user_pic'] }}" alt="">
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -221,6 +229,7 @@
                 </div>
             </div>
 
+            @if(!$comments->isEmpty())
                 <div class="activity-section --comment">
                     <div class="title">Disciple Commented</div>
                     @foreach($comments as $key => $comment)
@@ -267,6 +276,7 @@
                         </button>
                     @endif
                 </div>
+            @endif
 
             <div class="activity-section --sponsor">
                 <div class="title">Sponsors</div>
@@ -340,32 +350,46 @@
         }, function () {
           $(this).get(0).pause()
         })
+
+        $('.activity-overlay').hover(function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).play()
+        }, function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+        })
+          @if(\Session::has('success'))
+          joinActivity('success')
+          @endif
+
+          @if($errors->any())
+          joinActivity()
+          @endif
       })
     </script>
 
     <script>
 
+                @if(!$isJoined)
       var addComment = function () {
-        var formData = new FormData()
+          var formData = new FormData()
 
-        formData.append('comment_text', $('#comment_text').val())
+          formData.append('comment_text', $('#comment_text').val())
 
-        $('.img-input').each(function (index, element) {
-          var value = element.files[0]
-          formData.append('comment_pic_' + index, value)
-        })
+          $('.img-input').each(function (index, element) {
+            var value = element.files[0]
+            formData.append('comment_pic_' + index, value)
+          })
 
-        $.ajax({
-          url: '/activity/{{ $activity['activity_id'] }}/comment',
-          type: 'post',
-          headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-          },
-          data: formData,
-          contentType: false,
-          processData: false,
-          success: function (res) {
-            var reviewHtml = `
+          $.ajax({
+            url: '/activity/{{ $activity['activity_id'] }}/comment',
+            type: 'post',
+            headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+            },
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (res) {
+              var reviewHtml = `
                     <div class="review-card" id="newReview">
                         <img src="{{ !empty($user) ? $user->user_pic : '' }}" class="image" />
                         <div class="name">{{ !empty($user) ? $user->user_name : '' }}</div>
@@ -374,16 +398,51 @@
                         </div>
                     </div>
                 `
-            $('.review-wrapper').prepend(reviewHtml)
-            $('#modal').modal('toggle')
-            // window.location.hash = '#newReview';
-          },
-        })
-      }
+              $('.review-wrapper').prepend(reviewHtml)
+              $('#modal').modal('toggle')
+              // window.location.hash = '#newReview';
+            },
+          })
 
-      var pinActivity = function (activity, name) {
+        }
+                @endif
+
+                @if(!$isJoined)
+
+      var pinActivity = function (activity, name, ele) {
+          $.ajax({
+            url: '/activity/' + activity + '/pin',
+            type: 'post',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+            success: function (data) {
+              modal('all')
+              var alertHtml = `
+            <div class="alert alert-success" role="alert">
+              Activity ${name} was pinned !
+            </div>
+            `
+              $('#my-activity').append(alertHtml)
+
+              $(ele).parent().children('.--pinact').toggleClass('d-none')
+            },
+            error: function (err) {
+              if (err.status === 401) {
+                modal('login')
+              } else if (err.status === 500) {
+                modal('all')
+                $(ele).parent().children('.--pinact').toggleClass('d-none')
+              }
+            },
+          })
+        }
+
+      var unpinActivity = function (activity, name, ele) {
         $.ajax({
-          url: '/activity/' + activity + '/pin',
+          url: '/activity/' + activity + '/unpin',
           type: 'post',
           processData: false,
           contentType: 'application/json',
@@ -391,13 +450,7 @@
             '_token': $('meta[name="csrf-token"]').attr('content'),
           }),
           success: function (data) {
-            modal('all')
-            var alertHtml = `
-            <div class="alert alert-success" role="alert">
-              Activity ${name} was pinned !
-            </div>
-            `
-            $('#my-activity').append(alertHtml)
+            $(ele).parent().children('.--pinact').toggleClass('d-none')
           },
           error: function (err) {
             if (err.status === 401) {
@@ -406,5 +459,39 @@
           },
         })
       }
+
+                @endif
+
+      var joinActivity = function (state) {
+                    @if(Auth::check())
+          var cardHtml = `
+            @foreach($cards as $card)
+
+            <div class="payment-badge" card="{{ $card->card_id }}">
+                    <img src="/img/icon/credit-card-regular.svg" class="svg">
+                    <div class="name"><img class="card-icon" src="/img/{{ $card->card_type }}.png"><br /><span
+                                class="card-number">{{ substr_replace($card->card_no, '******', 5, 6) }}</span></div>
+                </div>
+
+            @endforeach
+            `
+          var options = {
+            data: {
+              name: '{{ $activity['activity_name'] }}',
+              price: {{ $activity['activity_price'] }},
+              id: {{ $activity['activity_id'] }},
+              pic: {{ $activity['activity_pic'] }},
+              priceName: '{{ number_format($activity['activity_price']) }}',
+              cardHtml: cardHtml,
+            },
+            payment: state,
+          }
+          modal('join', options)
+                    @else
+                    modal('login')
+                    @endif
+
+        }
+
     </script>
 @endsection

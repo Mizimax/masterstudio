@@ -8050,6 +8050,7 @@ button.bg-dark:focus {
 .category-timeline > .activity-timeline > .add-button,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .profile-action .follow-btn,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .profile-action > .follow-icon,
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button,
 .profile-wrapper > .profile-container > .profile-card-wrapper,
 .activity-card > .title-wrapper > .activity-join > .participant {
 	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
@@ -11090,7 +11091,7 @@ img {
 
 .master-action > .actions > .follow-wrapper > .follow-icon.followed {
 	cursor: auto;
-	background: rgba(241, 78, 166, 0.7);
+	background: #edb7d6;
 }
 
 .master-action > .actions > .follow-wrapper > .text {
@@ -11504,6 +11505,7 @@ button:focus {
 .category-timeline > .activity-timeline > .add-button,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .profile-action .follow-btn,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .profile-action > .follow-icon,
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button,
 .profile-wrapper > .profile-container > .profile-card-wrapper,
 .activity-card > .title-wrapper > .activity-join > .participant {
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
@@ -12332,7 +12334,8 @@ button:focus {
 	margin: 30px 0;
 }
 
-.pay-button {
+.pay-button,
+.omise-checkout-button {
 	margin-top: 10px;
 	width: 100%;
 	padding: 15px 0;
@@ -12343,24 +12346,38 @@ button:focus {
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
 }
 
-.pay-button.\--outline {
+.pay-button.\--outline,
+.omise-checkout-button.\--outline {
 	background: white;
 	color: #f14ea6;
 	border: 1px solid #f14ea6;
 }
 
 .pay-button.\--outline:hover,
-.pay-button.\--outline.active {
+.pay-button.\--outline.active,
+.omise-checkout-button.\--outline:hover,
+.omise-checkout-button.\--outline.active {
 	background: #f14ea6;
 	color: white !important;
 }
 
-.pay-button.\--orange {
+.pay-button.\--orange,
+.omise-checkout-button.\--orange {
 	background: #f7931f;
 }
 
 .master-profile-wrapper {
 	margin-bottom: 40px;
+}
+
+.master-profile-wrapper.\--first {
+	margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+	.master-profile-wrapper.\--first {
+		margin-top: -40px;
+	}
 }
 
 .master-profile-wrapper > .master-profile {
@@ -12390,13 +12407,29 @@ button:focus {
 	transform: translateY(-50%);
 }
 
+.master-profile-wrapper > .master-profile .your-activity-timeline > .image-container > .your-image > img {
+	width: 100px;
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile .your-activity-timeline > .image-container > .your-image > img {
+		width: 120px;
+	}
+}
+
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info {
 	z-index: 2;
 	background: white;
 	border-radius: 15px;
 	padding: 20px;
-	padding-left: 90px;
+	padding-left: 50px;
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.17);
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile .your-activity-timeline > .your-info {
+		padding-left: 90px;
+	}
 }
 
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > * {
@@ -12410,10 +12443,16 @@ button:focus {
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .name {
 	font-size: 20px;
 	font-style: italic;
-	width: 150px;
+	width: 130px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+}
+
+@media (min-width: 576px) {
+	.master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .name {
+		width: 150px;
+	}
 }
 
 .master-profile-wrapper > .master-profile .your-activity-timeline > .your-info > .category {
@@ -12706,32 +12745,57 @@ form .error-msg > .text {
 	color: #f14ea6;
 }
 
-.payment-success > .header {
-	text-align: center;
-	font-weight: 300;
+.payment-success.\--confirm > .thx {
+	font-size: 18px;
+	color: black;
+	margin: 10px 0;
+}
+
+.payment-success.\--confirm > .name {
 	color: black;
 }
 
-.payment-success > .svg {
-	margin-top: 20px;
-	width: 150px;
-	height: 150px;
+.payment-success.\--confirm > .total {
+	color: black;
+	margin: 10px 0;
+}
+
+.payment-success.\--confirm .price {
 	color: #f14ea6;
 }
 
+.payment-success .booking {
+	color: black;
+}
+
+.payment-success > .header {
+	text-align: center;
+	font-weight: 600;
+	font-size: 28px;
+	color: #f14ea6;
+	padding: 20px 0;
+}
+
+.payment-success > .svg {
+	width: 150px;
+	height: 150px;
+	color: #21b632;
+}
+
 .payment-success > .thx {
+	color: black;
 	margin: 15px 0;
 	font-size: 28px;
 }
 
-.payment-success > .price {
+.payment-success .price {
 	margin: 10px 0;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: bold;
 }
 
 .payment-success > .activity-image {
-	width: 150px;
+	width: 230px;
 }
 
 .icon-wrapper {
@@ -12759,12 +12823,34 @@ form .error-msg > .text {
 	background-image: url("/img/icon/pin.png");
 }
 
+.icon-wrapper.\--unpin {
+	background-image: url("/img/icon/unpin.svg");
+	background-color: #edb7d6;
+}
+
 .icon-wrapper.\--invite {
 	background-image: url("/img/icon/invite.png");
 }
 
 .icon-wrapper.\--share {
 	background-image: url("/img/icon/share.png");
+}
+
+.icon-wrapper.\--dropdown {
+	background-color: #9d1f6a;
+	z-index: 999;
+}
+
+.icon-wrapper.\--copy {
+	background-image: url("/img/icon/copy.svg");
+}
+
+.icon-wrapper.\--facebook {
+	background-image: url("/img/icon/facebook.svg");
+}
+
+.icon-wrapper.\--email {
+	background-image: url("/img/icon/email.svg");
 }
 
 .category-interest,
@@ -13063,9 +13149,9 @@ form .error-msg > .text {
 }
 
 .activity-card > .title-wrapper > .title {
-	font-size: 16px;
-	font-weight: bold;
-	color: white;
+	font-size: 16px !important;
+	font-weight: bold !important;
+	color: white !important;
 }
 
 .activity-card-wrapper {
@@ -13245,6 +13331,25 @@ form .error-msg > .text {
 	margin: 10px 0;
 }
 
+.activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs > .icon-wrapper.\--share {
+	position: relative;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs > .icon-wrapper.\--share:focus > .share-dropdown {
+	display: block;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs > .icon-wrapper > .share-dropdown {
+	position: absolute;
+	display: none;
+	top: 50px;
+	left: 0;
+}
+
+.activity-card-wrapper > .activity-card > .video-wrapper > .activity-tabs > .icon-wrapper > .share-dropdown > .icon-wrapper {
+	margin-top: 10px;
+}
+
 .activity-card-wrapper > .activity-card > .overlay {
 	position: fixed;
 	z-index: 50;
@@ -13418,10 +13523,11 @@ form .error-msg > .text {
 
 .follow-wrapper {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .follow-wrapper > .followed-master {
-	margin: 20px;
+	margin: 20px 0;
 	text-align: center;
 	cursor: pointer;
 }
@@ -13454,12 +13560,55 @@ form .error-msg > .text {
 	position: relative;
 }
 
+.profile-wrapper > .profile-container > .nav-tab {
+	display: flex;
+	transform: translateX(33.33%);
+	transition: transform 0.5s;
+}
+
+@media (min-width: 576px) {
+	.profile-wrapper > .profile-container > .nav-tab {
+		transform: translateX(0);
+		transition: none;
+	}
+}
+
+.profile-wrapper > .profile-container > .nav-tab > .tab-link {
+	font-size: 20px;
+	padding: 10px 0;
+	font-weight: 300;
+}
+
+.profile-wrapper > .profile-container > .nav-tab > .tab-link:first-child {
+	padding: 10px 0;
+}
+
+@media (min-width: 576px) {
+	.profile-wrapper > .profile-container > .nav-tab > .tab-link {
+		padding: 10px 30px;
+		border-right: 1px solid #888;
+	}
+
+	.profile-wrapper > .profile-container > .nav-tab > .tab-link:first-child {
+		padding: 10px 30px 10px 0;
+	}
+
+	.profile-wrapper > .profile-container > .nav-tab > .tab-link:last-child {
+		border-right: none;
+	}
+}
+
+.profile-wrapper > .profile-container > .nav-tab > .tab-link.active {
+	font-weight: 500;
+	font-size: 24px;
+}
+
 .profile-wrapper > .profile-container > .profile-card-wrapper {
 	background: white;
 	border-radius: 20px;
 	display: flex;
 	padding: 30px;
-	margin: 50px 20px;
+	margin: 20px 20px 50px;
 	flex-wrap: wrap;
 }
 
@@ -13469,54 +13618,17 @@ form .error-msg > .text {
 	}
 }
 
-.profile-wrapper > .profile-container > .profile-card-wrapper > .nav-tab {
-	display: flex;
-	justify-content: center;
-}
-
-.profile-wrapper > .profile-container > .profile-card-wrapper > .nav-tab > .tab-link {
-	color: black;
-	font-size: 24px;
-	padding: 10px 30px;
-	border-right: 1px solid black;
-	font-weight: 300;
-}
-
-.profile-wrapper > .profile-container > .profile-card-wrapper > .nav-tab > .tab-link.active {
-	font-weight: bold;
-}
-
-.profile-wrapper > .profile-container > .profile-card-wrapper > .nav-tab > .tab-link:first-child {
-	padding: 10px 30px 10px 0;
-}
-
-.profile-wrapper > .profile-container > .profile-card-wrapper > .nav-tab > .tab-link:last-child {
-	border-right: none;
-}
-
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity {
 	padding: 10px 0 50px;
 }
 
-.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper {
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-wrapper {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper > .now-activity {
-	flex: 1;
-}
-
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper > .past-activity {
-	flex: 1;
-	flex-grow: 3;
-	margin-left: 20px;
-}
-
-@media (max-width: 630px) {
-	.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper > .past-activity {
-		margin-left: 0;
-	}
+	margin-top: 20px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper > .past-activity > .content {
@@ -13524,13 +13636,53 @@ form .error-msg > .text {
 	flex-wrap: wrap;
 }
 
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .no-act {
+	padding: 50px 0 20px;
+	width: 250px;
+}
+
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .header {
 	padding: 10px 0;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #000;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery {
 	padding: 20px 0 20px;
+	position: relative;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button {
+	position: absolute;
+	right: 0px;
+	bottom: 40px;
+	display: flex;
+	flex-basis: 80px;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	background: #1db6fd;
+	cursor: pointer;
+	z-index: 99;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button > .svg {
+	width: 20px;
+	height: 30px;
+	color: #fff;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button > .add-file {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	opacity: 0;
+	cursor: pointer;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper {
@@ -13551,7 +13703,49 @@ form .error-msg > .text {
 	height: 160px;
 }
 
-.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image {
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container {
+	position: relative;
+	flex-shrink: 0;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active {
+	border: 1px solid #f25923;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active > .delete-btn {
+	display: block;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.me:hover {
+	border: 1px solid #f25923;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.me:hover > .delete-btn {
+	display: block;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	display: none;
+	padding: 10px;
+	color: white;
+	background-color: #f25923;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn:before {
+	content: "-";
+	font-weight: bold;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .image {
 	height: 140px;
 }
 
@@ -13735,23 +13929,36 @@ form .error-msg > .text {
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .profile-action .follow-btn.followed {
 	cursor: auto;
-	background: rgba(241, 78, 166, 0.7);
+	background: #edb7d6;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .master-stat-wrapper {
 	display: flex;
-	flex-wrap: nowrap;
+	flex-wrap: wrap;
 	justify-content: center;
 	margin-top: 20px;
 }
 
+@media (min-width: 499px) {
+	.profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .master-stat-wrapper {
+		flex-wrap: nowrap;
+	}
+}
+
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .master-stat-wrapper > .master-stat {
 	border-radius: 20px;
-	margin: 0 5px;
+	margin: 10px 40px;
 	padding: 25px 0 20px;
 	width: 120px;
+	flex: 0 0 120px;
 	text-align: center;
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 499px) {
+	.profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .master-stat-wrapper > .master-stat {
+		margin: 0 5px;
+	}
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-detail-badge > .master-stat-wrapper > .master-stat > .header {

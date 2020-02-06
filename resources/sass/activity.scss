@@ -76,6 +76,9 @@
 		transition: visibility 0.5s, opacity 0.5s linear;
 		padding-right: 20px;
 		color: white;
+		justify-content: center;
+		align-items: flex-start;
+		flex-direction: column;
 
 		> .activity-tab {
 			display: flex;
@@ -98,6 +101,26 @@
 			.svg {
 				padding: 13px;
 			}
+
+			&.--share {
+				position: relative;
+
+				&:focus > .share-dropdown {
+					display: flex;
+				}
+			}
+
+			> .share-dropdown {
+				position: absolute;
+				display: none;
+				top: 60px;
+				left: 0;
+
+				> .icon-wrapper {
+					margin-right: 10px;
+				}
+
+			}
 		}
 	}
 
@@ -117,7 +140,7 @@
 		.your-activity-timeline {
 			position: relative;
 			display: flex;
-			height: 204px;
+			margin-bottom: 30px;
 			margin-top: 100px;
 
 			> .image-container {
@@ -184,7 +207,7 @@
 
 		> .activity-timeline-expand {
 			@extend .shadow;
-			margin: 100px 20px 70px;
+			margin: 100px 20px 30px;
 			padding: 15px;
 			position: relative;
 			border-radius: 20px;
@@ -192,7 +215,7 @@
 			> .text {
 				position: absolute;
 				left: 0;
-				bottom: 40px;
+				bottom: 50px;
 				width: 100%;
 				white-space: nowrap;
 				transform: rotate(-90deg);
@@ -202,13 +225,37 @@
 				> .svg {
 					width: 25px;
 					height: 25px;
-					margin-left: 15px;
+					margin-left: 20px;
 					color: #0072bf;
 				}
 			}
 		}
 
 		> .activity-story {
+			> .no-story {
+				display: flex;
+				align-items: center;
+				text-align: center;
+				justify-content: center;
+				border: 1px solid #ccc;
+				border-radius: 20px;
+				background-color: #ed9e40;
+				width: 100%;
+				cursor: pointer;
+
+				> .svg {
+					width: 64px;
+					height: 64px;
+					color: white;
+					margin-right: 20px;
+				}
+
+				> .title {
+					font-size: 24px;
+					font-weight: 300;
+				}
+			}
+
 			.activity-card {
 				width: 170px;
 				height: 204px;
@@ -433,7 +480,6 @@
 
 					> .activity-story {
 						padding: 40px 20px 40px 0;
-
 
 						> .activity-wrapper {
 							&:last-child {

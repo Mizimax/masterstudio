@@ -41,7 +41,7 @@ $(document).ready(function () {
     activityHover()
   })
 
-  $('.add-button').click(function () {
+  $('.add-button, .no-story').click(function () {
 
     var countup
 
