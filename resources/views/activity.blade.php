@@ -60,16 +60,18 @@
                                          onclick="window.location.href= '/activity/{{ $headActivity['activity_url_name'] }}'">
                                         <div class="icon-wrapper --join">
                                         </div>
-                                        <div class="text">Join activity</div>
+                                        <div class="text">{{ $headActivity['activity_join'] === 0 ? 'Join' : 'View'}}
+                                            activity
+                                        </div>
                                     </div>
 
-                                    <div class="activity-tab --pinact {{ $headActivity['activity_pin'] !== 0 ? 'd-none' : '' }}"
+                                    <div class="activity-tab --pinact {{ ($headActivity['activity_join'] === 0 && $headActivity['activity_pin'] === 0) ? '' : 'd-none' }}"
                                          onclick="pinActivity({{ $headActivity['activity_id'] }}, '{{ $headActivity["activity_name"] }}', this)">
                                         <div class="icon-wrapper --pin">
                                         </div>
                                         <div class="text">Pin activity</div>
                                     </div>
-                                    <div class="activity-tab --pinact {{ $headActivity['activity_pin'] === 0 ? 'd-none' : '' }}"
+                                    <div class="activity-tab --pinact {{ ($headActivity['activity_join'] === 0 && $headActivity['activity_pin'] !== 0) ? '' : 'd-none' }}"
                                          onclick="unpinActivity({{ $headActivity['activity_id'] }}, '{{ $headActivity["activity_name"] }}', this)">
                                         <div class="icon-wrapper --unpin">
                                         </div>

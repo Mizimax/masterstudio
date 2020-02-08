@@ -12740,63 +12740,6 @@ form .error-msg > .text {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
 }
 
-.payment-success {
-  color: #f14ea6;
-}
-
-.payment-success.\--confirm > .thx {
-  font-size: 18px;
-  color: black;
-  margin: 10px 0;
-}
-
-.payment-success.\--confirm > .name {
-  color: black;
-}
-
-.payment-success.\--confirm > .total {
-  color: black;
-  margin: 10px 0;
-}
-
-.payment-success.\--confirm .price {
-  color: #f14ea6;
-}
-
-.payment-success .booking {
-  color: black;
-}
-
-.payment-success > .header {
-  text-align: center;
-  font-weight: 600;
-  font-size: 28px;
-  color: #f14ea6;
-  padding: 20px 0;
-}
-
-.payment-success > .svg {
-  width: 150px;
-  height: 150px;
-  color: #21b632;
-}
-
-.payment-success > .thx {
-  color: black;
-  margin: 15px 0;
-  font-size: 28px;
-}
-
-.payment-success .price {
-  margin: 10px 0;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.payment-success > .activity-image {
-  width: 230px;
-}
-
 .icon-wrapper {
   border-radius: 50%;
   width: 50px;
@@ -13221,6 +13164,7 @@ form .error-msg > .text {
   position: absolute;
   z-index: 999;
   width: 700px;
+	height: 400px;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .activity-detail {
@@ -13228,6 +13172,7 @@ form .error-msg > .text {
   width: 250px;
   height: auto;
   padding: 5px 10px;
+	bottom: 0;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .button.\--detail {
@@ -13653,7 +13598,7 @@ form .error-msg > .text {
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button {
   position: absolute;
   right: 0px;
-  bottom: 40px;
+	bottom: 10px;
   display: flex;
   flex-basis: 80px;
   align-items: center;
@@ -13664,7 +13609,7 @@ form .error-msg > .text {
   height: 60px;
   background: #1db6fd;
   cursor: pointer;
-  z-index: 99;
+	z-index: 1000;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button > .svg {
@@ -13705,6 +13650,7 @@ form .error-msg > .text {
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container {
   position: relative;
   flex-shrink: 0;
+	font-size: 0;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active {
@@ -13738,6 +13684,7 @@ form .error-msg > .text {
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn:before {
   content: "-";
   font-weight: bold;
+	font-size: 16px;
   position: absolute;
   top: 50%;
   left: 50%;

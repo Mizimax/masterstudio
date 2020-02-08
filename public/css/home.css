@@ -12688,63 +12688,6 @@ form .error-msg > .text {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.3);
 }
 
-.payment-success {
-  color: #f14ea6;
-}
-
-.payment-success.\--confirm > .thx {
-  font-size: 18px;
-  color: black;
-  margin: 10px 0;
-}
-
-.payment-success.\--confirm > .name {
-  color: black;
-}
-
-.payment-success.\--confirm > .total {
-  color: black;
-  margin: 10px 0;
-}
-
-.payment-success.\--confirm .price {
-  color: #f14ea6;
-}
-
-.payment-success .booking {
-  color: black;
-}
-
-.payment-success > .header {
-  text-align: center;
-  font-weight: 600;
-  font-size: 28px;
-  color: #f14ea6;
-  padding: 20px 0;
-}
-
-.payment-success > .svg {
-  width: 150px;
-  height: 150px;
-  color: #21b632;
-}
-
-.payment-success > .thx {
-  color: black;
-  margin: 15px 0;
-  font-size: 28px;
-}
-
-.payment-success .price {
-  margin: 10px 0;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.payment-success > .activity-image {
-  width: 230px;
-}
-
 .icon-wrapper {
   border-radius: 50%;
   width: 50px;
@@ -13006,6 +12949,7 @@ form .error-msg > .text {
   position: absolute;
   z-index: 999;
   width: 700px;
+	height: 400px;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .activity-detail {
@@ -13013,6 +12957,7 @@ form .error-msg > .text {
   width: 250px;
   height: auto;
   padding: 5px 10px;
+	bottom: 0;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .button.\--detail {

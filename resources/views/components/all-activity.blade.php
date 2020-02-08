@@ -32,7 +32,10 @@
             <div class="action">
                 <span class="price-status">{{ number_format($nowActivity['activity_price']) }} Bath {{ $nowActivity['user_activity_paid'] === 0 ? 'Interested' : 'Paid' }}</span>
                 @if($nowActivity['user_activity_paid'] === 0)
-                    <button class="pay-button" onclick="modal('join')">Pay now</button>
+                    <button class="pay-button"
+                            onclick="window.location.href='/activity/{{ $nowActivity['activity_url_name'] }}#pay'">
+                        Pay now
+                    </button>
                     <button class="pay-button --outline"
                             onclick="window.location.href='/activity/{{ $nowActivity['activity_url_name'] }}'">
                         View activity detail

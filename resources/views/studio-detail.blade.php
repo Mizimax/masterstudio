@@ -92,13 +92,13 @@
                     </div>
                     <div class="action-button">
                         @if(!$isFollower)
-                            <form action="{{ url()->current() }}"
+                            <form id="followStudio" action="{{ url()->current() }}"
                                   method="post">
                                 @csrf
                             </form>
                         @endif
                         <div class="follow-icon {{ $isFollower ? 'followed' : '' }}"
-                             onclick="$('#followMaster').submit()">
+                             onclick="$('#followStudio').submit()">
                             <img src="/img/icon/footstep.svg"
                                  alt="Follow ..."
                                  class="svg">

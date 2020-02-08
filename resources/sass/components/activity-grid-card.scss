@@ -54,12 +54,14 @@
 				position: absolute;
 				z-index: 999;
 				width: 700px;
+				height: 400px;
 
 				> .activity-detail {
 					display: block !important;
 					width: 250px;
 					height: auto;
 					padding: 5px 10px;
+					bottom: 0;
 				}
 
 				> .button {

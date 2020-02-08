@@ -25,13 +25,13 @@
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0) AS activity_pin'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
 				->whereIn('act.activity_id', [1, 2, 3])->get();
 			$activities = Activity::from('activities as act')
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0) AS activity_pin'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
 				->take(6)->get();
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
@@ -62,7 +62,7 @@
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->leftJoin('studios AS st', 'ms.studio_id', '=', 'st.studio_id')
 				->join('achievements AS ach', 'act.achievement_id', '=', 'ach.achievement_id')
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . (!empty($user) ? $user['user_id'] : 0) . ' AND ua.user_activity_status = 0) AS activity_pin'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . (!empty($user) ? $user['user_id'] : 0) . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . (!empty($user) ? $user['user_id'] : 0) . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
 				->where('act.activity_url_name', $name)->first();
 			$joinUsers = UserActivity::from('user_activities as ua')
 				->join('users AS u', 'u.user_id', '=', 'ua.user_id')
@@ -117,7 +117,7 @@
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->leftJoin('studios AS st', 'ms.studio_id', '=', 'st.studio_id')
 				->join('achievements AS ach', 'act.achievement_id', '=', 'ach.achievement_id')
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0) AS activity_pin'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
 				->where('act.activity_name', 'LIKE', "%{$search}%")->get();
 
 			if ($request->query('key') || $search === '') {

@@ -149,7 +149,7 @@
 						@extend .shadow;
 						position: absolute;
 						right: 0px;
-						bottom: 40px;
+						bottom: 10px;
 						display: flex;
 						flex-basis: 80px;
 						align-items: center;
@@ -160,7 +160,7 @@
 						height: 60px;
 						background: #1db6fd;
 						cursor: pointer;
-						z-index: 99;
+						z-index: 1000;
 
 						> .svg {
 							width: 20px;
@@ -201,6 +201,7 @@
 							> .image-container {
 								position: relative;
 								flex-shrink: 0;
+								font-size: 0;
 
 								&.active {
 									border: 1px solid #f25923;
@@ -234,6 +235,7 @@
 									&:before {
 										content: "-";
 										font-weight: bold;
+										font-size: 16px;
 										position: absolute;
 										top: 50%;
 										left: 50%;

@@ -763,100 +763,7 @@
                     </div>
             </form>
           `
-      var paymentModal = function (activity) {
 
-        return `
-<ul class="nav nav-tabs d-none" id="paymentTabLink" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="confirm-tab" data-toggle="tab" href="#confirmTab" role="tab" aria-controls="confirm" aria-selected="true">Confirm</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="payment-tab" data-toggle="tab" href="#paymentTab" role="tab" aria-controls="payment" aria-selected="true">Payment</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="payment-success-tab" data-toggle="tab" href="#paymentSuccessTab" role="tab" aria-controls="payment-success" aria-selected="false">Payment success</a>
-  </li>
-</ul>
-<div class="tab-content" id="paymentTabPane">
-<div class="tab-pane fade active show" id="confirmTab" role="tabpanel" aria-labelledby="confirm-tab">
-    <div class="payment-success --confirm" align="center">
-        <h3 class="header">Booking Confirmation</h3>
-        <img src="/img/Deepsea.jpeg" class="activity-image">
-        <p class="thx">You are joining </p>
-        <h3 class="name">"${activity.name}"</h3>
-        <p class="total">total amount : <span class="price">${activity.priceName} Bath</span></p>
-        <div class="d-flex">
-        <button class="pay-button --outline mb-3 mr-1" onclick="closeModal()">Cancel</button>
-         <form style="width: 100%" id="omiseForm" name="checkoutForm" method="POST" action="/activity/${activity.id}/payment">
-         @csrf
-          <input type="hidden" name="amount" value="${activity.price}">
-    </form>
-</div>
-    </div>
-</div>
-<div class="tab-pane fade" id="paymentTab" role="tabpanel" aria-labelledby="payment-tab">
-
-<div class="payment-wrapper">
-                        <h3 class="header">Payment method</h3>
-                        <div class="badge-wrapper">
-                            <div class="payment-badge active" id="newCard">
-                                <img src="/img/icon/credit-card-regular.svg" class="svg">
-                                <div class="name">new<br />debit/credit</div>
-                            </div>
-                            ${activity.cardHtml}
-                        </div>
-                        <div class="form-card-wrapper">
-                            <div class="card-support">
-                                <img class="card-icon" src="/img/visa.png" alt="">
-                                <img class="card-icon" src="/img/visa.png" alt="">
-                                <img class="card-icon" src="/img/visa.png" alt="">
-                            </div>
-                            <div class="form-group">
-                                <label for="card_number">Card number</label>
-                                <input type="text" name="card_number" id="user_firstname"
-                                       class="form-control"
-                                       placeholder="card number">
-                            </div>
-                            <div class="form-group">
-                                <label for="card_name">Name on card</label>
-                                <input type="text" name="card_name" id="user_firstname"
-                                       class="form-control"
-                                       placeholder="name on card">
-                            </div>
-                            <div class="d-flex">
-                                <div class="form-group flex-grow-1 mr-2">
-                                    <label for="card_exp">Expiration date</label>
-                                    <input type="text" name="card_exp" id="user_firstname"
-                                           class="form-control"
-                                           placeholder="MM/YY">
-                                </div>
-                                <div class="form-group flex-grow-1">
-                                    <label for="card_ccv">CCV</label>
-                                    <input type="text" name="card_ccv" id="user_firstname"
-                                           class="form-control"
-                                           placeholder="CVV">
-                                </div>
-                            </div>
-                        </div>
-<button class="pay-button mt-3" onclick="activeTab('paymentSuccessTab')">Pay now</button>
-                    </div>
-<br />
-</div>
-<div class="tab-pane fade" id="paymentSuccessTab" role="tabpanel" aria-labelledby="payment-success-tab">
-    <div class="payment-success" align="center">
-        <h3 class="header">Payment Confirmation</h3>
-        <img src="/img/icon/check-circle-solid.svg" class="svg">
-        <h5 class="thx">Thank you !</h5>
-        <p class="booking">You just booked "Basic cooking class by Adam"</p>
-        <h5 class="price">${activity.price} Bath</h5>
-        <img src="/img/Deepsea.jpeg" class="activity-image">
-        <button class="pay-button" onclick="modal('all')">View all activity</button>
-        <button class="pay-button mb-3 --outline" onclick="closeModal()">Back to homepage</button>
-    </div>
-</div>
-</div>
-      `
-      }
 
       var allActivityModal = `
         <div id="my-activity" class="my-activity">
@@ -1018,7 +925,6 @@
 </div>
 `
 
-      var omiseV = 1
 
       var modal = function (name, options) {
         $('#modal').modal('show')
@@ -1048,19 +954,8 @@
           } else {
             activeTab('confirmTab')
           }
-          var script = `
-            <script id="omise" type="text/javascript" src="https://cdn.omise.co/omise.js?v=${omiseV}"
-                        data-key="pkey_test_5ikuyw9bd25g1ku53mh"
-                        data-image="http://bit.ly/customer_image"
-                        data-frame-label="@Master Studio"
-                        data-button-label="Pay now"
-                        data-submit-label="Submit"
-                        data-location="no"
-                        data-amount="${options.data.price * 100}"
-                        data-currency="thb" />
-          `
+          var script = $('#omise').html()
           $('#omiseForm').append(script)
-          omiseV++
         } else if (name === 'all') {
           $('.modal-dialog').css('max-width', '800px')
           $('.modal-header').addClass('d-none')

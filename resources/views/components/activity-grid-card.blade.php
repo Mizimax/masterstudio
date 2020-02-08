@@ -34,11 +34,11 @@
                          onclick="window.location.href = '/activity/{{ $activity['activity_url_name']  }}'">
 
                     </div>
-                    <div class="icon-wrapper --pin --pinact {{ $activity['activity_pin'] !== 0 ? 'd-none' : '' }}"
+                    <div class="icon-wrapper --pin --pinact {{ ($activity['activity_join'] === 0 && $activity['activity_pin'] === 0) ? '' : 'd-none' }}"
                          onclick="pinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}', this)">
                     </div>
 
-                    <div class="icon-wrapper --unpin --pinact {{ $activity['activity_pin'] === 0 ? 'd-none' : '' }}"
+                    <div class="icon-wrapper --unpin --pinact {{ ($activity['activity_join'] === 0 && $activity['activity_pin'] !== 0) ? '' : 'd-none' }}"
                          onclick="unpinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}', this)">
                     </div>
 

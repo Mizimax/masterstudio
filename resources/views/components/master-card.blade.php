@@ -23,7 +23,7 @@
                 </form>
             @endif
             <div class="follow-wrapper {{ $isFollower ? 'followed' : '' }}"
-                 onclick="$('#followMaster').submit()">
+                 onclick="$(this).prev().submit()">
                 <div class="follow-icon">
                     <img src="/img/icon/footstep.svg" alt="Follow ..."
                          class="svg">

@@ -110,7 +110,7 @@
                                     </form>
                                 @endif
                                 <div class="follow-wrapper"
-                                     onclick="$('#followMaster').submit()">
+                                     onclick="$(this).prev().submit()">
                                     <div class="follow-icon {{ $isFollower ? 'followed' : '' }}">
                                         <img src="/img/icon/footstep.svg" alt="Follow ..."
                                              class="svg">

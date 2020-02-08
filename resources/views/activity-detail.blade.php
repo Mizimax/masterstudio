@@ -16,6 +16,7 @@
     @php
         $activity['activity_benefit'] = json_decode($activity['activity_benefit'], true);
         $activity['activity_video'] = json_decode($activity['activity_video'], true);
+        $activity['activity_pic'] = json_decode($activity['activity_pic'], true);
         $activity['activity_sponsors'] = json_decode($activity['activity_sponsors'], true);
         $activity['activity_routine_day'] = str_split($activity['activity_routine_day']);
         $start = new DateTime($activity->activity_start);
@@ -56,12 +57,12 @@
                     @if(!$isJoined)
                         <button class="join-button" onclick="joinActivity()">Join activity</button>
 
-                        <button class="milestone-button --pinact {{ $activity['activity_pin'] !== 0 ? 'd-none' : '' }}"
+                        <button class="milestone-button --pinact {{ ($activity['activity_join'] === 0 && $activity['activity_pin'] === 0) ? '' : 'd-none' }}"
                                 onclick="pinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}', this)">
                             Pin Activity
                         </button>
 
-                        <button class="milestone-button --pinact {{ $activity['activity_pin'] === 0 ? 'd-none' : '' }}"
+                        <button class="milestone-button --pinact {{ ($activity['activity_join'] === 0 && $activity['activity_pin'] !== 0) ? '' : 'd-none' }}"
                                 onclick="unpinActivity({{ $activity['activity_id'] }}, '{{ $activity["activity_name"] }}', this)">
                             Unpin Activity
                         </button>
@@ -346,16 +347,149 @@
             </div>
         </div>
     @endif
+    <div class="modal fade" id="payment-modal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="logo-wrapper">
+                        <img src="/img/logo.png" alt="Master Studio" class="logo">
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body2">
+                    <ul class="nav nav-tabs d-none" id="paymentTabLink" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="confirm-tab" data-toggle="tab"
+                               href="#confirmTab" role="tab" aria-controls="confirm"
+                               aria-selected="true">Confirm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="payment-success-tab" data-toggle="tab"
+                               href="#paymentSuccessTab" role="tab" aria-controls="payment-success"
+                               aria-selected="false">Payment success</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="paymentTabPane">
+                        <div class="tab-pane fade active show" id="confirmTab" role="tabpanel"
+                             aria-labelledby="confirm-tab">
+                            <div class="payment-success --confirm" align="center">
+                                <h3 class="header">Booking Confirmation</h3>
+                                <img src="{{ count($activity['activity_pic']) !== 0 ? $activity['activity_pic'][0] : $activity['activity_video'][0] }}"
+                                     class="activity-image">
+                                <p class="thx">You are joining </p>
+                                <h3 class="name">"{{ $activity['activity_name'] }}"</h3>
+                                <p class="total">total amount : <span class="price">{{ number_format($activity['activity_price']) }} Bath</span>
+                                </p>
+                                <div class="d-flex">
+                                    <button class="pay-button --outline mb-3 mr-1"
+                                            onclick="closeModal()">Cancel
+                                    </button>
+                                    <form onsubmit="omiseOpen(event)" style="width: 100%"
+                                          id="omiseForm" name="checkoutForm" method="POST"
+                                          action="/activity/{{ $activity['activity_id'] }}/payment">
+                                        @csrf
+                                        <input type="hidden" name="omiseToken">
+                                        <input type="hidden" name="omiseSource">
+                                        <input type="hidden" name="amount"
+                                               value="{{ $activity['activity_price'] }}">
+                                        <button type="submit" class="pay-button">Confirm</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="tab-pane fade" id="paymentTab" role="tabpanel" aria-labelledby="payment-tab">
+
+                            <div class="payment-wrapper">
+                                <h3 class="header">Payment method</h3>
+                                <div class="badge-wrapper">
+                                    <div class="payment-badge active" id="newCard">
+                                        <img src="/img/icon/credit-card-regular.svg" class="svg">
+                                        <div class="name">new<br />debit/credit</div>
+                                    </div>
+                                    ${activity.cardHtml}
+                                </div>
+                                <div class="form-card-wrapper">
+                                    <div class="card-support">
+                                        <img class="card-icon" src="/img/visa.png" alt="">
+                                        <img class="card-icon" src="/img/visa.png" alt="">
+                                        <img class="card-icon" src="/img/visa.png" alt="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card_number">Card number</label>
+                                        <input type="text" name="card_number" id="user_firstname"
+                                               class="form-control"
+                                               placeholder="card number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="card_name">Name on card</label>
+                                        <input type="text" name="card_name" id="user_firstname"
+                                               class="form-control"
+                                               placeholder="name on card">
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="form-group flex-grow-1 mr-2">
+                                            <label for="card_exp">Expiration date</label>
+                                            <input type="text" name="card_exp" id="user_firstname"
+                                                   class="form-control"
+                                                   placeholder="MM/YY">
+                                        </div>
+                                        <div class="form-group flex-grow-1">
+                                            <label for="card_ccv">CCV</label>
+                                            <input type="text" name="card_ccv" id="user_firstname"
+                                                   class="form-control"
+                                                   placeholder="CVV">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="pay-button mt-3" onclick="activeTab('paymentSuccessTab')">Pay now</button>
+                            </div>
+                            <br />
+                        </div> -->
+                        <div class="tab-pane fade" id="paymentSuccessTab" role="tabpanel"
+                             aria-labelledby="payment-success-tab">
+                            <div class="payment-success" align="center">
+                                <h3 class="header">Payment Confirmation</h3>
+                                <img src="/img/icon/check-circle-solid.svg" class="svg">
+                                <h5 class="thx">Thank you !</h5>
+                                <p class="booking">You just
+                                    booked {{ $activity['activity_name'] }}</p>
+                                <h5 class="price">{{ number_format($activity['activity_price']) }}
+                                    Bath</h5>
+                                <img src="{{ count($activity['activity_pic']) !== 0 ? $activity['activity_pic'][0] : $activity['activity_video'][0] }}"
+                                     class="activity-image">
+                                <button class="pay-button" onclick="modal('all')">View all
+                                    activity
+                                </button>
+                                <button class="pay-button mb-3 --outline" onclick="closeModal()">
+                                    Back to homepage
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script type="text/javascript" src="https://cdn.omise.co/omise.js">
+    </script>
     <script src="/js/activity.js"></script>
     <script>
       $(document).ready(function () {
         var lazyLoadInstance = new LazyLoad({
           elements_selector: '.lazy',
           // ... more custom settings?
+        })
+
+        OmiseCard.configure({
+          publicKey: 'pkey_test_5ikuyw9bd25g1ku53mh',
         })
 
         $('.video-wrapper .video').hover(function () {
@@ -376,6 +510,11 @@
           @if($errors->any())
           joinActivity()
           @endif
+
+        var hash = location.hash.substr(1);
+        if (hash === 'pay') {
+          joinActivity()
+        }
       })
     </script>
 
@@ -466,34 +605,34 @@
 
       var joinActivity = function (state) {
                     @if(Auth::check())
-          var cardHtml = `
-            @foreach($cards as $card)
-
-            <div class="payment-badge" card="{{ $card->card_id }}">
-                    <img src="/img/icon/credit-card-regular.svg" class="svg">
-                    <div class="name"><img class="card-icon" src="/img/{{ $card->card_type }}.png"><br /><span
-                                class="card-number">{{ substr_replace($card->card_no, '******', 5, 6) }}</span></div>
-                </div>
-
-            @endforeach
-            `
-          var options = {
-            data: {
-              name: '{{ $activity['activity_name'] }}',
-              price: {{ $activity['activity_price'] }},
-              id: {{ $activity['activity_id'] }},
-              pic: {{ $activity['activity_pic'] }},
-              priceName: '{{ number_format($activity['activity_price']) }}',
-              cardHtml: cardHtml,
-            },
-            payment: state,
+                    $('#payment-modal').modal('toggle');
+          if (state === 'success') {
+            console.log('>> : ')
+            $('.nav-tabs a[href="#paymentSuccessTab"]').tab('show')
           }
-          modal('join', options)
                     @else
                     modal('login')
                     @endif
 
         }
+
+      var omiseOpen = function (event) {
+        event.preventDefault()
+        OmiseCard.open({
+          amount: {{ $activity['activity_price'] }} * 100,
+          currency: 'THB',
+          onCreateTokenSuccess: (nonce) => {
+            var form = $('#omiseForm')[0]
+            if (nonce.startsWith('tokn_')) {
+              form.omiseToken.value = nonce
+            } else {
+              form.omiseSource.value = nonce
+            }
+
+            form.submit()
+          },
+        })
+      }
 
     </script>
 @endsection
