@@ -13821,6 +13821,7 @@ section.activity-detail-section > .content > .activity-section.\--comment > .com
 }
 
 section.activity-detail-section > .content > .activity-section.\--comment > .comment-wrapper > .comment-detail > .comment {
+	margin-top: 10px;
   font-size: 12px;
   color: #888;
 	display: -webkit-box;
