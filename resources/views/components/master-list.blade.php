@@ -12,7 +12,8 @@
             <div class="your-activity-timeline">
                 <div class="image-container">
                     <div class="your-image image-wrapper">
-                        <img style="width: 100%; height: 100%" class="border-circle shadow"
+                        <img style="width: 120px; height: 120px; object-fit: cover"
+                             class="border-circle shadow"
                              src="{{ $master['user_pic'] }}"
                              title="Profile image"
                              alt="Profile image">
