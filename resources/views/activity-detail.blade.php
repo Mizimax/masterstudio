@@ -186,7 +186,7 @@
                         <div class="title">System reward</div>
                         <div class="reward-detail">
                             <div class="image-wrapper">
-                                <img src="/img/icon/user-circle-regular.svg" alt="" class="svg">
+                                <img src="/img/icon/levelup.png" alt="" class="svg">
                             </div>
                             <div class="reward-text">
                                 <div class="name">Experiences</div>
@@ -203,7 +203,7 @@
                         </div>
                         <div class="reward-detail">
                             <div class="image-wrapper">
-                                <img src="/img/icon/user-circle-regular.svg" alt="" class="svg">
+                                <img src="/img/icon/badminton.png" alt="" class="svg">
                             </div>
                             <div class="reward-text">
                                 <div class="name">Achievement</div>
@@ -213,10 +213,10 @@
                         </div>
                         <div class="reward-detail">
                             <div class="image-wrapper">
-                                <img src="/img/icon/user-circle-regular.svg" alt="" class="svg">
+                                <img src="/img/icon/basic.png" alt="" class="svg">
                             </div>
                             <div class="reward-text">
-                                <div class="name">Studio Reputation</div>
+                                <div class="name">Activity difficult</div>
                                 <div class="reward">{{ $activity['activity_difficult'] }} class
                                 </div>
                                 <div class="description"></div>
