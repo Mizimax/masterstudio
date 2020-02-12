@@ -451,7 +451,7 @@
 
       var getAllActivity = function () {
         $.ajax({
-          url: 'http://localhost/content/allActivity',
+          url: '/content/allActivity',
           type: 'get',
           data: JSON.stringify({
             '_token': $('meta[name="csrf-token"]').attr('content'),
@@ -467,7 +467,7 @@
 
       var getFollowMaster = function () {
         $.ajax({
-          url: 'http://localhost/content/follow/master',
+          url: '/content/follow/master',
           type: 'get',
           data: JSON.stringify({
             '_token': $('meta[name="csrf-token"]').attr('content'),

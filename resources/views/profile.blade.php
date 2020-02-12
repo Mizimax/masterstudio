@@ -257,7 +257,7 @@
         })
 
         $.ajax({
-          url: 'http://localhost/content/timeline/1/' + '{{ $user['user_id'] }}',
+          url: '/content/timeline/1/' + '{{ $user['user_id'] }}',
           type: 'get',
           processData: false,
           contentType: 'application/json',
@@ -283,7 +283,7 @@
         })
 
         $.ajax({
-          url: 'http://localhost/content/achievement/1/' + '{{ $user['user_id'] }}',
+          url: '/content/achievement/1/' + '{{ $user['user_id'] }}',
           type: 'get',
           processData: false,
           contentType: 'application/json',
@@ -328,7 +328,7 @@
           var categorySelected = $(this).children('#category-id').val()
 
           $.ajax({
-            url: 'http://localhost/content/timeline/' + categorySelected + '/' + '{{ $user['user_id'] }}',
+            url: '/content/timeline/' + categorySelected + '/' + '{{ $user['user_id'] }}',
             type: 'get',
             processData: false,
             contentType: 'application/json',
@@ -350,7 +350,7 @@
           })
 
           $.ajax({
-            url: 'http://localhost/content/achievement/' + categorySelected + '/' + '{{ $user['user_id'] }}',
+            url: '/content/achievement/' + categorySelected + '/' + '{{ $user['user_id'] }}',
             type: 'get',
             processData: false,
             contentType: 'application/json',
