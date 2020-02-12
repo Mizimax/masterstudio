@@ -17,7 +17,8 @@
 @endsection
 
 @section('content')
-    <section class="master-detail-section">
+    <section class="master-detail-section"
+             style="background-image: url({{ $master['master_background'] }})">
         <div class="overlay"></div>
         <div class="master-container">
             <h1 class="header">Master Profile</h1>
