@@ -18,20 +18,20 @@
 		 *
 		 * @return Illuminate\Http\Response
 		 */
-		public function index()
+		public function index(Request $request)
 		{
 			$user = \Auth::user() ? \Auth::user() : ['user_id' => 0];
 			$headActivities = Activity::from('activities as act')
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
 				->whereIn('act.activity_id', [1, 2, 3])->get();
 			$activities = Activity::from('activities as act')
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
-				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user['user_id'] . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
 				->take(6)->get();
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
