@@ -13063,6 +13063,7 @@ form .error-msg > .text {
   position: fixed;
   z-index: 50;
   background: rgba(0, 0, 0, 0.6);
+	border-radius: 10px;
 }
 
 .activity-card-wrapper > .activity-card > .overlay.\--hover {

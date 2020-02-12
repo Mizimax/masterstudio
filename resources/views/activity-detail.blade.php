@@ -143,9 +143,11 @@
                     </div>
                     <div class="studio-detail">
 
-                        <h3 class="title">{{ $activity['studio_name'] ? $activity['studio_name'] : $activity['activity_location_name'] }}</h3>
+                        <a href="/studio/{{ $activity['studio_id'] }}"><h3
+                                    class="title">{{ $activity['studio_name'] ? $activity['studio_name'] : $activity['activity_location_name'] }}</h3>
+                        </a>
                         @if($activity['studio_id'])
-                            <h4 class="sub-title">{{ $activity['studio_description'] }}</h4>
+                            <h4 class="sub-title">{{ $activity['studio_title'] }}</h4>
                             <div class="studio-section">
                                 <div class="title">About studio</div>
                                 <div class="content">{{ $activity['studio_description'] }}</div>

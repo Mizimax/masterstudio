@@ -13206,6 +13206,7 @@ form .error-msg > .text {
 	position: fixed;
 	z-index: 50;
   background: rgba(0, 0, 0, 0.6);
+	border-radius: 10px;
 }
 
 .activity-card-wrapper > .activity-card > .overlay.\--hover {
@@ -13554,7 +13555,9 @@ section.activity-detail-section > .content > .activity-section.\--studio > .stud
 
 section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .sub-title {
   margin: 15px 0 20px;
-  font-size: 18px;
+	font-size: 14px;
+	text-align: left;
+	color: #555;
 }
 
 section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section {
