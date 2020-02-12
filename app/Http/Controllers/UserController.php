@@ -80,9 +80,9 @@
 		}
 
 
-		protected function more()
+		protected function more(Request $request)
 		{
-			$data = Request::all();
+			$data = $request->all();
 			User::where('user_id', Auth::id())
 				->update([
 					'user_goal' => $data['user_goal'],
