@@ -27,12 +27,15 @@
             <div class="image-wrapper"
                  style="margin-top: -{{ $size/2.1 }}px; width: {{ $size }}px; height: {{ $size }}px">
                 @if(empty($noimage))
-                    <img style="width: {{ $size }}px; height: {{ $size }}px" src="/img/profile.jpg"
-                         alt="">
+                    <img style="width: {{ $size }}px; height: {{ $size }}px; cursor: pointer"
+                         src="{{ $activity['user_pic'] }}"
+                         alt=""
+                         onclick="window.location.href='/master/{{ $activity['master_id'] }}'">
                 @endif
             </div>
             <div class="title-wrapper" style="margin-left: {{ $size/6 }}px" align="left">
-                <div class="title">{{ $activity['master_name'] }}</div>
+                <div class="title" style="cursor: pointer;"
+                     onclick="window.location.href='/master/{{ $activity['master_id'] }}'">{{ $activity['master_name'] }}</div>
                 <div class="badge">{{ $activity['category_name'] }} master</div>
             </div>
         </div>
