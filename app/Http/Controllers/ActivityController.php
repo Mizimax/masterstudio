@@ -79,7 +79,7 @@
 				->groupBy('as.activity_id')->get();
 			$comments = ActivityComment::from('activity_comments as acm')
 				->join('activities as ac', 'acm.activity_id', 'ac.activity_id')
-				->join('users AS u', 'u.user_id', '=', 'ac.user_id')
+				->join('users AS u', 'u.user_id', '=', 'acm.user_id')
 				->join('categories AS cg', 'ac.category_id', '=', 'cg.category_id')
 				->join('user_category AS uc', 'uc.category_id', '=', 'ac.category_id')
 				->groupBy('acm.comment_id')
