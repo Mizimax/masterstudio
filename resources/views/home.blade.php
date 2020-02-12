@@ -167,7 +167,8 @@
                                 @component('components.activity-card', ['noimage'=>true, 'size'=>80, 'animate'=>true, 'activity' => $story])
                                 @endcomponent
                                 <div class="image-wrapper">
-                                    <img onclick="window.location.href='/'"
+                                    <img style="object-fit: cover;"
+                                         onclick="window.location.href='/'"
                                          src="{{ $story['user_pic'] }}" alt="">
                                 </div>
                             </div>

@@ -68,7 +68,8 @@
                     @endcomponent
                 @endif
                 <div class="image-wrapper" style="width: {{$size/1.2}}px; height: {{$size/1.2}}px">
-                    <img src="{{ $activity['user_pic'] }}" alt="{{ $activity['master_name'] }}">
+                    <img style="object-fit: cover;" src="{{ $activity['user_pic'] }}"
+                         alt="{{ $activity['master_name'] }}">
                 </div>
 
                 @if(empty($nohover))
