@@ -11145,45 +11145,98 @@ img {
   display: inline-flex;
 }
 
-.category-interest .interest-activity,
-.category-interest > .add-interest-activity {
+.category-interest > .edit {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 2px;
+	font-size: 12px;
+	color: #f14ea6;
+	cursor: pointer;
+}
+
+.category-interest > .edit:hover {
+	text-decoration: underline;
+}
+
+.category-interest .interest-activity {
+	position: relative;
   margin: 0 7px;
   cursor: pointer;
 }
 
-.category-interest .interest-activity:hover > .icon,
-.category-interest > .add-interest-activity:hover > .icon {
+.category-interest .interest-activity:hover > .icon {
   border: none;
   background: #f14ea6;
 }
 
-.category-interest .interest-activity:hover > .icon .cls-1,
-.category-interest > .add-interest-activity:hover > .icon .cls-1 {
+.category-interest .interest-activity:hover > .icon .cls-1 {
   fill: white;
 }
 
-.category-interest .interest-activity:hover > .icon #Layer_1,
-.category-interest > .add-interest-activity:hover > .icon #Layer_1 {
+.category-interest .interest-activity:hover > .icon #Layer_1 {
   fill: white !important;
 }
 
-.category-interest .interest-activity.active > .icon,
-.category-interest > .active.add-interest-activity > .icon {
+.category-interest .interest-activity.active > .icon {
   border: none;
   background: orange;
 }
 
-.category-interest .interest-activity.active .cls-1,
-.category-interest > .active.add-interest-activity .cls-1 {
+.category-interest .interest-activity.active .cls-1 {
   fill: white !important;
 }
 
-.category-interest .interest-activity.active #Layer_1,
-.category-interest > .active.add-interest-activity #Layer_1 {
+.category-interest .interest-activity.active #Layer_1 {
   fill: white !important;
 }
 
-.category-interest .interest-activity > .icon,
+.category-interest .interest-activity > .icon-container {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+}
+
+.category-interest .interest-activity > .icon-container > .svg {
+	color: orange;
+	width: 20px;
+}
+
+.category-interest .interest-activity > .icon {
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+	margin: 0 auto;
+	border: 2px solid #888;
+	transition: 0.5s background-color;
+}
+
+.category-interest .interest-activity > .icon > .svg {
+	width: 100%;
+	height: 100%;
+}
+
+.category-interest .interest-activity > .icon .cls-1 {
+	fill: #f14ea6;
+}
+
+.category-interest .interest-activity > .icon #Layer_1 {
+	fill: #f14ea6;
+}
+
+.category-interest .interest-activity > .name {
+	font-size: 10px;
+	margin-top: 5px;
+	color: #888;
+	text-align: center;
+}
+
+.category-interest > .add-interest-activity {
+	margin: 0 7px;
+	cursor: pointer;
+}
+
 .category-interest > .add-interest-activity > .icon {
   border-radius: 50%;
   width: 50px;
@@ -11194,27 +11247,24 @@ img {
   transition: 0.5s background-color;
 }
 
-.category-interest .interest-activity > .icon > .svg,
 .category-interest > .add-interest-activity > .icon > .svg {
   width: 100%;
   height: 100%;
 }
 
-.category-interest .interest-activity > .icon .cls-1,
 .category-interest > .add-interest-activity > .icon .cls-1 {
   fill: #f14ea6;
 }
 
-.category-interest .interest-activity > .icon #Layer_1,
 .category-interest > .add-interest-activity > .icon #Layer_1 {
   fill: #f14ea6;
 }
 
-.category-interest .interest-activity > .name,
 .category-interest > .add-interest-activity > .name {
   font-size: 10px;
   margin-top: 5px;
   color: #888;
+	text-align: center;
 }
 
 .category-interest > .add-interest-activity:active > .icon {
@@ -11261,6 +11311,7 @@ img {
   align-items: center;
   border-radius: 50px;
   padding: 12px;
+	display: none;
   transition: background-color 0.5s;
 }
 

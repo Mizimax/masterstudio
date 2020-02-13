@@ -3,7 +3,7 @@
     $activities = !empty($queryActivities) ? $queryActivities : (!empty($activities) ? $activities : []);
 @endphp
 @if($activities->isEmpty() && isset($isSearching))
-    <div class="activity-loading">No result.</div>
+    <div class="activity-loading">No activity.</div>
 @endif
 @foreach ($activities as $activity)
     @php

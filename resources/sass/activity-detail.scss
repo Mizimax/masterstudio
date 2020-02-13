@@ -46,8 +46,15 @@ section.activity-header {
 		.activity-header-detail {
 			position: absolute;
 			bottom: 30px;
-			left: 40px;
+			left: 50%;
+			transform: translateX(-50%);
 			z-index: 2;
+
+			@include mobile-up {
+				bottom: 30px;
+				left: 40px;
+				transform: translateX(0);
+			}
 
 			> .activity-action {
 				color: white;
@@ -259,15 +266,15 @@ section.activity-detail-section {
 
 							> .name {
 								margin-top: 7px;
-								font-size: 9px;
+								font-size: 14px;
 								font-weight: bold;
 							}
 
 							> .description {
 								margin-top: 10px;
-								font-size: 9px;
+								font-size: 12px;
 								height: 55px;
-								overflow: hidden;
+								overflow-y: auto;
 								text-align: left;
 							}
 						}

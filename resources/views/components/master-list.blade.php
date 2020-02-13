@@ -1,5 +1,5 @@
 @if($masters->isEmpty())
-    <div class="search-result">No result.</div>
+    <div class="search-result">No master.</div>
 @endif
 @foreach ($masters as $key => $master)
     @php

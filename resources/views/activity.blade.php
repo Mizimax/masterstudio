@@ -434,7 +434,7 @@
                 `
                 }).join('\n')
               } else {
-                searchHtml = '<div class="search-result">No result.</div>'
+                searchHtml = '<div class="search-result">No activity.</div>'
               }
               $(e).next().html(searchHtml)
               replaceSvg()

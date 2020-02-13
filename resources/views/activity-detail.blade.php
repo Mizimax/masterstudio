@@ -29,7 +29,7 @@
         <!-- Carousel -->
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Indicators -->
-            <ul class="carousel-indicators">
+            <ul class="carousel-indicators d-sm-block d-none">
                 @foreach($activity['activity_video'] as $key => $video)
                     <li data-target="#carousel" data-slide-to="{{ $key }}"
                         class="{{ $loop->first ? 'active' : ''}}"></li>

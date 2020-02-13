@@ -16,7 +16,10 @@ var categoryInit = function () {
     })
 
     var html = `
-       <div class="interest-activity" tabindex="-1">
+       <div id="cat-${categoryId}" class="interest-activity" tabindex="-1">
+            <div class="icon-container" align="center">
+                <img src="/img/icon/close.svg" class="svg">
+            </div>
             <div class="icon">
                 ${categoryPic}
             </div>
@@ -27,16 +30,27 @@ var categoryInit = function () {
     `
     $('.category-interest > .interest-group').append(html)
 
+    replaceSvg()
+
     if ($(this).parent().children().length !== 1) {
-      $(this).remove()
+      $(this).addClass('d-none')
     } else {
-      $(this).parent().text('You already selected all categories.')
+      $(this).siblings('.already').removeClass('d-none')
     }
 
   })
 
   MasterStudio.categorySelected = []
-  $('.interest-group').delegate('.interest-activity', 'click', function () {
+  $('.interest-group').delegate('.interest-activity', 'click', function (e) {
+    if ($(e.target).parents('.icon-container').length !== 0) {
+      var id = $(this).attr('id')
+      if ($('.search-resultt.d-block').length === 0) {
+        $('.already').removeClass('d-none')
+      }
+      $(this).remove()
+      $('#' + id + '-select').addClass('d-block')
+      return false
+    }
     $(this).toggleClass('active')
     var categoryId = parseInt($(this).children('#category-id').val(), 10)
     if ($(this).hasClass('active')) {
@@ -46,6 +60,10 @@ var categoryInit = function () {
       if (index !== -1) MasterStudio.categorySelected.splice(index, 1)
     }
     interestSelected()
+  })
+
+  $('.category-interest > .edit').click(function () {
+    $('.interest-activity > .icon-container').toggleClass('d-none')
   })
 }
 

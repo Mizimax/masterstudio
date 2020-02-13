@@ -80,6 +80,7 @@
 		font-size: 34px;
 		font-weight: bold;
 		margin: 0 0 20px;
+		text-shadow: 2px 2px 5px #888;
 	}
 
 	> .master-list {
@@ -94,6 +95,7 @@
 				font-size: 22px;
 				margin: 15px 0;
 				font-style: italic;
+				text-shadow: 2px 2px 5px #888;
 			}
 
 			> .master-content {
@@ -230,6 +232,7 @@
 		> .header {
 			font-size: 24px;
 			text-align: left;
+			text-shadow: 2px 2px 5px #888;
 
 			@include tablet-up {
 				font-size: $activity-header;
