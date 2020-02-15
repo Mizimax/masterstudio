@@ -50,7 +50,7 @@
             </div>
             <!-- End Slideshow -->
             <div class="activity-header-detail">
-                @include('components/activity-caromcd', ['size' => 80])
+                @include('components/activity-card', ['size' => 80])
                 <div class="activity-action">
                     <div class="price">
                         THB {{ number_format($activity['activity_price']) }} {{ $activity['activity_price_type'] === 0 ? '' : '/ Hour' }}</div>

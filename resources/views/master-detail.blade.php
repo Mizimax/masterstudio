@@ -66,7 +66,15 @@
                     </div>
                     <div class="activity-story d-sm-flex d-none" style="margin-top:0;">
                         @if($stories->isEmpty())
-                            <div class="no-story">No story now.</div>
+                            @if($me)
+                                <div class="no-story">
+                                    <img src="/img/icon/camera-solid.svg" class="svg">
+                                    <p class="title">Share your first journey. Click!</p>
+                                    <br>
+                                </div>
+                            @else
+                                <div class="no-story-now">No story now.</div>
+                            @endif
                         @endif
                         @foreach ($stories as $story)
                             @php
@@ -238,19 +246,19 @@
                                 </div>
                             @endfor
                         </div>
-                            <div class="gallery-flex --second">
-                                @for($i = floor(count($master['master_activity_pic'])/2); $i < count($master['master_activity_pic']); $i++)
-                                    <div class="image-container {{ $me ? 'me' : '' }}"
-                                         tabindex="-1">
-                                        <img src="{{ $master['master_activity_pic'][$i] }}"
-                                             class="image">
-                                        @if($me)
-                                            <button class="delete-btn"
-                                                    onclick="deletePicGallery({{ $i }}, this)"></button>
-                                        @endif
-                                    </div>
-                                @endfor
-                            </div>
+                        <div class="gallery-flex --second">
+                            @for($i = floor(count($master['master_activity_pic'])/2); $i < count($master['master_activity_pic']); $i++)
+                                <div class="image-container {{ $me ? 'me' : '' }}"
+                                     tabindex="-1">
+                                    <img src="{{ $master['master_activity_pic'][$i] }}"
+                                         class="image">
+                                    @if($me)
+                                        <button class="delete-btn"
+                                                onclick="deletePicGallery({{ $i }}, this)"></button>
+                                    @endif
+                                </div>
+                            @endfor
+                        </div>
 
                     </div>
                     @if($me)
@@ -278,9 +286,39 @@
             </div>
         </div>
     </section>
+    @if($me)
+        <div class="record-video">
+            <div class="activity-select" style="margin-bottom: 10px">
+                <select class="form-control" name="activity-story" id="activity-story">
+                    <option>Select activity you want to share story.</option>
+                    @foreach($nowActivities as $myActivity)
+                        <option value="{{ $myActivity['activity_id'] }}">{{ $myActivity['activity_name'] }}</option>
+                    @endforeach
+                    @foreach($pastActivities as $myActivity)
+                        <option value="{{ $myActivity['activity_id'] }}">{{ $myActivity['activity_name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="video-preview">
+                <video class="video" autoplay></video>
+                <div class="cantaccess">This function requires camera and microphone access.</div>
+                <div class="time-record" align="center">
+                    <span class="time">0:00</span> / 1:00 minute
+                </div>
+            </div>
+            <div class="d-flex">
+                <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
+                <button class="record-btn">Start recording</button>
+            </div>
+            {{--        <div class="overlay"></div>--}}
+        </div>
+    @endif
 @endsection
 
 @section('script')
+    @if($me)
+        <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    @endif
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
     <script>
       $(document).ready(function () {
@@ -289,11 +327,108 @@
           // ... more custom settings?
         })
 
-        $('.master-profile').hover(function () {
-          $(this).children('.activity-detail').fadeIn()
-        }, function () {
-          $(this).children('.activity-detail').fadeOut()
-        })
+          @if($me)
+          $('.add-button, .no-story').click(function () {
+
+            var countup
+
+            $('.record-video').addClass('d-flex')
+
+            $('.record-video').off('click').on('click', function (event) {
+              if ($(event.target).hasClass('record-video')) {
+                $(this).toggleClass('d-flex')
+                mediaStream.stop()
+              }
+            })
+
+            navigator.getUserMedia = (navigator.getUserMedia ||
+              navigator.webkitGetUserMedia ||
+              navigator.mozGetUserMedia ||
+              navigator.msGetUserMedia
+            )
+
+            navigator.getUserMedia({
+                video: true,
+                audio: true,
+              },
+              function (stream) {
+                var recorder = RecordRTC(stream, {
+                  type: 'video',
+                })
+                mediaStream = stream
+                var video = $('.video-preview > video')[0]
+                video.srcObject = stream
+
+                $('.record-btn').off('click').on('click', function () {
+                    console.log('record')
+                    if (!MasterStudio.videoPreview.play) {
+                      recorder.startRecording()
+                      $('#upload-btn').addClass('d-none')
+                      $(this).text('Stop recording...')
+
+                      var sec = 0
+                      $('.time-record > .time').text('0:00')
+                      countup = setInterval(function () {
+                        var countText = calculateTimeDuration(++sec)
+                        $('.time-record > .time').text(countText)
+                      }, 1000)
+                    } else {
+                      recorder.stopRecording(function () {
+                        let blob = recorder.getBlob()
+                        // we need to upload "File" --- not "Blob"
+                        var fileObject = new File([blob], 'video', {
+                          type: 'video/mp4',
+                        })
+
+                        var URL = window.URL || window.webkitURL
+                        var src = URL.createObjectURL(fileObject)
+
+                        var video = $('.video-preview > video')[0]
+                        video.src = src
+
+                        $('#upload-btn').removeClass('d-none')
+
+                        $('#upload-btn').off('click').on('click', function () {
+                          var formData = new FormData()
+                          formData.append('video-blob', fileObject)
+                          formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
+
+                          $.ajax({
+                            url: '/activity/' + $('#activity-story').val() + '/story',
+                            type: 'post',
+                            headers: {
+                              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                            },
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function (res) {
+                              window.location.reload()
+                            },
+                          })
+                        })
+
+                      })
+                      $(this).text('Start recording')
+                      clearInterval(countup)
+                    }
+                    $(this).toggleClass('recording')
+                    MasterStudio.videoPreview.play = !MasterStudio.videoPreview.play
+                  },
+                )
+              },
+              function (error) {
+                $('.cantaccess').addClass('d-block')
+              },
+            )
+          })
+          @endif
+
+          $('.master-profile').hover(function () {
+            $(this).children('.activity-detail').fadeIn()
+          }, function () {
+            $(this).children('.activity-detail').fadeOut()
+          })
 
         $('.activity-wrapper .video').hover(function () {
           $(this).get(0).play()

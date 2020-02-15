@@ -13917,6 +13917,7 @@ form .error-msg > .text {
   background-color: #ed9e40;
   width: 100%;
   cursor: pointer;
+	padding: 10px;
 }
 
 .your-activity > .activity-timeline > .activity-story > .no-story > .svg {
