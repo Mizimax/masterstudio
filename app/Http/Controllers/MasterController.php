@@ -24,7 +24,7 @@
 			$userme = Auth::user() ? Auth::user() : ['user_id' => 0];
 			$master1 = Master::join('categories as cg', 'cg.category_id', '=', 'masters.category_id')
 				->join('users', 'users.master_id', '=', 'masters.master_id')
-				->where('masters.category_id', 1)
+				->where('masters.category_id', 4)
 				->where(function ($query) {
 					$query->where('masters.master_recommend', '!=', 0)
 						->orWhere('masters.master_most_recommend', '!=', 0);
