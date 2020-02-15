@@ -57,7 +57,9 @@ $(document).ready(function () {
     navigator.getUserMedia = (navigator.getUserMedia ||
       navigator.webkitGetUserMedia ||
       navigator.mozGetUserMedia ||
-      navigator.msGetUserMedia)
+      navigator.msGetUserMedia ||
+      navigator.mediaDevices.getUserMedia
+    )
 
     navigator.getUserMedia({
         video: true,
