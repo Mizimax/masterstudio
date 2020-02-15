@@ -23,12 +23,12 @@
 @endphp
 @if(!$userCategories->isEmpty() || $me == 1)
     <div class="category-interest">
-        <div class="edit noselect">Edit</div>
+        <div class="edit noselect d-none">Edit</div>
         <div class="interest-group">
             @foreach($userCategories as $userCategory)
                 <div id="cat-{{ $userCategory['category_id'] }}"
                      class="interest-activity{{ $loop->first && !empty($active) && $active ? ' active' : '' }}"
-                     tabindex="-1">
+                     tabindex="-1" cat-id="{{ $userCategory['category_id'] }}">
                     <div class="icon-container d-none" align="center">
                         <img src="/img/icon/close.svg" class="svg closee">
                     </div>
@@ -62,7 +62,7 @@
                     @endif
                     @foreach($categories as $category)
                         <div id="cat-{{ $category['category_id'] }}-select"
-                             class="search-resultt d-block">
+                             class="search-resultt d-flex">
                             <input type="hidden" class="category-id"
                                    value="{{ $category['category_id'] }}">
                             <img class="svg" src="{{ $category['category_pic'] }}">
@@ -70,7 +70,8 @@
                             <span class="add">Add</span>
                         </div>
                     @endforeach
-                    <div class="already {{ !$categories->isEmpty() ? 'd-none' : '' }}">
+                    <div class="already {{ !$categories->isEmpty() ? 'd-none' : '' }}"
+                         align="center">
                         You already selected all categories.
                     </div>
                 </div>

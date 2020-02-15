@@ -19,4 +19,14 @@
 			}
 			return response()->json(['status' => 'success', 'message' => 'Adding ' . $categoryId . ' interesting category is success.'], 201);
 		}
+
+		public function removeInterest($categoryId)
+		{
+			if (!Auth::check()) {
+				return response()->json(['status' => 'failed', 'message' => 'You are not logged in.'], 401);
+			}
+			UserCategory::where('user_id', Auth::id())->delete();
+
+			return response()->json(['status' => 'success', 'message' => 'Removing ' . $categoryId . ' interesting category is success.'], 200);
+		}
 	}

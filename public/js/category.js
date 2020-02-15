@@ -17,7 +17,7 @@ var categoryInit = function () {
 
     var html = `
        <div id="cat-${categoryId}" class="interest-activity" tabindex="-1">
-            <div class="icon-container" align="center">
+            <div class="icon-container d-none" align="center" cat-id="${categoryId}">
                 <img src="/img/icon/close.svg" class="svg">
             </div>
             <div class="icon">
@@ -32,10 +32,19 @@ var categoryInit = function () {
 
     replaceSvg()
 
-    if ($(this).parent().children().length !== 1) {
-      $(this).addClass('d-none')
+    if ($('.search-resultt.d-flex').length !== 0) {
+      $(this).removeClass('d-flex')
+
+      if ($('.search-resultt.d-flex').length === 0) {
+        $(this).siblings('.already').removeClass('d-none')
+      }
+
+    }
+
+    if ($('.interest-activity').length != 0) {
+      $('.edit.d-none').removeClass('d-none')
     } else {
-      $(this).siblings('.already').removeClass('d-none')
+      $('.edit').addClass('d-none')
     }
 
   })
@@ -44,11 +53,26 @@ var categoryInit = function () {
   $('.interest-group').delegate('.interest-activity', 'click', function (e) {
     if ($(e.target).parents('.icon-container').length !== 0) {
       var id = $(this).attr('id')
-      if ($('.search-resultt.d-block').length === 0) {
+      if ($('.search-resultt.d-flex').length === 0) {
         $('.already').removeClass('d-none')
       }
       $(this).remove()
-      $('#' + id + '-select').addClass('d-block')
+      $('#' + id + '-select').addClass('d-flex')
+      $.ajax({
+        url: '/api/category/' + $(this).attr('cat-id'),
+        type: 'delete',
+        dataType: 'json',
+        processData: false,
+        contentType: 'application/json',
+        data: JSON.stringify({
+          '_token': $('meta[name="csrf-token"]').attr('content'),
+        }),
+      })
+      if ($('.interest-activity').length != 0) {
+        $('.edit.d-none').removeClass('d-none')
+      } else {
+        $('.edit').addClass('d-none')
+      }
       return false
     }
     $(this).toggleClass('active')
