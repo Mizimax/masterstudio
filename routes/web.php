@@ -39,6 +39,7 @@
 		Route::get('/content/allActivity', 'ContentController@allActivity');
 		Route::get('/content/follow/master', 'ContentController@follow');
 		Route::post('/api/category/{categoryId}', 'CategoryController@addInterest');
+		Route::delete('/api/category/{categoryId}', 'CategoryController@removeInterest');
 		Route::post('/studio/{id}/review', 'StudioController@review');
 		Route::post('/activity/{id}/story', 'UserController@story');
 		Route::post('/activity/{id}/comment', 'ActivityController@comment');

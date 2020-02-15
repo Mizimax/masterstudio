@@ -16,7 +16,10 @@ var categoryInit = function () {
     })
 
     var html = `
-       <div class="interest-activity" tabindex="-1">
+       <div id="cat-${categoryId}" class="interest-activity" tabindex="-1">
+            <div class="icon-container d-none" align="center" cat-id="${categoryId}">
+                <img src="/img/icon/close.svg" class="svg">
+            </div>
             <div class="icon">
                 ${categoryPic}
             </div>
@@ -27,16 +30,51 @@ var categoryInit = function () {
     `
     $('.category-interest > .interest-group').append(html)
 
-    if ($(this).parent().children().length !== 1) {
-      $(this).remove()
+    replaceSvg()
+
+    if ($('.search-resultt.d-flex').length !== 0) {
+      $(this).removeClass('d-flex')
+
+      if ($('.search-resultt.d-flex').length === 0) {
+        $(this).siblings('.already').removeClass('d-none')
+      }
+
+    }
+
+    if ($('.interest-activity').length != 0) {
+      $('.edit.d-none').removeClass('d-none')
     } else {
-      $(this).parent().text('You already selected all categories.')
+      $('.edit').addClass('d-none')
     }
 
   })
 
   MasterStudio.categorySelected = []
-  $('.interest-group').delegate('.interest-activity', 'click', function () {
+  $('.interest-group').delegate('.interest-activity', 'click', function (e) {
+    if ($(e.target).parents('.icon-container').length !== 0) {
+      var id = $(this).attr('id')
+      if ($('.search-resultt.d-flex').length === 0) {
+        $('.already').removeClass('d-none')
+      }
+      $(this).remove()
+      $('#' + id + '-select').addClass('d-flex')
+      $.ajax({
+        url: '/api/category/' + $(this).attr('cat-id'),
+        type: 'delete',
+        dataType: 'json',
+        processData: false,
+        contentType: 'application/json',
+        data: JSON.stringify({
+          '_token': $('meta[name="csrf-token"]').attr('content'),
+        }),
+      })
+      if ($('.interest-activity').length != 0) {
+        $('.edit.d-none').removeClass('d-none')
+      } else {
+        $('.edit').addClass('d-none')
+      }
+      return false
+    }
     $(this).toggleClass('active')
     var categoryId = parseInt($(this).children('#category-id').val(), 10)
     if ($(this).hasClass('active')) {
@@ -46,6 +84,10 @@ var categoryInit = function () {
       if (index !== -1) MasterStudio.categorySelected.splice(index, 1)
     }
     interestSelected()
+  })
+
+  $('.category-interest > .edit').click(function () {
+    $('.interest-activity > .icon-container').toggleClass('d-none')
   })
 }
 

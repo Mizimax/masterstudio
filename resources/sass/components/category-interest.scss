@@ -10,7 +10,22 @@
 		display: inline-flex;
 	}
 
+	> .edit {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: 2px;
+		font-size: 12px;
+		color: $primary;
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 	.interest-activity {
+		position: relative;
         margin: 0 7px;
 		cursor: pointer;
 
@@ -44,6 +59,18 @@
 			}
 		}
 
+		> .icon-container {
+			position: absolute;
+			top: -10px;
+			right: -10px;
+
+			> .svg {
+				color: orange;
+				width: 20px;
+
+			}
+		}
+
         > .icon {
             border-radius: 50%;
             width: 50px;
@@ -72,11 +99,44 @@
             font-size: 10px;
             margin-top: 5px;
             color: #888;
+	        text-align: center;
         }
     }
 
     > .add-interest-activity {
-        @extend .interest-activity;
+	    margin: 0 7px;
+	    cursor: pointer;
+
+	    > .icon {
+		    border-radius: 50%;
+		    width: 50px;
+		    height: 50px;
+		    padding: 10px;
+		    margin: 0 auto;
+		    border: 2px solid #888;
+		    transition: 0.5s background-color;
+
+		    > .svg {
+			    width: 100%;
+			    height: 100%;
+		    }
+
+		    .cls-1 {
+			    fill: $primary;
+		    }
+
+		    #Layer_1 {
+			    fill: $primary;
+		    }
+	    }
+
+	    > .name {
+		    @extend .noselect;
+		    font-size: 10px;
+		    margin-top: 5px;
+		    color: #888;
+		    text-align: center;
+	    }
 
 	    &:active {
 		    > .icon {
@@ -127,6 +187,7 @@
 			    align-items: center;
 			    border-radius: 50px;
 			    padding: 12px;
+			    display: none;
 			    transition: background-color 0.5s;
 
 			    &:hover {

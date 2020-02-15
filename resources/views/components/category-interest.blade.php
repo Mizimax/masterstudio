@@ -23,10 +23,15 @@
 @endphp
 @if(!$userCategories->isEmpty() || $me == 1)
     <div class="category-interest">
+        <div class="edit noselect d-none">Edit</div>
         <div class="interest-group">
             @foreach($userCategories as $userCategory)
-                <div class="interest-activity{{ $loop->first && !empty($active) && $active ? ' active' : '' }}"
-                     tabindex="-1">
+                <div id="cat-{{ $userCategory['category_id'] }}"
+                     class="interest-activity{{ $loop->first && !empty($active) && $active ? ' active' : '' }}"
+                     tabindex="-1" cat-id="{{ $userCategory['category_id'] }}">
+                    <div class="icon-container d-none" align="center">
+                        <img src="/img/icon/close.svg" class="svg closee">
+                    </div>
                     <div class="icon">
                         <img class="svg" src="{{ $userCategory['category_pic'] }}">
                     </div>
@@ -43,9 +48,21 @@
                 </div>
                 <div class="name">Add interest</div>
                 <div class="search-dropdown">
-                    {{ $categories->isEmpty() ? 'You already selected all categories.' : '' }}
+                    @if($categories->isEmpty())
+                        @foreach($userCategories as $category)
+                            <div id="cat-{{ $category['category_id'] }}-select"
+                                 class="search-resultt">
+                                <input type="hidden" class="category-id"
+                                       value="{{ $category['category_id'] }}">
+                                <img class="svg" src="{{ $category['category_pic'] }}">
+                                <span class="category">{{ $category['category_name'] }}</span>
+                                <span class="add">Add</span>
+                            </div>
+                        @endforeach
+                    @endif
                     @foreach($categories as $category)
-                        <div class="search-resultt">
+                        <div id="cat-{{ $category['category_id'] }}-select"
+                             class="search-resultt d-flex">
                             <input type="hidden" class="category-id"
                                    value="{{ $category['category_id'] }}">
                             <img class="svg" src="{{ $category['category_pic'] }}">
@@ -53,6 +70,10 @@
                             <span class="add">Add</span>
                         </div>
                     @endforeach
+                    <div class="already {{ !$categories->isEmpty() ? 'd-none' : '' }}"
+                         align="center">
+                        You already selected all categories.
+                    </div>
                 </div>
             </div>
         @endif
