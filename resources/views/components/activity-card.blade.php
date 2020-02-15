@@ -27,7 +27,7 @@
             <div class="image-wrapper"
                  style="margin-top: -{{ $size/2.1 }}px; width: {{ $size }}px; height: {{ $size }}px">
                 @if(empty($noimage))
-                    <img style="width: {{ $size }}px; height: {{ $size }}px; cursor: pointer"
+                    <img style="width: {{ $size }}px; height: {{ $size }}px; cursor: pointer; object-fit: cover"
                          src="{{ $activity['user_pic'] }}"
                          alt=""
                          onclick="window.location.href='/master/{{ $activity['master_id'] }}'">
