@@ -12583,7 +12583,7 @@ button:focus {
   box-sizing: border-box;
   margin-right: 10px;
   border: 1px dashed #f14ea6 !important;
-	background-size: cover;
+  background-size: cover;
 }
 
 .form-box:after {
@@ -13164,7 +13164,7 @@ form .error-msg > .text {
   position: absolute;
   z-index: 999;
   width: 700px;
-	height: 400px;
+  height: 400px;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .activity-detail {
@@ -13172,7 +13172,7 @@ form .error-msg > .text {
   width: 250px;
   height: auto;
   padding: 5px 10px;
-	bottom: 0;
+  bottom: 0;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .button.\--detail {
@@ -13298,7 +13298,7 @@ form .error-msg > .text {
   position: fixed;
   z-index: 50;
   background: rgba(0, 0, 0, 0.6);
-	border-radius: 10px;
+  border-radius: 10px;
 }
 
 .activity-card-wrapper > .activity-card > .overlay.\--hover {
@@ -13599,7 +13599,7 @@ form .error-msg > .text {
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button {
   position: absolute;
   right: 0px;
-	bottom: 10px;
+  bottom: 10px;
   display: flex;
   flex-basis: 80px;
   align-items: center;
@@ -13610,7 +13610,7 @@ form .error-msg > .text {
   height: 60px;
   background: #1db6fd;
   cursor: pointer;
-	z-index: 1000;
+  z-index: 1000;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery .add-button > .svg {
@@ -13651,7 +13651,7 @@ form .error-msg > .text {
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container {
   position: relative;
   flex-shrink: 0;
-	font-size: 0;
+  font-size: 0;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active {
@@ -13685,7 +13685,7 @@ form .error-msg > .text {
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn:before {
   content: "-";
   font-weight: bold;
-	font-size: 16px;
+  font-size: 16px;
   position: absolute;
   top: 50%;
   left: 50%;

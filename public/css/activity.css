@@ -13707,6 +13707,10 @@ form .error-msg > .text {
   margin: 0 auto;
 }
 
+.activity-header {
+  position: relative;
+}
+
 .activity-header .search-group {
   position: absolute;
   max-width: 300px;
@@ -13917,7 +13921,7 @@ form .error-msg > .text {
   background-color: #ed9e40;
   width: 100%;
   cursor: pointer;
-	padding: 10px;
+  padding: 10px;
 }
 
 .your-activity > .activity-timeline > .activity-story > .no-story > .svg {

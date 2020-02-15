@@ -12531,7 +12531,7 @@ button:focus {
   box-sizing: border-box;
   margin-right: 10px;
   border: 1px dashed #f14ea6 !important;
-	background-size: cover;
+  background-size: cover;
 }
 
 .form-box:after {
@@ -12949,7 +12949,7 @@ form .error-msg > .text {
   position: absolute;
   z-index: 999;
   width: 700px;
-	height: 400px;
+  height: 400px;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .activity-detail {
@@ -12957,7 +12957,7 @@ form .error-msg > .text {
   width: 250px;
   height: auto;
   padding: 5px 10px;
-	bottom: 0;
+  bottom: 0;
 }
 
 .activity-card-wrapper > .activity-card.hover > .master-profile > .button.\--detail {
@@ -13083,7 +13083,7 @@ form .error-msg > .text {
   position: fixed;
   z-index: 50;
   background: rgba(0, 0, 0, 0.6);
-	border-radius: 10px;
+  border-radius: 10px;
 }
 
 .activity-card-wrapper > .activity-card > .overlay.\--hover {
