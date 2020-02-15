@@ -13289,57 +13289,57 @@ form .error-msg > .text {
   margin: 0 0 20px;
 }
 
-.master-interest > .master-list {
+.master-interest log > .master-list {
   display: flex;
   justify-content: center;
 }
 
-.master-interest > .master-list > .master-category {
+.master-interest log > .master-list > .master-category {
   padding: 0 20px;
   min-width: 240px;
 }
 
-.master-interest > .master-list > .master-category > .header {
+.master-interest log > .master-list > .master-category > .header {
   font-size: 22px;
   margin: 15px 0;
   font-style: italic;
 }
 
-.master-interest > .master-list > .master-category > .master-content {
+.master-interest log > .master-list > .master-category > .master-content {
   display: flex;
   justify-content: center;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail {
   position: relative;
   flex: 1;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail.\--carousel {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail.\--carousel {
   flex: 0 1 auto;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail {
   right: -20px;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail > .activity-title {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail > .activity-title {
   flex-direction: row-reverse;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail > .activity-title > .follow-wrapper {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail > .activity-title > .follow-wrapper {
   margin: 0 auto 0 0;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail > .activity-title > .title-wrapper {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail.right > .activity-detail > .activity-title > .title-wrapper {
   margin-right: 40px;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail:hover > .image-wrapper {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail:hover > .image-wrapper {
   z-index: 1000;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail > .activity-detail {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail > .activity-detail {
   color: black;
   position: absolute;
   top: 0;
@@ -13350,7 +13350,7 @@ form .error-msg > .text {
   padding: 20px;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail > .image-wrapper {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail > .image-wrapper {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -13360,13 +13360,13 @@ form .error-msg > .text {
   margin: 0 auto;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail > .image-wrapper > img {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail > .image-wrapper > img {
   border-radius: 50%;
   width: 100%;
   height: 100%;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail > .name {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail > .name {
   white-space: nowrap;
   width: 120px;
   overflow: hidden;
@@ -13374,7 +13374,7 @@ form .error-msg > .text {
   margin: 85px auto 0;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail > .badge {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail > .badge {
   display: inline-block;
   color: white;
   font-size: 10px;
@@ -13382,11 +13382,11 @@ form .error-msg > .text {
   padding: 5px;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail > .badge.\--rec {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail > .badge.\--rec {
   background: #f785c1;
 }
 
-.master-interest > .master-list > .master-category > .master-content > .master-detail > .badge.\--most {
+.master-interest log > .master-list > .master-category > .master-content > .master-detail > .badge.\--most {
   background: #f14ea6;
 }
 
