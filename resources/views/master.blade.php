@@ -35,7 +35,8 @@
                                         @component('components.master-card', ['noimage'=>true, 'animate'=>true, 'size'=>70, 'data'=>$mst, 'isFollower' => ($mst['follower'] === 1 ? true : false), 'me' => ($mst['user_id'] === $userme['user_id'])])
                                         @endcomponent
                                         <div class="image-wrapper">
-                                            <img src="{{ $mst['user_pic'] }}" alt="">
+                                            <img style="object-fit: cover"
+                                                 src="{{ $mst['user_pic'] }}" alt="">
                                         </div>
                                         <div class="name">{{ $mst['master_name'] }}</div>
                                         <div class="badge {{ $mst['master_most_recommend'] !== 0 ? '--most' : ($mst['master_recommend'] !== 0 ? '--rec' : '')}}">{{ $mst['master_most_recommend'] !== 0 ? 'Most recommended' : ($mst['master_recommend'] !== 0 ? 'Recommended' : '')}}</div>
