@@ -227,12 +227,12 @@
     <script async defer crossorigin="anonymous"
             src="https://connect.facebook.net/th_TH/sdk.js#xfbml=1&version=v4.0&appId=1395710807149187&autoLogAppEvents=1"></script>
 
-    @if(config('app.env') == 'local')
-        <script id="__bs_script__">//<![CDATA[
-          document.write('<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.6\'><\/script>'.replace('HOST', location.hostname))
-          //]]>
-        </script>
-    @endif
+    {{--    @if(config('app.env') == 'local')--}}
+    {{--        <script id="__bs_script__">//<![CDATA[--}}
+    {{--          document.write('<script async src=\'http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.6\'><\/script>'.replace('HOST', location.hostname))--}}
+    {{--          //]]>--}}
+    {{--        </script>--}}
+    {{--    @endif--}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
