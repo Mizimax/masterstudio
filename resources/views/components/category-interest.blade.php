@@ -23,7 +23,7 @@
 @endphp
 @if(!$userCategories->isEmpty() || $me == 1)
     <div class="category-interest">
-        <div class="edit noselect d-none">Edit</div>
+        <div class="edit noselect {{ $userCategories->isEmpty() ? 'd-none' : '' }}">Edit</div>
         <div class="interest-group">
             @foreach($userCategories as $userCategory)
                 <div id="cat-{{ $userCategory['category_id'] }}"
