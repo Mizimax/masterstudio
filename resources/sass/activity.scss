@@ -313,12 +313,37 @@
 	@extend .live-activity;
 
 	> .activity-timeline {
+		position: relative;
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: flex-start;
 		max-width: 1100px;
 		width: 100%;
 		margin: 0 auto;
 		padding: 0 20px;
+
+		> .tabs-button {
+			display: flex;
+			position: absolute;
+			left: 50%;
+			top: 50px;
+			transform: translateX(-50%);
+
+			.primary-button {
+				&:first-child {
+					margin-right: 5px;
+				}
+
+				&.active {
+					color: white;
+					background: $primary;
+				}
+			}
+
+			@include mobile-up {
+				left: 270px;
+				transform: translateX(0);
+			}
+		}
 
 		.your-activity-timeline {
 			position: relative;
@@ -327,13 +352,22 @@
 			margin-top: 100px;
 
 			> .image-container {
-				padding-left: 60px;
+				padding-left: 80px;
+
+				@include mobile-up {
+					padding-left: 60px;
+				}
 
 				> .your-image {
 					position: absolute;
+					z-index: 100;
 					top: 50%;
 					left: 0;
 					transform: translateY(-50%);
+				}
+
+				&:hover + .your-info {
+					display: block;
 				}
 			}
 
@@ -341,7 +375,18 @@
 				width: 170px;
 				border-radius: 15px;
 				padding: 20px;
+				background: white;
+				left: 40px;
+				position: absolute;
+				z-index: 99;
+				display: none;
 				@extend .shadow;
+
+				@include mobile-up {
+					display: block;
+					position: relative;
+					left: 0;
+				}
 
 				> * {
 					margin: 5px 0;
@@ -414,7 +459,7 @@
 			}
 		}
 
-		> .activity-story {
+		.activity-story {
 			> .no-story {
 				display: flex;
 				align-items: center;
@@ -447,10 +492,10 @@
 
 		}
 
-		> .add-activity-story {
+		.add-activity-story {
 			display: flex;
 			align-items: center;
-			transform: translateX(-50%);
+			position: relative;
 
 			> .add-button {
 				@extend .shadow;
@@ -464,6 +509,10 @@
 				height: 80px;
 				background: white;
 				cursor: pointer;
+				position: absolute;
+				right: -10px;
+				transform: translateY(-70%);
+				top: 50%;
 
 				> .svg {
 					width: 30px;

@@ -126,6 +126,16 @@
         @include('components.category-interest')
         @if(!empty($user))
             <div class="activity-timeline">
+                <div class="nav-tab nav tabs-button flex-nowrap">
+                    <a class="tab-link primary-button --outline active" data-toggle="tab"
+                       href="#story" role="tab">
+                        Story
+                    </a>
+                    <a class="tab-link primary-button --outline" data-toggle="tab"
+                       href="#lesson" role="tab">
+                        Lesson
+                    </a>
+                </div>
                 <div class="your-activity-timeline">
                     <div class="image-container">
                         <div class="your-image image-wrapper">
@@ -146,64 +156,72 @@
                         </div>
                         <span class="timespend-badge">Time spend</span>
                         <span class="timespend">{{ $user['user_hour'] }} hours</span>
-                        {{--                    <span class="category">Badminton</span>--}}
+                        <span class="category">Badminton</span>
                     </div>
                 </div>
-                <div class="activity-timeline-expand">
-                    <div class="text">activity timeline <img src="/img/icon/caret-down-solid.svg"
-                                                             class="svg"></div>
-                </div>
-                <div class="activity-story">
-                    @if($stories->isEmpty())
-                        <div class="no-story">
-                            <img src="/img/icon/camera-solid.svg" class="svg">
-                            <p class="title">Share your first journey. Click!</p>
-                            <br>
-                        </div>
-                    @endif
-                    @foreach ($stories as $story)
-						<?php
-		                $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->where('user_activity_paid', 1)->get();
-						?>
-                        <div class="activity-wrapper">
-                            <div class="activity-card">
-                                <div class="video-wrapper">
-                                    <video class="video lazy" loop muted>
-                                        <source data-src="{{ $story['activity_story_video'] }}"
-                                                type="video/mp4" />
-                                    </video>
-                                </div>
+                {{--                <div class="activity-timeline-expand">--}}
+                {{--                    <div class="text">activity timeline <img src="/img/icon/caret-down-solid.svg"--}}
+                {{--                                                             class="svg"></div>--}}
+                {{--                </div>--}}
 
-                                <div class="master-profile">
-                                    <div class="image-wrapper">
-                                        <img src="{{ $story['user_pic'] }}" alt="">
-                                    </div>
+                <div class="tab-content" style="overflow-x: scroll; padding: 100px 20px 30px 20px;">
+                    <div role="tabpanel" class="tab-pane d-flex fade in active show" id="story">
+                        <div class="activity-story" style="padding: 0;">
+                            @if($stories->isEmpty())
+                                <div class="no-story">
+                                    <img src="/img/icon/camera-solid.svg" class="svg">
+                                    <p class="title">Share your first journey. Click!</p>
+                                    <br>
                                 </div>
+                            @endif
+                            @foreach ($stories as $story)
+					            <?php
+					            $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->where('user_activity_paid', 1)->get();
+					            ?>
+                                <div class="activity-wrapper">
+                                    <div class="activity-card">
+                                        <div class="video-wrapper">
+                                            <video class="video lazy" loop muted>
+                                                <source data-src="{{ $story['activity_story_video'] }}"
+                                                        type="video/mp4" />
+                                            </video>
+                                        </div>
 
-                                <div class="title-wrapper">
-                                    <div class="title"
-                                         align="left">{{ $story['activity_name'] }}</div>
-                                    <div class="activity-join">
-                                        @foreach($story['users_activity'] as $userStory)
-                                            <div class="participant image-wrapper">
-                                                <img src="{{ $userStory['user_pic'] }}" alt="">
+                                        <div class="master-profile">
+                                            <div class="image-wrapper">
+                                                <img src="{{ $story['user_pic'] }}" alt="">
                                             </div>
-                                        @endforeach
+                                        </div>
+
+                                        <div class="title-wrapper">
+                                            <div class="title"
+                                                 align="left">{{ $story['activity_name'] }}</div>
+                                            <div class="activity-join">
+                                                @foreach($story['users_activity'] as $userStory)
+                                                    <div class="participant image-wrapper">
+                                                        <img src="{{ $userStory['user_pic'] }}"
+                                                             alt="">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
                                     </div>
+                                    <div class="location">Yesterday: JAJA Studio</div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        @if(!$stories->isEmpty())
+                            <div class="add-activity-story">
+                                <div class="add-button">
+                                    <img src="/img/icon/plus-solid.svg" class="svg">
                                 </div>
                             </div>
-                            <div class="location">Yesterday: JAJA Studio</div>
-                        </div>
-                    @endforeach
-                </div>
-
-                @if(!$stories->isEmpty())
-                <div class="add-activity-story">
-                    <div class="add-button">
-                        <img src="/img/icon/plus-solid.svg" class="svg">
+                        @endif
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in active show" id="lesson">
                     </div>
                 </div>
-                @endif
             </div>
         @endif
         <section id="activity" class="all-activity"
@@ -427,8 +445,6 @@
       }
 
       var interestSelected = function () {
-        goTo('activity')
-
         var selectedCategory = MasterStudio.categorySelected.length !== 0
                                ? MasterStudio.categorySelected[0]
                                : 0

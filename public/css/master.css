@@ -13520,7 +13520,7 @@ form .error-msg > .text {
   display: none;
 }
 
-@media (max-height: 700px) and (max-width: 576px) {
+@media (max-width: 576px) {
   .master-header > .overlay {
     display: block;
   }
@@ -13539,7 +13539,7 @@ form .error-msg > .text {
   transform: translate(-50%, -50%);
 }
 
-@media (max-height: 700px) and (max-width: 576px) {
+@media (max-width: 576px) {
   .master-header > .header-content {
     top: auto;
     bottom: 60px;
@@ -13547,9 +13547,15 @@ form .error-msg > .text {
 }
 
 .master-header > .header-content > .header {
-  font-size: 24px;
+	font-size: 28px;
   text-align: left;
   text-shadow: 2px 2px 5px #888;
+}
+
+@media (min-width: 576px) {
+	.master-header > .header-content > .header {
+		font-size: 32px;
+	}
 }
 
 @media (min-width: 768px) {

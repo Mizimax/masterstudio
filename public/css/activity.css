@@ -8045,7 +8045,7 @@ button.bg-dark:focus {
 }
 
 .shadow,
-.your-activity > .activity-timeline > .add-activity-story > .add-button,
+.your-activity > .activity-timeline .add-activity-story > .add-button,
 .your-activity > .activity-timeline > .activity-timeline-expand,
 .your-activity > .activity-timeline .your-activity-timeline > .your-info,
 .activity-detail > .button-wrapper > .button,
@@ -11518,7 +11518,7 @@ button:focus {
 }
 
 .shadow,
-.your-activity > .activity-timeline > .add-activity-story > .add-button,
+.your-activity > .activity-timeline .add-activity-story > .add-button,
 .your-activity > .activity-timeline > .activity-timeline-expand,
 .your-activity > .activity-timeline .your-activity-timeline > .your-info,
 .activity-detail > .button-wrapper > .button,
@@ -14090,12 +14090,39 @@ form .error-msg > .text {
 }
 
 .your-activity > .activity-timeline {
+	position: relative;
   display: flex;
-  justify-content: space-evenly;
+	justify-content: flex-start;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+.your-activity > .activity-timeline > .tabs-button {
+	display: flex;
+	position: absolute;
+	left: 50%;
+	top: 50px;
+	transform: translateX(-50%);
+}
+
+.your-activity > .activity-timeline > .tabs-button .primary-button:first-child,
+.your-activity > .activity-timeline > .tabs-button .activity-detail > .activity-add > .badge-wrapper > .badge:first-child {
+	margin-right: 5px;
+}
+
+.your-activity > .activity-timeline > .tabs-button .primary-button.active,
+.your-activity > .activity-timeline > .tabs-button .activity-detail > .activity-add > .badge-wrapper > .active.badge {
+	color: white;
+	background: #f14ea6;
+}
+
+@media (min-width: 576px) {
+	.your-activity > .activity-timeline > .tabs-button {
+		left: 270px;
+		transform: translateX(0);
+	}
 }
 
 .your-activity > .activity-timeline .your-activity-timeline {
@@ -14106,20 +14133,44 @@ form .error-msg > .text {
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .image-container {
-  padding-left: 60px;
+	padding-left: 80px;
+}
+
+@media (min-width: 576px) {
+	.your-activity > .activity-timeline .your-activity-timeline > .image-container {
+		padding-left: 60px;
+	}
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .image-container > .your-image {
   position: absolute;
+	z-index: 100;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+}
+
+.your-activity > .activity-timeline .your-activity-timeline > .image-container:hover + .your-info {
+	display: block;
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .your-info {
   width: 170px;
   border-radius: 15px;
   padding: 20px;
+	background: white;
+	left: 40px;
+	position: absolute;
+	z-index: 99;
+	display: none;
+}
+
+@media (min-width: 576px) {
+	.your-activity > .activity-timeline .your-activity-timeline > .your-info {
+		display: block;
+		position: relative;
+		left: 0;
+	}
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .your-info > * {
@@ -14190,7 +14241,7 @@ form .error-msg > .text {
   color: #0072bf;
 }
 
-.your-activity > .activity-timeline > .activity-story > .no-story {
+.your-activity > .activity-timeline .activity-story > .no-story {
   display: flex;
   align-items: center;
   text-align: center;
@@ -14203,30 +14254,30 @@ form .error-msg > .text {
   padding: 10px;
 }
 
-.your-activity > .activity-timeline > .activity-story > .no-story > .svg {
+.your-activity > .activity-timeline .activity-story > .no-story > .svg {
   width: 64px;
   height: 64px;
   color: white;
   margin-right: 20px;
 }
 
-.your-activity > .activity-timeline > .activity-story > .no-story > .title {
+.your-activity > .activity-timeline .activity-story > .no-story > .title {
   font-size: 24px;
   font-weight: 300;
 }
 
-.your-activity > .activity-timeline > .activity-story .activity-card {
+.your-activity > .activity-timeline .activity-story .activity-card {
   width: 170px;
   height: 204px;
 }
 
-.your-activity > .activity-timeline > .add-activity-story {
+.your-activity > .activity-timeline .add-activity-story {
   display: flex;
   align-items: center;
-  transform: translateX(-50%);
+	position: relative;
 }
 
-.your-activity > .activity-timeline > .add-activity-story > .add-button {
+.your-activity > .activity-timeline .add-activity-story > .add-button {
   display: flex;
   flex-basis: 80px;
   align-items: center;
@@ -14237,15 +14288,19 @@ form .error-msg > .text {
   height: 80px;
   background: white;
   cursor: pointer;
+	position: absolute;
+	right: -10px;
+	transform: translateY(-70%);
+	top: 50%;
 }
 
-.your-activity > .activity-timeline > .add-activity-story > .add-button > .svg {
+.your-activity > .activity-timeline .add-activity-story > .add-button > .svg {
   width: 30px;
   height: 30px;
   color: #555;
 }
 
-.your-activity > .activity-timeline > .add-activity-story > span {
+.your-activity > .activity-timeline .add-activity-story > span {
   text-align: left;
   font-size: 10px;
 }
