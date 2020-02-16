@@ -11145,12 +11145,19 @@ img {
 
 .category-interest > .edit {
 	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: 2px;
-	font-size: 12px;
-	color: #f14ea6;
+	right: -10px;
+	top: 50%;
+	transform: translateY(-50%);
 	cursor: pointer;
+	background: white;
+	padding: 5px;
+	border-radius: 50%;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+.category-interest > .edit > .image {
+	width: 20px;
+	height: 20px;
 }
 
 .category-interest > .edit:hover {
@@ -11196,7 +11203,7 @@ img {
 }
 
 .category-interest .interest-activity > .icon-container > .svg {
-	color: orange;
+	color: red;
 	width: 20px;
 }
 
@@ -13369,12 +13376,19 @@ form .error-msg > .text {
 
 .category-interest > .edit {
 	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: 2px;
-	font-size: 12px;
-	color: #f14ea6;
+	right: -10px;
+	top: 50%;
+	transform: translateY(-50%);
 	cursor: pointer;
+	background: white;
+	padding: 5px;
+	border-radius: 50%;
+	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+}
+
+.category-interest > .edit > .image {
+	width: 20px;
+	height: 20px;
 }
 
 .category-interest > .edit:hover {
@@ -13420,7 +13434,7 @@ form .error-msg > .text {
 }
 
 .category-interest .interest-activity > .icon-container > .svg {
-	color: orange;
+	color: red;
 	width: 20px;
 }
 

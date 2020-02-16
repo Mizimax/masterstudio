@@ -45,6 +45,8 @@
 				->join('categories AS cg', 'ms.category_id', '=', 'cg.category_id')
 				->select('*', 'as.created_at AS story_created_at')
 				->where('as.story_highlight', 1)
+				->take(3)
+				->orderBy('as.activity_story_id', 'desc')
 				->get();
 			return view('home', ['headActivities' => $headActivities, 'activities' => $activities, 'stories' => $stories]);
 		}
