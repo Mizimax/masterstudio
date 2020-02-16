@@ -11417,7 +11417,8 @@ button:focus {
   cursor: pointer;
 }
 
-.primary-button {
+.primary-button,
+.activity-detail > .activity-add > .badge-wrapper > .badge {
   padding: 0.5rem 2rem;
   background-color: #f14ea6;
   color: white;
@@ -11428,7 +11429,8 @@ button:focus {
   transition: 0.5s all;
 }
 
-.primary-button.\--outline {
+.primary-button.\--outline,
+.activity-detail > .activity-add > .badge-wrapper > .\--outline.badge {
   color: #f14ea6;
   border: 1px solid #f14ea6;
   background: white;
@@ -11665,13 +11667,19 @@ button:focus {
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu {
   padding-bottom: 10px;
+	border-top: 1px solid #f2d5d0;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu {
   text-align: left;
-  width: 100px;
-  margin: 4px auto;
-  color: black;
+	width: 100%;
+	color: #f14ea6;
+	padding: 5px 0;
+	border-bottom: 1px solid #f2d5d0;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu.\--logout {
+	border: none;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .svg {
@@ -11682,11 +11690,9 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name {
-  margin-left: 5px;
-}
-
-.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name.\--logout {
-  color: #f14ea6;
+	padding: 10px 0;
+	margin-left: 40px;
+	font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -11702,10 +11708,6 @@ button:focus {
   width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.navbar-wrapper .navbar .user-info-menu .user-progress {
-  border-bottom: 1px solid #f2d5d0;
 }
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .level {
@@ -11728,13 +11730,13 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu .coin {
-  display: flex;
   margin-top: 3px;
   font-size: 10px;
   color: #f14ea6;
-  text-align: center;
+	text-align: left;
+	display: flex;
   align-items: center;
-  justify-content: center;
+	justify-content: flex-start;
   font-weight: bold;
 }
 
@@ -12895,6 +12897,32 @@ form .error-msg > .text {
   }
 }
 
+.activity-card-wrapper > .activity-card .button.\--detail {
+	position: absolute;
+	right: 20px;
+	top: 0;
+	margin-top: 320px;
+	background: #f14ea6;
+	border: none;
+	color: white;
+	padding: 17px 40px;
+	border-radius: 40px;
+}
+
+.activity-card-wrapper > .activity-card .button.\--mobile {
+	top: auto;
+	bottom: 10px;
+	right: 10px;
+	margin-top: 0;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+	font-size: 12px;
+	z-index: 99;
+	display: none;
+}
+
 .activity-card-wrapper > .activity-card.hover > .video-wrapper {
   position: absolute;
   width: 700px;
@@ -12941,18 +12969,6 @@ form .error-msg > .text {
   height: auto;
   padding: 5px 10px;
   bottom: 0;
-}
-
-.activity-card-wrapper > .activity-card.hover > .master-profile > .button.\--detail {
-  position: absolute;
-  right: 20px;
-  top: 0;
-  margin-top: 320px;
-  background: #f14ea6;
-  border: none;
-  color: white;
-  padding: 17px 40px;
-  border-radius: 40px;
 }
 
 .activity-card-wrapper > .activity-card.hover.left > .video-wrapper {
@@ -13215,18 +13231,12 @@ form .error-msg > .text {
   margin-top: 5px;
 }
 
-.activity-detail > .activity-add > .badge-wrapper {
-  display: flex;
-  margin-top: 10px;
-}
-
 .activity-detail > .activity-add > .badge-wrapper > .badge {
-  border: 1px solid #000;
-  border-radius: 20px;
-  font-style: italic;
-  flex-grow: 1;
-  font-size: 10px;
-  padding: 3px 0;
+	font-weight: 500;
+	width: 100%;
+	border-radius: 10px;
+	margin-top: 10px;
+	cursor: auto;
 }
 
 .map-detail {

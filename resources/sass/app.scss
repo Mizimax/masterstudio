@@ -277,12 +277,18 @@ button:focus {
 
 				> .profile-menu {
 					padding-bottom: 10px;
+					border-top: 1px solid #f2d5d0;
 
 					> .sub-menu {
 						text-align: left;
-						width: 100px;
-						margin: 4px auto;
-						color: black;
+						width: 100%;
+						color: $primary;
+						padding: 5px 0;
+						border-bottom: 1px solid #f2d5d0;
+
+						&.--logout {
+							border: none;
+						}
 
 						.svg {
 							width: 15px;
@@ -292,11 +298,9 @@ button:focus {
 						}
 
 						.menu-name {
-							margin-left: 5px;
-
-							&.--logout {
-								color: $primary;
-							}
+							padding: 10px 0;
+							margin-left: 40px;
+							font-size: 14px;
 						}
 					}
 				}
@@ -317,7 +321,6 @@ button:focus {
 			}
 
 			.user-progress {
-				border-bottom: 1px solid #f2d5d0;
 
 				.level {
 					font-size: 10px;
@@ -340,13 +343,13 @@ button:focus {
 			}
 
 			.coin {
-				display: flex;
 				margin-top: 3px;
 				font-size: 10px;
 				color: $primary;
-				text-align: center;
+				text-align: left;
+				display: flex;
 				align-items: center;
-				justify-content: center;
+				justify-content: flex-start;
 				font-weight: bold;
 
 				> .icon {

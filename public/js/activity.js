@@ -55,7 +55,15 @@ function activityHover() {
   var tap = ('ontouchstart' in document.documentElement)
 
   if (tap) {
-    $('#activity-wrapper').delegate('.activity-overlay.--hover', 'touchend', hoverActivity('touchend'))
+    $('.button.--detail.--mobile').addClass('d-block')
+
+    $('#activity-wrapper').delegate('.activity-overlay.--hover', 'touchend', function () {
+      $(this).hover(function () {
+        $(this).siblings('.video-wrapper').children('.video').get(0).play()
+      }, function () {
+        $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+      })
+    })
   } else {
     $('#activity-wrapper').delegate('.activity-overlay.--hover', 'mouseenter', hoverActivity('mouseenter'))
   }

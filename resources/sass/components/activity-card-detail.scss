@@ -121,16 +121,14 @@
 		}
 
 		> .badge-wrapper {
-			display: flex;
-			margin-top: 10px;
 
 			> .badge {
-				border: 1px solid #000;
-				border-radius: 20px;
-				font-style: italic;
-				flex-grow: 1;
-				font-size: 10px;
-				padding: 3px 0;
+				@extend .primary-button;
+				font-weight: 500;
+				width: 100%;
+				border-radius: 10px;
+				margin-top: 10px;
+				cursor: auto;
 			}
 		}
 	}

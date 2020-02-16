@@ -85,7 +85,7 @@
                 </div>
             </div>
             <div class="badge-wrapper">
-                <div class="badge mr-2">
+                <div class="badge">
                     @if($activity['activity_time_type'] === 1)
                         Routine
                     @else
@@ -93,7 +93,7 @@
                     @endif
                     activity
                 </div>
-                <div class="badge">Difficult - {{ $activity['activity_difficult'] }}</div>
+                <div class="badge --outline">Difficult - {{ $activity['activity_difficult'] }}</div>
             </div>
         </div>
     </div>

@@ -11666,13 +11666,19 @@ button:focus {
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu {
   padding-bottom: 10px;
+	border-top: 1px solid #f2d5d0;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu {
   text-align: left;
-  width: 100px;
-  margin: 4px auto;
-  color: black;
+	width: 100%;
+	color: #f14ea6;
+	padding: 5px 0;
+	border-bottom: 1px solid #f2d5d0;
+}
+
+.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu.\--logout {
+	border: none;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .svg {
@@ -11683,11 +11689,9 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name {
-  margin-left: 5px;
-}
-
-.navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name.\--logout {
-  color: #f14ea6;
+	padding: 10px 0;
+	margin-left: 40px;
+	font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -11703,10 +11707,6 @@ button:focus {
   width: 100px;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.navbar-wrapper .navbar .user-info-menu .user-progress {
-  border-bottom: 1px solid #f2d5d0;
 }
 
 .navbar-wrapper .navbar .user-info-menu .user-progress .level {
@@ -11729,13 +11729,13 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu .coin {
-  display: flex;
   margin-top: 3px;
   font-size: 10px;
   color: #f14ea6;
-  text-align: center;
+	text-align: left;
+	display: flex;
   align-items: center;
-  justify-content: center;
+	justify-content: flex-start;
   font-weight: bold;
 }
 

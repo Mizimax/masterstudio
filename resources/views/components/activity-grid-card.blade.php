@@ -60,6 +60,11 @@
                     </div>
 
                 </div>
+
+                <button class="button --detail --mobile"
+                        onclick="window.location.href = '/activity/{{ $activity['activity_url_name']  }}'">
+                    Detail
+                </button>
             </div>
             <div class="overlay activity-overlay --hover"></div>
             <div class="master-profile">

@@ -79,35 +79,25 @@
                         <div class="profile-menu">
                             <div class="sub-menu">
                                 <a href="/user/me">
-                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                    |
                                     <span class="menu-name">Your profile</span>
                                 </a>
                             </div>
                             <div class="sub-menu">
                                 <a href="#" onclick="modal('all')">
-                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                    |
                                     <span class="menu-name">My activities</span>
                                 </a>
                             </div>
                             <div class="sub-menu">
                                 <a href="#" onclick="modal('follow')">
-                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                    |
                                     <span class="menu-name">Following</span>
                                 </a>
                             </div>
-                            <br><br>
-                            <div class="sub-menu">
-                                <a href="#">
-                                    <img src="/img/icon/user-circle-regular.svg" class="svg" />
-                                    |
-                                    <span class="menu-name --logout">
-                                        <a href="{{ route('logout') }}"
-                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <br>
+                            <div class="sub-menu --logout">
+                                <a style="font-size: 14px; color: red;" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <span class="menu-name">
                                             Logout
-                                        </a>
                                         <form id="logout-form" action="/logout/back"
                                               method="POST" style="display: none;">
                                             {{ csrf_field() }}
