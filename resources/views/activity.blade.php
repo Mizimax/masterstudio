@@ -164,8 +164,10 @@
                 {{--                                                             class="svg"></div>--}}
                 {{--                </div>--}}
 
-                <div class="tab-content" style="overflow-x: scroll; padding: 100px 20px 30px 20px;">
-                    <div role="tabpanel" class="tab-pane d-flex fade in active show" id="story">
+                <div class="tab-content"
+                     style="overflow-x: scroll; padding: 100px 20px 30px 20px; flex: 1">
+                    <div role="tabpanel" class="tab-pane d-flex h-100 fade in active show"
+                         id="story">
                         <div class="activity-story" style="padding: 0;">
                             @if($stories->isEmpty())
                                 <div class="no-story">
