@@ -13605,7 +13605,7 @@ form .error-msg > .text {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  margin-top: -120px;
+	margin-top: -140px;
   left: 6%;
   margin-left: 20px;
   z-index: 1000;

@@ -13833,44 +13833,197 @@ form .error-msg > .text {
   margin: 0 auto;
 }
 
-.activity-header {
+.video-header {
   position: relative;
 }
 
-.activity-header .search-group {
+.video-header > .search-group {
   position: absolute;
-  max-width: 300px;
-  width: 90%;
   top: 50%;
-  margin-top: -180px;
-  right: 6%;
-  margin-left: 10px;
+	transform: translateY(-50%);
+	margin-top: -140px;
+	left: 6%;
+	margin-left: 20px;
   z-index: 1000;
 }
 
-@media (min-width: 576px) {
-  .activity-header .search-group {
-    margin-top: -150px;
-    max-width: 450px;
-  }
-}
-
-@media (max-height: 739px) {
-  .activity-header .search-group {
-    margin-top: 40px !important;
-  }
-}
-
 @media (max-height: 700px) {
-  .activity-header .search-group {
+	.video-header > .search-group {
     margin-top: 50px;
   }
 }
 
 @media (max-height: 700px) and (max-width: 576px) {
-  .activity-header .search-group {
-    top: 60%;
-  }
+	.video-header > .search-group {
+		margin-top: 0 !important;
+		top: 70%;
+	}
+}
+
+@media (max-width: 576px) {
+	.video-header > .search-group {
+		margin-top: -150px;
+		max-width: 300px;
+	}
+}
+
+.video-header > .half-square {
+	position: absolute;
+	z-index: 9;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 10vh;
+	display: block;
+	background: white;
+	background: linear-gradient(to bottom left, transparent 50%, white 50%);
+}
+
+.video-header > #carousel > .carousel-indicators {
+	margin-bottom: 10vh;
+}
+
+.video-header > #carousel .carousel-item {
+	height: 100vh;
+	position: relative;
+}
+
+.video-header > #carousel .carousel-item .video {
+	width: 100%;
+	height: 100%;
+	-o-object-fit: cover;
+	object-fit: cover;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper {
+	width: 100%;
+	position: absolute;
+	z-index: 999;
+	padding: 0 20px;
+	left: 6%;
+	max-width: 600px;
+	width: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+@media (max-height: 700px) and (max-width: 460px) {
+	.video-header > #carousel .carousel-item > .content-wrapper {
+		top: 70%;
+	}
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-name {
+	color: white;
+}
+
+@media (max-height: 700px) {
+	.video-header > #carousel .carousel-item > .content-wrapper > .activity-name {
+		max-width: 480px;
+		width: 100%;
+		margin-top: -100px;
+	}
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
+	text-shadow: 2px 2px 5px #888;
+	font-size: 34px;
+	font-weight: bold;
+	display: block;
+}
+
+@media (min-width: 576px) {
+	.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
+		font-size: 60px;
+	}
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
+	text-shadow: 2px 2px 5px #888;
+	font-size: 23.8px;
+	font-weight: 300;
+	display: block;
+}
+
+@media (min-width: 576px) {
+	.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
+		font-size: 42px;
+	}
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader > .chef {
+	color: #f9fc04;
+	font-style: italic;
+	border-bottom: 1px #f9fc04 solid;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
+	display: flex;
+	margin-top: 120px;
+}
+
+@media (max-height: 700px) {
+	.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
+		display: none;
+	}
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper:hover > .activity-tabs {
+	visibility: visible;
+	opacity: 1;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs {
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0.5s, opacity 0.5s linear;
+	padding-left: 20px;
+	color: white;
+	justify-content: center;
+	align-items: flex-start;
+	flex-direction: column;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab {
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab:last-child {
+	margin-bottom: 0;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab > .text {
+	font-weight: bold;
+	font-style: italic;
+	font-size: 16px;
+	margin-left: 15px;
+	text-shadow: 2px 2px 5px #888;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab .svg {
+	padding: 13px;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab.\--share {
+	position: relative;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab.\--share:focus > .share-dropdown {
+	display: flex;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab > .share-dropdown {
+	position: absolute;
+	display: none;
+	top: 60px;
+	left: 0;
+}
+
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab > .share-dropdown > .icon-wrapper {
+	margin-right: 10px;
 }
 
 .activity-detail-wrapper {
@@ -14158,149 +14311,5 @@ form .error-msg > .text {
   color: white;
   border: none;
   border-radius: 40px;
-}
-
-.activity-header > .half-square {
-  position: absolute;
-  z-index: 9;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 10vh;
-  display: block;
-  background: white;
-  background: linear-gradient(to bottom left, transparent 50%, white 50%);
-}
-
-.activity-header > #carousel > .carousel-indicators {
-  margin-bottom: 10vh;
-}
-
-.activity-header > #carousel .carousel-item {
-  height: 100vh;
-  position: relative;
-}
-
-.activity-header > #carousel .carousel-item .video {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 6%;
-  width: 100%;
-  padding-right: 20px;
-}
-
-@media (max-height: 700px) and (max-width: 460px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper {
-    top: 60%;
-  }
-}
-
-@media (min-height: 800px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper {
-    top: 20%;
-    transform: translateY(0);
-  }
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name {
-  color: white;
-  width: 100%;
-  padding-right: 20px;
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-  font-weight: bold;
-  font-size: 34px;
-  width: 100%;
-  text-align: right;
-}
-
-@media (min-width: 576px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-    font-size: 60px;
-  }
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-  font-size: 23.8px;
-  width: 100%;
-  font-weight: 300;
-  text-align: right;
-}
-
-@media (min-width: 576px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-    font-size: 42px;
-  }
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader > .chef {
-  color: #f9fc04;
-  font-style: italic;
-  border-bottom: 1px #f9fc04 solid;
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper {
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 576px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper {
-    margin-left: auto;
-  }
-}
-
-@media (min-width: 768px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper {
-    width: 100%;
-    text-align: left;
-  }
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-name > .search-box-wrapper > .search-group {
-  max-width: 400px;
-  width: 100%;
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
-  margin-top: 150px;
-  justify-content: flex-end;
-  margin-right: 20px;
-  display: none;
-}
-
-@media (min-height: 740px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
-    display: flex;
-  }
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-story {
-  padding: 40px 20px 40px 0;
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-story > .activity-wrapper:last-child {
-  display: none;
-}
-
-@media (min-width: 990px) {
-  .activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-story > .activity-wrapper:last-child {
-    display: block;
-  }
-}
-
-.activity-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-story .activity-card {
-  width: 250px;
-  height: 250px;
-  margin-right: 30px;
 }
 

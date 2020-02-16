@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <section class="activity-header">
+    <section class="video-header">
         <!-- Carousel -->
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel"
              data-interval="60000">
@@ -44,17 +44,17 @@
                                     type="video/mp4" />
                         </video>
                         <!-- Content Header -->
-                        <div class="content-wrapper">
+                        <div class="content-wrapper" style="z-index: 10;">
                             <!-- Activity Name , Search -->
                             <div class="activity-name">
                                 <h1 class="header">@Master Studio</h1>
-                                <h2 class="subheader">Meet Real <a class="chef"
-                                                                   href="#">{{ $headActivity['category_name'] }}</a>
+                                <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a class="chef"
+                                                                                        href="#">{{ $headActivity['category_name'] }}</a>
                                 </h2>
                             </div>
                             <!-- End Activity Name , Search -->
                             <div class="activity-detail-wrapper">
-
+                                @include('components.activity-card', ['size'=>80, 'activity'=> $headActivity])
                                 <div class="activity-tabs d-none d-sm-flex">
                                     <div class="activity-tab"
                                          onclick="window.location.href= '/activity/{{ $headActivity['activity_url_name'] }}'">
@@ -98,29 +98,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                @include('components.activity-card', ['size'=>80, 'activity'=> $headActivity])
                             </div>
                         </div>
                         <!-- End Content Header -->
                     </div>
                 @endforeach
-                {{--                <div class="carousel-item">--}}
-                {{--                    <video class="video video-fluid" autoplay loop muted>--}}
-                {{--                        <source src="https://mdbootstrap.com/img/video/forest.mp4"--}}
-                {{--                                type="video/mp4" />--}}
-                {{--                    </video>--}}
-                {{--                </div>--}}
-                {{--                <div class="carousel-item">--}}
-                {{--                    <video class="video video-fluid" autoplay loop muted>--}}
-                {{--                        <source src="https://mdbootstrap.com/img/video/Agua-natural.mp4"--}}
-                {{--                                type="video/mp4" />--}}
-                {{--                    </video>--}}
-                {{--                </div>--}}
             </div>
             <!-- End Slideshow -->
         </div>
         <!-- End Carousel -->
-        <div class="search-group" tabindex="-1">
+        <div class="search-group" tabindex="-1" style="width: 450px">
             <input class="search-box" placeholder="Search your activities..." type="text"
                    onKeyUp="handleChange(this)">
             <div class="search-dropdown --header">
@@ -130,6 +117,7 @@
         <div class="overlay --header"
              style="z-index: 9; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.8) 100%);"></div>
         <div class="half-square"></div>
+
     </section>
 
     <section class="your-activity">
