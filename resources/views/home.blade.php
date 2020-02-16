@@ -151,7 +151,7 @@
                         $now = new DateTime(date("Y-m-d H:i:s"));
                         $story['story_day_ago'] = $storyCreated->diff($now);
 
-                        $activity['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
+                        $activity['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->where('activity_paid', 1)->get();
 
                     @endphp
                     <div class="activity-wrapper">

@@ -67,7 +67,7 @@
             @endif
             @foreach ($stories as $story)
                 @php
-                    $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->get();
+                    $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->where('activity_paid', 1)->get();
                 @endphp
                 <div class="activity-wrapper">
                     <div class="activity-card">
