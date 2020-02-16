@@ -22,7 +22,8 @@
 @endphp
 @if(!empty($activity))
     <div class="activity-detail {{!empty($animate) ? '--fade' : '' }} justify-content-between flex-wrap"
-         style="max-width: 290px">
+         style="max-width: 290px"
+         onclick="window.location.href='/activity/{{ $activity['activity_url_name'] }}'">
         <div class="activity-title" style="margin-left: 5px">
             <div class="image-wrapper"
                  style="margin-top: -{{ $size/2.1 }}px; width: {{ $size }}px; height: {{ $size }}px">

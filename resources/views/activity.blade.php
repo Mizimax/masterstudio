@@ -254,7 +254,7 @@
     <div class="record-video">
         <div class="activity-select" style="margin-bottom: 10px">
             <select class="form-control" name="activity-story" id="activity-story">
-                <option>Select activity you want to share story.</option>
+                <option value="0">Select activity you want to share story.</option>
                 @foreach($myActivities as $myActivity)
                     <option value="{{ $myActivity['activity_id'] }}">{{ $myActivity['activity_name'] }}</option>
                 @endforeach
@@ -371,6 +371,9 @@
                       $('#upload-btn').removeClass('d-none')
 
                       $('#upload-btn').off('click').on('click', function () {
+                        if ($('#activity-story').val() == '0') {
+                          alert('Please select activity')
+                        }
                         var formData = new FormData()
                         formData.append('video-blob', fileObject)
                         formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
