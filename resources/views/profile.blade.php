@@ -375,6 +375,41 @@
 
       var user_gallery = @json($user['user_gallery'])
 
+      function changeProfile() {
+        var formData = new FormData()
+        formData.append('image', $('#profile-img')[0].files[0])
+
+        $.ajax({
+          url: '/user/{{ Auth::id() }}/profile/change',
+          type: 'post',
+          headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          },
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (res) {
+            $('#image-profile').attr('src', res['image_url'])
+          },
+        })
+      }
+
+      function deleteProfile() {
+        $.ajax({
+          url: '/user/' + {{ Auth::id() }} +'/profile/delete',
+          type: 'post',
+          dataType: 'json',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (res) {
+            $('#image-profile').attr('src', res['image_url'])
+          },
+        })
+      }
+
       function deletePicGallery(id, ele) {
         user_gallery.splice(id, 1)
         $.ajax({
