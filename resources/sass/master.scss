@@ -226,19 +226,22 @@
 		@media (max-width: breakpoint-min(sm)) {
 			top: auto;
 			bottom: 60px;
+			transform: translate(-50%, 0);
 		}
 
 
 		> .header {
-			font-size: 28px;
+			font-size: 50px;
 			text-align: left;
+			width: 200px;
 			text-shadow: 2px 2px 5px #888;
 
 			@include mobile-up {
-				font-size: 32px;
+				width: auto;
 			}
 
 			@include tablet-up {
+				width: auto;
 				font-size: $activity-header;
 			}
 		}

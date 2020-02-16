@@ -16,7 +16,7 @@
         </div>
         <div class="overlay"></div>
         <div class="header-content">
-            <h1 class="header">Explore the real master ...</h1>
+            <h1 class="header">Explore the real master...</h1>
             <div class="search-box-wrapper">
                 <img src="/img/icon/search-solid.svg" class="svg">
                 <input class="search-box" placeholder="Master name" type="text"
