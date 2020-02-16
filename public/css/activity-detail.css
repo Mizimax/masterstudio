@@ -13528,8 +13528,7 @@ section.activity-detail-section > .content > .activity-section.\--header > .subt
   margin-top: 15px;
   font-size: 16px;
   font-weight: 300;
-  text-align: left;
-  text-indent: 2em;
+	text-align: center;
 }
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper {
@@ -13571,13 +13570,13 @@ section.activity-detail-section > .content > .activity-section.\--exp > .benefit
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .content > .name {
   margin-top: 7px;
-  font-size: 14px;
+	font-size: 16px;
   font-weight: bold;
 }
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .content > .description {
   margin-top: 10px;
-  font-size: 12px;
+	font-size: 16px;
   height: 55px;
   overflow-y: auto;
   text-align: left;
@@ -13631,14 +13630,12 @@ section.activity-detail-section > .content > .activity-section.\--studio > .stud
 section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .sub-title {
   margin: 15px 0 20px;
   font-size: 14px;
-  text-align: left;
   color: #555;
 }
 
 section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section {
   padding: 10px 0;
   border-top: 1px solid #ccc;
-  text-align: left;
 }
 
 section.activity-detail-section > .content > .activity-section.\--studio > .studio-wrapper > .studio-detail > .studio-section > .title {

@@ -224,8 +224,7 @@ section.activity-detail-section {
 					margin-top: 15px;
 					font-size: 16px;
 					font-weight: 300;
-					text-align: left;
-					text-indent: 2em;
+					text-align: center;
 				}
 			}
 
@@ -265,13 +264,13 @@ section.activity-detail-section {
 
 							> .name {
 								margin-top: 7px;
-								font-size: 14px;
+								font-size: 16px;
 								font-weight: bold;
 							}
 
 							> .description {
 								margin-top: 10px;
-								font-size: 12px;
+								font-size: 16px;
 								height: 55px;
 								overflow-y: auto;
 								text-align: left;
@@ -324,14 +323,12 @@ section.activity-detail-section {
 						> .sub-title {
 							margin: 15px 0 20px;
 							font-size: 14px;
-							text-align: left;
 							color: #555;
 						}
 
 						> .studio-section {
 							padding: 10px 0;
 							border-top: 1px solid #ccc;
-							text-align: left;
 
 							> .title {
 								margin-bottom: 10px;

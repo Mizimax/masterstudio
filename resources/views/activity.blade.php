@@ -124,7 +124,7 @@
         <textarea style="opacity:0; height: 0; padding: 0;" id="url"></textarea>
         <h3 class="header">Your Activity</h3>
         @include('components.category-interest')
-        @if(!empty($user))
+        @if(!empty($user) && !$myActivities->isEmpty())
             <div class="activity-timeline">
                 <div class="nav-tab nav tabs-button flex-nowrap">
                     <a class="tab-link primary-button --outline active" data-toggle="tab"
@@ -250,6 +250,7 @@
         </section>
     </section>
 
+    @if(!$myActivities->isEmpty())
     <div class="record-video">
         <div class="activity-select" style="margin-bottom: 10px">
             <select class="form-control" name="activity-story" id="activity-story">
@@ -272,6 +273,7 @@
         </div>
         {{--        <div class="overlay"></div>--}}
     </div>
+    @endif
 @endsection
 
 @section('script')

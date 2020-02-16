@@ -13840,190 +13840,190 @@ form .error-msg > .text {
 .video-header > .search-group {
   position: absolute;
   top: 50%;
-	transform: translateY(-50%);
-	margin-top: -140px;
-	left: 6%;
-	margin-left: 20px;
+  transform: translateY(-50%);
+  margin-top: -140px;
+  left: 6%;
+  margin-left: 20px;
   z-index: 1000;
 }
 
 @media (max-height: 700px) {
-	.video-header > .search-group {
+  .video-header > .search-group {
     margin-top: 50px;
   }
 }
 
 @media (max-height: 700px) and (max-width: 576px) {
-	.video-header > .search-group {
-		margin-top: 0 !important;
-		top: 70%;
-	}
+  .video-header > .search-group {
+    margin-top: 0 !important;
+    top: 70%;
+  }
 }
 
 @media (max-width: 576px) {
-	.video-header > .search-group {
-		margin-top: -150px;
-		max-width: 300px;
-	}
+  .video-header > .search-group {
+    margin-top: -150px;
+    max-width: 300px;
+  }
 }
 
 .video-header > .half-square {
-	position: absolute;
-	z-index: 9;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 10vh;
-	display: block;
-	background: white;
-	background: linear-gradient(to bottom left, transparent 50%, white 50%);
+  position: absolute;
+  z-index: 9;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10vh;
+  display: block;
+  background: white;
+  background: linear-gradient(to bottom left, transparent 50%, white 50%);
 }
 
 .video-header > #carousel > .carousel-indicators {
-	margin-bottom: 10vh;
+  margin-bottom: 10vh;
 }
 
 .video-header > #carousel .carousel-item {
-	height: 100vh;
-	position: relative;
+  height: 100vh;
+  position: relative;
 }
 
 .video-header > #carousel .carousel-item .video {
-	width: 100%;
-	height: 100%;
-	-o-object-fit: cover;
-	object-fit: cover;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper {
-	width: 100%;
-	position: absolute;
-	z-index: 999;
-	padding: 0 20px;
-	left: 6%;
-	max-width: 600px;
-	width: 100%;
-	top: 50%;
-	transform: translateY(-50%);
+  width: 100%;
+  position: absolute;
+  z-index: 999;
+  padding: 0 20px;
+  left: 6%;
+  max-width: 600px;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 @media (max-height: 700px) and (max-width: 460px) {
-	.video-header > #carousel .carousel-item > .content-wrapper {
-		top: 70%;
-	}
+  .video-header > #carousel .carousel-item > .content-wrapper {
+    top: 70%;
+  }
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name {
-	color: white;
+  color: white;
 }
 
 @media (max-height: 700px) {
-	.video-header > #carousel .carousel-item > .content-wrapper > .activity-name {
-		max-width: 480px;
-		width: 100%;
-		margin-top: -100px;
-	}
+  .video-header > #carousel .carousel-item > .content-wrapper > .activity-name {
+    max-width: 480px;
+    width: 100%;
+    margin-top: -100px;
+  }
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-	text-shadow: 2px 2px 5px #888;
-	font-size: 34px;
-	font-weight: bold;
-	display: block;
+  text-shadow: 2px 2px 5px #888;
+  font-size: 34px;
+  font-weight: bold;
+  display: block;
 }
 
 @media (min-width: 576px) {
-	.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-		font-size: 60px;
-	}
+  .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
+    font-size: 60px;
+  }
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-	text-shadow: 2px 2px 5px #888;
-	font-size: 23.8px;
-	font-weight: 300;
-	display: block;
+  text-shadow: 2px 2px 5px #888;
+  font-size: 23.8px;
+  font-weight: 300;
+  display: block;
 }
 
 @media (min-width: 576px) {
-	.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
-		font-size: 42px;
-	}
+  .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
+    font-size: 42px;
+  }
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader > .chef {
-	color: #f9fc04;
-	font-style: italic;
-	border-bottom: 1px #f9fc04 solid;
+  color: #f9fc04;
+  font-style: italic;
+  border-bottom: 1px #f9fc04 solid;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
-	display: flex;
-	margin-top: 120px;
+  display: flex;
+  margin-top: 120px;
 }
 
 @media (max-height: 700px) {
-	.video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
-		display: none;
-	}
+  .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper {
+    display: none;
+  }
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper:hover > .activity-tabs {
-	visibility: visible;
-	opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs {
-	visibility: hidden;
-	opacity: 0;
-	transition: visibility 0.5s, opacity 0.5s linear;
-	padding-left: 20px;
-	color: white;
-	justify-content: center;
-	align-items: flex-start;
-	flex-direction: column;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+  padding-left: 20px;
+  color: white;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab {
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	margin-bottom: 15px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab > .text {
-	font-weight: bold;
-	font-style: italic;
-	font-size: 16px;
-	margin-left: 15px;
-	text-shadow: 2px 2px 5px #888;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 16px;
+  margin-left: 15px;
+  text-shadow: 2px 2px 5px #888;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab .svg {
-	padding: 13px;
+  padding: 13px;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab.\--share {
-	position: relative;
+  position: relative;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab.\--share:focus > .share-dropdown {
-	display: flex;
+  display: flex;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab > .share-dropdown {
-	position: absolute;
-	display: none;
-	top: 60px;
-	left: 0;
+  position: absolute;
+  display: none;
+  top: 60px;
+  left: 0;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-detail-wrapper > .activity-tabs > .activity-tab > .share-dropdown > .icon-wrapper {
-	margin-right: 10px;
+  margin-right: 10px;
 }
 
 .activity-detail-wrapper {
@@ -14090,9 +14090,9 @@ form .error-msg > .text {
 }
 
 .your-activity > .activity-timeline {
-	position: relative;
+  position: relative;
   display: flex;
-	justify-content: flex-start;
+  justify-content: flex-start;
   max-width: 1100px;
   width: 100%;
   margin: 0 auto;
@@ -14100,29 +14100,29 @@ form .error-msg > .text {
 }
 
 .your-activity > .activity-timeline > .tabs-button {
-	display: flex;
-	position: absolute;
-	left: 50%;
-	top: 50px;
-	transform: translateX(-50%);
+  display: flex;
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
 }
 
 .your-activity > .activity-timeline > .tabs-button .primary-button:first-child,
 .your-activity > .activity-timeline > .tabs-button .activity-detail > .activity-add > .badge-wrapper > .badge:first-child {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 .your-activity > .activity-timeline > .tabs-button .primary-button.active,
 .your-activity > .activity-timeline > .tabs-button .activity-detail > .activity-add > .badge-wrapper > .active.badge {
-	color: white;
-	background: #f14ea6;
+  color: white;
+  background: #f14ea6;
 }
 
 @media (min-width: 576px) {
-	.your-activity > .activity-timeline > .tabs-button {
-		left: 270px;
-		transform: translateX(0);
-	}
+  .your-activity > .activity-timeline > .tabs-button {
+    left: 270px;
+    transform: translateX(0);
+  }
 }
 
 .your-activity > .activity-timeline .your-activity-timeline {
@@ -14133,44 +14133,44 @@ form .error-msg > .text {
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .image-container {
-	padding-left: 80px;
+  padding-left: 80px;
 }
 
 @media (min-width: 576px) {
-	.your-activity > .activity-timeline .your-activity-timeline > .image-container {
-		padding-left: 60px;
-	}
+  .your-activity > .activity-timeline .your-activity-timeline > .image-container {
+    padding-left: 60px;
+  }
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .image-container > .your-image {
   position: absolute;
-	z-index: 100;
+  z-index: 100;
   top: 50%;
   left: 0;
   transform: translateY(-50%);
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .image-container:hover + .your-info {
-	display: block;
+  display: block;
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .your-info {
   width: 170px;
   border-radius: 15px;
   padding: 20px;
-	background: white;
-	left: 40px;
-	position: absolute;
-	z-index: 99;
-	display: none;
+  background: white;
+  left: 40px;
+  position: absolute;
+  z-index: 99;
+  display: none;
 }
 
 @media (min-width: 576px) {
-	.your-activity > .activity-timeline .your-activity-timeline > .your-info {
-		display: block;
-		position: relative;
-		left: 0;
-	}
+  .your-activity > .activity-timeline .your-activity-timeline > .your-info {
+    display: block;
+    position: relative;
+    left: 0;
+  }
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .your-info > * {
@@ -14274,7 +14274,7 @@ form .error-msg > .text {
 .your-activity > .activity-timeline .add-activity-story {
   display: flex;
   align-items: center;
-	position: relative;
+  position: relative;
 }
 
 .your-activity > .activity-timeline .add-activity-story > .add-button {
@@ -14288,10 +14288,10 @@ form .error-msg > .text {
   height: 80px;
   background: white;
   cursor: pointer;
-	position: absolute;
-	right: -10px;
-	transform: translateY(-70%);
-	top: 50%;
+  position: absolute;
+  right: -10px;
+  transform: translateY(-70%);
+  top: 50%;
 }
 
 .your-activity > .activity-timeline .add-activity-story > .add-button > .svg {
