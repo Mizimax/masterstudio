@@ -104,18 +104,6 @@
                         <!-- End Content Header -->
                     </div>
                 @endforeach
-                {{--                <div class="carousel-item">--}}
-                {{--                    <video class="video video-fluid" autoplay loop muted>--}}
-                {{--                        <source src="https://mdbootstrap.com/img/video/forest.mp4"--}}
-                {{--                                type="video/mp4" />--}}
-                {{--                    </video>--}}
-                {{--                </div>--}}
-                {{--                <div class="carousel-item">--}}
-                {{--                    <video class="video video-fluid" autoplay loop muted>--}}
-                {{--                        <source src="https://mdbootstrap.com/img/video/Agua-natural.mp4"--}}
-                {{--                                type="video/mp4" />--}}
-                {{--                    </video>--}}
-                {{--                </div>--}}
             </div>
             <!-- End Slideshow -->
         </div>

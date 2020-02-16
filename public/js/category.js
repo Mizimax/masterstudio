@@ -16,8 +16,8 @@ var categoryInit = function () {
     })
 
     var html = `
-       <div id="cat-${categoryId}" class="interest-activity" tabindex="-1">
-            <div class="icon-container d-none" align="center" cat-id="${categoryId}">
+       <div id="cat-${categoryId}" class="interest-activity" tabindex="-1" cat-id="${categoryId}">
+            <div class="icon-container d-none" align="center">
                 <img src="/img/icon/close.svg" class="svg">
             </div>
             <div class="icon">
@@ -53,9 +53,6 @@ var categoryInit = function () {
   $('.interest-group').delegate('.interest-activity', 'click', function (e) {
     if ($(e.target).parents('.icon-container').length !== 0) {
       var id = $(this).attr('id')
-      if ($('.search-resultt.d-flex').length === 0) {
-        $('.already').removeClass('d-none')
-      }
       $(this).remove()
       $('#' + id + '-select').addClass('d-flex')
       $.ajax({
@@ -68,6 +65,9 @@ var categoryInit = function () {
           '_token': $('meta[name="csrf-token"]').attr('content'),
         }),
       })
+      if ($('.search-resultt.d-flex').length !== 0) {
+        $('.already').addClass('d-none')
+      }
       if ($('.interest-activity').length != 0) {
         $('.edit.d-none').removeClass('d-none')
       } else {
@@ -88,6 +88,10 @@ var categoryInit = function () {
 
   $('.category-interest > .edit').click(function () {
     $('.interest-activity > .icon-container').toggleClass('d-none')
+  })
+
+  $('.add-interest-activity').click(function () {
+    $('.interest-activity > .icon-container').addClass('d-none')
   })
 }
 
