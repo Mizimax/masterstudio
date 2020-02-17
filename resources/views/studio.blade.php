@@ -242,7 +242,7 @@
 
           studios[i]['marker'] = marker
 
-          marker.addListener('mouseover', function (e) {
+          marker.addListener('mousedown', function (e) {
             var lat = Math.round(e.latLng.lat() * 10000000) / 10000000
             var long = Math.round(e.latLng.lng() * 10000000) / 10000000
 
