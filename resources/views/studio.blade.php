@@ -39,8 +39,8 @@
 
     </div>
 
-    <div class="overlay d-block d-sm-none"
-         onclick="$(this).addClass('d-none');$(this).removeClass('d-block')"
+    <div id="studio-overlay" class="overlay d-block d-sm-none"
+         onclick="$(this).addClass('d-none');$(this).removeClass('d-block');$('.map-detail').css('display', 'none')"
          style="background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.8) 100%);">
 
     </div>
@@ -242,18 +242,24 @@
 
           studios[i]['marker'] = marker
 
-          marker.addListener('mousedown', function (e) {
+          var markerFn = function (e) {
             var lat = Math.round(e.latLng.lat() * 10000000) / 10000000
             var long = Math.round(e.latLng.lng() * 10000000) / 10000000
 
             var mouseE
             for (var ppt in e) {
-              if (e[ppt] instanceof MouseEvent) {
+              if (e[ppt] instanceof MouseEvent || e[ppt] instanceof TouchEvent) {
                 mouseE = ppt
               }
             }
-            var x = e[mouseE].x
-            var y = e[mouseE].y
+            var x, y
+            if (!(e[mouseE] instanceof TouchEvent)) {
+              x = e[mouseE].x
+              y = e[mouseE].y
+            }
+
+            console.log('>> x: ', x)
+            console.log('>> y: ', y)
 
             var studio = studios.find(function (studio) {
               return studio.lat == lat && studio.long == long
@@ -261,8 +267,18 @@
             // $('.map-detail .title').text(lat)
 
             $('.map-detail').css('display', 'block')
-            $('.map-detail').css('top', y)
-            $('.map-detail').css('left', x)
+
+            if (e[mouseE] instanceof TouchEvent) {
+              $('.map-detail').css('top', '50%')
+              $('.map-detail').css('left', '50%')
+              $('.map-detail').css('transform', 'translate(-50%,-50%)')
+              $('#studio-overlay').removeClass('d-none')
+              $('#studio-overlay').addClass('d-block')
+              $('#studio-overlay').css('z-index', '99')
+            } else {
+              $('.map-detail').css('top', y)
+              $('.map-detail').css('left', x)
+            }
 
             if ($('.map-detail').html().trim() === '' || $('.map-detail #studioId').attr('val') != studio.studio.studio_id) {
               $('.map-detail').html(mapCard(studio.studio))
@@ -275,7 +291,14 @@
               })
             }
 
-          })
+          }
+          var tap = ('ontouchstart' in document.documentElement)
+
+          if (tap) {
+            marker.addListener('click', markerFn)
+          } else {
+            marker.addListener('mouseover', markerFn)
+          }
           marker.addListener('mouseout', function () {
             $('.map-detail').css('display', 'none')
           })
@@ -299,10 +322,17 @@
 
       function searchStudio() {
         var searchText = $('#search-studio').val()
+        if (searchText == '') {
+          alert('Please type to search box')
+          return
+        }
         var studio = allStudios.find(function (studio) {
           return studio.studio.studio_name.toLowerCase().indexOf(searchText) !== -1
         })
-
+        if (!studio) {
+          alert('No studio result')
+          return
+        }
         map.panTo(studio.marker.getPosition())
         map.setZoom(14)
       }
