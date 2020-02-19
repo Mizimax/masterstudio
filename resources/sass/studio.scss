@@ -27,7 +27,49 @@
 	}
 }
 
-.search-box-wrapper
+.search-box-wrapper {
+	display: flex;
+	text-align: center;
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 550px;
+	width: 90%;
+	flex-wrap: wrap;
+	justify-content: center;
+	bottom: 50px !important;
+	z-index: 8;
+
+	@include mobile-up {
+		bottom: 100px !important;
+	}
+
+	.search-box {
+		width: 100%;
+		font-size: 16px;
+		font-style: italic;
+		color: black;
+		padding: 10px 20px;
+		outline: none;
+		border: 1px solid #ccc;
+		@extend .input-transparent;
+	}
+
+	.button {
+		height: 100%;
+		border: none;
+		border-radius: 40px;
+		padding: 15px 40px;
+		background: #2aace2;
+		color: white;
+		margin-top: 10px;
+
+		@include mobile-up {
+			margin-top: 0;
+		}
+	}
+}
+
 .studio-filter {
 	display: flex;
 	flex-direction: column;

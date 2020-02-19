@@ -11459,6 +11459,7 @@ button:focus {
 }
 
 .input-transparent,
+.search-box-wrapper .search-box,
 .search-group > .search-box {
   border: 1px solid #fff;
   background: transparent;
@@ -11468,6 +11469,7 @@ button:focus {
 }
 
 .input-transparent::-webkit-input-placeholder,
+.search-box-wrapper .search-box::-webkit-input-placeholder,
 .search-group > .search-box::-webkit-input-placeholder {
   /* Edge */
   color: #ddd;
@@ -11475,6 +11477,7 @@ button:focus {
 }
 
 .input-transparent:-ms-input-placeholder,
+.search-box-wrapper .search-box:-ms-input-placeholder,
 .search-group > .search-box:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #ddd;
@@ -11482,18 +11485,21 @@ button:focus {
 }
 
 .input-transparent::-moz-placeholder,
+.search-box-wrapper .search-box::-moz-placeholder,
 .search-group > .search-box::-moz-placeholder {
   color: #ddd;
   font-weight: 100;
 }
 
 .input-transparent::-ms-input-placeholder,
+.search-box-wrapper .search-box::-ms-input-placeholder,
 .search-group > .search-box::-ms-input-placeholder {
   color: #ddd;
   font-weight: 100;
 }
 
 .input-transparent::placeholder,
+.search-box-wrapper .search-box::placeholder,
 .search-group > .search-box::placeholder {
   color: #ddd;
   font-weight: 100;
@@ -12307,13 +12313,13 @@ button:focus {
 }
 
 .my-activity > .my-activity-card > .image-wrapper {
-	text-align: center;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .image-wrapper {
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .image-wrapper {
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .image-wrapper > .image {
@@ -12326,15 +12332,15 @@ button:focus {
 
 .my-activity > .my-activity-card > .description {
   flex: 1;
-	padding: 20px;
-	text-align: center;
+  padding: 20px;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .description {
-		padding: 0 20px;
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .description {
+    padding: 0 20px;
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .description > .header {
@@ -12346,17 +12352,17 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-	align-items: center;
+  align-items: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action {
-		align-items: flex-end;
-	}
+  .my-activity > .my-activity-card > .action {
+    align-items: flex-end;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .price-status {
-	position: relative;
+  position: relative;
   right: 0;
   top: 0;
   font-size: 20px;
@@ -12365,9 +12371,9 @@ button:focus {
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action > .price-status {
-		position: absolute;
-	}
+  .my-activity > .my-activity-card > .action > .price-status {
+    position: absolute;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .pay-button {
@@ -13299,7 +13305,53 @@ form .error-msg > .text {
   height: 30px !important;
 }
 
-.search-box-wrapper .studio-filter {
+.search-box-wrapper {
+  display: flex;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 550px;
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
+  bottom: 50px !important;
+  z-index: 8;
+}
+
+@media (min-width: 576px) {
+  .search-box-wrapper {
+    bottom: 100px !important;
+  }
+}
+
+.search-box-wrapper .search-box {
+  width: 100%;
+  font-size: 16px;
+  font-style: italic;
+  color: black;
+  padding: 10px 20px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.search-box-wrapper .button {
+  height: 100%;
+  border: none;
+  border-radius: 40px;
+  padding: 15px 40px;
+  background: #2aace2;
+  color: white;
+  margin-top: 10px;
+}
+
+@media (min-width: 576px) {
+  .search-box-wrapper .button {
+    margin-top: 0;
+  }
+}
+
+.studio-filter {
   display: flex;
   flex-direction: column;
   align-items: center;
