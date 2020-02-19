@@ -462,10 +462,13 @@
                                     Bath</h5>
                                 <img src="{{ count($activity['activity_pic']) !== 0 ? $activity['activity_pic'][0] : $activity['activity_video'][0] }}"
                                      class="activity-image">
-                                <button class="pay-button" onclick="modal('all')">View all
+                                <button class="pay-button"
+                                        onclick="$('#payment-modal').modal('hide');modal('all')">
+                                    View all
                                     activity
                                 </button>
-                                <button class="pay-button mb-3 --outline" onclick="closeModal()">
+                                <button class="pay-button mb-3 --outline"
+                                        onclick="$('#payment-modal').modal('hide')">
                                     Back to homepage
                                 </button>
                             </div>
