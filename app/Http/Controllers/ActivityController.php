@@ -36,10 +36,12 @@
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 				->where('as.user_id', $user['user_id'])
+				->orderBy('as.activity_story_id', 'desc')
 				->get();
 			$myActivities = UserActivity::from('user_activities as ua')
 				->join('activities as ac', 'ua.activity_id', 'ac.activity_id')
-				->where('ua.user_id', $user['user_id'])->get();
+				->where('ua.user_id', $user['user_id'])
+				->where('ua.user_activity_paid', 1)->get();
 			if ($user['user_id'] === 0) {
 				$user = [];
 			}
@@ -76,7 +78,8 @@
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 				->where('as.activity_id', $activity['activity_id'])
 				->where('as.user_id', $activity['user_id'])
-				->groupBy('as.activity_id')->get();
+				->groupBy('as.activity_id')
+				->get();
 			$comments = ActivityComment::from('activity_comments as acm')
 				->join('activities as ac', 'acm.activity_id', 'ac.activity_id')
 				->join('users AS u', 'u.user_id', '=', 'acm.user_id')

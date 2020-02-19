@@ -395,6 +395,9 @@
 				> .name {
 					font-size: 20px;
 					font-weight: bold;
+					width: 130px;
+					overflow: hidden;
+					text-overflow: ellipsis;
 				}
 
 				span {

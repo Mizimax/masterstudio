@@ -14,19 +14,13 @@
             object-fit: cover;
         }
 
-        .category-interest, .search-box-wrapper {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-
-        }
-
         .category-interest {
-            bottom: 180px;
+            position: sticky;
+            bottom: 100px !important;
+            left: auto;
             z-index: 99;
         }
+
     </style>
 @endsection
 
@@ -39,21 +33,25 @@
 
     </div>
 
-    <div id="studio-overlay" class="overlay d-block d-sm-none"
+    <div id="studio-overlay" class="overlay d-none"
          onclick="$(this).addClass('d-none');$(this).removeClass('d-block');$('.map-detail').css('display', 'none')"
          style="background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0.8) 100%);">
 
     </div>
 
-    @include('components/category-interest')
-    <div class="search-box-wrapper row align-items-center no-gutters">
-        <div class="col-sm-8">
-            <input id="search-studio" class="search-box" placeholder="Search your activities..."
-                   type="text">
+    <div class="studio-filter">
+        @include('components/category-interest')
+        <div class="search-box-wrapper row align-items-center no-gutters">
+            <div class="col-sm-8">
+                <input id="search-studio" class="search-box" placeholder="Search your activities..."
+                       type="text">
+            </div>
+            <div class="col-sm-4">
+                <button class="button" onclick="searchStudio()">Explore</button>
+            </div>
         </div>
-        <div class="col-sm-4">
-            <button class="button" onclick="searchStudio()">Explore</button>
-        </div>
+    </div>
+    <div class="space">
     </div>
 
 

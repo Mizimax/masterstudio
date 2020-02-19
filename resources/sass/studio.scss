@@ -31,6 +31,8 @@
 	display: flex;
 	text-align: center;
 	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
 	max-width: 550px;
 	width: 90%;
 	flex-wrap: wrap;
@@ -49,6 +51,7 @@
 		color: black;
 		padding: 10px 20px;
 		outline: none;
+		border: 1px solid #ccc;
 		@extend .input-transparent;
 	}
 
@@ -65,4 +68,25 @@
 			margin-top: 0;
 		}
 	}
+}
+
+.studio-filter {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100vh + 230px);
+	background: transparent;
+	padding: 20px;
+	text-align: center;
+	@include shadow(0px, 0px, 15px, 1px, 0.2);
+}
+
+.space {
+	height: 230px;
 }

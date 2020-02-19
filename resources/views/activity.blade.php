@@ -318,6 +318,8 @@
 
           $('.record-video').off('click').on('click', function (event) {
             if ($(event.target).hasClass('record-video')) {
+              $('#upload-btn').prop('disabled', false)
+              $('#upload-btn').text('Upload')
               $(this).toggleClass('d-flex')
               mediaStream.stop()
             }
@@ -345,6 +347,8 @@
                   console.log('record')
                   if (!MasterStudio.videoPreview.play) {
                     recorder.startRecording()
+                    $(this).prop('disabled', false)
+                    $(this).text('Upload')
                     $('#upload-btn').addClass('d-none')
                     $(this).text('Stop recording...')
 
@@ -374,6 +378,8 @@
                         if ($('#activity-story').val() == '0') {
                           alert('Please select activity')
                         }
+                        $(this).prop('disabled', true)
+                        $(this).text('Uploading...')
                         var formData = new FormData()
                         formData.append('video-blob', fileObject)
                         formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
