@@ -287,6 +287,11 @@
           $('[data-toggle="tooltip"]').tooltip()
         })
 
+        var hash = location.hash.substr(1)
+        if (hash === 'login') {
+          modal('login')
+        }
+
       })
     </script>
     <script>
