@@ -387,7 +387,7 @@
                                 </p>
                                 <div class="d-flex">
                                     <button class="pay-button --outline mb-3 mr-1"
-                                            onclick="closeModal()">Cancel
+                                            onclick="$('#payment-modal').modal('toggle');">Cancel
                                     </button>
                                     <form onsubmit="omiseOpen(event)" style="width: 100%"
                                           id="omiseForm" name="checkoutForm" method="POST"

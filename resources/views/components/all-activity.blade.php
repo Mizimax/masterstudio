@@ -10,8 +10,8 @@
             $video = count($videos) !== 0 ? $videos[0] : '';
             $pic = count($pics) !== 0 ? $videos[0] : '';
         @endphp
-        <div class="my-activity-card">
-            <div class="image-wrapper">
+        <div class="my-activity-card row no-gutters">
+            <div class="image-wrapper col-sm-auto">
                 @if($pic !== '')
                     <img class="image" src="{{ $pic }}">
                 @else
@@ -21,7 +21,7 @@
                     </video>
                 @endif
             </div>
-            <div class="description">
+            <div class="description col-sm">
                 <h3 class="header">{{ $nowActivity['activity_name'] }}</h3>
                 <p class="content">
                     Date start : {{ $nowActivity['activity_start'] }}<br />
@@ -29,7 +29,7 @@
                     Master : {{ $nowActivity['master_name'] }}
                 </p>
             </div>
-            <div class="action">
+            <div class="action col-sm">
                 <span class="price-status">{{ number_format($nowActivity['activity_price']) }} Bath {{ $nowActivity['user_activity_paid'] === 0 ? 'Interested' : 'Paid' }}</span>
                 @if($nowActivity['user_activity_paid'] === 0)
                     <button class="pay-button"
