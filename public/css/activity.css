@@ -11139,13 +11139,24 @@ img {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
   display: inline-flex;
   border-radius: 100px;
-  padding: 20px;
+  padding: 10px;
   background: white;
   position: relative;
 }
 
 .category-interest > .interest-group {
   display: inline-flex;
+  max-width: 180px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  padding-right: 0;
+}
+
+@media (min-width: 576px) {
+  .category-interest > .interest-group {
+    max-width: 100%;
+  }
 }
 
 .category-interest > .edit {
@@ -11245,6 +11256,8 @@ img {
 .category-interest > .add-interest-activity {
   margin: 0 7px;
   cursor: pointer;
+  padding: 10px;
+  padding-left: 0;
 }
 
 .category-interest > .add-interest-activity > .icon {
@@ -13599,13 +13612,24 @@ form .error-msg > .text {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
   display: inline-flex;
   border-radius: 100px;
-  padding: 20px;
+  padding: 10px;
   background: white;
   position: relative;
 }
 
 .category-interest > .interest-group {
   display: inline-flex;
+  max-width: 180px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  padding-right: 0;
+}
+
+@media (min-width: 576px) {
+  .category-interest > .interest-group {
+    max-width: 100%;
+  }
 }
 
 .category-interest > .edit {
@@ -13705,6 +13729,8 @@ form .error-msg > .text {
 .category-interest > .add-interest-activity {
   margin: 0 7px;
   cursor: pointer;
+  padding: 10px;
+  padding-left: 0;
 }
 
 .category-interest > .add-interest-activity > .icon {
@@ -13892,7 +13918,7 @@ form .error-msg > .text {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-	object-fit: cover;
+     object-fit: cover;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper {
@@ -14180,9 +14206,9 @@ form .error-msg > .text {
 .your-activity > .activity-timeline .your-activity-timeline > .your-info > .name {
   font-size: 20px;
   font-weight: bold;
-	width: 130px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .your-activity > .activity-timeline .your-activity-timeline > .your-info span {

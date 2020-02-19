@@ -2,12 +2,21 @@
     @include shadow(5px, 5px, 15px, 0px, 0.2);
     display: inline-flex;
     border-radius: 100px;
-    padding: 20px;
+	padding: 10px;
     background: white;
 	position: relative;
 
 	> .interest-group {
 		display: inline-flex;
+		max-width: 180px;
+		width: 100%;
+		overflow-x: auto;
+		padding: 10px;
+		padding-right: 0;
+
+		@include mobile-up {
+			max-width: 100%;
+		}
 	}
 
 	> .edit {
@@ -113,6 +122,8 @@
     > .add-interest-activity {
 	    margin: 0 7px;
 	    cursor: pointer;
+	    padding: 10px;
+	    padding-left: 0;
 
 	    > .icon {
 		    border-radius: 50%;

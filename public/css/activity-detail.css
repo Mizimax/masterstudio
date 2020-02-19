@@ -11138,13 +11138,24 @@ section.activity-header #carousel .master-action > .activity-header-detail.actio
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
   display: inline-flex;
   border-radius: 100px;
-  padding: 20px;
+  padding: 10px;
   background: white;
   position: relative;
 }
 
 .category-interest > .interest-group {
   display: inline-flex;
+  max-width: 180px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  padding-right: 0;
+}
+
+@media (min-width: 576px) {
+  .category-interest > .interest-group {
+    max-width: 100%;
+  }
 }
 
 .category-interest > .edit {
@@ -11244,6 +11255,8 @@ section.activity-header #carousel .master-action > .activity-header-detail.actio
 .category-interest > .add-interest-activity {
   margin: 0 7px;
   cursor: pointer;
+  padding: 10px;
+  padding-left: 0;
 }
 
 .category-interest > .add-interest-activity > .icon {
@@ -13528,7 +13541,7 @@ section.activity-detail-section > .content > .activity-section.\--header > .subt
   margin-top: 15px;
   font-size: 16px;
   font-weight: 300;
-	text-align: center;
+  text-align: center;
 }
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper {
@@ -13570,13 +13583,13 @@ section.activity-detail-section > .content > .activity-section.\--exp > .benefit
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .content > .name {
   margin-top: 7px;
-	font-size: 16px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .content > .description {
   margin-top: 10px;
-	font-size: 16px;
+  font-size: 16px;
   height: 55px;
   overflow-y: auto;
   text-align: left;

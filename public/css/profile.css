@@ -11140,7 +11140,7 @@ img {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
   display: inline-flex;
   border-radius: 100px;
-  padding: 20px;
+  padding: 10px;
   background: white;
   position: relative;
 }
@@ -11148,35 +11148,47 @@ img {
 .category-interest > .interest-group,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
   display: inline-flex;
+  max-width: 180px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  padding-right: 0;
+}
+
+@media (min-width: 576px) {
+  .category-interest > .interest-group,
+  .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
+    max-width: 100%;
+  }
 }
 
 .category-interest > .edit,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .edit {
-	position: absolute;
-	right: -10px;
-	top: 50%;
-	transform: translateY(-50%);
-	cursor: pointer;
-	background: white;
-	padding: 5px;
-	border-radius: 50%;
-	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: white;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .category-interest > .edit > .image,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .edit > .image {
-	width: 20px;
-	height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .category-interest > .edit:hover,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .edit:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .category-interest .interest-activity,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity {
-	position: relative;
+  position: relative;
   margin: 0 7px;
   cursor: pointer;
 }
@@ -11215,56 +11227,58 @@ img {
 
 .category-interest .interest-activity > .icon-container,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon-container {
-	position: absolute;
-	top: -10px;
-	right: -10px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
 }
 
 .category-interest .interest-activity > .icon-container > .svg,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon-container > .svg {
-	color: red;
-	width: 20px;
+  color: red;
+  width: 20px;
 }
 
 .category-interest .interest-activity > .icon,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon {
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-	padding: 10px;
-	margin: 0 auto;
-	border: 2px solid #888;
-	transition: 0.5s background-color;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  margin: 0 auto;
+  border: 2px solid #888;
+  transition: 0.5s background-color;
 }
 
 .category-interest .interest-activity > .icon > .svg,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon > .svg {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .category-interest .interest-activity > .icon .cls-1,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon .cls-1 {
-	fill: #f14ea6;
+  fill: #f14ea6;
 }
 
 .category-interest .interest-activity > .icon #Layer_1,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon #Layer_1 {
-	fill: #f14ea6;
+  fill: #f14ea6;
 }
 
 .category-interest .interest-activity > .name,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .name {
-	font-size: 10px;
-	margin-top: 5px;
-	color: #888;
-	text-align: center;
+  font-size: 10px;
+  margin-top: 5px;
+  color: #888;
+  text-align: center;
 }
 
 .category-interest > .add-interest-activity,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .add-interest-activity {
-	margin: 0 7px;
-	cursor: pointer;
+  margin: 0 7px;
+  cursor: pointer;
+  padding: 10px;
+  padding-left: 0;
 }
 
 .category-interest > .add-interest-activity > .icon,
@@ -11299,7 +11313,7 @@ img {
   font-size: 10px;
   margin-top: 5px;
   color: #888;
-	text-align: center;
+  text-align: center;
 }
 
 .category-interest > .add-interest-activity:active > .icon,
@@ -11353,7 +11367,7 @@ img {
   align-items: center;
   border-radius: 50px;
   padding: 12px;
-	display: none;
+  display: none;
   transition: background-color 0.5s;
 }
 
@@ -11713,19 +11727,19 @@ button:focus {
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu {
   padding-bottom: 10px;
-	border-top: 1px solid #f2d5d0;
+  border-top: 1px solid #f2d5d0;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu {
   text-align: left;
-	width: 100%;
-	color: #f14ea6;
-	padding: 5px 0;
-	border-bottom: 1px solid #f2d5d0;
+  width: 100%;
+  color: #f14ea6;
+  padding: 5px 0;
+  border-bottom: 1px solid #f2d5d0;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu.\--logout {
-	border: none;
+  border: none;
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .svg {
@@ -11736,9 +11750,9 @@ button:focus {
 }
 
 .navbar-wrapper .navbar .user-info-menu > .profile-dropdown > .profile-menu > .sub-menu .menu-name {
-	padding: 10px 0;
-	margin-left: 40px;
-	font-size: 14px;
+  padding: 10px 0;
+  margin-left: 40px;
+  font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -11779,10 +11793,10 @@ button:focus {
   margin-top: 3px;
   font-size: 10px;
   color: #f14ea6;
-	text-align: left;
-	display: flex;
+  text-align: left;
+  display: flex;
   align-items: center;
-	justify-content: flex-start;
+  justify-content: flex-start;
   font-weight: bold;
 }
 
@@ -12859,7 +12873,7 @@ form .error-msg > .text {
   box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
   display: inline-flex;
   border-radius: 100px;
-  padding: 20px;
+  padding: 10px;
   background: white;
   position: relative;
 }
@@ -12867,35 +12881,47 @@ form .error-msg > .text {
 .category-interest > .interest-group,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
   display: inline-flex;
+  max-width: 180px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  padding-right: 0;
+}
+
+@media (min-width: 576px) {
+  .category-interest > .interest-group,
+  .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
+    max-width: 100%;
+  }
 }
 
 .category-interest > .edit,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .edit {
-	position: absolute;
-	right: -10px;
-	top: 50%;
-	transform: translateY(-50%);
-	cursor: pointer;
-	background: white;
-	padding: 5px;
-	border-radius: 50%;
-	box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  background: white;
+  padding: 5px;
+  border-radius: 50%;
+  box-shadow: 5px 5px 15px 0px rgba(0, 0, 0, 0.2);
 }
 
 .category-interest > .edit > .image,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .edit > .image {
-	width: 20px;
-	height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .category-interest > .edit:hover,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .edit:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .category-interest .interest-activity,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity {
-	position: relative;
+  position: relative;
   margin: 0 7px;
   cursor: pointer;
 }
@@ -12934,56 +12960,58 @@ form .error-msg > .text {
 
 .category-interest .interest-activity > .icon-container,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon-container {
-	position: absolute;
-	top: -10px;
-	right: -10px;
+  position: absolute;
+  top: -10px;
+  right: -10px;
 }
 
 .category-interest .interest-activity > .icon-container > .svg,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon-container > .svg {
-	color: red;
-	width: 20px;
+  color: red;
+  width: 20px;
 }
 
 .category-interest .interest-activity > .icon,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon {
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-	padding: 10px;
-	margin: 0 auto;
-	border: 2px solid #888;
-	transition: 0.5s background-color;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  margin: 0 auto;
+  border: 2px solid #888;
+  transition: 0.5s background-color;
 }
 
 .category-interest .interest-activity > .icon > .svg,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon > .svg {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .category-interest .interest-activity > .icon .cls-1,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon .cls-1 {
-	fill: #f14ea6;
+  fill: #f14ea6;
 }
 
 .category-interest .interest-activity > .icon #Layer_1,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .icon #Layer_1 {
-	fill: #f14ea6;
+  fill: #f14ea6;
 }
 
 .category-interest .interest-activity > .name,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .interest-activity > .name {
-	font-size: 10px;
-	margin-top: 5px;
-	color: #888;
-	text-align: center;
+  font-size: 10px;
+  margin-top: 5px;
+  color: #888;
+  text-align: center;
 }
 
 .category-interest > .add-interest-activity,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .add-interest-activity {
-	margin: 0 7px;
-	cursor: pointer;
+  margin: 0 7px;
+  cursor: pointer;
+  padding: 10px;
+  padding-left: 0;
 }
 
 .category-interest > .add-interest-activity > .icon,
@@ -13018,7 +13046,7 @@ form .error-msg > .text {
   font-size: 10px;
   margin-top: 5px;
   color: #888;
-	text-align: center;
+  text-align: center;
 }
 
 .category-interest > .add-interest-activity:active > .icon,
@@ -13072,7 +13100,7 @@ form .error-msg > .text {
   align-items: center;
   border-radius: 50px;
   padding: 12px;
-	display: none;
+  display: none;
   transition: background-color 0.5s;
 }
 
@@ -13244,29 +13272,29 @@ form .error-msg > .text {
 }
 
 .activity-card-wrapper > .activity-card .button.\--detail {
-	position: absolute;
-	right: 20px;
-	top: 0;
-	margin-top: 320px;
-	background: #f14ea6;
-	border: none;
-	color: white;
-	padding: 17px 40px;
-	border-radius: 40px;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  margin-top: 320px;
+  background: #f14ea6;
+  border: none;
+  color: white;
+  padding: 17px 40px;
+  border-radius: 40px;
 }
 
 .activity-card-wrapper > .activity-card .button.\--mobile {
-	top: auto;
-	bottom: 10px;
-	right: 10px;
-	margin-top: 0;
-	border-radius: 50%;
-	width: 50px;
-	height: 50px;
-	padding: 10px;
-	font-size: 12px;
-	z-index: 99;
-	display: none;
+  top: auto;
+  bottom: 10px;
+  right: 10px;
+  margin-top: 0;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  font-size: 12px;
+  z-index: 99;
+  display: none;
 }
 
 .activity-card-wrapper > .activity-card.hover > .video-wrapper {
@@ -13578,11 +13606,11 @@ form .error-msg > .text {
 }
 
 .activity-detail > .activity-add > .badge-wrapper > .badge {
-	font-weight: 500;
-	width: 100%;
-	border-radius: 10px;
-	margin-top: 10px;
-	cursor: auto;
+  font-weight: 500;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  cursor: auto;
 }
 
 .no-act {
