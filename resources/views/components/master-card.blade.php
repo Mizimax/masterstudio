@@ -38,7 +38,7 @@
                 <div class="header">
                     Disciples
                 </div>
-                <div class="detail">{{ $data['master_disciple'] }}</div>
+                <div class="detail">{{ number_format($data['master_disciple']) }}</div>
             </div>
             <div class="master-stat">
                 <div class="header">

@@ -2,6 +2,9 @@
 
 	namespace App\Http\Controllers;
 
+	use App\Activity;
+	use App\Master;
+	use App\User;
 	use App\UserActivity;
 	use Illuminate\Http\Request;
 	use App\Services\Omise;
@@ -37,6 +40,9 @@
 				]);
 			}
 
+			$userId = Activity::select('user_id')->where('activity_id', $id)->first();
+			$userActivity = User::select('master_id')->where('user_id', $userId['user_id'])->first();
+			Master::where('master_id', $userActivity['master_id'])->update(['master_disciple' => \DB::raw('master_disciple+1')]);
 
 			return redirect()->back()->with('success', ['Payment success!']);
 
