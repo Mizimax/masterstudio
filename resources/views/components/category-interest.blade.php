@@ -23,9 +23,11 @@
 @endphp
 @if(!$userCategories->isEmpty() || $me == 1)
     <div class="category-interest">
+        @if($me == 1)
         <div class="edit noselect {{ $userCategories->isEmpty() ? 'd-none' : '' }}">
             <img src="/img/icon/edit.png" class="image">
         </div>
+        @endif
         <div class="interest-group">
             @foreach($userCategories as $userCategory)
                 <div id="cat-{{ $userCategory['category_id'] }}"

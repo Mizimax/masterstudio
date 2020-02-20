@@ -83,7 +83,7 @@ var categoryInit = function () {
       var index = MasterStudio.categorySelected.indexOf(categoryId)
       if (index !== -1) MasterStudio.categorySelected.splice(index, 1)
     }
-    interestSelected()
+    interestSelected(this)
   })
 
   $('.category-interest > .edit').click(function () {

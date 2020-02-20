@@ -226,70 +226,35 @@
           $(this).siblings('.video-wrapper').children('.video').get(0).pause()
         })
 
-        $('.add-interest-activity > .search-dropdown > .search-result').click(function () {
-          var categoryName = $(this).children('.category').text()
-          var categoryPic = $(this).children('.svg')[0].outerHTML
-          var categoryId = parseInt($(this).children('.category-id').val(), 10)
+          @if($isFollower)
+          if ($('.interest-activity.active').length !== 0 || {{ $me ? 'true' : 'false' }}) {
+            $.ajax({
+              url: '/content/timeline/' + $('.interest-activity.active').attr('cat-id') + '/{{ $user['user_id'] }}',
+              type: 'get',
+              processData: false,
+              contentType: 'application/json',
+              data: JSON.stringify({
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+              }),
+              success: function (data) {
+                $('#category-timeline').html(data)
+                var lazyLoadInstance = new LazyLoad({
+                  elements_selector: '.lazy',
+                  // ... more custom settings?
+                })
+                $('.activity-story > .video').hover(function () {
+                  $(this).get(0).play()
+                }, function () {
+                  $(this).get(0).pause()
+                })
 
-          $.ajax({
-            url: '/api/category/' + categoryId,
-            type: 'post',
-            dataType: 'json',
-            processData: false,
-            contentType: 'application/json',
-            data: JSON.stringify({
-              '_token': $('meta[name="csrf-token"]').attr('content'),
-            }),
-          })
+                $('#category-name').text($('.interest-activity.active').children('.name').text())
+              },
+            })
 
-          var html = `
-       <div class="interest-activity" tabindex="-1" onclick="$(this).toggleClass('active')">
-            <div class="icon">
-                ${categoryPic}
-            </div>
-            <div class="name">${categoryName}</div>
-       </div>
-    `
-
-          MasterStudio.myCategory = { categoryId, categoryName, categoryPic }
-          $('.category-interest > .interest-group').append(html)
-
-          if ($(this).parent().children().length !== 1) {
-            $(this).remove()
-          } else {
-            $(this).parent().text('You already selected all categories.')
-          }
-
-        })
 
         $.ajax({
-          url: '/content/timeline/1/' + '{{ $user['user_id'] }}',
-          type: 'get',
-          processData: false,
-          contentType: 'application/json',
-          data: JSON.stringify({
-            '_token': $('meta[name="csrf-token"]').attr('content'),
-          }),
-          success: function (data) {
-            $('#category-timeline').html(data)
-            var lazyLoadInstance = new LazyLoad({
-              elements_selector: '.lazy',
-              // ... more custom settings?
-            })
-            $('.activity-story > .video').hover(function () {
-              $(this).get(0).play()
-            }, function () {
-              $(this).get(0).pause()
-            })
-          },
-          error: function (error) {
-            console.log(error)
-            $('.profile-card-wrapper.--timeline').addClass('d-none')
-          },
-        })
-
-        $.ajax({
-          url: '/content/achievement/1/' + '{{ $user['user_id'] }}',
+          url: '/content/achievement/' + $('.interest-activity.active').attr('cat-id') + '/{{ $user['user_id'] }}',
           type: 'get',
           processData: false,
           contentType: 'application/json',
@@ -306,15 +271,18 @@
             console.log(error)
             $('#achievement').html('')
             $('#achievement').parent().addClass('d-none')
-            $('.category-interest')
           },
         })
 
-        $('.master-profile').hover(function () {
-          $(this).children('.activity-detail').fadeIn()
-        }, function () {
-          $(this).children('.activity-detail').fadeOut()
-        })
+          }
+
+          @endif
+
+          $('.master-profile').hover(function () {
+            $(this).children('.activity-detail').fadeIn()
+          }, function () {
+            $(this).children('.activity-detail').fadeOut()
+          })
 
         var curTrans = 33.33
 
@@ -328,77 +296,39 @@
           $(this).parent().css('transform', 'translateX(' + trans + '%)')
         })
 
-        $('.interest-activity').click(function () {
-          $('.interest-activity.active').removeClass('active')
-          $(this).toggleClass('active')
-          var categorySelected = $(this).children('#category-id').val()
-
-          $.ajax({
-            url: '/content/timeline/' + categorySelected + '/' + '{{ $user['user_id'] }}',
-            type: 'get',
-            processData: false,
-            contentType: 'application/json',
-            data: JSON.stringify({
-              '_token': $('meta[name="csrf-token"]').attr('content'),
-            }),
-            success: function (data) {
-              $('#category-timeline').html(data)
-              var lazyLoadInstance = new LazyLoad({
-                elements_selector: '.lazy',
-                // ... more custom settings?
-              })
-              $('.activity-story > .video').hover(function () {
-                $(this).get(0).play()
-              }, function () {
-                $(this).get(0).pause()
-              })
-            },
-          })
-
-          $.ajax({
-            url: '/content/achievement/' + categorySelected + '/' + '{{ $user['user_id'] }}',
-            type: 'get',
-            processData: false,
-            contentType: 'application/json',
-            data: JSON.stringify({
-              '_token': $('meta[name="csrf-token"]').attr('content'),
-            }),
-            success: function (data) {
-              $('#achievement').html(data)
-            },
-            error: function (error) {
-              console.log(error)
-            },
-          })
-        })
-
         $('#profile-img').change(function () {
           changeProfile()
         })
 
-        $('.add-file').change(addPicGallery)
+          @if($me)
+
+          $('.add-file').change(addPicGallery)
+
+          @endif
       })
+
+              @if($me)
 
       var user_gallery = @json($user['user_gallery'])
 
-      function changeProfile() {
-        var formData = new FormData()
-        formData.append('image', $('#profile-img')[0].files[0])
+        function changeProfile() {
+          var formData = new FormData()
+          formData.append('image', $('#profile-img')[0].files[0])
 
-        $.ajax({
-          url: '/user/{{ Auth::id() }}/profile/change',
-          type: 'post',
-          headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-          },
-          data: formData,
-          contentType: false,
-          processData: false,
-          success: function (res) {
-            $('#image-profile').attr('src', res['image_url'])
-          },
-        })
-      }
+          $.ajax({
+            url: '/user/{{ Auth::id() }}/profile/change',
+            type: 'post',
+            headers: {
+              'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+            },
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (res) {
+              $('#image-profile').attr('src', res['image_url'])
+            },
+          })
+        }
 
       function deleteProfile() {
         $.ajax({
@@ -471,6 +401,61 @@
           },
         })
       }
+
+      @endif
+
+      @if($isFollower)
+
+      function interestSelected(element) {
+        $('.interest-activity.active').removeClass('active')
+
+        var categorySelected = $(element).attr('cat-id')
+
+        $(element).addClass('active')
+
+        $.ajax({
+          url: '/content/timeline/' + categorySelected + '/' + '{{ $user['user_id'] }}',
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#category-timeline').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+            $('.activity-story > .video').hover(function () {
+              $(this).get(0).play()
+            }, function () {
+              $(this).get(0).pause()
+            })
+
+            console.log('>> ', $(element).children('.name').text())
+            $('#category-name').text($(element).children('.name').text())
+          },
+        })
+
+        $.ajax({
+          url: '/content/achievement/' + categorySelected + '/' + '{{ $user['user_id'] }}',
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#achievement').html(data)
+          },
+          error: function (error) {
+            console.log(error)
+          },
+        })
+      }
+
+        @endif
 
 
     </script>

@@ -8,6 +8,7 @@
 	use App\Master;
 	use App\UserAchievement;
 	use App\UserActivity;
+	use App\User;
 	use Auth;
 	use Illuminate\Http\Request;
 
@@ -74,7 +75,15 @@
 
 		public function timeline($category, $userId)
 		{
-			$user = Auth::user();
+			$myId = Auth::id() ? Auth::id() : 0;
+			$me = $myId == $userId;
+			$user = User::where('user_id', $userId)
+				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows WHERE follower_id = ' . $myId . ' AND following_id = users.user_id) AS follower'))
+				->first();
+			$isFollower = $user['follower'] == 1;
+			if (!$isFollower) {
+				abort(404);
+			}
 			$timelines = ActivityStory::from('activity_stories as as')
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 				->join('user_category as uc', 'ac.category_id', 'uc.category_id')
@@ -82,9 +91,8 @@
 				->where('uc.user_id', $userId)
 				->where('as.user_id', $userId)
 				->where('cg.category_id', $category)->get();
-			if ($timelines->isEmpty())
-				return response()->view('components.category-timeline', ['timelines' => $timelines, 'user' => $user], 404);
-			return view('components.category-timeline', ['timelines' => $timelines, 'user' => $user]);
+
+			return view('components.category-timeline', ['timelines' => $timelines, 'user' => $user, 'me' => $me, 'isFollower' => $isFollower]);
 		}
 
 		public function achievement($category, $userId)

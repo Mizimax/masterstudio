@@ -22,13 +22,13 @@
 
 			$isFollower = false;
 			$userme = Auth::user();
-			if ($userme['user_id'] === $userId) {
+			if ($userme['user_id'] == $userId) {
 				return redirect('/user/me');
 			}
-			if ($userme['master_id'] === $userId || ($userId === 'me' && $userme['master_id'])) {
+			if ($userme['master_id'] == $userId || ($userId == 'me' && $userme['master_id'])) {
 				return redirect('/master/me');
 			}
-			if ($userId === 'me') {
+			if ($userId == 'me') {
 				$user = $userme;
 				$me = true;
 			} else {

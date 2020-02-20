@@ -483,13 +483,25 @@
 .category-timeline {
 	margin-top: 30px;
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	@include mobile-up {
+		justify-content: initial;
+	}
 
 	> .activity-timeline {
 		display: flex;
-		flex: 1;
+		flex: 1 1 100%;
 		align-items: center;
-		margin-left: 30px;
+		justify-content: space-between;
 		position: relative;
+		margin-top: 20px;
+
+		@include mobile-up {
+			flex: 1;
+			margin-top: 0;
+		}
 
 		> .line {
 			position: absolute;
@@ -505,6 +517,7 @@
 			@extend .shadow;
 			display: flex;
 			flex-basis: 80px;
+			flex-shrink: 0;
 			align-items: center;
 			text-align: center;
 			justify-content: center;
@@ -524,7 +537,8 @@
 
 		> .activity-line {
 			display: flex;
-			width: 640px;
+			flex: 0 1 560px;
+			padding-left: 20px;
 			align-items: center;
 			height: 100%;
 			overflow-x: auto;
@@ -536,10 +550,19 @@
 
 				> .title {
 					position: absolute;
-					top: -30px;
+					top: -35px;
+					left: -10px;
 					font-size: 12px;
 					text-align: center;
 					font-style: italic;
+
+					> .name {
+						display: block;
+						white-space: nowrap;
+						width: 70px;
+						overflow: hidden;
+						text-overflow: ellipsis;
+					}
 				}
 
 				> .image {
@@ -547,6 +570,7 @@
 					width: 40px;
 					height: 40px;
 					border-radius: 50%;
+					@include shadow(0px, 0px, 15px, 1px, 0.2);
 				}
 			}
 
@@ -585,6 +609,7 @@
 		border-radius: 15px;
 		padding: 20px;
 		text-align: center;
+		flex-shrink: 0;
 		@include shadow(0px, 0px, 15px, 1px, 0.15);
 
 		> * {
@@ -625,5 +650,30 @@
 			font-size: 15px;
 			padding: 3px 0;
 		}
+	}
+}
+
+.no-story {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	background-color: #ed9e40;
+	width: 100%;
+	cursor: pointer;
+	padding: 10px;
+
+	> .svg {
+		width: 64px;
+		height: 64px;
+		color: white;
+		margin-right: 20px;
+	}
+
+	> .title {
+		font-size: 24px;
+		font-weight: 300;
 	}
 }
