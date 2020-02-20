@@ -11572,6 +11572,10 @@ button:focus {
   font-size: 0;
 }
 
+.navbar-wrapper .navbar-brand > .logo {
+	height: 39px;
+}
+
 @media (max-width: 460px) {
   .navbar-wrapper .navbar-brand > .logo {
     display: none;
@@ -13986,17 +13990,10 @@ form .error-msg > .text {
   }
 }
 
-.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-  text-shadow: 2px 2px 5px #888;
-  font-size: 34px;
-  font-weight: bold;
-  display: block;
-}
-
-@media (min-width: 576px) {
-  .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .header {
-    font-size: 60px;
-  }
+.video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .logo-home {
+	max-width: 95%;
+	position: relative;
+	left: -15px;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {

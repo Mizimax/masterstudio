@@ -172,6 +172,8 @@ button:focus {
 		font-size: 0;
 
 		> .logo {
+			height: 39px;
+
 			@media (max-width: 460px) {
 				display: none;
 			}

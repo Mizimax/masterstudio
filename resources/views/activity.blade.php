@@ -47,7 +47,10 @@
                         <div class="content-wrapper" style="z-index: 10;">
                             <!-- Activity Name , Search -->
                             <div class="activity-name">
-                                <h1 class="header">@Master Studio</h1>
+
+                                <img class="logo-home" src="/img/logo/logo-home.png"
+                                     alt="@Master Studio">
+
                                 <h2 class="subheader ml-3 ml-sm-5 pl-sm-2">Meet Real <a class="chef"
                                                                                         href="#">{{ $headActivity['category_name'] }}</a>
                                 </h2>

@@ -11557,6 +11557,10 @@ button:focus {
   font-size: 0;
 }
 
+.navbar-wrapper .navbar-brand > .logo {
+	height: 39px;
+}
+
 @media (max-width: 460px) {
   .navbar-wrapper .navbar-brand > .logo {
     display: none;

@@ -110,14 +110,10 @@
 						margin-top: -100px;
 					}
 
-					> .header {
-						text-shadow: 2px 2px 5px #888;
-						font-size: $activity-header-mobile;
-						font-weight: bold;
-						display: block;
-						@include mobile-up {
-							font-size: $activity-header;
-						}
+					> .logo-home {
+						max-width: 95%;
+						position: relative;
+						left: -15px;
 					}
 
 					> .subheader {

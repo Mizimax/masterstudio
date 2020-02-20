@@ -30,8 +30,8 @@
     <div class="navbar-wrapper">
         <nav class="navbar navbar-light navbar-expand-md bg-white">
             <a class="navbar-brand primary-color" href="/">
-                <img src="/img/logo.png" alt="Master Studio" class="logo">
-                <img src="/img/logo-mobile.png" alt="Master Studio" class="logo-mobile">
+                <img src="/img/logo/logo.png" alt="Master Studio" class="logo">
+                <img src="/img/logo/logo-mobile.png" alt="Master Studio" class="logo-mobile">
             </a>
 
             <button class="navbar-toggler border-0 mr-1" type="button" data-toggle="collapse"
