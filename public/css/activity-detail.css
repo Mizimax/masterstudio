@@ -11155,6 +11155,7 @@ section.activity-header #carousel .master-action > .activity-header-detail.actio
 @media (min-width: 576px) {
   .category-interest > .interest-group {
     max-width: 100%;
+	  overflow-x: initial;
   }
 }
 
@@ -11287,6 +11288,7 @@ section.activity-header #carousel .master-action > .activity-header-detail.actio
   margin-top: 5px;
   color: #888;
   text-align: center;
+	white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon {

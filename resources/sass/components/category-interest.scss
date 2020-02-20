@@ -16,6 +16,7 @@
 
 		@include mobile-up {
 			max-width: 100%;
+			overflow-x: initial;
 		}
 	}
 
@@ -154,6 +155,7 @@
 		    margin-top: 5px;
 		    color: #888;
 		    text-align: center;
+		    white-space: nowrap;
 	    }
 
 	    &:active {

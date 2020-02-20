@@ -11151,6 +11151,7 @@ img {
 @media (min-width: 576px) {
   .category-interest > .interest-group {
     max-width: 100%;
+	  overflow-x: initial;
   }
 }
 
@@ -11283,6 +11284,7 @@ img {
   margin-top: 5px;
   color: #888;
   text-align: center;
+	white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon {
@@ -13436,6 +13438,7 @@ form .error-msg > .text {
 @media (min-width: 576px) {
   .category-interest > .interest-group {
     max-width: 100%;
+	  overflow-x: initial;
   }
 }
 
@@ -13568,6 +13571,7 @@ form .error-msg > .text {
   margin-top: 5px;
   color: #888;
   text-align: center;
+	white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon {

@@ -11159,6 +11159,7 @@ img {
   .category-interest > .interest-group,
   .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
     max-width: 100%;
+	  overflow-x: initial;
   }
 }
 
@@ -11314,6 +11315,7 @@ img {
   margin-top: 5px;
   color: #888;
   text-align: center;
+	white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon,
@@ -12923,6 +12925,7 @@ form .error-msg > .text {
   .category-interest > .interest-group,
   .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
     max-width: 100%;
+	  overflow-x: initial;
   }
 }
 
@@ -13078,6 +13081,7 @@ form .error-msg > .text {
   margin-top: 5px;
   color: #888;
   text-align: center;
+	white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon,
