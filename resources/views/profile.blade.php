@@ -220,6 +220,12 @@
           // ... more custom settings?
         })
 
+        $('.activity-overlay').hover(function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).play()
+        }, function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+        })
+
         $('.add-interest-activity > .search-dropdown > .search-result').click(function () {
           var categoryName = $(this).children('.category').text()
           var categoryPic = $(this).children('.svg')[0].outerHTML
