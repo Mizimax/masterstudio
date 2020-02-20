@@ -762,6 +762,9 @@
 
       var allActivityModal = `
         <div id="my-activity" class="my-activity">
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                 <div class="all-activity-header" align="center">All Activities</div>
 
         </div>
@@ -769,6 +772,9 @@
 
       var followModal = `
 <div class="follow-container">
+ <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                         <div class="header" align="center">Followed</div>
                         <ul class="nav nav-tabs justify-content-center border-bottom-0"
                             id="followTabLink" role="tablist">
