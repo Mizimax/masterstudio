@@ -5,17 +5,24 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- SEO -->
+    <meta name="description" content="@Master Studio - Meet real master.">
+    <meta name="keywords" content="Master Studio,Master,Studio,Event">
+    <meta name=”robots” content=”index,follow”>
+    <meta name="revisit-after" content="7 days">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Facebook og -->
     <meta property="og:url"
-          content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
-    <meta property="og:description" content="How much does culture influence creative thinking?" />
+          content="https://atmaster.maxang.me" />
+    <meta property="og:type" content="Website" />
+    <meta property="og:title" content="@yield('title') - Master Studio" />
+    <meta property="og:description" content="@Master Studio - Meet real master." />
     <meta property="og:image"
-          content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+          content="/img/preview.png" />
 
     <title>@yield('title') - Master Studio</title>
     <link rel="stylesheet"
