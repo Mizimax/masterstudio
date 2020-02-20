@@ -12319,13 +12319,13 @@ button:focus {
 }
 
 .my-activity > .my-activity-card > .image-wrapper {
-	text-align: center;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .image-wrapper {
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .image-wrapper {
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .image-wrapper > .image {
@@ -12338,15 +12338,15 @@ button:focus {
 
 .my-activity > .my-activity-card > .description {
   flex: 1;
-	padding: 20px;
-	text-align: center;
+  padding: 20px;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .description {
-		padding: 0 20px;
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .description {
+    padding: 0 20px;
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .description > .header {
@@ -12358,17 +12358,17 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-	align-items: center;
+  align-items: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action {
-		align-items: flex-end;
-	}
+  .my-activity > .my-activity-card > .action {
+    align-items: flex-end;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .price-status {
-	position: relative;
+  position: relative;
   right: 0;
   top: 0;
   font-size: 20px;
@@ -12377,9 +12377,9 @@ button:focus {
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action > .price-status {
-		position: absolute;
-	}
+  .my-activity > .my-activity-card > .action > .price-status {
+    position: absolute;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .pay-button {

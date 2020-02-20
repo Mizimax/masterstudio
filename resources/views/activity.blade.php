@@ -450,6 +450,7 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
+            activityHover()
           },
           error: function (error) {
             console.log(error)
@@ -483,6 +484,7 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
+            activityHover()
           },
           error: function (error) {
             console.log(error)
@@ -579,6 +581,7 @@
                 elements_selector: '.lazy',
                 // ... more custom settings?
               })
+              activityHover()
             },
             error: function (error) {
               console.log(error)
