@@ -13911,6 +13911,10 @@ form .error-msg > .text {
   height: 66px;
 }
 
+.profile-wrapper > .profile-container > .profile-card-wrapper > .category-timeline-wrapper {
+	width: 100%;
+}
+
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-image {
   flex-shrink: 0;
   position: relative;

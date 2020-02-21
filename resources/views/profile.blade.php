@@ -81,7 +81,7 @@
                 </div>
             </div>
             @if($isFollower)
-                <div class="profile-card-wrapper --timeline" style="display: block">
+                <div class="profile-card-wrapper --timeline">
                     <div class="header-tab">
                         @include('components.category-interest', ['active' => true, 'me' => $me ? 1 : 2])
                         <div class="achievement-tab d-none">
@@ -274,6 +274,8 @@
           },
         })
 
+          } else {
+            $('.profile-card-wrapper.--timeline').addClass('d-none')
           }
 
           @endif
