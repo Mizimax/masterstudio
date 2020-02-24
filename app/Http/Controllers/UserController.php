@@ -95,6 +95,12 @@
 
 		protected function story(Request $request, $id)
 		{
+			$type = $request->query('type');
+
+			if ($type !== 'lesson') {
+				$type = 'story';
+			}
+
 			$fileName = time() . '.webm';
 
 			$request->file('video-blob')->move(public_path('video/upload'), $fileName);
@@ -102,7 +108,8 @@
 			ActivityStory::create([
 				'activity_id' => $id,
 				'user_id' => \Auth::id(),
-				'activity_story_video' => '/video/upload/' . $fileName
+				'activity_story_video' => '/video/upload/' . $fileName,
+				'story_status' => $type
 			]);
 
 			return response()->json([

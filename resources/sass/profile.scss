@@ -280,6 +280,7 @@
 
 			> .category-timeline-wrapper {
 				width: 100%;
+				margin-top: 30px;
 			}
 
 
@@ -486,8 +487,8 @@
 }
 
 .category-timeline {
-	margin-top: 30px;
 	display: flex;
+	height: 100%;
 	flex-wrap: wrap;
 	justify-content: center;
 
@@ -579,14 +580,22 @@
 				}
 			}
 
-			> .activity-story {
+			> .activity-story-lesson {
 				margin-left: 50px;
 				position: relative;
 				z-index: 99;
 				flex-shrink: 0;
 
 				&:last-child {
-					padding-right: 50px;
+					margin-right: 50px;
+				}
+
+				> .name {
+					font-size: 12px;
+					position: absolute;
+					width: 100px;
+					left: 50%;
+					transform: translateX(-50%);
 				}
 
 				> .video {
@@ -655,30 +664,5 @@
 			font-size: 15px;
 			padding: 3px 0;
 		}
-	}
-}
-
-.no-story {
-	display: flex;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-	border: 1px solid #ccc;
-	border-radius: 20px;
-	background-color: #ed9e40;
-	width: 100%;
-	cursor: pointer;
-	padding: 10px;
-
-	> .svg {
-		width: 64px;
-		height: 64px;
-		color: white;
-		margin-right: 20px;
-	}
-
-	> .title {
-		font-size: 24px;
-		font-weight: 300;
 	}
 }

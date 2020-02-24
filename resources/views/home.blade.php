@@ -1,6 +1,3 @@
-@php
-    $categories = \App\Category::from('categories as cg')->select(\DB::raw('cg.*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))->get();
-@endphp
 @extends('app')
 
 @section('title', 'Home')
@@ -184,7 +181,7 @@
             </div>
         </div>
         <section id="activity" class="activity-you"
-                 style="background-image: url('{{ $categories[0]->category_bg }}')">
+                 style="background-image: url('{{ $userCategories[0]->category_bg }}')">
             <div class="content">
                 <h3 class="header">Activity for you</h3>
                 <div class="search-group" tabindex="-1" style="max-width: 400px">
@@ -209,7 +206,15 @@
 
     <script>
       var categoryHtml = `
-            @foreach($categories as $category)
+      @foreach($userCategories as $category)
+        <div onclick="getActivityCategory({{ $category['category_id'] }})"
+                     class="search-result">
+                <img class="svg" src="{{ $category['category_pic'] }}">
+                <span class="category">{{ $category['category_name'] }}</span>
+                <span class="nomaster">{{ $category['master_count'] }} master</span>
+            </div>
+            @endforeach
+              @foreach($categories as $category)
         <div onclick="getActivityCategory({{ $category['category_id'] }})"
                      class="search-result">
                 <img class="svg" src="{{ $category['category_pic'] }}">
@@ -244,6 +249,9 @@
 
     <script>
       MasterStudio.myCategory = {
+      @foreach($userCategories as $category)
+      {{$category['category_id']}} : @json($category),
+      @endforeach
       @foreach($categories as $category)
       {{$category['category_id']}} : @json($category),
       @endforeach

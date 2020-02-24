@@ -8,6 +8,6 @@
 	{
 		//
 		protected $fillable = [
-			'activity_id', 'user_id', 'activity_story_video'
+			'activity_id', 'user_id', 'activity_story_video', 'story_highlight', 'story_status'
 		];
 	}

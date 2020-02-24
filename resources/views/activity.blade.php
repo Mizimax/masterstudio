@@ -1,6 +1,3 @@
-@php
-    $categories = \App\Category::from('categories as cg')->select(\DB::raw('cg.*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))->get();
-@endphp
 @extends('app')
 
 @section('title', 'Activities')
@@ -134,7 +131,8 @@
                        href="#story" role="tab">
                         Story
                     </a>
-                    <a class="tab-link primary-button --outline" data-toggle="tab"
+                    <a id="lesson-button" class="tab-link primary-button --outline"
+                       data-toggle="tab"
                        href="#lesson" role="tab">
                         Lesson
                     </a>
@@ -151,15 +149,21 @@
                     </div>
                     <div class="your-info">
                         <h3 class="name">{{ $user['user_name'] }}</h3>
-                        <span class="level">LV. {{ $user['user_level'] }}</span>
+                        <span class="level">LV. <span
+                                    id="category-level">{{ $userCategories[0]['category_level'] }}</span></span>
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar"
-                                 style="width: 50%" aria-valuenow="50"
+                            <div id="category-level" class="progress-bar" role="progressbar"
+                                 style="width: {{ $userCategories[0]['category_exp'] }}%"
+                                 aria-valuenow="{{ $userCategories[0]['category_exp'] }}"
                                  aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <span class="timespend-badge">Time spend</span>
-                        <span class="timespend">{{ $user['user_hour'] }} hours</span>
-                        <span class="category">Badminton</span>
+                        <span class="timespend"><span
+                                    id="category-hour">{{ $userCategories[0]['category_hour'] }}</span> hours</span>
+                        @if(!$userCategories->isEmpty())
+                            <span id="category-badge"
+                                  class="category">{{ $userCategories[0]['category_name'] }}</span>
+                        @endif
                     </div>
                 </div>
                 {{--                <div class="activity-timeline-expand">--}}
@@ -169,68 +173,38 @@
 
                 <div class="tab-content"
                      style="overflow-x: scroll; padding: 100px 20px 30px 20px; flex: 1">
-                    <div role="tabpanel" class="tab-pane d-flex h-100 fade in active show"
+                    <div role="tabpanel" class="tab-pane h-100 fade in active show"
                          id="story">
-                        <div class="activity-story" style="padding: 0;">
-                            @if($stories->isEmpty())
-                                <div class="no-story">
-                                    <img src="/img/icon/camera-solid.svg" class="svg">
-                                    <p class="title">Share your first journey. Click!</p>
-                                    <br>
+                        <div class="d-flex h-100">
+                            <div class="activity-story h-100" style="padding: 0;">
+                                @if($stories->isEmpty())
+                                    <div class="no-story">
+                                        <img src="/img/icon/camera-solid.svg" class="svg">
+                                        <p class="title">Share your first journey. Click!</p>
+                                        <br>
+                                    </div>
+                                @else
+                                    @include('components.activity-story')
+                                @endif
+
+                            </div>
+
+                            @if(!$stories->isEmpty())
+                                <div class="add-activity-story">
+                                    <div class="add-button">
+                                        <img src="/img/icon/plus-solid.svg" class="svg">
+                                    </div>
                                 </div>
                             @endif
-                            @foreach ($stories as $story)
-					            <?php
-					            $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->where('user_activity_paid', 1)->get();
-					            ?>
-                                <div class="activity-wrapper">
-                                    <div class="activity-card">
-                                        <div class="video-wrapper">
-                                            <video class="video lazy" loop muted>
-                                                <source data-src="{{ $story['activity_story_video'] }}"
-                                                        type="video/mp4" />
-                                            </video>
-                                        </div>
-
-                                        <div class="master-profile">
-                                            <div class="image-wrapper">
-                                                <img src="{{ $story['user_pic'] }}" alt="">
-                                            </div>
-                                        </div>
-
-                                        <div class="title-wrapper">
-                                            <div class="title"
-                                                 align="left">{{ $story['activity_name'] }}</div>
-                                            <div class="activity-join">
-                                                @foreach($story['users_activity'] as $userStory)
-                                                    <div class="participant image-wrapper">
-                                                        <img src="{{ $userStory['user_pic'] }}"
-                                                             alt="">
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="location">Yesterday: JAJA Studio</div>
-                                </div>
-                            @endforeach
                         </div>
-
-                        @if(!$stories->isEmpty())
-                            <div class="add-activity-story">
-                                <div class="add-button">
-                                    <img src="/img/icon/plus-solid.svg" class="svg">
-                                </div>
-                            </div>
-                        @endif
                     </div>
-                    <div role="tabpanel" class="tab-pane fade in active show" id="lesson">
+                    <div role="tabpanel" class="tab-pane h-100 fade in" id="lesson">
                     </div>
                 </div>
             </div>
         @endif
         <section id="activity" class="all-activity"
-                 style="margin-top: 70px; background-image: url('{{ $categories[0]->category_bg }}')">
+                 style="margin-top: 70px; background-image: url('{{ $userCategories[0]->category_bg }}')">
             <div class="content">
                 <h3 class="header">All activities</h3>
                 <div class="search-group" tabindex="-1" align="left">
@@ -254,28 +228,28 @@
     </section>
 
     @if(!$myActivities->isEmpty())
-    <div class="record-video">
-        <div class="activity-select" style="margin-bottom: 10px">
-            <select class="form-control" name="activity-story" id="activity-story">
-                <option value="0">Select activity you want to share story.</option>
-                @foreach($myActivities as $myActivity)
-                    <option value="{{ $myActivity['activity_id'] }}">{{ $myActivity['activity_name'] }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="video-preview">
-            <video class="video" autoplay></video>
-            <div class="cantaccess">This function requires camera and microphone access.</div>
-            <div class="time-record" align="center">
-                <span class="time">0:00</span> / 1:00 minute
+        <div class="record-video">
+            <div class="activity-select" style="margin-bottom: 10px">
+                <select class="form-control" name="activity-story" id="activity-story">
+                    <option value="0">Select activity you want to share story.</option>
+                    @foreach($myActivities as $myActivity)
+                        <option value="{{ $myActivity['activity_id'] }}">{{ $myActivity['activity_name'] }}</option>
+                    @endforeach
+                </select>
             </div>
+            <div class="video-preview">
+                <video class="video" autoplay></video>
+                <div class="cantaccess">This function requires camera and microphone access.</div>
+                <div class="time-record" align="center">
+                    <span class="time">0:00</span> / 1:00 minute
+                </div>
+            </div>
+            <div class="d-flex">
+                <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
+                <button class="record-btn">Start recording</button>
+            </div>
+            {{--        <div class="overlay"></div>--}}
         </div>
-        <div class="d-flex">
-            <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
-            <button class="record-btn">Start recording</button>
-        </div>
-        {{--        <div class="overlay"></div>--}}
-    </div>
     @endif
 @endsection
 
@@ -290,7 +264,15 @@
 
     <script>
       var categoryHtml = `
-            @foreach($categories as $category)
+      @foreach($userCategories as $category)
+        <div onclick="getActivityCategory({{ $category['category_id'] }})"
+                     class="search-result">
+                <img class="svg" src="{{ $category['category_pic'] }}">
+                <span class="category">{{ $category['category_name'] }}</span>
+                <span class="nomaster">{{ $category['master_count'] }} master</span>
+            </div>
+            @endforeach
+              @foreach($categories as $category)
         <div onclick="getActivityCategory({{ $category['category_id'] }})"
                      class="search-result">
                 <img class="svg" src="{{ $category['category_pic'] }}">
@@ -302,19 +284,9 @@
       var loadingHtml = `
             <div class="activity-loading">Loading...</div>
         `
-    </script>
 
-    <script>
-      $(document).ready(function () {
-        $('.search-dropdown').delegate('.search-result', 'click', function () {
-          $(this).parent().parent().blur()
-        })
-
-        $('.search-dropdown.--activity, .search-dropdown.--header').html(categoryHtml)
-        replaceSvg()
-
-        $('.add-button, .no-story').click(function () {
-
+      function recordVideo(type) {
+        return function () {
           var countup
 
           $('.record-video').addClass('d-flex')
@@ -386,9 +358,11 @@
                         var formData = new FormData()
                         formData.append('video-blob', fileObject)
                         formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
-
+                        console.log('>> type: ', type)
                         $.ajax({
-                          url: '/activity/' + $('#activity-story').val() + '/story',
+                          url: '/activity/' + $('#activity-story').val() + '/story' + (type
+                                                                                       ? '?type=' + type
+                                                                                       : ''),
                           type: 'post',
                           headers: {
                             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
@@ -415,12 +389,61 @@
               $('.cantaccess').addClass('d-block')
             },
           )
+        }
+
+      }
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $('.search-dropdown').delegate('.search-result', 'click', function () {
+          $(this).parent().parent().blur()
         })
+
+        $('.search-dropdown.--activity, .search-dropdown.--header').html(categoryHtml)
+        replaceSvg()
+
+          @if($user)
+
+
+          if ($('#lesson').html().trim() == '') {
+            $.ajax({
+              url: '/content/timeline/[]/{{ $user['user_id'] }}?show=timeline',
+              type: 'get',
+              processData: false,
+              contentType: 'application/json',
+              data: JSON.stringify({
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+              }),
+              success: function (data) {
+                $('#lesson').html(data)
+                var lazyLoadInstance = new LazyLoad({
+                  elements_selector: '.lazy',
+                  // ... more custom settings?
+                })
+                $('.activity-story-lesson > .video').hover(function () {
+                  $(this).get(0).play()
+                }, function () {
+                  $(this).get(0).pause()
+                })
+              },
+            })
+          }
+
+        $('.no-story').click(recordVideo())
+
+        $('#lesson').delegate('.add-button', 'click', recordVideo('lesson'))
+
+          @endif
+
       })
     </script>
 
     <script>
       MasterStudio.myCategory = {
+      @foreach($userCategories as $category)
+      {{$category['category_id']}} : @json($category),
+      @endforeach
       @foreach($categories as $category)
       {{$category['category_id']}} : @json($category),
       @endforeach
@@ -464,7 +487,14 @@
       var interestSelected = function () {
         var selectedCategory = MasterStudio.categorySelected.length !== 0
                                ? MasterStudio.categorySelected[0]
-                               : 0
+                               : Object.keys(MasterStudio.myCategory)[0]
+        var lastCategory = MasterStudio.categorySelected.length !== 0
+                           ? MasterStudio.categorySelected[MasterStudio.categorySelected.length - 1]
+                           : Object.keys(MasterStudio.myCategory)[0]
+        $('#category-badge').text(MasterStudio.myCategory[lastCategory]['category_name'])
+        $('#category-hour').text(MasterStudio.myCategory[lastCategory]['user_hour'])
+        $('#category-level').text(MasterStudio.myCategory[lastCategory]['user_level'])
+        $('#category-exp').text(MasterStudio.myCategory[lastCategory]['user_exp'])
         if (selectedCategory === 0) {
           $('#activity').css('background-image', 'url(\'/img/default-bg.jpg\')')
         } else {
@@ -473,6 +503,7 @@
         }
 
         $('#activity-wrapper').html(loadingHtml)
+
         $.ajax({
           url: '/content/activities?category=[' + MasterStudio.categorySelected.toString() + ']',
           type: 'get',
@@ -493,6 +524,62 @@
             console.log(error)
           },
         })
+
+                  @if($user)
+
+        var selected = MasterStudio.categorySelected.length !== 0
+                       ? MasterStudio.categorySelected.toString()
+                       : ''
+        $.ajax({
+          url: '/content/timeline/[' + selected + ']/{{ $user['user_id'] }}?show=timeline',
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#lesson').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+            $('.activity-story-lesson > .video').hover(function () {
+              $(this).get(0).play()
+            }, function () {
+              $(this).get(0).pause()
+            })
+          },
+        })
+
+        if (selected == '') {
+          selected = 'all'
+        }
+
+        $.ajax({
+          url: '/content/story/[' + selected + ']/{{ $user['user_id'] }}',
+          type: 'get',
+          processData: false,
+          contentType: 'application/json',
+          data: JSON.stringify({
+            '_token': $('meta[name="csrf-token"]').attr('content'),
+          }),
+          success: function (data) {
+            $('#story').html(data)
+            var lazyLoadInstance = new LazyLoad({
+              elements_selector: '.lazy',
+              // ... more custom settings?
+            })
+            $('#story .video').hover(function () {
+              $(this).get(0).play()
+            }, function () {
+              $(this).get(0).pause()
+            })
+          },
+        })
+
+          @endif
+
       }
 
     </script>

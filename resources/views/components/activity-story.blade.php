@@ -1,6 +1,3 @@
-@php
-    $stories = !empty($queryStories) ? $queryStories : (!empty($stories) ? $stories : '');
-@endphp
 <div class="activity-story {{!empty($hover) && $hover ? '--hover': ''}}">
     @foreach ($stories as $story)
         @php
@@ -28,6 +25,7 @@
                     </div>
                 </div>
             </div>
+            <div class="location">Yesterday: JAJA Studio</div>
         </div>
     @endforeach
 </div>

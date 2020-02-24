@@ -4,6 +4,7 @@
 
 	use App\Activity;
 	use App\ActivityStory;
+	use App\UserCategory;
 	use Carbon\Carbon;
 
 	class HomeController extends Controller
@@ -48,6 +49,21 @@
 				->take(10)
 				->orderBy('as.activity_story_id', 'desc')
 				->get();
-			return view('home', ['headActivities' => $headActivities, 'activities' => $activities, 'stories' => $stories]);
+
+			$userCategories = UserCategory::from('user_category as uc')
+				->join('users as us', 'uc.user_id', 'us.user_id')
+				->join('categories as cg', 'uc.category_id', 'cg.category_id')
+				->where('uc.user_id', $user_id)
+				->select(\DB::raw('*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
+				->get();
+			$categories = UserCategory::from('categories as cg')
+				->whereNotIn('cg.category_id', function ($query) use ($user_id) {
+					$query->from('user_category as uc')
+						->where('uc.user_id', $user_id)
+						->select('uc.category_id');
+				})
+				->select(\DB::raw('cg.*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
+				->get();
+			return view('home', ['headActivities' => $headActivities, 'activities' => $activities, 'stories' => $stories, 'userCategories' => $userCategories, 'categories' => $categories]);
 		}
 	}

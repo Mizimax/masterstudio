@@ -13913,6 +13913,7 @@ form .error-msg > .text {
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .category-timeline-wrapper {
 	width: 100%;
+	margin-top: 30px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-image {
@@ -14114,8 +14115,8 @@ form .error-msg > .text {
 }
 
 .category-timeline {
-  margin-top: 30px;
   display: flex;
+	height: 100%;
 	flex-wrap: wrap;
 	justify-content: center;
 }
@@ -14213,18 +14214,26 @@ form .error-msg > .text {
 	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
 }
 
-.category-timeline > .activity-timeline > .activity-line > .activity-story {
+.category-timeline > .activity-timeline > .activity-line > .activity-story-lesson {
   margin-left: 50px;
   position: relative;
   z-index: 99;
   flex-shrink: 0;
 }
 
-.category-timeline > .activity-timeline > .activity-line > .activity-story:last-child {
-  padding-right: 50px;
+.category-timeline > .activity-timeline > .activity-line > .activity-story-lesson:last-child {
+	margin-right: 50px;
 }
 
-.category-timeline > .activity-timeline > .activity-line > .activity-story > .video {
+.category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .name {
+	font-size: 12px;
+	position: absolute;
+	width: 100px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .video {
   width: 60px;
   height: 60px;
   cursor: pointer;
@@ -14237,7 +14246,7 @@ form .error-msg > .text {
   transition: all 0.5s;
 }
 
-.category-timeline > .activity-timeline > .activity-line > .activity-story > .video:hover {
+.category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .video:hover {
   width: 180px;
   height: 180px;
   border-radius: 20px;
@@ -14289,30 +14298,5 @@ form .error-msg > .text {
   border: 1px solid #000;
   font-size: 15px;
   padding: 3px 0;
-}
-
-.no-story {
-	display: flex;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-	border: 1px solid #ccc;
-	border-radius: 20px;
-	background-color: #ed9e40;
-	width: 100%;
-	cursor: pointer;
-	padding: 10px;
-}
-
-.no-story > .svg {
-	width: 64px;
-	height: 64px;
-	color: white;
-	margin-right: 20px;
-}
-
-.no-story > .title {
-	font-size: 24px;
-	font-weight: 300;
 }
 

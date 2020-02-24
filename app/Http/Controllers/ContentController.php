@@ -6,9 +6,9 @@
 	use App\ActivityStory;
 	use App\Follow;
 	use App\Master;
+	use App\User;
 	use App\UserAchievement;
 	use App\UserActivity;
-	use App\User;
 	use Auth;
 	use Illuminate\Http\Request;
 
@@ -73,26 +73,40 @@
 			return view('components.activity-grid-card', ['queryActivities' => $queryActivities, 'isSearching' => true]);
 		}
 
-		public function timeline($category, $userId)
+		public function timeline(Request $request, $category, $userId)
 		{
+			$onlyTimeline = $request->query('show') == 'timeline' ? true : false;
 			$myId = Auth::id() ? Auth::id() : 0;
 			$me = $myId == $userId;
+			$category = json_decode($category, true);
+
 			$user = User::where('user_id', $userId)
 				->select(\DB::raw('*, (SELECT COUNT(*) FROM follows WHERE follower_id = ' . $myId . ' AND following_id = users.user_id) AS follower'))
 				->first();
+
 			$isFollower = $user['follower'] == 1;
+
 			if (!$isFollower) {
 				abort(404);
 			}
-			$timelines = ActivityStory::from('activity_stories as as')
-				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
-				->join('user_category as uc', 'ac.category_id', 'uc.category_id')
-				->join('categories as cg', 'uc.category_id', 'cg.category_id')
-				->where('uc.user_id', $userId)
-				->where('as.user_id', $userId)
-				->where('cg.category_id', $category)->get();
+			if (empty($category)) {
+				$timelines = ActivityStory::from('activity_stories as as')
+					->join('activities as ac', 'as.activity_id', 'ac.activity_id')
+					->join('categories as cg', 'ac.category_id', 'cg.category_id')
+					->where('as.user_id', $userId)
+					->where('as.story_status', 'lesson')->get();
+			} else {
+				$timelines = ActivityStory::from('activity_stories as as')
+					->join('activities as ac', 'as.activity_id', 'ac.activity_id')
+					->join('categories as cg', 'ac.category_id', 'cg.category_id')
+					->where('as.user_id', $userId)
+					->whereIn('cg.category_id', $category)
+					->where('as.story_status', 'lesson')->get();
 
-			return view('components.category-timeline', ['timelines' => $timelines, 'user' => $user, 'me' => $me, 'isFollower' => $isFollower]);
+			}
+
+
+			return view('components.category-timeline', ['timelines' => $timelines, 'user' => $user, 'me' => $me, 'isFollower' => $isFollower, 'onlyTimeline' => $onlyTimeline]);
 		}
 
 		public function achievement($category, $userId)
@@ -106,6 +120,30 @@
 			if ($achievements->isEmpty())
 				return response()->view('components.achievement', ['achievements' => $achievements], 404);
 			return view('components.achievement', ['achievements' => $achievements]);
+		}
+
+		public function story(Request $request, $category, $userId)
+		{
+			$category = json_decode($category, true);
+			$myId = Auth::id() ? Auth::id() : 0;
+			$me = $myId == $userId;
+
+			if (empty($category)) {
+				$stories = ActivityStory::from('activity_stories as as')
+					->join('activities as ac', 'as.activity_id', 'ac.activity_id')
+					->where('as.user_id', $userId)
+					->where('as.story_status', 'LIKE', '%' . ($me ? '' : 'story') . '%')
+					->orderBy('as.activity_story_id', 'desc')->get();
+			} else {
+				$stories = ActivityStory::from('activity_stories as as')
+					->join('activities as ac', 'as.activity_id', 'ac.activity_id')
+					->where('as.user_id', $userId)
+					->whereIn('ac.category_id', $category)
+					->where('as.story_status', 'LIKE', '%' . ($me ? '' : 'story') . '%')
+					->orderBy('as.activity_story_id', 'desc')->get();
+			}
+
+			return view('components.activity-story', ['stories' => $stories]);
 		}
 
 		public function map()

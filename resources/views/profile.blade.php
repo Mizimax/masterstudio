@@ -242,7 +242,7 @@
                   elements_selector: '.lazy',
                   // ... more custom settings?
                 })
-                $('.activity-story > .video').hover(function () {
+                $('.activity-story-lesson > .video').hover(function () {
                   $(this).get(0).play()
                 }, function () {
                   $(this).get(0).pause()
@@ -429,7 +429,7 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
-            $('.activity-story > .video').hover(function () {
+            $('.activity-story-lesson > .video').hover(function () {
               $(this).get(0).play()
             }, function () {
               $(this).get(0).pause()

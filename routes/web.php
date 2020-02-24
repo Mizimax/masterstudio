@@ -35,6 +35,7 @@
 		Route::post('/user/{userId}/gallery', 'UserController@addGallery');
 		Route::post('/studio/{id}', 'StudioController@follow');
 		Route::post('/add/more', 'UserController@more');
+		Route::get('/content/story/{category}/{userId}', 'ContentController@story');
 		Route::get('/content/timeline/{category}/{userId}', 'ContentController@timeline');
 		Route::get('/content/allActivity', 'ContentController@allActivity');
 		Route::get('/content/follow/master', 'ContentController@follow');

@@ -3,9 +3,10 @@
 	namespace App\Http\Controllers;
 
 	use App\Activity;
-	use App\ActivityStory;
 	use App\ActivityComment;
+	use App\ActivityStory;
 	use App\UserActivity;
+	use App\UserCategory;
 	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\Input;
 
@@ -42,10 +43,26 @@
 				->join('activities as ac', 'ua.activity_id', 'ac.activity_id')
 				->where('ua.user_id', $user['user_id'])
 				->where('ua.user_activity_paid', 1)->get();
+
+			$userCategories = UserCategory::from('user_category as uc')
+				->join('users as us', 'uc.user_id', 'us.user_id')
+				->join('categories as cg', 'uc.category_id', 'cg.category_id')
+				->where('uc.user_id', $user['user_id'])
+				->select(\DB::raw('*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
+				->get();
+			$categories = UserCategory::from('categories as cg')
+				->whereNotIn('cg.category_id', function ($query) use ($user) {
+					$query->from('user_category as uc')
+						->where('uc.user_id', $user['user_id'])
+						->select('uc.category_id');
+				})
+				->select(\DB::raw('cg.*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
+				->get();
+
 			if ($user['user_id'] === 0) {
 				$user = [];
 			}
-			return view('activity', ['activities' => $activities, 'headActivities' => $headActivities, 'stories' => $stories, 'user' => $user, 'myActivities' => $myActivities]);
+			return view('activity', ['activities' => $activities, 'headActivities' => $headActivities, 'stories' => $stories, 'user' => $user, 'myActivities' => $myActivities, 'userCategories' => $userCategories, 'categories' => $categories]);
 		}
 
 		/**
