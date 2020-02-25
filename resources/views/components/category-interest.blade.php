@@ -1,14 +1,14 @@
 @php
     $user = !empty($user) ? $user : Auth::user();
 
-    if(!$userCategories) {
+    if(!isset($userCategories)) {
     $userCategories = \App\UserCategory::from('user_category as uc')
                                         ->join('users as us', 'uc.user_id', 'us.user_id')
                                         ->join('categories as cg', 'uc.category_id', 'cg.category_id')
                                         ->where('uc.user_id', $user['user_id'])
                                         ->get();
 }
-if(!$categories) {
+if(!isset($categories)) {
     $categories = \App\UserCategory::from('categories as cg')
                                         ->whereNotIn('cg.category_id', function($query) use ($user){
                                             $query->from('user_category as uc')

@@ -5,6 +5,7 @@
 	use App\Activity;
 	use App\ActivityComment;
 	use App\ActivityStory;
+	use App\User;
 	use App\UserActivity;
 	use App\UserCategory;
 	use Illuminate\Http\Request;

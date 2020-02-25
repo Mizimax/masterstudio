@@ -150,16 +150,16 @@
                     <div class="your-info">
                         <h3 class="name">{{ $user['user_name'] }}</h3>
                         <span class="level">LV. <span
-                                    id="category-level">{{ $userCategories[0]['category_level'] }}</span></span>
+                                    id="category-level">{{ $userCategories[0]['user_level'] }}</span></span>
                         <div class="progress">
                             <div id="category-level" class="progress-bar" role="progressbar"
-                                 style="width: {{ $userCategories[0]['category_exp'] }}%"
-                                 aria-valuenow="{{ $userCategories[0]['category_exp'] }}"
+                                 style="width: {{ $userCategories[0]['user_exp'] }}%"
+                                 aria-valuenow="{{ $userCategories[0]['user_exp'] }}"
                                  aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <span class="timespend-badge">Time spend</span>
                         <span class="timespend"><span
-                                    id="category-hour">{{ $userCategories[0]['category_hour'] }}</span> hours</span>
+                                    id="category-hour">{{ $userCategories[0]['user_hour'] }}</span> hours</span>
                         @if(!$userCategories->isEmpty())
                             <span id="category-badge"
                                   class="category">{{ $userCategories[0]['category_name'] }}</span>
@@ -204,7 +204,7 @@
             </div>
         @endif
         <section id="activity" class="all-activity"
-                 style="margin-top: 70px; background-image: url('{{ $userCategories[0]->category_bg }}')">
+                 style="margin-top: 70px; background-image: url('{{ !$userCategories->isEmpty() ? $userCategories[0]->category_bg : $categories[0]->category_bg }}')">
             <div class="content">
                 <h3 class="header">All activities</h3>
                 <div class="search-group" tabindex="-1" align="left">

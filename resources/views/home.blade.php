@@ -181,7 +181,7 @@
             </div>
         </div>
         <section id="activity" class="activity-you"
-                 style="background-image: url('{{ $userCategories[0]->category_bg }}')">
+                 style="background-image: url('{{ !$userCategories->isEmpty() ? $userCategories[0]->category_bg : $categories[0]->category_bg }}')">
             <div class="content">
                 <h3 class="header">Activity for you</h3>
                 <div class="search-group" tabindex="-1" style="max-width: 400px">
