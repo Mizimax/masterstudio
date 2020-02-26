@@ -39,8 +39,8 @@
                     <span>User level : {{ $user['user_level'] }}</span>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar"
-                             style="width: {{ $user['user_exp'] }}%"
-                             aria-valuenow="{{ $user['user_exp'] }}"
+                             style="width: {{ $user['user_exp']/$user['user_exp_max'] * 100 }}%"
+                             aria-valuenow="{{ $user['user_exp']/$user['user_exp_max'] * 100 }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     {{--                    <span>Active on</span>--}}

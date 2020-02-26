@@ -48,9 +48,7 @@
             </button>
 
             @if (Auth::check())
-                @php
-                    $user = Auth::user();
-                @endphp
+
                 <div class="user-info-menu row no-gutters">
                     <div class="profile-dropdown">
                         <div class="profile-space">
@@ -71,7 +69,8 @@
                                         <div class="col" style="margin-top: 3px;">
                                             <div class="progress">
                                                 <div class="progress-bar" role="progressbar"
-                                                     style="width: 50%" aria-valuenow="50"
+                                                     style="width: {{ $user['user_exp']/$user['user_exp_max'] * 100 }}%"
+                                                     aria-valuenow="50"
                                                      aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </div>

@@ -499,7 +499,7 @@
                         ? MasterStudio.myCategory[lastCategory]['user_level']
                         : 1
         var userExp = 'user_exp' in MasterStudio.myCategory[lastCategory]
-                      ? MasterStudio.myCategory[lastCategory]['user_exp']
+                      ? MasterStudio.myCategory[lastCategory]['user_exp'] / MasterStudio.myCategory[lastCategory]['user_exp_max'] * 100
                       : 0
         $('#category-badge').text(MasterStudio.myCategory[lastCategory]['category_name'])
         $('#category-hour').text(userHour)

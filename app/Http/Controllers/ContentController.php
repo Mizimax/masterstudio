@@ -4,6 +4,7 @@
 
 	use App\Activity;
 	use App\ActivityStory;
+	use App\Exp;
 	use App\Follow;
 	use App\Master;
 	use App\User;
@@ -111,6 +112,8 @@
 					->where('user_id', $userId)
 					->where('user_category.category_id', $category)
 					->first();
+				$exp = Exp::where('exp_level', $ug['user_level'] + 1)->first();
+				$ug['user_exp_max'] = $exp['exp_up'];
 			}
 
 

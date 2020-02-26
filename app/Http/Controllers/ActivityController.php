@@ -5,6 +5,8 @@
 	use App\Activity;
 	use App\ActivityComment;
 	use App\ActivityStory;
+	use App\Category;
+	use App\Exp;
 	use App\User;
 	use App\UserActivity;
 	use App\UserCategory;
@@ -49,9 +51,10 @@
 				->join('users as us', 'uc.user_id', 'us.user_id')
 				->join('categories as cg', 'uc.category_id', 'cg.category_id')
 				->where('uc.user_id', $user['user_id'])
-				->select(\DB::raw('*, uc.user_level, uc.user_exp, uc.user_hour,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
+				->select(\DB::raw('*, uc.user_level, uc.user_exp, uc.user_hour,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count,(SELECT exp_up FROM exp WHERE exp.exp_level = uc.user_level+1) AS user_exp_max'))
 				->get();
-			$categories = UserCategory::from('categories as cg')
+
+			$categories = Category::from('categories as cg')
 				->whereNotIn('cg.category_id', function ($query) use ($user) {
 					$query->from('user_category as uc')
 						->where('uc.user_id', $user['user_id'])

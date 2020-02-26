@@ -4,8 +4,8 @@
             <span class="level">LV. {{ $ugInfo['user_level'] }}</span>
             <div class="progress">
                 <div class="progress-bar" role="progressbar"
-                     style="width: {{ $ugInfo['user_exp'] }}%"
-                     aria-valuenow="{{ $ugInfo['user_exp'] }}"
+                     style="width: {{ $ugInfo['user_exp'] / $ugInfo['user_exp_max'] * 100 }}%"
+                     aria-valuenow="{{ $ugInfo['user_exp'] / $ugInfo['user_exp_max'] * 100 }}"
                      aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <span class="timespend-badge">Time spend</span>
