@@ -11933,6 +11933,10 @@ section.activity-detail-section > .content > .activity-section,
   color: white;
 }
 
+.footer > .footer-wrapper .email-sub .email > .input {
+	color: black;
+}
+
 .footer > .footer-wrapper .follow-us {
   flex-shrink: 1;
   flex-grow: 2;

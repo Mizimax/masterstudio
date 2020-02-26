@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Follow;
+use App\Subscriber;
 use App\User;
 use Auth;
 use App\Http\Controllers\Controller;
@@ -81,6 +82,10 @@ class RegisterController extends Controller
 			'following_id' => $user['user_id'],
 			'follower_id' => $user['user_id'],
 			'follow_type' => 'user'
+		]);
+
+		Subscriber::create([
+			'subscriber_email' => $data['user_email']
 		]);
 		return $user;
 	}
