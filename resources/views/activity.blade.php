@@ -152,7 +152,7 @@
                         <span class="level">LV. <span
                                     id="category-level">{{ $userCategories[0]['user_level'] }}</span></span>
                         <div class="progress">
-                            <div id="category-level" class="progress-bar" role="progressbar"
+                            <div id="category-exp" class="progress-bar" role="progressbar"
                                  style="width: {{ $userCategories[0]['user_exp'] }}%"
                                  aria-valuenow="{{ $userCategories[0]['user_exp'] }}"
                                  aria-valuemin="0" aria-valuemax="100"></div>
@@ -430,7 +430,7 @@
             })
           }
 
-        $('.no-story').click(recordVideo())
+        $('#story').delegate('.no-story', 'click', recordVideo())
 
         $('#lesson').delegate('.add-button', 'click', recordVideo('lesson'))
 
@@ -491,10 +491,20 @@
         var lastCategory = MasterStudio.categorySelected.length !== 0
                            ? MasterStudio.categorySelected[MasterStudio.categorySelected.length - 1]
                            : Object.keys(MasterStudio.myCategory)[0]
+        console.log('>> MasterStudio.myCategory[lastCategory]: ', MasterStudio.myCategory[lastCategory])
+        var userHour = 'user_hour' in MasterStudio.myCategory[lastCategory]
+                       ? MasterStudio.myCategory[lastCategory]['user_hour']
+                       : 0
+        var userLevel = 'user_level' in MasterStudio.myCategory[lastCategory]
+                        ? MasterStudio.myCategory[lastCategory]['user_level']
+                        : 1
+        var userExp = 'user_exp' in MasterStudio.myCategory[lastCategory]
+                      ? MasterStudio.myCategory[lastCategory]['user_exp']
+                      : 0
         $('#category-badge').text(MasterStudio.myCategory[lastCategory]['category_name'])
-        $('#category-hour').text(MasterStudio.myCategory[lastCategory]['user_hour'])
-        $('#category-level').text(MasterStudio.myCategory[lastCategory]['user_level'])
-        $('#category-exp').text(MasterStudio.myCategory[lastCategory]['user_exp'])
+        $('#category-hour').text(userHour)
+        $('#category-level').text(userLevel)
+        $('#category-exp').css('width', userExp + '%')
         if (selectedCategory === 0) {
           $('#activity').css('background-image', 'url(\'/img/default-bg.jpg\')')
         } else {
@@ -575,6 +585,7 @@
             }, function () {
               $(this).get(0).pause()
             })
+            replaceSvg()
           },
         })
 

@@ -15,6 +15,6 @@
 		 * @var array
 		 */
 		protected $fillable = [
-			'category_id', 'user_id'
+			'category_id', 'user_id', 'user_exp', 'user_hour'
 		];
 	}

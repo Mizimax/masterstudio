@@ -1,30 +1,17 @@
 <div class="category-timeline">
     @if(!$onlyTimeline)
-        @if($timelines->isEmpty())
-            <div class="your-info">
-                <span class="level">LV. 1</span>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                         style="width: 50%" aria-valuenow="50"
-                         aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <span class="timespend-badge">Time spend</span>
-                <span class="timespend">0 hours</span>
-                <span id="category-name" class="category"></span>
+        <div class="your-info">
+            <span class="level">LV. {{ $ugInfo['user_level'] }}</span>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar"
+                     style="width: {{ $ugInfo['user_exp'] }}%"
+                     aria-valuenow="{{ $ugInfo['user_exp'] }}"
+                     aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-        @else
-            <div class="your-info">
-                <span class="level">LV. {{ $timelines[0]['user_level'] }}</span>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar"
-                         style="width: 50%" aria-valuenow="50"
-                         aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                <span class="timespend-badge">Time spend</span>
-                <span class="timespend">{{ $timelines[0]['user_hour'] }} hours</span>
-                <span class="category">{{ $timelines[0]['category_name'] }}</span>
-            </div>
-        @endif
+            <span class="timespend-badge">Time spend</span>
+            <span class="timespend">{{ $ugInfo['user_hour'] }} hours</span>
+            <span class="category">{{ $ugInfo['category_name'] }}</span>
+        </div>
     @endif
     <div class="activity-timeline">
         <hr class="line">

@@ -36,10 +36,11 @@
                 </div>
                 <div class="profile-detail">
                     <h1 class="name">{{ $user['user_name'] }}</h1>
-                    <span>user lvl : {{ $user['user_level'] }}</span>
+                    <span>User level : {{ $user['user_level'] }}</span>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar"
-                             style="width: 50%" aria-valuenow="50"
+                             style="width: {{ $user['user_exp'] }}%"
+                             aria-valuenow="{{ $user['user_exp'] }}"
                              aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     {{--                    <span>Active on</span>--}}
@@ -229,7 +230,7 @@
           @if($isFollower)
           if ($('.interest-activity.active').length !== 0 || {{ $me ? 'true' : 'false' }}) {
             $.ajax({
-              url: '/content/timeline/' + $('.interest-activity.active').attr('cat-id') + '/{{ $user['user_id'] }}',
+              url: '/content/timeline/[' + $('.interest-activity.active').attr('cat-id') + ']/{{ $user['user_id'] }}',
               type: 'get',
               processData: false,
               contentType: 'application/json',
@@ -294,7 +295,6 @@
           var result = targetOrder - curOrder
           var trans = curTrans - 33.33 * result
           curTrans = trans
-          console.log('>> curTrans: ', curTrans)
           $(this).parent().css('transform', 'translateX(' + trans + '%)')
         })
 
@@ -416,7 +416,7 @@
         $(element).addClass('active')
 
         $.ajax({
-          url: '/content/timeline/' + categorySelected + '/' + '{{ $user['user_id'] }}',
+          url: '/content/timeline/[' + categorySelected + ']/' + '{{ $user['user_id'] }}',
           type: 'get',
           processData: false,
           contentType: 'application/json',
@@ -435,7 +435,6 @@
               $(this).get(0).pause()
             })
 
-            console.log('>> ', $(element).children('.name').text())
             $('#category-name').text($(element).children('.name').text())
           },
         })
@@ -450,9 +449,12 @@
           }),
           success: function (data) {
             $('#achievement').html(data)
+            $('#achievement').parent().removeClass('d-none')
           },
           error: function (error) {
             console.log(error)
+            $('#achievement').html('')
+            $('#achievement').parent().addClass('d-none')
           },
         })
       }

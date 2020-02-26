@@ -9,6 +9,7 @@
 	use App\User;
 	use App\UserAchievement;
 	use App\UserActivity;
+	use App\UserCategory;
 	use Auth;
 	use Illuminate\Http\Request;
 
@@ -104,9 +105,16 @@
 					->where('as.story_status', 'lesson')->get();
 
 			}
+			$ug = '';
+			if (!$onlyTimeline) {
+				$ug = UserCategory::join('categories as cg', 'cg.category_id', 'user_category.category_id')
+					->where('user_id', $userId)
+					->where('user_category.category_id', $category)
+					->first();
+			}
 
 
-			return view('components.category-timeline', ['timelines' => $timelines, 'user' => $user, 'me' => $me, 'isFollower' => $isFollower, 'onlyTimeline' => $onlyTimeline]);
+			return view('components.category-timeline', ['timelines' => $timelines, 'user' => $user, 'me' => $me, 'isFollower' => $isFollower, 'onlyTimeline' => $onlyTimeline, 'ugInfo' => $ug]);
 		}
 
 		public function achievement($category, $userId)
@@ -143,7 +151,7 @@
 					->orderBy('as.activity_story_id', 'desc')->get();
 			}
 
-			return view('components.activity-story', ['stories' => $stories]);
+			return view('components.activity-story', ['stories' => $stories, 'me' => $me]);
 		}
 
 		public function map()

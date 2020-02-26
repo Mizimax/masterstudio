@@ -13682,7 +13682,7 @@ form .error-msg > .text {
 
 .profile-wrapper {
   background: #f4f4f4;
-  padding-top: 70px;
+	padding: 70px 0;
 }
 
 .profile-wrapper .activity-detail {
@@ -13744,7 +13744,7 @@ form .error-msg > .text {
   border-radius: 20px;
   display: flex;
   padding: 30px;
-  margin: 20px 20px 50px;
+	margin: 20px 20px 0;
   flex-wrap: wrap;
 }
 
@@ -13891,19 +13891,35 @@ form .error-msg > .text {
   text-align: center;
   margin-top: -70px;
   display: flex;
+	flex-wrap: wrap;
   width: 100%;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .category-interest,
+.profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab {
+	margin-bottom: 20px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab {
   flex: 1;
   align-items: center;
-  margin-left: 20px;
+	min-width: 365px;
+}
+
+@media (min-width: 766px) {
+	.profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab {
+		margin-left: 20px;
+	}
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .achievement {
   font-size: 20px;
   font-style: italic;
   color: #888;
+}
+
+.profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > #achievement {
+	overflow-x: auto;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .image {
@@ -13913,7 +13929,7 @@ form .error-msg > .text {
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .category-timeline-wrapper {
 	width: 100%;
-	margin-top: 30px;
+	margin-top: 10px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-image {

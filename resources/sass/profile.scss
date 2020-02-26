@@ -39,7 +39,7 @@
 
 .profile-wrapper {
 	background: #f4f4f4;
-	padding-top: 70px;
+	padding: 70px 0;
 
 
 	.activity-detail {
@@ -97,7 +97,7 @@
 			border-radius: 20px;
 			display: flex;
 			padding: 30px;
-			margin: 20px 20px 50px;
+			margin: 20px 20px 0;
 			flex-wrap: wrap;
 
 			@media (max-width: 890px) {
@@ -256,18 +256,31 @@
 				text-align: center;
 				margin-top: -70px;
 				display: flex;
+				flex-wrap: wrap;
 				width: 100%;
+
+				> .category-interest {
+					margin-bottom: 20px;
+				}
 
 				> .achievement-tab {
 					@extend .category-interest;
 					flex: 1;
 					align-items: center;
-					margin-left: 20px;
+					min-width: 365px;
+
+					@include mobileFirst(766px) {
+						margin-left: 20px;
+					}
 
 					> .achievement {
 						font-size: 20px;
 						font-style: italic;
 						color: #888;
+					}
+
+					> #achievement {
+						overflow-x: auto;
 					}
 
 					.image {
@@ -280,7 +293,7 @@
 
 			> .category-timeline-wrapper {
 				width: 100%;
-				margin-top: 30px;
+				margin-top: 10px;
 			}
 
 

@@ -49,7 +49,7 @@
 				->join('users as us', 'uc.user_id', 'us.user_id')
 				->join('categories as cg', 'uc.category_id', 'cg.category_id')
 				->where('uc.user_id', $user['user_id'])
-				->select(\DB::raw('*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
+				->select(\DB::raw('*, uc.user_level, uc.user_exp, uc.user_hour,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
 				->get();
 			$categories = UserCategory::from('categories as cg')
 				->whereNotIn('cg.category_id', function ($query) use ($user) {
