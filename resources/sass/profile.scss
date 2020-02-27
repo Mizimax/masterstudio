@@ -112,9 +112,27 @@
 
 					> .activity-wrapper {
 
-						.activity-wrapper {
+						.activity-wrapper, .activity-grid {
+							position: relative;
 							display: flex;
-							flex-wrap: wrap;
+							flex-flow: row wrap;
+							justify-content: flex-start;
+							max-width: 810px;
+							margin: 20px auto 0;
+							color: white;
+
+							@media (max-width: 909px) {
+								max-width: 540px;
+							}
+
+							@media (max-width: 639px) {
+								justify-content: center;
+							}
+
+							> .activity-card-wrapper {
+								margin: 80px 10px 0;
+							}
+
 						}
 
 						> .now-activity {

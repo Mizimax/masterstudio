@@ -153,8 +153,8 @@
                                     id="category-level">{{ $userCategories[0]['user_level'] }}</span></span>
                         <div class="progress">
                             <div id="category-exp" class="progress-bar" role="progressbar"
-                                 style="width: {{ $userCategories[0]['user_exp'] }}%"
-                                 aria-valuenow="{{ $userCategories[0]['user_exp'] }}"
+                                 style="width: {{ $userCategories[0]['user_exp']/$userCategories[0]['user_exp_max']*100 }}%"
+                                 aria-valuenow="{{ $userCategories[0]['user_exp']/$userCategories[0]['user_exp_max']*100 }}"
                                  aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <span class="timespend-badge">Time spend</span>

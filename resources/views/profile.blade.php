@@ -128,7 +128,7 @@
                                     @if($nowActivities->isEmpty())
                                         <div class="no-act">No activity now.</div>
                                     @endif
-                                    <div class="activity-wrapper">
+                                    <div class="activity-wrapper activity-grid">
                                         @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$nowActivities])
                                     </div>
                                 </div>
@@ -140,7 +140,7 @@
                                     @if($pastActivities->isEmpty())
                                         <div class="no-act">No activity now.</div>
                                     @endif
-                                    <div class="activity-wrapper">
+                                    <div class="activity-wrapper activity-grid">
                                         @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$pastActivities])
                                     </div>
                                 </div>
