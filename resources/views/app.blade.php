@@ -148,8 +148,65 @@
     <div class="content">
         @yield('content')
     </div>
+    <!-- Policy Modal -->
+    <div class="modal fade" id="policyModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="logo-wrapper">
+                        <img src="/img/logo.png" alt="Master Studio" class="logo">
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Policy Modal -->
+    <div class="modal fade" id="policyModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="logo-wrapper">
+                        <img src="/img/logo.png" alt="Master Studio" class="logo">
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Policy Modal -->
+    <div class="modal --policy fade" id="termModal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="logo-wrapper">
+                        <img src="/img/logo.png" alt="Master Studio" class="logo">
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
-    <div class="modal fade" id="modal" tabindex="-1" role="dialog"
+    <div class="modal --policy fade" id="modal" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -186,8 +243,11 @@
                     <a href="/studio">
                         <div id="studio-footer" class="menu">Studio</div>
                     </a>
-                    <a href="#" onclick="modal('login')">
-                        <div id="become-footer" class="menu">Become master</div>
+                    <a href="#privacy" onclick="$('#policyModal').modal('toggle')">
+                        <div id="privacy" class="menu">Privacy Policy</div>
+                    </a>
+                    <a href="#term" onclick="$('#termModal').modal('toggle')">
+                        <div id="term" class="menu">Terms and Conditions</div>
                     </a>
                 </div>
                 <div class="col follow-us">

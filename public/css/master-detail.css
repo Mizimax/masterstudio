@@ -11949,6 +11949,10 @@ button:focus {
   padding: 13px 0;
 }
 
+.modal.\--policy .modal-dialog {
+	max-width: 600px;
+}
+
 .modal .modal-content {
   border-radius: 20px;
 }
