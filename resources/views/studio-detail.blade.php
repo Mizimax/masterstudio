@@ -147,16 +147,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade in" id="gallery">
                             <div class="gallery-wrapper">
-                                <div class="gallery-flex">
-                                    @for($i = 0; $i < count($studio['studio_pic'])/2; $i++)
-                                        <img src="{{ $studio['studio_pic'][$i] }}" class="image">
-                                    @endfor
-                                </div>
-                                <div class="gallery-flex --second">
-                                    @for($i = count($studio['studio_pic'])/2; $i < count($studio['studio_pic']); $i++)
-                                        <img src="{{ $studio['studio_pic'][$i] }}" class="image">
-                                    @endfor
-                                </div>
+                                @include('components.gallery', ['galleries' => $studio['studio_pic']])
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade in" id="review">

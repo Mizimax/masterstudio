@@ -13659,8 +13659,52 @@ form .error-msg > .text {
   height: 160px;
 }
 
-.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image {
-  height: 140px;
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container {
+	position: relative;
+	flex-shrink: 0;
+	font-size: 0;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active {
+	border: 1px solid #f25923;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active > .delete-btn {
+	display: block;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.me:hover {
+	border: 1px solid #f25923;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.me:hover > .delete-btn {
+	display: block;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	display: none;
+	padding: 10px;
+	color: white;
+	background-color: #f25923;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn:before {
+	content: "-";
+	font-weight: bold;
+	font-size: 16px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .image {
+	height: 180px;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #review {

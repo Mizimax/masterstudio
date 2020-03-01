@@ -13359,6 +13359,7 @@ form .error-msg > .text {
   flex-flow: row wrap;
   justify-content: flex-start;
   max-width: 810px;
+	width: 100%;
   margin: 20px auto 0;
   color: white;
 }

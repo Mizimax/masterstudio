@@ -39,6 +39,7 @@
 			$studio['studio_pic'] = json_decode($studio['studio_pic'], true);
 			$studio['studio_bg'] = json_decode($studio['studio_bg'], true);
 			$studio['studio_video'] = json_decode($studio['studio_video'], true);
+			$studio['studio_pic'] = array_reverse($studio['studio_pic']);
 			$activities = Activity::from('activities as act')
 				->join('users AS u', 'u.user_id', '=', 'act.user_id')
 				->join('masters AS ms', 'u.master_id', '=', 'ms.master_id')
@@ -54,6 +55,7 @@
 				->where('sr.studio_id', $id)
 				->orderBy('review_id', 'desc')->get();
 			$userid = \Auth::id() ? \Auth::id() : '0';
+			$me = $studio['studio_user'] === $userid;
 			$masters = User::from('users AS us')
 				->join('masters AS ms', 'ms.master_id', '=', 'us.master_id')
 				->join('activities AS act', 'act.user_id', '=', 'us.user_id')
@@ -69,7 +71,7 @@
 
 //			$distance = \DB::select('SELECT (6371 * acos(cos(radians(' . $lat . ')) * cos(radians(studio_lat)) * cos(radians(studio_long) - radians(' . $long . ')) + sin(radians(' . $lat . ')) * sin(radians(studio_lat)))) AS distance  FROM studios HAVING distance <= 1');
 //			dd($distance);
-			return view('studio-detail', ['studio' => $studio, 'activities' => $activities, 'stories' => $stories, 'reviews' => $reviews, 'masters' => $masters, 'isFollower' => $isFollower]);
+			return view('studio-detail', ['studio' => $studio, 'activities' => $activities, 'stories' => $stories, 'reviews' => $reviews, 'masters' => $masters, 'isFollower' => $isFollower, 'me' => $me]);
 		}
 
 		/**

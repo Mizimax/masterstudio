@@ -13770,6 +13770,7 @@ form .error-msg > .text {
 	flex-flow: row wrap;
 	justify-content: flex-start;
 	max-width: 810px;
+	width: 100%;
 	margin: 20px auto 0;
 	color: white;
 }
@@ -13915,7 +13916,7 @@ form .error-msg > .text {
 }
 
 .master-detail-section > .master-container > .tab-content .gallery-wrapper > .gallery-flex > .image-container > .image {
-  height: 140px;
+	height: 180px;
 }
 
 .carousel-inner .carousel-item.active,

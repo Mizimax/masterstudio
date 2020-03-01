@@ -300,15 +300,60 @@
 
 							> .gallery-flex {
 								display: flex;
-
 								&.--second {
 									> .image {
 										height: 160px;
 									}
 								}
 
-								> .image {
-									height: 140px;
+								> .image-container {
+									position: relative;
+									flex-shrink: 0;
+									font-size: 0;
+
+									&.active {
+										border: 1px solid #f25923;
+
+										> .delete-btn {
+											display: block;
+										}
+									}
+
+									&.me {
+										&:hover {
+											border: 1px solid #f25923;
+
+											> .delete-btn {
+												display: block;
+											}
+										}
+									}
+
+									> .delete-btn {
+										position: absolute;
+										right: 10px;
+										bottom: 10px;
+										display: none;
+										padding: 10px;
+										color: white;
+										background-color: #f25923;
+										border-radius: 50%;
+										cursor: pointer;
+
+										&:before {
+											content: "-";
+											font-weight: bold;
+											font-size: 16px;
+											position: absolute;
+											top: 50%;
+											left: 50%;
+											transform: translate(-50%, -50%);
+										}
+									}
+
+									> .image {
+										height: 180px;
+									}
 								}
 							}
 						}

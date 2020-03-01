@@ -13769,6 +13769,7 @@ form .error-msg > .text {
 	flex-flow: row wrap;
 	justify-content: flex-start;
 	max-width: 810px;
+	width: 100%;
 	margin: 20px auto 0;
 	color: white;
 }
@@ -13913,7 +13914,7 @@ form .error-msg > .text {
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .image {
-  height: 140px;
+	height: 180px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab {
