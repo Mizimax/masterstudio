@@ -18,10 +18,12 @@
 	> .studio-header-wrapper {
 		max-width: 900px;
 		width: 90%;
+		height: 100%;
 		position: absolute;
 		left: 50%;
 		transform: translateX(-50%);
-		bottom: 5vh;
+		top: 0;
+		display: flex;
 		z-index: 99;
 
 		> .studio-header-content {
@@ -30,6 +32,15 @@
 			color: white;
 			padding: 20px;
 			margin-left: auto;
+			margin-right: auto;
+			margin-top: auto;
+			margin-bottom: 70px;
+			text-align: center;
+
+			@include mobile-up {
+				text-align: left;
+				margin-right: 0;
+			}
 
 			> .studio-icon {
 				width: 170px;
@@ -50,7 +61,12 @@
 
 			> .action-wrapper {
 				display: flex;
+				justify-content: center;
 				margin: 20px 0 0;
+
+				@include mobile-up {
+					justify-content: flex-start;
+				}
 
 				> .action-button {
 					margin-right: 5px;
@@ -109,7 +125,12 @@
 			> .activity-story {
 				flex: 1;
 				overflow-x: auto;
-				padding: 25px 0;
+				padding: 10px 0 0 0;
+				display: none;
+
+				@include mobile-up {
+					display: flex;
+				}
 
 				.activity-card {
 					width: 130px;
@@ -129,6 +150,18 @@
 			}
 		}
 	}
+}
+
+.studio-master {
+	.activity-story {
+		display: flex;
+		padding: 20px 0;
+
+		@include mobile-up {
+			display: none;
+		}
+	}
+
 }
 
 .studio-detail-container {
@@ -356,13 +389,13 @@
 		> .master-studio-padding {
 			padding-top: 0;
 
-			@include mobile-up {
-				padding-top: 40px;
+			@include tablet-up {
+				padding-top: 80px;
 			}
 		}
 
 		> .title {
-			margin: 40px 0;
+			margin: 40px 0 10px;
 			font-size: 30px;
 			font-weight: bold;
 		}

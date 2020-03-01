@@ -63,7 +63,6 @@
                                     onclick="window.location='/activity/{{ $master['activity_url_name'] }}'">
                                 Join<br>Activity
                             </button>
-                            <span>1 Activity available</span>
                         </div>
                     </div>
                     <div class="core-actions">

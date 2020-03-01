@@ -28,10 +28,10 @@
 		Route::post('/activity/{id}/payment', 'PaymentController@payment');
 		Route::post('/user/{userId}', 'UserController@follow');
 		Route::post('/master/{userId}', 'MasterController@follow');
-		Route::delete('/master/{id}/gallery', 'MasterController@delGallery');
+		Route::delete('/master/{id}/gallery/{picId}', 'MasterController@delGallery');
 		Route::post('/master/{id}/gallery', 'MasterController@addGallery');
 		Route::post('/user/{userId}/profile/{action}', 'UserController@editProfile');
-		Route::delete('/user/{userId}/gallery', 'UserController@delGallery');
+		Route::delete('/user/{userId}/gallery/{picId}', 'UserController@delGallery');
 		Route::post('/user/{userId}/gallery', 'UserController@addGallery');
 		Route::post('/studio/{id}', 'StudioController@follow');
 		Route::post('/add/more', 'UserController@more');

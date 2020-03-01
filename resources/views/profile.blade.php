@@ -1,6 +1,7 @@
 @php
     $categories = \App\Category::get();
     $user['user_gallery'] = json_decode($user['user_gallery'], true);
+    $user['user_gallery'] = array_reverse($user['user_gallery']);
 @endphp
 @extends('app')
 
@@ -149,38 +150,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade in" id="gallery">
                         <div class="gallery-wrapper">
-                            <div class="gallery-flex --first">
-                                @php
-                                    $count = count($user['user_gallery']);
-                                    if(count($user['user_gallery']) === 1)
-                                        $count = 2;
-                                @endphp
-                                @for($i = 0; $i < floor($count/2); $i++)
-                                    <div class="image-container {{ $me ? 'me' : '' }}"
-                                         tabindex="-1">
-                                        <img src="{{ $user['user_gallery'][$i] }}"
-                                             class="image">
-                                        @if($me)
-                                            <button class="delete-btn"
-                                                    onclick="deletePicGallery({{ $i }}, this)"></button>
-                                        @endif
-                                    </div>
-                                @endfor
-                            </div>
-                            <div class="gallery-flex --second">
-                                @for($i = floor(count($user['user_gallery'])/2); $i < count($user['user_gallery']); $i++)
-                                    <div class="image-container {{ $me ? 'me' : '' }}"
-                                         tabindex="-1">
-                                        <img src="{{ $user['user_gallery'][$i] }}"
-                                             class="image">
-                                        @if($me)
-                                            <button class="delete-btn"
-                                                    onclick="deletePicGallery({{ $i }}, this)"></button>
-                                        @endif
-                                    </div>
-                                @endfor
-                            </div>
-
+                            @include('components.gallery', ['galleries' => $user['user_gallery']])
                         </div>
                         @if($me)
                             <div class="add-button">
@@ -188,22 +158,31 @@
                                 <input type="file" accept="image/*" class="add-file">
                             </div>
                         @endif
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="studio">
 
                     </div>
+                    <div role="tabpanel" class="tab-pane fade" id="studio">
+                        <div align="center">No visited studio now.</div>
+                    </div>
                     <div role="tabpanel" class="tab-pane fade" id="suggest">
-                        <div class="follow-wrapper" style="margin-top: 20px">
-                            @foreach($masters as $master)
-                                <div class="followed-master col-sm-6 col-md-3 col-12"
-                                     onclick="window.location.href='/master/{{ $master['master_id'] }}'">
-                                    <div class="image-wrapper">
-                                        <img src="{{ $master['user_pic'] }}" alt="">
+                        @if($masters->isEmpty())
+                            <div class="no-follow-master" align="center">
+                                No followed master now.
+                            </div>
+                        @else
+                            <div class="follow-wrapper justify-content-center"
+                                 style="margin-top: 20px">
+
+                                @foreach($masters as $master)
+                                    <div class="followed-master col-sm-6 col-md-3 col-12"
+                                         onclick="window.location.href='/master/{{ $master['master_id'] }}'">
+                                        <div class="image-wrapper">
+                                            <img src="{{ $master['user_pic'] }}" alt="">
+                                        </div>
+                                        <div class="name">{{ $master['master_name'] }}</div>
                                     </div>
-                                    <div class="name">{{ $master['master_name'] }}</div>
-                                </div>
-                            @endforeach
-                        </div>
+                                @endforeach
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -253,27 +232,26 @@
               },
             })
 
+            $.ajax({
+              url: '/content/achievement/' + $('.interest-activity.active').attr('cat-id') + '/{{ $user['user_id'] }}',
+              type: 'get',
+              processData: false,
+              contentType: 'application/json',
+              data: JSON.stringify({
+                '_token': $('meta[name="csrf-token"]').attr('content'),
+              }),
+              success: function (data) {
 
-        $.ajax({
-          url: '/content/achievement/' + $('.interest-activity.active').attr('cat-id') + '/{{ $user['user_id'] }}',
-          type: 'get',
-          processData: false,
-          contentType: 'application/json',
-          data: JSON.stringify({
-            '_token': $('meta[name="csrf-token"]').attr('content'),
-          }),
-          success: function (data) {
+                $('#achievement').html(data)
+                $('#achievement').parent().removeClass('d-none')
 
-            $('#achievement').html(data)
-            $('#achievement').parent().removeClass('d-none')
-
-          },
-          error: function (error) {
-            console.log(error)
-            $('#achievement').html('')
-            $('#achievement').parent().addClass('d-none')
-          },
-        })
+              },
+              error: function (error) {
+                console.log(error)
+                $('#achievement').html('')
+                $('#achievement').parent().addClass('d-none')
+              },
+            })
 
           } else {
             $('.profile-card-wrapper.--timeline').addClass('d-none')
@@ -311,7 +289,6 @@
 
               @if($me)
 
-      var user_gallery = @json($user['user_gallery'])
 
         function changeProfile() {
           var formData = new FormData()
@@ -348,20 +325,20 @@
         })
       }
 
-      function deletePicGallery(id, ele) {
-        user_gallery.splice(id, 1)
+      function deletePicGallery(id) {
         $.ajax({
-          url: '/user/{{ $user['user_id'] }}/gallery',
+          url: '/user/{{ $user['user_id'] }}/gallery/' + id,
           type: 'delete',
-          dataType: 'json',
           processData: false,
           contentType: 'application/json',
           headers: {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
           },
-          data: JSON.stringify({ 'user_gallery': user_gallery }),
-          success: function (res) {
-            $(ele).parent().remove()
+          success: function (data) {
+            $('.gallery-wrapper').html(data)
+          },
+          error: function (res) {
+            console.log('>> res: ', res)
           },
         })
       }
@@ -369,7 +346,6 @@
       function addPicGallery() {
         var formData = new FormData()
         formData.append('image', $('.add-file')[0].files[0])
-        formData.append('user_gallery', JSON.stringify(user_gallery))
 
         $.ajax({
           url: '/user/{{ $user['user_id'] }}/gallery',
@@ -380,26 +356,8 @@
           data: formData,
           contentType: false,
           processData: false,
-          success: function (res) {
-            var dataResult = res.data
-            var firstGallery = $('.gallery-flex.--first').children().length
-            var secondGallery = $('.gallery-flex.--second').children().length
-            user_gallery.push(dataResult['filename'])
-            var galleryHtml = `
-                <div class="image-container {{ $me ? 'me' : '' }}" tabindex="-1">
-                                    <img src="${dataResult['filename']}"
-                                         class="image">
-                                    @if($me)
-              <button class="delete-btn"
-                      onclick="deletePicGallery(${user_gallery.length - 1}, this)"></button>
-                                        @endif
-              </div>
-`
-            if (firstGallery < secondGallery) {
-              $('.gallery-flex.--first').append(galleryHtml)
-            } else {
-              $('.gallery-flex.--second').append(galleryHtml)
-            }
+          success: function (data) {
+            $('.gallery-wrapper').html(data)
           },
         })
       }

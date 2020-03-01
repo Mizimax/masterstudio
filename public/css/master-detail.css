@@ -13763,9 +13763,34 @@ form .error-msg > .text {
   color: white;
 }
 
-.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-wrapper {
+.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-wrapper,
+.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-grid {
+	position: relative;
   display: flex;
-  flex-wrap: wrap;
+	flex-flow: row wrap;
+	justify-content: flex-start;
+	max-width: 810px;
+	margin: 20px auto 0;
+	color: white;
+}
+
+@media (max-width: 909px) {
+	.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-wrapper,
+	.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-grid {
+		max-width: 540px;
+	}
+}
+
+@media (max-width: 639px) {
+	.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-wrapper,
+	.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-grid {
+		justify-content: center;
+	}
+}
+
+.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-wrapper > .activity-card-wrapper,
+.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .activity-grid > .activity-card-wrapper {
+	margin: 80px 10px 0;
 }
 
 .master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper > .past-activity {

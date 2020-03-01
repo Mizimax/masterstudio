@@ -156,23 +156,26 @@
 		 *
 		 * @return \Illuminate\Http\Response
 		 */
-		public function delGallery(Request $request, $id)
+		public function delGallery(Request $request, $id, $picId)
 		{
 			if (\Auth::id() == $id) {
+				$galleries = User::where('user_id', $id)->select('user_gallery')->first();
+				$galleries = json_decode($galleries['user_gallery'], true);
+				array_splice($galleries, $picId, 1);
 				User::where('user_id', $id)
 					->update([
-						'user_gallery' => json_encode($request->input('user_gallery'))
+						'user_gallery' => json_encode($galleries)
 					]);
+
+				$galleries = array_reverse($galleries);
+
 			} else {
 				return response()->json([
 					'status' => 401,
 					'message' => 'Unauthorized.'
 				], 401);
 			}
-			return response()->json([
-				'status' => 200,
-				'message' => 'Update gallery success.'
-			], 200);
+			return view('components.gallery', ['galleries' => $galleries, 'me' => true]);
 		}
 
 		/**
@@ -182,29 +185,25 @@
 		 */
 		public function addGallery(Request $request, $id)
 		{
-			$user_gallery = $request->input('user_gallery');
-
 			if (\Auth::id() == $id) {
 				$path = '/img/upload/user/' . $id . '/gallery/';
 				$fileName = time() . '.jpg';
 				$request->file('image')->move(public_path($path), $fileName);
-				$user_gallery = json_decode($user_gallery, true);
-				$user_gallery[] = $path . $fileName;
+				$galleries = User::where('user_id', $id)->select('user_gallery')->first();
+				$userGallery = json_decode($galleries['user_gallery'], true);
+				$userGallery[] = $path . $fileName;
 				User::where('user_id', $id)
 					->update([
-						'user_gallery' => json_encode($user_gallery)
+						'user_gallery' => json_encode($userGallery)
 					]);
+				$userGallery = array_reverse($userGallery);
 			} else {
 				return response()->json([
 					'status' => 401,
 					'message' => 'Unauthorized.'
 				], 401);
 			}
-			return response()->json([
-				'status' => 200,
-				'data' => ['filename' => $path . $fileName],
-				'message' => 'add gallery success.'
-			], 200);
+			return view('components.gallery', ['galleries' => $userGallery, 'me' => true]);
 		}
 
 		public function getLogout()

@@ -208,7 +208,7 @@
                                 @if($nowActivities->isEmpty())
                                     <div class="no-act">No activity now.</div>
                                 @endif
-                                <div class="activity-wrapper">
+                                <div class="activity-wrapper activity-grid">
                                     @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$nowActivities])
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                                 @if($pastActivities->isEmpty())
                                     <div class="no-act">No activity now.</div>
                                 @endif
-                                <div class="activity-wrapper">
+                                <div class="activity-wrapper activity-grid">
                                     @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$pastActivities])
                                 </div>
                             </div>
@@ -229,36 +229,7 @@
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="gallery">
                     <div class="gallery-wrapper">
-                        <div class="gallery-flex --first">
-                            @php
-                                $count = count($master['master_activity_pic']);
-                                if(count($master['master_activity_pic']) === 1)
-                                    $count = 2;
-                            @endphp
-                            @for($i = 0; $i < floor($count/2); $i++)
-                                <div class="image-container {{ $me ? 'me' : '' }}" tabindex="-1">
-                                    <img src="{{ $master['master_activity_pic'][$i] }}"
-                                         class="image">
-                                    @if($me)
-                                        <button class="delete-btn"
-                                                onclick="deletePicGallery({{ $i }}, this)"></button>
-                                    @endif
-                                </div>
-                            @endfor
-                        </div>
-                        <div class="gallery-flex --second">
-                            @for($i = floor(count($master['master_activity_pic'])/2); $i < count($master['master_activity_pic']); $i++)
-                                <div class="image-container {{ $me ? 'me' : '' }}"
-                                     tabindex="-1">
-                                    <img src="{{ $master['master_activity_pic'][$i] }}"
-                                         class="image">
-                                    @if($me)
-                                        <button class="delete-btn"
-                                                onclick="deletePicGallery({{ $i }}, this)"></button>
-                                    @endif
-                                </div>
-                            @endfor
-                        </div>
+                        @include('components.gallery', ['galleries' => $master['master_activity_pic']])
 
                     </div>
                     @if($me)
@@ -328,7 +299,7 @@
         })
 
           @if($me)
-          $('.add-button, .no-story').click(function () {
+          $('.no-story').click(function () {
 
             var countup
 
@@ -495,22 +466,20 @@
         })
       }
 
-      var activity_pic = @json($master['master_activity_pic'])
-
-      function deletePicGallery(id, ele) {
-        activity_pic.splice(id, 1)
+      function deletePicGallery(id) {
         $.ajax({
-          url: '/master/{{ $master['master_id'] }}/gallery',
+          url: '/master/{{ $user['user_id'] }}/gallery/' + id,
           type: 'delete',
-          dataType: 'json',
           processData: false,
           contentType: 'application/json',
           headers: {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
           },
-          data: JSON.stringify({ 'master_activity_pic': activity_pic }),
-          success: function (res) {
-            $(ele).parent().remove()
+          success: function (data) {
+            $('.gallery-wrapper').html(data)
+          },
+          error: function (res) {
+            console.log('>> res: ', res)
           },
         })
       }
@@ -518,10 +487,9 @@
       function addPicGallery() {
         var formData = new FormData()
         formData.append('image', $('.add-file')[0].files[0])
-        formData.append('master_activity_pic', JSON.stringify(activity_pic))
 
         $.ajax({
-          url: '/master/{{ $master['master_id'] }}/gallery',
+          url: '/master/{{ $user['user_id'] }}/gallery',
           type: 'post',
           headers: {
             'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
@@ -529,26 +497,8 @@
           data: formData,
           contentType: false,
           processData: false,
-          success: function (res) {
-            var dataResult = res.data
-            var firstGallery = $('.gallery-flex.--first').children().length
-            var secondGallery = $('.gallery-flex.--second').children().length
-            activity_pic.push(dataResult['filename'])
-            var galleryHtml = `
-                <div class="image-container {{ $me ? 'me' : '' }}" tabindex="-1">
-                                    <img src="${dataResult['filename']}"
-                                         class="image">
-                                    @if($me)
-              <button class="delete-btn"
-                      onclick="deletePicGallery(${activity_pic.length - 1}, this)"></button>
-                                        @endif
-              </div>
-`
-            if (firstGallery < secondGallery) {
-              $('.gallery-flex.--first').append(galleryHtml)
-            } else {
-              $('.gallery-flex.--second').append(galleryHtml)
-            }
+          success: function (data) {
+            $('.gallery-wrapper').html(data)
           },
         })
       }

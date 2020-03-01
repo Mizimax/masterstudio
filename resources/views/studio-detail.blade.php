@@ -88,7 +88,6 @@
 
                     <div class="action-button">
                         <button class="join-button">Join<br>Activity</button>
-                        <span class="text">1 Activity available</span>
                     </div>
                     <div class="action-button">
                         @if(!$isFollower)
@@ -108,6 +107,7 @@
                 </div>
                 <div class="checkin"></div>
                 @include('components/activity-story', ['stories'=>$stories])
+
             </div>
         </div>
     </section>
@@ -194,6 +194,14 @@
                 </div>
             </div>
         </section>
+        @if(!empty($stories) && count($stories) !== 0)
+            <section class="studio-master d-block d-sm-none">
+                <h4 class="title">Studio Stories</h4>
+                <div class="activity-wrapper">
+                    @include('components/activity-story', ['stories'=>$stories])
+                </div>
+            </section>
+        @endif
         @if(!empty($masters) && count($masters) !== 0)
             <section class="studio-master">
                 <h4 class="title">Master @Studio</h4>

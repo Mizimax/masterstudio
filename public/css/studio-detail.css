@@ -13362,10 +13362,12 @@ form .error-msg > .text {
 .studio-header > .studio-header-wrapper {
   max-width: 900px;
   width: 90%;
+	height: 100%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 5vh;
+	top: 0;
+	display: flex;
   z-index: 99;
 }
 
@@ -13375,6 +13377,17 @@ form .error-msg > .text {
   color: white;
   padding: 20px;
   margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: 70px;
+	text-align: center;
+}
+
+@media (min-width: 576px) {
+	.studio-header > .studio-header-wrapper > .studio-header-content {
+		text-align: left;
+		margin-right: 0;
+	}
 }
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .studio-icon {
@@ -13397,7 +13410,14 @@ form .error-msg > .text {
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper {
   display: flex;
+	justify-content: center;
   margin: 20px 0 0;
+}
+
+@media (min-width: 576px) {
+	.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper {
+		justify-content: flex-start;
+	}
 }
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button {
@@ -13454,7 +13474,14 @@ form .error-msg > .text {
 .studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
   flex: 1;
   overflow-x: auto;
-  padding: 25px 0;
+	padding: 10px 0 0 0;
+	display: none;
+}
+
+@media (min-width: 576px) {
+	.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
+		display: flex;
+	}
 }
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .activity-card {
@@ -13471,6 +13498,17 @@ form .error-msg > .text {
   width: 30px;
   height: 30px;
   margin-right: -15px;
+}
+
+.studio-master .activity-story {
+	display: flex;
+	padding: 20px 0;
+}
+
+@media (min-width: 576px) {
+	.studio-master .activity-story {
+		display: none;
+	}
 }
 
 .studio-detail-container {
@@ -13691,14 +13729,14 @@ form .error-msg > .text {
   padding-top: 0;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
   .studio-detail-container > .studio-master > .master-studio-padding {
-    padding-top: 40px;
+	  padding-top: 80px;
   }
 }
 
 .studio-detail-container > .studio-master > .title {
-  margin: 40px 0;
+	margin: 40px 0 10px;
   font-size: 30px;
   font-weight: bold;
 }

@@ -92,6 +92,7 @@
 				return abort(404);
 			}
 			$master['master_activity_pic'] = json_decode($master['master_activity_pic'], true);
+			$master['master_activity_pic'] = array_reverse($master['master_activity_pic']);
 			$follow = Follow::where('following_id', $master['user_id'])
 				->where('follower_id', $userme['user_id'])
 				->first();
@@ -190,23 +191,26 @@
 		 *
 		 * @return \Illuminate\Http\Response
 		 */
-		public function delGallery(Request $request, $id)
+		public function delGallery(Request $request, $id, $picId)
 		{
 			if (\Auth::user()->master_id == $id) {
+				$galleries = Master::where('master_id', $id)->select('master_activity_pic')->first();
+				$galleries = json_decode($galleries['master_activity_pic'], true);
+				array_splice($galleries, $picId, 1);
 				Master::where('master_id', $id)
 					->update([
-						'master_activity_pic' => json_encode($request->input('master_activity_pic'))
+						'master_activity_pic' => json_encode($galleries)
 					]);
+
+				$galleries = array_reverse($galleries);
+
 			} else {
 				return response()->json([
 					'status' => 401,
 					'message' => 'Unauthorized.'
 				], 401);
 			}
-			return response()->json([
-				'status' => 200,
-				'message' => 'Update gallery success.'
-			], 200);
+			return view('components.gallery', ['galleries' => $galleries, 'me' => true]);
 		}
 
 		/**
@@ -216,29 +220,26 @@
 		 */
 		public function addGallery(Request $request, $id)
 		{
-			$master_activity_pic = $request->input('master_activity_pic');
-
 			if (\Auth::user()->master_id == $id) {
 				$path = '/img/upload/master/' . $id . '/gallery/';
 				$fileName = time() . '.jpg';
 				$request->file('image')->move(public_path($path), $fileName);
-				$master_activity_pic = json_decode($master_activity_pic, true);
-				$master_activity_pic[] = $path . $fileName;
+				$galleries = Master::where('master_id', $id)->select('master_activity_pic')->first();
+				$masterGallery = json_decode($galleries['master_activity_pic'], true);
+				$masterGallery[] = $path . $fileName;
 				Master::where('master_id', $id)
 					->update([
-						'master_activity_pic' => json_encode($master_activity_pic)
+						'master_activity_pic' => json_encode($masterGallery)
 					]);
+				$masterGallery = array_reverse($masterGallery);
 			} else {
 				return response()->json([
 					'status' => 401,
 					'message' => 'Unauthorized.'
 				], 401);
 			}
-			return response()->json([
-				'status' => 200,
-				'data' => ['filename' => $path . $fileName],
-				'message' => 'add gallery success.'
-			], 200);
+			return view('components.gallery', ['galleries' => $masterGallery, 'me' => true]);
+
 		}
 
 		/**
