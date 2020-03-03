@@ -307,9 +307,9 @@
           )
 
           navigator.mediaDevices.getUserMedia({
-              video: { width: 640/*320-640-1280*/ },
+            video: true,
               audio: true,
-            },
+          }).then(
             function (stream) {
               var recorder = RecordRTC(stream, {
                 type: 'video',
@@ -384,11 +384,10 @@
                   MasterStudio.videoPreview.play = !MasterStudio.videoPreview.play
                 },
               )
-            },
-            function (error) {
-              $('.cantaccess').addClass('d-block')
-            },
-          )
+            }
+          ).catch(function (error) {
+            $('.cantaccess').addClass('d-block')
+          })
         }
 
       }
