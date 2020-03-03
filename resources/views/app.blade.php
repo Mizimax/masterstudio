@@ -559,10 +559,10 @@
 
       function activeTab(tab) {
         $('.nav-tabs a[href="#' + tab + '"]').tab('show')
-        $('.modal-dialog').css('max-width', '380px')
+        $('#modal .modal-dialog').css('max-width', '380px')
         if (tab === 'interestTab') {
           replaceSvg()
-          $('.modal-dialog').css('max-width', '450px')
+          $('#modal .modal-dialog').css('max-width', '450px')
           $('.interest-badge').off('click').on('click', function () {
             $(this).toggleClass('active')
             var interestId = parseInt($(this).children('.val').val(), 10)
@@ -571,7 +571,7 @@
         } else if (tab === 'moreTab') {
           selectButton()
         } else if (tab === 'paymentTab') {
-          $('.modal-header').removeClass('d-none')
+          $('#modal .modal-header').removeClass('d-none')
           replaceSvg()
           $('.payment-badge').off('click').on('click', function () {
             $(this).parent().children('.active').removeClass('active')
@@ -583,14 +583,14 @@
             $('.form-card-wrapper').show()
           })
         } else if (tab === 'studioTab' || tab === 'masterTab') {
-          $('.modal-dialog').css('max-width', '900px')
-          $('.modal-dialog').css('width', '95%')
+          $('#modal .modal-dialog').css('max-width', '900px')
+          $('#modal .modal-dialog').css('width', '95%')
           if ($('#studioTab').html().trim() === '') {
             getMap()
           }
 
         } else if (tab === 'become1Tab') {
-          $('.modal-dialog').css('max-width', '450px')
+          $('#modal .modal-dialog').css('max-width', '450px')
           replaceSvg()
           $('.interest-badge').on('click', function () {
             $(this).toggleClass('active')
@@ -640,7 +640,7 @@
 </ul>
             <div class="tab-content" id="registerTabPane">
               <div class="tab-pane fade in show active" id="registerTab" role="tabpanel" aria-labelledby="register-tab">
-                <form id="registerForm" class="register-form">
+                <form id="registerForm" onsubmit="register();return false;" class="register-form">
             @csrf
         <div class="headerName">Registration</div>
         <div class="form-group">
@@ -806,7 +806,7 @@
 `
       var loginModal = `
           <div id="login-error" style="color: red;" align="center"></div>
-          <form id="loginForm" class="register-form">
+          <form id="loginForm" class="register-form" onsubmit="login(); return false;">
                         <div class="form-group">
                             <label for="user_email">Email</label>
                             <input required type="text" id="user_email" class="form-control"
@@ -995,26 +995,18 @@
 
       var modal = function (name, options) {
         $('#modal').modal('show')
-        $('.modal-header').removeClass('d-none')
+        $('#modal .modal-header').removeClass('d-none')
 
         if (name === 'login') {
-          $('.modal-body').html(loginModal)
-          $('#loginForm').on('submit', function (e) {
-            e.preventDefault()
-            login()
-          })
+          $('#modal .modal-body').html(loginModal)
         } else if (name === 'register') {
-          $('.modal-body').html(registerModal)
+          $('#modal .modal-body').html(registerModal)
           dropdownInit()
           replaceSvg()
-          $('#registerForm').on('submit', function (e) {
-            e.preventDefault()
-            register()
-          })
         } else if (name === 'join') {
 
-          $('.modal-body').html(paymentModal(options['data']))
-          $('.modal-header').addClass('d-none')
+          $('#modal .modal-body').html(paymentModal(options['data']))
+          $('#modal .modal-header').addClass('d-none')
           if (options['payment'] === 'success') {
             activeTab('paymentSuccessTab')
             replaceSvg()
@@ -1024,19 +1016,19 @@
           var script = $('#omise').html()
           $('#omiseForm').append(script)
         } else if (name === 'all') {
-          $('.modal-dialog').css('max-width', '800px')
-          $('.modal-header').addClass('d-none')
-          $('.modal-body').html(allActivityModal)
+          $('#modal .modal-dialog').css('max-width', '800px')
+          $('#modal .modal-header').addClass('d-none')
+          $('#modal .modal-body').html(allActivityModal)
           getAllActivity()
         } else if (name === 'follow') {
-          $('.modal-dialog').css('max-width', '900px')
-          $('.modal-header').addClass('d-none')
-          $('.modal-body').html(followModal)
+          $('#modal .modal-dialog').css('max-width', '900px')
+          $('#modal .modal-header').addClass('d-none')
+          $('#modal .modal-body').html(followModal)
           getFollowMaster()
           categoryInit()
         } else if (name === 'become') {
-          $('.modal-dialog').css('max-width', '450px')
-          $('.modal-body').html(becomeModal)
+          $('#modal .modal-dialog').css('max-width', '450px')
+          $('#modal .modal-body').html(becomeModal)
           activeTab('become1Tab')
           selectButton()
         }

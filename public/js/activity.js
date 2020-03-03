@@ -71,6 +71,7 @@ function activityHover() {
 }
 
 function hoverVideo(e) {
+  console.log('>> $(this): ', $(this))
   $(this).get(0).play()
 }
 
