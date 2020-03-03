@@ -5,7 +5,12 @@ $(document).ready(function () {
   })
 
   // video hover
-  var figure = $('.activity-story .video').hover(hoverVideo, hideVideo)
+  var tap = ('ontouchstart' in document.documentElement)
+  if (tap) {
+    $('.activity-story .video').click(hoverVideo, hideVideo)
+  } else {
+    $('.activity-story .video').hover(hoverVideo, hideVideo)
+  }
 
   //hover
   activityHover()

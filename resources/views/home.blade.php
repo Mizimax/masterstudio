@@ -37,7 +37,7 @@
                     <div class="carousel-item {{ $key === 0 ? 'active' : ''}}">
                         <video class="video video-fluid lazy"
                                style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
-                               autoplay loop muted>
+                               loop muted>
                             <source data-src="{{ $headActivity['category_video'] }}"
                                     type="video/mp4" />
                         </video>
