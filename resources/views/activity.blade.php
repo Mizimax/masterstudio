@@ -36,8 +36,8 @@
                     <div class="carousel-item {{ $key === 0 ? 'active' : ''}}">
                         <video class="video video-fluid lazy"
                                style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
-                               autoplay loop muted>
-                            <source data-src="{{ $headActivity['category_video'] }}"
+                                {{ $iOS ? 'muted' : 'autoplay loop muted' }}>
+                            <source data-src="{{ $headActivity['category_video'] }}#t=2"
                                     type="video/mp4" />
                         </video>
                         <!-- Content Header -->
@@ -107,7 +107,7 @@
             <!-- End Slideshow -->
         </div>
         <!-- End Carousel -->
-        <div class="search-group" tabindex="-1" style="width: 450px">
+        <div class="search-group" tabindex="-1" style="max-width: 500px; width: 80%">
             <input class="search-box" placeholder="Search your activities..." type="text"
                    onKeyUp="handleChange(this)">
             <div class="search-dropdown --header">
@@ -306,7 +306,7 @@
             navigator.msGetUserMedia
           )
 
-          navigator.getUserMedia({
+          navigator.mediaDevices.getUserMedia({
               video: true,
               audio: true,
             },
@@ -403,7 +403,33 @@
         $('.search-dropdown.--activity, .search-dropdown.--header').html(categoryHtml)
         replaceSvg()
 
-          @if($user)
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+        if (!iOS) {
+          $('#story .video').hover(function () {
+            $(this).get(0).play()
+          }, function () {
+            $(this).get(0).pause()
+          })
+        } else {
+          $('#story .video').on('touchend', function () {
+            $(this).get(0).play()
+          })
+        }
+
+          @if(!$iOS)
+          $('#carousel').on('slide.bs.carousel', function () {
+            $('.carousel-item.active > .video').get(0).pause()
+          })
+        $('#carousel').on('slid.bs.carousel', function () {
+          $('.carousel-item.active > .video').get(0).play()
+        })
+          @else
+          $('.overlay.--header').click(function () {
+            $('.carousel-item.active > .video').get(0).play()
+          })
+          @endif
+
+                  @if($user)
 
 
           if ($('#lesson').html().trim() == '') {
@@ -421,16 +447,25 @@
                   elements_selector: '.lazy',
                   // ... more custom settings?
                 })
-                $('.activity-story-lesson > .video').hover(function () {
-                  $(this).get(0).play()
-                }, function () {
-                  $(this).get(0).pause()
-                })
+                var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+                if (!iOS) {
+                  $('.activity-story-lesson .video').hover(function () {
+                    $(this).get(0).play()
+                  }, function () {
+                    $(this).get(0).pause()
+                  })
+                } else {
+                  $('.activity-story-lesson .video').on('touchend', function () {
+                    $(this).get(0).play()
+                  })
+                }
               },
             })
           }
 
         $('#story').delegate('.no-story', 'click', recordVideo())
+
+        $('#story').delegate('.add-button', 'click', recordVideo())
 
         $('#lesson').delegate('.add-button', 'click', recordVideo('lesson'))
 
@@ -554,11 +589,18 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
-            $('.activity-story-lesson > .video').hover(function () {
-              $(this).get(0).play()
-            }, function () {
-              $(this).get(0).pause()
-            })
+            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+            if (!iOS) {
+              $('.activity-story-lesson .video').hover(function () {
+                $(this).get(0).play()
+              }, function () {
+                $(this).get(0).pause()
+              })
+            } else {
+              $('.activity-story-lesson .video').on('touchend', function () {
+                $(this).get(0).play()
+              })
+            }
           },
         })
 
@@ -580,11 +622,18 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
-            $('#story .video').hover(function () {
-              $(this).get(0).play()
-            }, function () {
-              $(this).get(0).pause()
-            })
+            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+            if (!iOS) {
+              $('#story .video').hover(function () {
+                $(this).get(0).play()
+              }, function () {
+                $(this).get(0).pause()
+              })
+            } else {
+              $('#story .video').on('touchend', function () {
+                $(this).get(0).play()
+              })
+            }
             replaceSvg()
           },
         })

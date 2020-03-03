@@ -109,6 +109,9 @@ section.activity-header {
 						display: flex;
 						flex: 2;
 						align-self: flex-end;
+						max-width: 120px;
+						overflow-x: auto;
+						flex-wrap: nowrap;
 
 						> .participant {
 							width: 40px;
@@ -117,6 +120,7 @@ section.activity-header {
 							border-radius: 50%;
 							border: 1px solid #fff;
 							position: relative;
+							flex-shrink: 0;
 
 							> img {
 								position: absolute;

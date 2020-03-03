@@ -37,8 +37,8 @@
                     <div class="carousel-item {{ $key === 0 ? 'active' : ''}}">
                         <video class="video video-fluid lazy"
                                style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
-                               loop muted>
-                            <source data-src="{{ $headActivity['category_video'] }}"
+                                {{ $iOS ? 'muted' : 'autoplay loop muted' }}>
+                            <source data-src="{{ $headActivity['category_video'] }}#t=2"
                                     type="video/mp4" />
                         </video>
                         <!-- Content Header -->
@@ -108,7 +108,7 @@
             <!-- End Slideshow -->
         </div>
         <!-- End Carousel -->
-        <div class="search-group" tabindex="-1" style="width: 450px">
+        <div class="search-group" tabindex="-1" style="max-width: 500px;width: 80%;">
             <input class="search-box" placeholder="Search your activities..." type="text"
                    onKeyUp="handleChange(this)">
             <div class="search-dropdown --header">
@@ -145,7 +145,7 @@
                     <div class="activity-wrapper">
                         <div class="activity-card">
                             <div class="video-wrapper">
-                                <video class="video lazy" loop muted>
+                                <video class="video lazy" {{ $iOS ? 'muted' : 'loop muted' }}>
                                     <source data-src="{{ $story['activity_story_video'] }}"
                                             type="video/mp4" />
                                 </video>
@@ -230,12 +230,20 @@
 
     <script>
       $(document).ready(function () {
-        $('#carousel').on('slide.bs.carousel', function () {
-          $('.carousel-item.active > .video').get(0).pause()
-        })
+
+          @if(!$iOS)
+          $('#carousel').on('slide.bs.carousel', function () {
+            $('.carousel-item.active > .video').get(0).pause()
+          })
         $('#carousel').on('slid.bs.carousel', function () {
           $('.carousel-item.active > .video').get(0).play()
         })
+          @else
+          $('.overlay.--header').click(function () {
+            $('.carousel-item.active > .video').get(0).play()
+          })
+          @endif
+
 
         $('.search-dropdown').delegate('.search-result', 'click', function () {
           $(this).parent().parent().blur()

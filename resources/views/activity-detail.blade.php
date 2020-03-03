@@ -497,17 +497,31 @@
           publicKey: 'pkey_test_5ikuyw9bd25g1ku53mh',
         })
 
-        $('.video-wrapper .video').hover(function () {
-          $(this).get(0).play()
-        }, function () {
-          $(this).get(0).pause()
-        })
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+        if (!iOS) {
+          $('.video-wrapper .video').hover(function () {
+            $(this).get(0).play()
+          }, function () {
+            $(this).get(0).pause()
+          })
+        } else {
+          $('.video-wrapper .video').on('touchend', function () {
+            $(this).get(0).play()
+          })
+        }
 
-        $('.activity-overlay').hover(function () {
-          $(this).siblings('.video-wrapper').children('.video').get(0).play()
-        }, function () {
-          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
-        })
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+        if (!iOS) {
+          $('.activity-overlay').hover(function () {
+            $(this).siblings('.video-wrapper').children('.video').get(0).play()
+          }, function () {
+            $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+          })
+        } else {
+          $('.activity-overlay').on('touchend', function () {
+            $(this).siblings('.video-wrapper').children('.video').get(0).play()
+          })
+        }
           @if(\Session::has('success'))
           joinActivity('success')
           @endif

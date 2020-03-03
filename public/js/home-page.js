@@ -5,9 +5,10 @@ $(document).ready(function () {
   })
 
   // video hover
-  var tap = ('ontouchstart' in document.documentElement)
-  if (tap) {
-    $('.activity-story .video').click(hoverVideo, hideVideo)
+  var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+
+  if (iOS) {
+    $('.activity-story .video').on('touchend', hoverVideo)
   } else {
     $('.activity-story .video').hover(hoverVideo, hideVideo)
   }

@@ -199,12 +199,18 @@
           elements_selector: '.lazy',
           // ... more custom settings?
         })
-
-        $('.activity-overlay').hover(function () {
-          $(this).siblings('.video-wrapper').children('.video').get(0).play()
-        }, function () {
-          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
-        })
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+        if (!iOS) {
+          $('.activity-overlay').hover(function () {
+            $(this).siblings('.video-wrapper').children('.video').get(0).play()
+          }, function () {
+            $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+          })
+        } else {
+          $('.activity-overlay').on('touchend', function () {
+            $(this).siblings('.video-wrapper').children('.video').get(0).play()
+          })
+        }
 
           @if($isFollower)
           if ($('.interest-activity.active').length !== 0 || {{ $me ? 'true' : 'false' }}) {
