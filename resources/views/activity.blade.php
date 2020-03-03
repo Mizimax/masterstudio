@@ -307,7 +307,7 @@
           )
 
           navigator.mediaDevices.getUserMedia({
-              video: true,
+              video: { width: 640/*320-640-1280*/ },
               audio: true,
             },
             function (stream) {
