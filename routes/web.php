@@ -47,6 +47,9 @@
 		Route::post('/activity/{id}/pin', 'ActivityController@pin');
 		Route::post('/activity/{id}/unpin', 'ActivityController@unpin');
 	});
+	Route::group(['middleware' => 'master'], function () {
+		Route::get('/dashboard', 'DashboardController@index');
+	});
 	Route::get('/content/master/search', 'MasterController@search');
 	Route::get('/content/master/category', 'MasterController@category');
 	Route::get('/content/activity/{offset}', 'ContentController@activity');

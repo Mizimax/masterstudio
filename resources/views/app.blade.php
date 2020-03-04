@@ -98,6 +98,13 @@
                                     <span class="menu-name">Following</span>
                                 </a>
                             </div>
+                            @if(Auth::user()->master_id)
+                                <div class="sub-menu">
+                                    <a href="/dashboard">
+                                        <span class="menu-name">Dashboard</span>
+                                    </a>
+                                </div>
+                            @endif
                             <br>
                             <div class="sub-menu --logout">
                                 <a style="font-size: 14px; color: red;" href="{{ route('logout') }}"
@@ -825,7 +832,6 @@
             </form>
           `
 
-
       var allActivityModal = `
         <div id="my-activity" class="my-activity">
                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -991,7 +997,6 @@
 </div>
 </div>
 `
-
 
       var modal = function (name, options) {
         $('#modal').modal('show')
