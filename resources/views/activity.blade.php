@@ -352,6 +352,7 @@
                       $('#upload-btn').off('click').on('click', function () {
                         if ($('#activity-story').val() == '0') {
                           alert('Please select activity')
+                          return false
                         }
                         $(this).prop('disabled', true)
                         $(this).text('Uploading...')
