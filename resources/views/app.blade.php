@@ -606,6 +606,7 @@
           })
         } else if (tab === 'become2Tab') {
           uploadBox()
+          $('#becomeSubmit').submit
         }
 
       }
@@ -924,76 +925,78 @@
 <div class="tab-pane fade in" id="become2Tab" role="tabpanel"
      aria-labelledby="register-tab">
     <h5 align="center">Fill information</h5>
-    <div class="form-group">
-        <label for="card_number">Certification</label>
-        <div class="d-flex">
-            <input title="Upload" type="file" name="card_number" id="user_firstname"
-                   class="form-control form-box"
-                   placeholder="card number">
-            <input title="Upload" type="file" name="card_number" id="user_firstname"
-                   class="form-control form-box"
-                   placeholder="card number">
-            <input title="Upload" type="file" name="card_number" id="user_firstname"
-                   class="form-control form-box"
-                   placeholder="card number">
+    <form method="post" action="/become" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+            <label for="cert">Certification</label>
+            <div class="d-flex">
+                <input title="Upload" type="file" name="cert_1" id="user_firstname"
+                       class="form-control form-box"
+                       placeholder="card number">
+                <input title="Upload" type="file" name="cert_2" id="user_firstname"
+                       class="form-control form-box"
+                       placeholder="card number">
+                <input title="Upload" type="file" name="cert_3" id="user_firstname"
+                       class="form-control form-box"
+                       placeholder="card number">
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="card_number">Profession description</label>
-        <textarea name="pro_desc" class="search-interest --goal"
-                  placeholder="Describe about yourself / your master"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="card_number">Phone number</label>
-        <input type="text" name="phone_number" id="user_firstname"
-               class="form-control"
-               placeholder="Your phone number">
-    </div>
-    <div class="form-group">
-        <label for="card_number">Email contact</label>
-        <input type="text" name="email_contact" id="user_firstname"
-               class="form-control"
-               placeholder="Your email">
-    </div>
-    <div class="form-group">
-        <label for="card_number">Goal of becoming master</label>
-        <div class="d-flex justify-content-between">
-            <button class="select-button --box" value="1">Finding disciple</button>
-            <button class="select-button --box" value="2">Learn how to teach</button>
-            <button class="select-button --box" value="3">Business + Master</button>
-            <button class="select-button --box" value="3">Voice up</button>
-            <input name="activity-type" type="hidden">
+        <div class="form-group">
+            <label for="pro_desc">Profession description</label>
+            <textarea name="pro_desc" class="search-interest --goal"
+                      placeholder="Describe about yourself / your master"></textarea>
         </div>
-    </div>
-    <div class="form-group">
-        <label for="card_number">Your profile</label>
-        <div class="d-flex">
-            <input title="Upload" type="file" name="card_number" id="user_firstname"
-                   class="form-control form-box"
-                   placeholder="card number">
+        <div class="form-group">
+            <label for="phone_number">Phone number</label>
+            <input type="text" name="phone_number" id="user_firstname"
+                   class="form-control"
+                   placeholder="Your phone number">
         </div>
-    </div>
-    <div class="form-group">
-        <label for="card_number">Upload theme pic</label>
-        <div class="d-flex">
-            <input title="Upload" type="file" name="card_number" id="user_firstname"
-                   class="form-control form-box"
-                   placeholder="card number">
-            <input title="Upload" type="file" name="card_number" id="user_firstname"
-                   class="form-control form-box"
-                   placeholder="card number">
-            <input title="Upload" type="file" name="card_number" id="user_firstname"
-                   class="form-control form-box"
-                   placeholder="card number">
+        <div class="form-group">
+            <label for="email_contact">Email contact</label>
+            <input type="text" name="email_contact" id="user_firstname"
+                   class="form-control"
+                   placeholder="Your email">
         </div>
-    </div>
-    <div class="modal-action justify-content-end">
-        <button class="primary-button --outline" onclick="activeTab('become1Tab')">Back
-        </button>
-        <button class="primary-button" onclick="closeModal()">
-            Send request
-        </button>
-    </div>
+        <div class="form-group">
+            <label for="card_number">Goal of becoming master</label>
+            <div class="d-flex justify-content-between">
+                <button class="select-button --box" value="1">Finding disciple</button>
+                <button class="select-button --box" value="2">Learn how to teach</button>
+                <button class="select-button --box" value="3">Business + Master</button>
+                <button class="select-button --box" value="3">Voice up</button>
+                <input name="goal" type="hidden">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="card_number">Your profile</label>
+            <div class="d-flex">
+                <input title="Upload" type="file" name="profile_pic" id="user_firstname"
+                       class="form-control form-box">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="card_number">Upload theme pic</label>
+            <div class="d-flex">
+                <input title="Upload" type="file" name="theme_pic_1" id="user_firstname"
+                       class="form-control form-box"
+                       placeholder="card number">
+                <input title="Upload" type="file" name="theme_pic_2" id="user_firstname"
+                       class="form-control form-box"
+                       placeholder="card number">
+                <input title="Upload" type="file" name="theme_pic_3" id="user_firstname"
+                       class="form-control form-box"
+                       placeholder="card number">
+            </div>
+        </div>
+        <div class="modal-action justify-content-end">
+            <button class="primary-button --outline" onclick="activeTab('become1Tab')">Back
+            </button>
+            <button class="primary-button" type="submit">
+                Send request
+            </button>
+        </div>
+     </form>
 </div>
 </div>
 `

@@ -247,9 +247,55 @@
 		 *
 		 * @return \Illuminate\Http\Response
 		 */
-		public function create()
+		public function create(Request $request)
 		{
 			//
+			$fileName = [];
+			$path = '/img/upload/become/';
+			$i = 0;
+			if ($request->file('cart_1')) {
+				$fileName['cart_1'] = time() . '.jpg';
+				$request->file('cart_1')->move(public_path($path), $fileName[$i]);
+			}
+			if ($request->file('cart_2')) {
+				$fileName[$i++] = time() . '.jpg';
+				$request->file('cart_2')->move(public_path($path), $fileName[$i++]);
+			}
+			if ($request->file('cart_3')) {
+				$fileName[$i++] = time() . '.jpg';
+				$request->file('cart_3')->move(public_path($path), $fileName[$i++]);
+			}
+			if ($request->file('profile_pic')) {
+				$fileName[$i++] = time() . '.jpg';
+				$request->file('profile_pic')->move(public_path($path), $fileName[$i++]);
+			}
+			if ($request->file('theme_pic_1')) {
+				$fileName[$i++] = time() . '.jpg';
+				$request->file('theme_pic_1')->move(public_path($path), $fileName);
+			}
+			if ($request->file('them e_pic_2')) {
+				$fileName[] = time() . '.jpg';
+				$request->file('theme_pic_2')->move(public_path($path), $fileName);
+			}
+			if ($request->file('theme_pic_3')) {
+				$fileName[] = time() . '.jpg';
+				$request->file('theme_pic_3')->move(public_path($path), $fileName);
+			}
+
+			\DB::table('becomes')->create([
+				'cart_1' => $path . $fileName[0],
+				'cart_2' => $path . $fileName[1],
+				'cart_3' => $path . $fileName[2],
+				'pro_desc' => $request->input('pro_desc'),
+				'phone_number' => $request->input('pro_desc'),
+				'email_contact' => $request->input('email_contact'),
+				'goal' => $request->input('goal'),
+				'profile_pic' => $path . $fileName[3],
+				'theme_pic_1' => $path . $fileName[4],
+				'theme_pic_2' => $path . $fileName[5],
+				'theme_pic_3' => $path . $fileName[6]
+			]);
+			return redirect()->back()->with(['message' => 'Master request success']);
 		}
 
 		/**

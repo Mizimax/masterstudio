@@ -22,7 +22,7 @@
 	Route::get('/master/{id}', 'MasterController@show');
 	Route::get('/studio', 'StudioController@index');
 	Route::get('/studio/{id}', 'StudioController@show');
-	Route::get('/become', 'MasterController@create');
+	Route::post('/become', 'MasterController@create');
 
 	Route::group(['middleware' => 'auth'], function () {
 		Route::post('/activity/{id}/payment', 'PaymentController@payment');

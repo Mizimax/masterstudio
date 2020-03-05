@@ -33,13 +33,18 @@
                         $headActivity['activity_time_diff'] = $start->diff($end) ;
 			            $headActivity['activity_day_left'] = $headActivity['activity_time_diff']->m === 0 ? $headActivity['activity_time_diff']->d . ' days' : $headActivity['activity_time_diff']->m . ' months';
                     @endphp
-                    <div class="carousel-item {{ $key === 0 ? 'active' : ''}}">
-                        <video class="video video-fluid lazy"
-                               style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
-                                {{ $iOS ? 'muted' : 'autoplay loop muted' }}>
-                            <source data-src="{{ $headActivity['category_video'] }}#t=2"
-                                    type="video/mp4" />
-                        </video>
+                    <div class="carousel-item {{ $key === 0 ? 'active' : ''}}"
+                         @if($iOS)
+                         style="background-image: url({{ $headActivity['category_video'] }}); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                        @else
+                            >
+                            <video class="video video-fluid"
+                                   style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
+                                   autoplay loop muted>
+                                <source src="{{ $headActivity['category_video'] }}#t=2"
+                                        type="video/mp4" />
+                            </video>
+                    @endif
                         <!-- Content Header -->
                         <div class="content-wrapper" style="z-index: 10;">
                             <!-- Activity Name , Search -->
@@ -238,7 +243,7 @@
                 </select>
             </div>
             <div class="video-preview">
-                <video class="video" autoplay></video>
+                <video class="video" autoplay playsinline></video>
                 <div class="cantaccess">This function requires camera and microphone access.</div>
                 <div class="time-record" align="center">
                     <span class="time">0:00</span> / 1:00 minute
@@ -256,6 +261,7 @@
 @section('script')
     <script src="/js/infinite-scroll.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
+    <script src="https://cdn.temasys.io/adapterjs/0.15.x/adapter.min.js"></script>
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     <script src="/js/activity.js"></script>
     <script src="/js/activity-page.js"></script>
