@@ -401,6 +401,15 @@
           })
 
             @else
+            $('.record-video').addClass('d-flex')
+
+          $('.record-video').off('click').on('click', function (event) {
+            if ($(event.target).hasClass('record-video')) {
+              $('#upload-btn').prop('disabled', false)
+              $('#upload-btn').text('Upload')
+              $(this).toggleClass('d-flex')
+            }
+          })
             $('#record-btn').off('click').on('click', function () {
               $('#upload-btn').removeClass('d-none')
               $(this).addClass('d-none')
