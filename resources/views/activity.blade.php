@@ -411,12 +411,13 @@
             }
           })
           $('#record-file').change(function (event) {
-            var self = $(this)
             var file = this.files[0]
             var fileReader = new FileReader()
             fileReader.readAsDataURL(file)
 
             fileReader.onload = function (e) {
+              console.log('>> file: ', file)
+              console.log('>> e: ', e)
               $('#preview').srcObject = e.target.result
             }
           })
