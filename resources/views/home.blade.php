@@ -35,17 +35,14 @@
 			            $headActivity['activity_day_left'] = $headActivity['activity_time_diff']->m === 0 ? $headActivity['activity_time_diff']->d . ' days' : $headActivity['activity_time_diff']->m . ' months';
                     @endphp
                     <div class="carousel-item {{ $key === 0 ? 'active' : ''}}"
-                         @if($iOS)
-                         style="background-image: url({{ $headActivity['category_video'] }}); background-size: cover; background-repeat: no-repeat; background-position: center;">
-                        @else
-                            >
+                    >
                             <video class="video video-fluid"
                                    style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
-                                   autoplay loop muted>
+                                   autoplay loop muted playsinline>
                                 <source src="{{ $headActivity['category_video'] }}#t=2"
                                     type="video/mp4" />
                         </video>
-                    @endif
+
                         <!-- Content Header -->
                         <div class="content-wrapper" style="z-index: 10;">
                             <!-- Activity Name , Search -->
