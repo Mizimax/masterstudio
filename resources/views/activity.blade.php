@@ -231,20 +231,20 @@
 
     @if(!$myActivities->isEmpty())
         <div class="record-video">
-            <div class="activity-select" style="margin-bottom: 10px">
+            <div class="video-preview">
+                <video id="preview" class="video" autoplay loop playsinline></video>
+                <div class="cantaccess">This function requires camera and microphone access.</div>
+                <div class="time-record" align="center">
+                    <span class="time">0:00</span> / 1:00 minute
+                </div>
+            </div>
+            <div class="activity-select" style="margin-bottom: 10px; margin-top: 10px">
                 <select class="form-control" name="activity-story" id="activity-story">
                     <option value="0">Select activity you want to share story.</option>
                     @foreach($myActivities as $myActivity)
                         <option value="{{ $myActivity['activity_id'] }}">{{ $myActivity['activity_name'] }}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="video-preview">
-                <video id="preview" class="video" autoplay playsinline></video>
-                <div class="cantaccess">This function requires camera and microphone access.</div>
-                <div class="time-record" align="center">
-                    <span class="time">0:00</span> / 1:00 minute
-                </div>
             </div>
             <div class="d-flex">
                 <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
@@ -407,19 +407,15 @@
             if ($(event.target).hasClass('record-video')) {
               $('#upload-btn').prop('disabled', false)
               $('#upload-btn').text('Upload')
+              $('#upload-btn').addClass('d-none')
+              $('#record-btn').removeClass('d-none')
               $(this).toggleClass('d-flex')
             }
           })
-          $('#record-file').change(function (event) {
-            var file = this.files[0]
-            var fileReader = new FileReader()
-            fileReader.readAsDataURL(file)
 
-            fileReader.onload = function (e) {
-              console.log('>> file: ', file)
-              console.log('>> e: ', e)
-              $('#preview').srcObject = e.target.result
-            }
+          $('#record-file').change(function (event) {
+            var preview = $('#preview')
+            preview[0].src = URL.createObjectURL(this.files[0])
           })
             $('#record-btn').off('click').on('click', function () {
               $('#upload-btn').removeClass('d-none')
@@ -432,7 +428,7 @@
                 $(this).prop('disabled', true)
                 $(this).text('Uploading...')
                 var formData = new FormData()
-                formData.append('video-blob', fileObject)
+                formData.append('video-blob', $('#record-file')[0].files[0])
                 formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
                 console.log('>> type: ', type)
                 $.ajax({
