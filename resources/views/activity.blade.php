@@ -412,7 +412,7 @@
           })
             $('#record-btn').off('click').on('click', function () {
               $('#upload-btn').removeClass('d-none')
-              $(this).addClass('d-none')
+              // $(this).addClass('d-none')
               $('#upload-btn').off('click').on('click', function () {
                 if ($('#activity-story').val() == '0') {
                   alert('Please select activity')
