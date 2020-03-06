@@ -321,7 +321,7 @@
               var video = $('.video-preview > video')[0]
               video.srcObject = stream
               alert('555')
-              $('.record-btn').off('click').on('click', function () {
+              $('.record-btn').on('click', function () {
                   console.log('record')
                 alert('555')
                   if (!MasterStudio.videoPreview.play) {
