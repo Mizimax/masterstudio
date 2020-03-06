@@ -240,7 +240,7 @@
                 </select>
             </div>
             <div class="video-preview">
-                <video class="video" autoplay playsinline></video>
+                <video id="preview" class="video" autoplay playsinline></video>
                 <div class="cantaccess">This function requires camera and microphone access.</div>
                 <div class="time-record" align="center">
                     <span class="time">0:00</span> / 1:00 minute
@@ -408,6 +408,16 @@
               $('#upload-btn').prop('disabled', false)
               $('#upload-btn').text('Upload')
               $(this).toggleClass('d-flex')
+            }
+          })
+          $('#record-file').change(function (event) {
+            var self = $(this)
+            var file = this.files[0]
+            var fileReader = new FileReader()
+            fileReader.readAsDataURL(file)
+
+            fileReader.onload = function (e) {
+              $('#preview').srcObject = e.target.result
             }
           })
             $('#record-btn').off('click').on('click', function () {
