@@ -593,6 +593,13 @@
 		border: none;
 		border-radius: 40px;
 
+		&.--ios {
+			position: absolute;
+			left: 50%;
+			top: 45%;
+			transform: translate(-50%, -50%);
+		}
+
 		> #record-file {
 			position: absolute;
 			left: 0;

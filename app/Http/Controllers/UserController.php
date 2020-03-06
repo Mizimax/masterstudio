@@ -101,7 +101,7 @@
 				$type = 'story';
 			}
 
-			$fileName = time() . '.webm';
+			$fileName = time() . '.mp4';
 
 			$request->file('video-blob')->move(public_path('video/upload'), $fileName);
 

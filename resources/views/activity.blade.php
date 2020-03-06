@@ -38,9 +38,9 @@
                         <video class="video video-fluid lazy"
                                style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
                                autoplay loop muted playsinline>
-                                <source src="{{ $headActivity['category_video'] }}#t=2"
-                                        type="video/mp4" />
-                            </video>
+                            <source src="{{ $headActivity['category_video'] }}#t=2"
+                                    type="video/mp4" />
+                        </video>
 
                         <!-- Content Header -->
                         <div class="content-wrapper" style="z-index: 10;">
@@ -234,9 +234,11 @@
             <div class="video-preview">
                 <video id="preview" class="video" autoplay loop playsinline></video>
                 <div class="cantaccess">This function requires camera and microphone access.</div>
-                <div class="time-record" align="center">
-                    <span class="time">0:00</span> / 1:00 minute
-                </div>
+                @if(!$iOS)
+                    <div class="time-record" align="center">
+                        <span class="time">0:00</span> / 1:00 minute
+                    </div>
+                @endif
             </div>
             <div class="activity-select" style="margin-bottom: 10px; margin-top: 10px">
                 <select class="form-control" name="activity-story" id="activity-story">
@@ -248,7 +250,7 @@
             </div>
             <div class="d-flex">
                 <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
-                <button id="record-btn" class="record-btn">
+                <button id="record-btn" class="record-btn {{ !$iOS ? '--ios' : '' }}">
                     Start recording
                     @if($iOS)
                         <input id="record-file" type="file" accept="video/*;capture=camcorder">
@@ -318,7 +320,7 @@
 
           navigator.mediaDevices.getUserMedia({
             video: true,
-              audio: true,
+            audio: true,
           }).then(
             function (stream) {
               var recorder = RecordRTC(stream, {
@@ -394,7 +396,7 @@
                   MasterStudio.videoPreview.play = !MasterStudio.videoPreview.play
                 },
               )
-            }
+            },
           ).catch(function (error) {
             $('.cantaccess').addClass('d-block')
 
@@ -417,37 +419,37 @@
             var preview = $('#preview')
             preview[0].src = URL.createObjectURL(this.files[0])
           })
-            $('#record-btn').off('click').on('click', function () {
-              $('#upload-btn').removeClass('d-none')
-              $(this).addClass('d-none')
-              $('#upload-btn').off('click').on('click', function () {
-                if ($('#activity-story').val() == '0') {
-                  alert('Please select activity')
-                  return false
-                }
-                $(this).prop('disabled', true)
-                $(this).text('Uploading...')
-                var formData = new FormData()
-                formData.append('video-blob', $('#record-file')[0].files[0])
-                formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
-                console.log('>> type: ', type)
-                $.ajax({
-                  url: '/activity/' + $('#activity-story').val() + '/story' + (type
-                                                                               ? '?type=' + type
-                                                                               : ''),
-                  type: 'post',
-                  headers: {
-                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-                  },
-                  data: formData,
-                  contentType: false,
-                  processData: false,
-                  success: function (res) {
-                    window.location.reload()
-                  },
-                })
+          $('#record-btn').off('click').on('click', function () {
+            $('#upload-btn').removeClass('d-none')
+            $(this).addClass('d-none')
+            $('#upload-btn').off('click').on('click', function () {
+              if ($('#activity-story').val() == '0') {
+                alert('Please select activity')
+                return false
+              }
+              $(this).prop('disabled', true)
+              $(this).text('Uploading...')
+              var formData = new FormData()
+              formData.append('video-blob', $('#record-file')[0].files[0])
+              formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
+              console.log('>> type: ', type)
+              $.ajax({
+                url: '/activity/' + $('#activity-story').val() + '/story' + (type
+                                                                             ? '?type=' + type
+                                                                             : ''),
+                type: 'post',
+                headers: {
+                  'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                },
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                  window.location.reload()
+                },
               })
             })
+          })
             @endif
         }
 
@@ -463,16 +465,15 @@
         $('.search-dropdown.--activity, .search-dropdown.--header').html(categoryHtml)
         replaceSvg()
 
-
-          $('#story .video').hover(function () {
-            $(this).get(0).play()
-          }, function () {
-            $(this).get(0).pause()
-          })
+        $('#story .video').hover(function () {
+          $(this).get(0).play()
+        }, function () {
+          $(this).get(0).pause()
+        })
 
         $('#carousel').on('slide.bs.carousel', function () {
-            $('.carousel-item.active > .video').get(0).pause()
-          })
+          $('.carousel-item.active > .video').get(0).pause()
+        })
         $('#carousel').on('slid.bs.carousel', function () {
           $('.carousel-item.active > .video').get(0).play()
         })
@@ -495,11 +496,11 @@
                   elements_selector: '.lazy',
                   // ... more custom settings?
                 })
-                  $('.activity-story-lesson .video').hover(function () {
-                    $(this).get(0).play()
-                  }, function () {
-                    $(this).get(0).pause()
-                  })
+                $('.activity-story-lesson .video').hover(function () {
+                  $(this).get(0).play()
+                }, function () {
+                  $(this).get(0).pause()
+                })
               },
             })
           }
@@ -630,11 +631,11 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
-              $('.activity-story-lesson .video').hover(function () {
-                $(this).get(0).play()
-              }, function () {
-                $(this).get(0).pause()
-              })
+            $('.activity-story-lesson .video').hover(function () {
+              $(this).get(0).play()
+            }, function () {
+              $(this).get(0).pause()
+            })
 
           },
         })
@@ -657,11 +658,11 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
-              $('#story .video').hover(function () {
-                $(this).get(0).play()
-              }, function () {
-                $(this).get(0).pause()
-              })
+            $('#story .video').hover(function () {
+              $(this).get(0).play()
+            }, function () {
+              $(this).get(0).pause()
+            })
             replaceSvg()
           },
         })
