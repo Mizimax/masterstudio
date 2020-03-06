@@ -320,10 +320,8 @@
               mediaStream = stream
               var video = $('.video-preview > video')[0]
               video.srcObject = stream
-              alert('555')
               $('.record-btn').off('click').on('click', function () {
                   console.log('record')
-                alert(recorder.startRecording())
                   if (!MasterStudio.videoPreview.play) {
                     recorder.startRecording()
                     $(this).prop('disabled', false)
@@ -408,17 +406,17 @@
         replaceSvg()
 
         var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-        if (!iOS) {
+        // if (!iOS) {
           $('#story .video').hover(function () {
             $(this).get(0).play()
           }, function () {
             $(this).get(0).pause()
           })
-        } else {
-          $('#story .video').on('touchend', function () {
-            $(this).get(0).play()
-          })
-        }
+        // } else {
+        //   $('#story .video').on('touchend', function () {
+        //     $(this).get(0).play()
+        //   })
+        // }
 
           @if(!$iOS)
           $('#carousel').on('slide.bs.carousel', function () {
