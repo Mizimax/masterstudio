@@ -12,10 +12,10 @@
         @endphp
         <div class="my-activity-card row no-gutters">
             <div class="image-wrapper col-sm-auto">
-                @if($pic !== '')
+                @if($pic)
                     <img class="image" src="{{ $pic }}">
                 @else
-                    <video class="image" loop muted>
+                    <video class="image" loop muted playsinline>
                         <source src="{{ $video }}"
                                 type="video/mp4" />
                     </video>
@@ -63,10 +63,10 @@
         @endphp
         <div class="my-activity-card">
             <div class="image-wrapper">
-                @if($pic !== '')
+                @if($pic)
                     <img class="image" src="{{ $pic }}">
                 @else
-                    <video class="image" loop muted>
+                    <video class="image" loop muted playsinline>
                         <source src="{{ $video }}"
                                 type="video/mp4" />
                     </video>

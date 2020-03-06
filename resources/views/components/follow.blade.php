@@ -45,7 +45,7 @@
             </div>
             <div class="master-video" played="false">
                 <div class="video-wrapper">
-                    <video class="video video-fluid" loop muted>
+                    <video class="video video-fluid" loop muted playsinline>
                         <source src="{{ $master['activity_video'] }}"
                                 type="video/mp4" />
                     </video>

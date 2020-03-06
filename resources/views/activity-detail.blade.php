@@ -41,7 +41,7 @@
             <div class="carousel-inner">
                 @foreach($activity['activity_video'] as $video)
                     <div class="carousel-item {{ $loop->first ? 'active' : ''}}">
-                        <video class="video video-fluid" autoplay loop muted>
+                        <video class="video video-fluid" autoplay loop muted playsinline>
                             <source src="{{ $video }}"
                                     type="video/mp4" />
                         </video>

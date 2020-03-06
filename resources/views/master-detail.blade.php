@@ -83,7 +83,7 @@
                             <div class="activity-wrapper">
                                 <div class="activity-card">
                                     <div class="video-wrapper">
-                                        <video class="video lazy" loop muted>
+                                        <video class="video lazy" loop muted playsinline>
                                             <source data-src="{{ $story['activity_story_video'] }}"
                                                     type="video/mp4" />
                                         </video>
@@ -271,7 +271,7 @@
                 </select>
             </div>
             <div class="video-preview">
-                <video class="video" autoplay></video>
+                <video class="video" autoplay playsinline></video>
                 <div class="cantaccess">This function requires camera and microphone access.</div>
                 <div class="time-record" align="center">
                     <span class="time">0:00</span> / 1:00 minute

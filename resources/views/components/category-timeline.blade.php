@@ -25,7 +25,7 @@
             </div>
             @foreach($timelines as $timeline)
                 <div class="activity-story-lesson">
-                    <video class="video image lazy" loop muted>
+                    <video class="video image lazy" loop muted playsinline>
                         <source data-src="{{ $timeline['activity_story_video'] }}"
                                 type="video/mp4" />
                     </video>

@@ -22,7 +22,7 @@
             {{ !empty($nohover) ? "onclick=window.location.href='/activity/".$activity['activity_url_name']."'" : ""}}>
         <div class="activity-card">
             <div class="video-wrapper">
-                <video class="video lazy" loop muted>
+                <video class="video lazy" loop muted playsinline>
                     <source data-src="{{ $activity['activity_video'] }}"
                             type="video/mp4" />
                 </video>

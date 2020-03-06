@@ -1,6 +1,3 @@
-@php
-    $iOS = strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPad') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod');
-@endphp
 <div class="activity-story {{!empty($hover) && $hover ? '--hover': ''}} h-100">
     @if($stories->isEmpty())
         @if(isset($me))
@@ -18,7 +15,7 @@
         <div class="activity-wrapper">
             <div class="activity-card">
                 <div class="video-wrapper">
-                    <video class="video lazy" {{ $iOS ? 'muted' : 'loop muted' }}>
+                    <video class="video lazy" loop muted playsinline>
                         <source data-src="{{ $story['activity_story_video'] }}"
                                 type="video/mp4" />
                     </video>

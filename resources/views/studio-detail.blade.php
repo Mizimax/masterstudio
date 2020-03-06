@@ -133,7 +133,7 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active show" id="description">
                             <div class="video-wrapper" played="false">
-                                <video class="video lazy pointer" loop muted>
+                                <video class="video lazy pointer" loop muted playsinline>
                                     <source data-src="{{ $studio['studio_video'][0] }}"
                                             type="video/mp4" />
                                 </video>

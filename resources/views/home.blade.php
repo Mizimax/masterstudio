@@ -34,9 +34,8 @@
                         $headActivity['activity_time_diff'] = $start->diff($end) ;
 			            $headActivity['activity_day_left'] = $headActivity['activity_time_diff']->m === 0 ? $headActivity['activity_time_diff']->d . ' days' : $headActivity['activity_time_diff']->m . ' months';
                     @endphp
-                    <div class="carousel-item {{ $key === 0 ? 'active' : ''}}"
-                    >
-                            <video class="video video-fluid"
+                    <div class="carousel-item {{ $key === 0 ? 'active' : ''}}">
+                        <video class="video video-fluid lazy"
                                    style="transform: scale({{ parse_url($headActivity['category_video'], PHP_URL_QUERY) }})"
                                    autoplay loop muted playsinline>
                                 <source src="{{ $headActivity['category_video'] }}#t=2"
@@ -147,7 +146,7 @@
                     <div class="activity-wrapper">
                         <div class="activity-card">
                             <div class="video-wrapper">
-                                <video class="video lazy" {{ $iOS ? 'muted' : 'loop muted' }}>
+                                <video class="video lazy" loop muted playsinline>
                                     <source data-src="{{ $story['activity_story_video'] }}"
                                             type="video/mp4" />
                                 </video>

@@ -72,7 +72,7 @@
                 <div class="activity-wrapper">
                     <div class="activity-card">
                         <div class="video-wrapper">
-                            <video class="video lazy" loop muted>
+                            <video class="video lazy" loop muted playsinline>
                                 <source data-src="{{ $story['activity_story_video'] }}"
                                         type="video/mp4" />
                             </video>
