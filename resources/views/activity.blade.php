@@ -405,33 +405,21 @@
         $('.search-dropdown.--activity, .search-dropdown.--header').html(categoryHtml)
         replaceSvg()
 
-        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-        if (!iOS) {
+
           $('#story .video').hover(function () {
             $(this).get(0).play()
           }, function () {
             $(this).get(0).pause()
           })
-        } else {
-          $('#story .video').on('touchend', function () {
-            $(this).get(0).play()
-          })
-        }
 
-          @if(!$iOS)
-          $('#carousel').on('slide.bs.carousel', function () {
+        $('#carousel').on('slide.bs.carousel', function () {
             $('.carousel-item.active > .video').get(0).pause()
           })
         $('#carousel').on('slid.bs.carousel', function () {
           $('.carousel-item.active > .video').get(0).play()
         })
-          @else
-          $('.overlay.--header').click(function () {
-            $('.carousel-item.active > .video').get(0).play()
-          })
-          @endif
 
-                  @if($user)
+          @if($user)
 
 
           if ($('#lesson').html().trim() == '') {
@@ -449,18 +437,11 @@
                   elements_selector: '.lazy',
                   // ... more custom settings?
                 })
-                var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-                if (!iOS) {
                   $('.activity-story-lesson .video').hover(function () {
                     $(this).get(0).play()
                   }, function () {
                     $(this).get(0).pause()
                   })
-                } else {
-                  $('.activity-story-lesson .video').on('touchend', function () {
-                    $(this).get(0).play()
-                  })
-                }
               },
             })
           }
@@ -591,18 +572,12 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
-            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-            if (!iOS) {
               $('.activity-story-lesson .video').hover(function () {
                 $(this).get(0).play()
               }, function () {
                 $(this).get(0).pause()
               })
-            } else {
-              $('.activity-story-lesson .video').on('touchend', function () {
-                $(this).get(0).play()
-              })
-            }
+
           },
         })
 
@@ -624,18 +599,11 @@
               elements_selector: '.lazy',
               // ... more custom settings?
             })
-            var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-            if (!iOS) {
               $('#story .video').hover(function () {
                 $(this).get(0).play()
               }, function () {
                 $(this).get(0).pause()
               })
-            } else {
-              $('#story .video').on('touchend', function () {
-                $(this).get(0).play()
-              })
-            }
             replaceSvg()
           },
         })

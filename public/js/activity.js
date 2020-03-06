@@ -56,22 +56,16 @@ function activityHover() {
 
   if (tap) {
     $('.button.--detail.--mobile').addClass('d-block')
-    var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
 
     $('#activity-wrapper').delegate('.activity-overlay.--hover', 'touchend', function () {
-      // if (!iOS) {
-        $(this).hover(function () {
+
+      $(this).hover(function () {
           alert('hoverin')
           $(this).siblings('.video-wrapper').children('.video').get(0).play()
         }, function () {
           alert('hoverout')
           $(this).siblings('.video-wrapper').children('.video').get(0).pause()
         })
-      // } else {
-      //   $(this).on('touchend', function () {
-      //     $(this).siblings('.video-wrapper').children('.video').get(0).play()
-      //   })
-      // }
     })
   } else {
     $('#activity-wrapper').delegate('.activity-overlay.--hover', 'mouseenter', hoverActivity('mouseenter'))

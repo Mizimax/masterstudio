@@ -64,7 +64,6 @@
 				})
 				->select(\DB::raw('cg.*,(SELECT COUNT(*) FROM masters AS ms WHERE ms.category_id = cg.category_id) AS master_count'))
 				->get();
-			$iOS = strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPod');
-			return view('home', ['headActivities' => $headActivities, 'activities' => $activities, 'stories' => $stories, 'userCategories' => $userCategories, 'categories' => $categories, 'iOS' => $iOS]);
+			return view('home', ['headActivities' => $headActivities, 'activities' => $activities, 'stories' => $stories, 'userCategories' => $userCategories, 'categories' => $categories]);
 		}
 	}

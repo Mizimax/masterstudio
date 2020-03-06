@@ -232,21 +232,12 @@
     <script>
       $(document).ready(function () {
 
-          @if(!$iOS)
-          $('#carousel').on('slide.bs.carousel', function () {
+        $('#carousel').on('slide.bs.carousel', function () {
             $('.carousel-item.active > .video').get(0).pause()
           })
         $('#carousel').on('slid.bs.carousel', function () {
           $('.carousel-item.active > .video').get(0).play()
         })
-          @else
-          $('.overlay.--header').click(function () {
-            $('.carousel-item.active > .video').get(0).play()
-          })
-        $('#carousel .video').click(function () {
-          $('.carousel-item.active > .video').get(0).play()
-        })
-          @endif
 
 
         $('.search-dropdown').delegate('.search-result', 'click', function () {
