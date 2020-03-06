@@ -11575,7 +11575,7 @@ button:focus {
 }
 
 .navbar-wrapper .navbar-brand > .logo {
-	height: 39px;
+  height: 39px;
 }
 
 @media (max-width: 460px) {
@@ -11942,7 +11942,7 @@ button:focus {
 }
 
 .footer > .footer-wrapper .email-sub .email > .input {
-	color: black;
+  color: black;
 }
 
 .footer > .footer-wrapper .follow-us {
@@ -11958,7 +11958,7 @@ button:focus {
 }
 
 .modal.\--policy .modal-dialog {
-	max-width: 600px;
+  max-width: 600px;
 }
 
 .modal .modal-content {
@@ -13313,9 +13313,9 @@ form .error-msg > .text {
   bottom: 0;
   left: 0;
   margin-top: 5px;
-	max-width: 120px;
-	overflow-x: auto;
-	flex-wrap: nowrap;
+  max-width: 120px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant {
@@ -13326,7 +13326,7 @@ form .error-msg > .text {
   border: 1px solid #fff;
   position: relative;
   cursor: pointer;
-	flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant > img {
@@ -13385,7 +13385,7 @@ form .error-msg > .text {
   flex-flow: row wrap;
   justify-content: flex-start;
   max-width: 810px;
-	width: 100%;
+  width: 100%;
   margin: 20px auto 0;
   color: white;
 }
@@ -13921,7 +13921,7 @@ form .error-msg > .text {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-	margin-top: -135px;
+  margin-top: -135px;
   left: 6%;
   margin-left: 20px;
   z-index: 1000;
@@ -14006,9 +14006,9 @@ form .error-msg > .text {
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .logo-home {
-	max-width: 95%;
-	position: relative;
-	left: -15px;
+  max-width: 95%;
+  position: relative;
+  left: -15px;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {
@@ -14434,6 +14434,7 @@ form .error-msg > .text {
 }
 
 .record-video .record-btn {
+  position: relative;
   float: left;
   margin-top: 30px;
   padding: 15px 30px;
@@ -14444,193 +14445,202 @@ form .error-msg > .text {
   border-radius: 40px;
 }
 
+.record-video .record-btn > #record-file {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
 .category-timeline {
-	height: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (min-width: 576px) {
-	.category-timeline {
-		justify-content: initial;
-	}
+  .category-timeline {
+    justify-content: initial;
+  }
 }
 
 .category-timeline > .activity-timeline {
-	display: flex;
-	flex: 1 1 100%;
-	align-items: center;
-	justify-content: space-between;
-	position: relative;
-	margin-top: 20px;
+  display: flex;
+  flex: 1 1 100%;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-top: 20px;
 }
 
 @media (min-width: 576px) {
-	.category-timeline > .activity-timeline {
-		flex: 1;
-		margin-top: 0;
-	}
+  .category-timeline > .activity-timeline {
+    flex: 1;
+    margin-top: 0;
+  }
 }
 
 .category-timeline > .activity-timeline > .line {
-	position: absolute;
-	left: 0;
-	top: 50%;
-	transform: translateY(-50%);
-	width: 100%;
-	height: 1px;
-	border-top: 1px solid #555;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid #555;
 }
 
 .category-timeline > .activity-timeline > .add-button {
-	display: flex;
-	flex-basis: 80px;
-	flex-shrink: 0;
-	align-items: center;
-	text-align: center;
-	justify-content: center;
-	border-radius: 50%;
-	width: 80px;
-	height: 80px;
-	background: white;
-	cursor: pointer;
-	z-index: 99;
+  display: flex;
+  flex-basis: 80px;
+  flex-shrink: 0;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  background: white;
+  cursor: pointer;
+  z-index: 99;
 }
 
 .category-timeline > .activity-timeline > .add-button > .svg {
-	width: 30px;
-	height: 30px;
-	color: #555;
+  width: 30px;
+  height: 30px;
+  color: #555;
 }
 
 .category-timeline > .activity-timeline > .activity-line {
-	display: flex;
-	flex: 0 1 560px;
-	padding-left: 20px;
-	align-items: center;
-	height: 100%;
-	overflow-x: auto;
+  display: flex;
+  flex: 0 1 560px;
+  padding-left: 20px;
+  align-items: center;
+  height: 100%;
+  overflow-x: auto;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .your-timeline {
-	position: relative;
-	z-index: 99;
-	flex-shrink: 0;
+  position: relative;
+  z-index: 99;
+  flex-shrink: 0;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .your-timeline > .title {
-	position: absolute;
-	top: -35px;
-	left: -10px;
-	font-size: 12px;
-	text-align: center;
-	font-style: italic;
+  position: absolute;
+  top: -35px;
+  left: -10px;
+  font-size: 12px;
+  text-align: center;
+  font-style: italic;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .your-timeline > .title > .name {
-	display: block;
-	white-space: nowrap;
-	width: 70px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+  width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .your-timeline > .image {
-	margin-left: 3px;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
+  margin-left: 3px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson {
-	margin-left: 50px;
-	position: relative;
-	z-index: 99;
-	flex-shrink: 0;
+  margin-left: 50px;
+  position: relative;
+  z-index: 99;
+  flex-shrink: 0;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson:last-child {
-	margin-right: 50px;
+  margin-right: 50px;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .name {
-	font-size: 12px;
-	position: absolute;
-	width: 100px;
-	left: 50%;
-	transform: translateX(-50%);
+  font-size: 12px;
+  position: absolute;
+  width: 100px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .video {
-	width: 60px;
-	height: 60px;
-	cursor: pointer;
-	-o-object-fit: cover;
-	object-fit: cover;
-	-o-object-position: 50% 50%;
-	object-position: 50% 50%;
-	border-radius: 50%;
-	border: 1px solid #ccc;
-	transition: all 0.5s;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  transition: all 0.5s;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .video:hover {
-	width: 180px;
-	height: 180px;
-	border-radius: 20px;
+  width: 180px;
+  height: 180px;
+  border-radius: 20px;
 }
 
 .category-timeline > .your-info {
-	width: 170px;
-	border-radius: 15px;
-	padding: 20px;
-	text-align: center;
-	flex-shrink: 0;
-	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
+  width: 170px;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  flex-shrink: 0;
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
 }
 
 .category-timeline > .your-info > * {
-	margin: 5px 0;
+  margin: 5px 0;
 }
 
 .category-timeline > .your-info > span {
-	display: block;
+  display: block;
 }
 
 .category-timeline > .your-info .progress {
-	margin: 10px auto;
-	height: 5px;
-	width: 70px;
+  margin: 10px auto;
+  height: 5px;
+  width: 70px;
 }
 
 .category-timeline > .your-info .progress > .progress-bar {
-	background-color: #fcac42;
+  background-color: #fcac42;
 }
 
 .category-timeline > .your-info > .timespend-badge {
-	display: inline-block;
-	border-radius: 20px;
-	background: black;
-	color: white;
-	padding: 5px 10px;
-	font-size: 13px;
+  display: inline-block;
+  border-radius: 20px;
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  font-size: 13px;
 }
 
 .category-timeline > .your-info > .timespend {
-	font-style: italic;
-	font-weight: bold;
+  font-style: italic;
+  font-weight: bold;
 }
 
 .category-timeline > .your-info > .category {
-	border-radius: 20px;
-	border: 1px solid #000;
-	font-size: 15px;
-	padding: 3px 0;
+  border-radius: 20px;
+  border: 1px solid #000;
+  font-size: 15px;
+  padding: 3px 0;
 }
 
 #story .activity-story {
-	padding: 0;
+  padding: 0;
 }
 

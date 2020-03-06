@@ -11159,7 +11159,7 @@ img {
   .category-interest > .interest-group,
   .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
     max-width: 100%;
-	  overflow-x: initial;
+    overflow-x: initial;
   }
 }
 
@@ -11315,7 +11315,7 @@ img {
   margin-top: 5px;
   color: #888;
   text-align: center;
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon,
@@ -11614,7 +11614,7 @@ button:focus {
 }
 
 .navbar-wrapper .navbar-brand > .logo {
-	height: 39px;
+  height: 39px;
 }
 
 @media (max-width: 460px) {
@@ -11981,7 +11981,7 @@ button:focus {
 }
 
 .footer > .footer-wrapper .email-sub .email > .input {
-	color: black;
+  color: black;
 }
 
 .footer > .footer-wrapper .follow-us {
@@ -11997,7 +11997,7 @@ button:focus {
 }
 
 .modal.\--policy .modal-dialog {
-	max-width: 600px;
+  max-width: 600px;
 }
 
 .modal .modal-content {
@@ -12375,13 +12375,13 @@ button:focus {
 }
 
 .my-activity > .my-activity-card > .image-wrapper {
-	text-align: center;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .image-wrapper {
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .image-wrapper {
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .image-wrapper > .image {
@@ -12394,15 +12394,15 @@ button:focus {
 
 .my-activity > .my-activity-card > .description {
   flex: 1;
-	padding: 20px;
-	text-align: center;
+  padding: 20px;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .description {
-		padding: 0 20px;
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .description {
+    padding: 0 20px;
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .description > .header {
@@ -12414,17 +12414,17 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-	align-items: center;
+  align-items: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action {
-		align-items: flex-end;
-	}
+  .my-activity > .my-activity-card > .action {
+    align-items: flex-end;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .price-status {
-	position: relative;
+  position: relative;
   right: 0;
   top: 0;
   font-size: 20px;
@@ -12433,9 +12433,9 @@ button:focus {
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action > .price-status {
-		position: absolute;
-	}
+  .my-activity > .my-activity-card > .action > .price-status {
+    position: absolute;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .pay-button {
@@ -12937,7 +12937,7 @@ form .error-msg > .text {
   .category-interest > .interest-group,
   .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .interest-group {
     max-width: 100%;
-	  overflow-x: initial;
+    overflow-x: initial;
   }
 }
 
@@ -13093,7 +13093,7 @@ form .error-msg > .text {
   margin-top: 5px;
   color: #888;
   text-align: center;
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon,
@@ -13260,9 +13260,9 @@ form .error-msg > .text {
   bottom: 0;
   left: 0;
   margin-top: 5px;
-	max-width: 120px;
-	overflow-x: auto;
-	flex-wrap: nowrap;
+  max-width: 120px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant {
@@ -13273,7 +13273,7 @@ form .error-msg > .text {
   border: 1px solid #fff;
   position: relative;
   cursor: pointer;
-	flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant > img {
@@ -13694,7 +13694,7 @@ form .error-msg > .text {
 
 .profile-wrapper {
   background: #f4f4f4;
-	padding: 70px 0;
+  padding: 70px 0;
 }
 
 .profile-wrapper .activity-detail {
@@ -13756,7 +13756,7 @@ form .error-msg > .text {
   border-radius: 20px;
   display: flex;
   padding: 30px;
-	margin: 20px 20px 50px;
+  margin: 20px 20px 50px;
   flex-wrap: wrap;
 }
 
@@ -13772,33 +13772,33 @@ form .error-msg > .text {
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-wrapper,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-grid {
-	position: relative;
+  position: relative;
   display: flex;
-	flex-flow: row wrap;
-	justify-content: flex-start;
-	max-width: 810px;
-	width: 100%;
-	margin: 20px auto 0;
-	color: white;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  max-width: 810px;
+  width: 100%;
+  margin: 20px auto 0;
+  color: white;
 }
 
 @media (max-width: 909px) {
-	.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-wrapper,
-	.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-grid {
-		max-width: 540px;
-	}
+  .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-wrapper,
+  .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-grid {
+    max-width: 540px;
+  }
 }
 
 @media (max-width: 639px) {
-	.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-wrapper,
-	.profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-grid {
-		justify-content: center;
-	}
+  .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-wrapper,
+  .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-grid {
+    justify-content: center;
+  }
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-wrapper > .activity-card-wrapper,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper .activity-grid > .activity-card-wrapper {
-	margin: 80px 10px 0;
+  margin: 80px 10px 0;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #activity > .activity-wrapper > .past-activity {
@@ -13922,32 +13922,32 @@ form .error-msg > .text {
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .image {
-	height: 180px;
+  height: 180px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab {
   text-align: center;
   margin-top: -70px;
   display: flex;
-	flex-wrap: wrap;
+  flex-wrap: wrap;
   width: 100%;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .category-interest,
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab {
   flex: 1;
   align-items: center;
-	min-width: 365px;
+  min-width: 365px;
 }
 
 @media (min-width: 766px) {
-	.profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab {
-		margin-left: 20px;
-	}
+  .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab {
+    margin-left: 20px;
+  }
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > .achievement {
@@ -13957,7 +13957,7 @@ form .error-msg > .text {
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab > #achievement {
-	overflow-x: auto;
+  overflow-x: auto;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .header-tab > .achievement-tab .image {
@@ -13966,8 +13966,8 @@ form .error-msg > .text {
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .category-timeline-wrapper {
-	width: 100%;
-	margin-top: 10px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .profile-wrapper > .profile-container > .profile-card-wrapper > .profile-image {
@@ -14170,31 +14170,31 @@ form .error-msg > .text {
 
 .category-timeline {
   display: flex;
-	height: 100%;
-	flex-wrap: wrap;
-	justify-content: center;
+  height: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 @media (min-width: 576px) {
-	.category-timeline {
-		justify-content: initial;
-	}
+  .category-timeline {
+    justify-content: initial;
+  }
 }
 
 .category-timeline > .activity-timeline {
   display: flex;
-	flex: 1 1 100%;
+  flex: 1 1 100%;
   align-items: center;
-	justify-content: space-between;
+  justify-content: space-between;
   position: relative;
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 @media (min-width: 576px) {
-	.category-timeline > .activity-timeline {
-		flex: 1;
-		margin-top: 0;
-	}
+  .category-timeline > .activity-timeline {
+    flex: 1;
+    margin-top: 0;
+  }
 }
 
 .category-timeline > .activity-timeline > .line {
@@ -14210,7 +14210,7 @@ form .error-msg > .text {
 .category-timeline > .activity-timeline > .add-button {
   display: flex;
   flex-basis: 80px;
-	flex-shrink: 0;
+  flex-shrink: 0;
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -14230,8 +14230,8 @@ form .error-msg > .text {
 
 .category-timeline > .activity-timeline > .activity-line {
   display: flex;
-	flex: 0 1 560px;
-	padding-left: 20px;
+  flex: 0 1 560px;
+  padding-left: 20px;
   align-items: center;
   height: 100%;
   overflow-x: auto;
@@ -14245,19 +14245,19 @@ form .error-msg > .text {
 
 .category-timeline > .activity-timeline > .activity-line > .your-timeline > .title {
   position: absolute;
-	top: -35px;
-	left: -10px;
+  top: -35px;
+  left: -10px;
   font-size: 12px;
   text-align: center;
   font-style: italic;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .your-timeline > .title > .name {
-	display: block;
-	white-space: nowrap;
-	width: 70px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  display: block;
+  white-space: nowrap;
+  width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .your-timeline > .image {
@@ -14265,7 +14265,7 @@ form .error-msg > .text {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.2);
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson {
@@ -14276,15 +14276,15 @@ form .error-msg > .text {
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson:last-child {
-	margin-right: 50px;
+  margin-right: 50px;
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .name {
-	font-size: 12px;
-	position: absolute;
-	width: 100px;
-	left: 50%;
-	transform: translateX(-50%);
+  font-size: 12px;
+  position: absolute;
+  width: 100px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .category-timeline > .activity-timeline > .activity-line > .activity-story-lesson > .video {
@@ -14311,7 +14311,7 @@ form .error-msg > .text {
   border-radius: 15px;
   padding: 20px;
   text-align: center;
-	flex-shrink: 0;
+  flex-shrink: 0;
   box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
 }
 

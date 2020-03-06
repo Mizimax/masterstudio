@@ -11153,7 +11153,7 @@ img {
 @media (min-width: 576px) {
   .category-interest > .interest-group {
     max-width: 100%;
-	  overflow-x: initial;
+    overflow-x: initial;
   }
 }
 
@@ -11286,7 +11286,7 @@ img {
   margin-top: 5px;
   color: #888;
   text-align: center;
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon {
@@ -11567,7 +11567,7 @@ button:focus {
 }
 
 .navbar-wrapper .navbar-brand > .logo {
-	height: 39px;
+  height: 39px;
 }
 
 @media (max-width: 460px) {
@@ -11934,7 +11934,7 @@ button:focus {
 }
 
 .footer > .footer-wrapper .email-sub .email > .input {
-	color: black;
+  color: black;
 }
 
 .footer > .footer-wrapper .follow-us {
@@ -11950,7 +11950,7 @@ button:focus {
 }
 
 .modal.\--policy .modal-dialog {
-	max-width: 600px;
+  max-width: 600px;
 }
 
 .modal .modal-content {
@@ -12328,13 +12328,13 @@ button:focus {
 }
 
 .my-activity > .my-activity-card > .image-wrapper {
-	text-align: center;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .image-wrapper {
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .image-wrapper {
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .image-wrapper > .image {
@@ -12347,15 +12347,15 @@ button:focus {
 
 .my-activity > .my-activity-card > .description {
   flex: 1;
-	padding: 20px;
-	text-align: center;
+  padding: 20px;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .description {
-		padding: 0 20px;
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .description {
+    padding: 0 20px;
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .description > .header {
@@ -12367,17 +12367,17 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-	align-items: center;
+  align-items: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action {
-		align-items: flex-end;
-	}
+  .my-activity > .my-activity-card > .action {
+    align-items: flex-end;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .price-status {
-	position: relative;
+  position: relative;
   right: 0;
   top: 0;
   font-size: 20px;
@@ -12386,9 +12386,9 @@ button:focus {
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action > .price-status {
-		position: absolute;
-	}
+  .my-activity > .my-activity-card > .action > .price-status {
+    position: absolute;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .pay-button {
@@ -12952,9 +12952,9 @@ form .error-msg > .text {
   bottom: 0;
   left: 0;
   margin-top: 5px;
-	max-width: 120px;
-	overflow-x: auto;
-	flex-wrap: nowrap;
+  max-width: 120px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant {
@@ -12965,7 +12965,7 @@ form .error-msg > .text {
   border: 1px solid #fff;
   position: relative;
   cursor: pointer;
-	flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant > img {
@@ -13370,12 +13370,12 @@ form .error-msg > .text {
 .studio-header > .studio-header-wrapper {
   max-width: 900px;
   width: 90%;
-	height: 100%;
+  height: 100%;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-	top: 0;
-	display: flex;
+  top: 0;
+  display: flex;
   z-index: 99;
 }
 
@@ -13385,17 +13385,17 @@ form .error-msg > .text {
   color: white;
   padding: 20px;
   margin-left: auto;
-	margin-right: auto;
-	margin-top: auto;
-	margin-bottom: 70px;
-	text-align: center;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: 70px;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.studio-header > .studio-header-wrapper > .studio-header-content {
-		text-align: left;
-		margin-right: 0;
-	}
+  .studio-header > .studio-header-wrapper > .studio-header-content {
+    text-align: left;
+    margin-right: 0;
+  }
 }
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .studio-icon {
@@ -13418,14 +13418,14 @@ form .error-msg > .text {
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper {
   display: flex;
-	justify-content: center;
+  justify-content: center;
   margin: 20px 0 0;
 }
 
 @media (min-width: 576px) {
-	.studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper {
-		justify-content: flex-start;
-	}
+  .studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper {
+    justify-content: flex-start;
+  }
 }
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .action-wrapper > .action-button {
@@ -13482,14 +13482,14 @@ form .error-msg > .text {
 .studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
   flex: 1;
   overflow-x: auto;
-	padding: 10px 0 0 0;
-	display: none;
+  padding: 10px 0 0 0;
+  display: none;
 }
 
 @media (min-width: 576px) {
-	.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
-		display: flex;
-	}
+  .studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
+    display: flex;
+  }
 }
 
 .studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .activity-card {
@@ -13509,14 +13509,14 @@ form .error-msg > .text {
 }
 
 .studio-master .activity-story {
-	display: flex;
-	padding: 20px 0;
+  display: flex;
+  padding: 20px 0;
 }
 
 @media (min-width: 576px) {
-	.studio-master .activity-story {
-		display: none;
-	}
+  .studio-master .activity-story {
+    display: none;
+  }
 }
 
 .studio-detail-container {
@@ -13668,51 +13668,51 @@ form .error-msg > .text {
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container {
-	position: relative;
-	flex-shrink: 0;
-	font-size: 0;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 0;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active {
-	border: 1px solid #f25923;
+  border: 1px solid #f25923;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.active > .delete-btn {
-	display: block;
+  display: block;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.me:hover {
-	border: 1px solid #f25923;
+  border: 1px solid #f25923;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container.me:hover > .delete-btn {
-	display: block;
+  display: block;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn {
-	position: absolute;
-	right: 10px;
-	bottom: 10px;
-	display: none;
-	padding: 10px;
-	color: white;
-	background-color: #f25923;
-	border-radius: 50%;
-	cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: none;
+  padding: 10px;
+  color: white;
+  background-color: #f25923;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .delete-btn:before {
-	content: "-";
-	font-weight: bold;
-	font-size: 16px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  content: "-";
+  font-weight: bold;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #gallery > .gallery-wrapper > .gallery-flex > .image-container > .image {
-	height: 180px;
+  height: 180px;
 }
 
 .studio-detail-container > .studio-detail > .detail-header > .content > .tab-content > #review {
@@ -13783,12 +13783,12 @@ form .error-msg > .text {
 
 @media (min-width: 768px) {
   .studio-detail-container > .studio-master > .master-studio-padding {
-	  padding-top: 80px;
+    padding-top: 80px;
   }
 }
 
 .studio-detail-container > .studio-master > .title {
-	margin: 40px 0 10px;
+  margin: 40px 0 10px;
   font-size: 30px;
   font-weight: bold;
 }

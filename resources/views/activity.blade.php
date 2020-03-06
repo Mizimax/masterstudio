@@ -248,7 +248,13 @@
             </div>
             <div class="d-flex">
                 <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
-                <button class="record-btn">Start recording</button>
+                <button id="record-btn" class="record-btn">
+                    Start recording
+                    @if($iOS)
+                        <input id="record-file" type="file" accept="video/*;capture=camcorder">
+                    @endif
+                </button>
+
             </div>
             {{--        <div class="overlay"></div>--}}
         </div>
@@ -290,6 +296,7 @@
 
       function recordVideo(type) {
         return function () {
+                    @if(!$iOS)
           var countup
 
           $('.record-video').addClass('d-flex')
@@ -390,7 +397,42 @@
             }
           ).catch(function (error) {
             $('.cantaccess').addClass('d-block')
+
           })
+
+            @else
+            $('#record-btn').off('click').on('click', function () {
+              $('#upload-btn').removeClass('d-none')
+              $(this).addClass('d-none')
+              $('#upload-btn').off('click').on('click', function () {
+                if ($('#activity-story').val() == '0') {
+                  alert('Please select activity')
+                  return false
+                }
+                $(this).prop('disabled', true)
+                $(this).text('Uploading...')
+                var formData = new FormData()
+                formData.append('video-blob', fileObject)
+                formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
+                console.log('>> type: ', type)
+                $.ajax({
+                  url: '/activity/' + $('#activity-story').val() + '/story' + (type
+                                                                               ? '?type=' + type
+                                                                               : ''),
+                  type: 'post',
+                  headers: {
+                    'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+                  },
+                  data: formData,
+                  contentType: false,
+                  processData: false,
+                  success: function (res) {
+                    window.location.reload()
+                  },
+                })
+              })
+            })
+            @endif
         }
 
       }

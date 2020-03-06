@@ -11566,7 +11566,7 @@ button:focus {
 }
 
 .navbar-wrapper .navbar-brand > .logo {
-	height: 39px;
+  height: 39px;
 }
 
 @media (max-width: 460px) {
@@ -11933,7 +11933,7 @@ button:focus {
 }
 
 .footer > .footer-wrapper .email-sub .email > .input {
-	color: black;
+  color: black;
 }
 
 .footer > .footer-wrapper .follow-us {
@@ -11949,7 +11949,7 @@ button:focus {
 }
 
 .modal.\--policy .modal-dialog {
-	max-width: 600px;
+  max-width: 600px;
 }
 
 .modal .modal-content {
@@ -12951,9 +12951,9 @@ form .error-msg > .text {
   bottom: 0;
   left: 0;
   margin-top: 5px;
-	max-width: 120px;
-	overflow-x: auto;
-	flex-wrap: nowrap;
+  max-width: 120px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant {
@@ -12964,7 +12964,7 @@ form .error-msg > .text {
   border: 1px solid #fff;
   position: relative;
   cursor: pointer;
-	flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant > img {

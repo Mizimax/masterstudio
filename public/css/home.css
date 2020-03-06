@@ -11151,7 +11151,7 @@ img {
 @media (min-width: 576px) {
   .category-interest > .interest-group {
     max-width: 100%;
-	  overflow-x: initial;
+    overflow-x: initial;
   }
 }
 
@@ -11284,7 +11284,7 @@ img {
   margin-top: 5px;
   color: #888;
   text-align: center;
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon {
@@ -11562,7 +11562,7 @@ button:focus {
 }
 
 .navbar-wrapper .navbar-brand > .logo {
-	height: 39px;
+  height: 39px;
 }
 
 @media (max-width: 460px) {
@@ -11929,7 +11929,7 @@ button:focus {
 }
 
 .footer > .footer-wrapper .email-sub .email > .input {
-	color: black;
+  color: black;
 }
 
 .footer > .footer-wrapper .follow-us {
@@ -11945,7 +11945,7 @@ button:focus {
 }
 
 .modal.\--policy .modal-dialog {
-	max-width: 600px;
+  max-width: 600px;
 }
 
 .modal .modal-content {
@@ -12323,13 +12323,13 @@ button:focus {
 }
 
 .my-activity > .my-activity-card > .image-wrapper {
-	text-align: center;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .image-wrapper {
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .image-wrapper {
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .image-wrapper > .image {
@@ -12342,15 +12342,15 @@ button:focus {
 
 .my-activity > .my-activity-card > .description {
   flex: 1;
-	padding: 20px;
-	text-align: center;
+  padding: 20px;
+  text-align: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .description {
-		padding: 0 20px;
-		text-align: left;
-	}
+  .my-activity > .my-activity-card > .description {
+    padding: 0 20px;
+    text-align: left;
+  }
 }
 
 .my-activity > .my-activity-card > .description > .header {
@@ -12362,17 +12362,17 @@ button:focus {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-	align-items: center;
+  align-items: center;
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action {
-		align-items: flex-end;
-	}
+  .my-activity > .my-activity-card > .action {
+    align-items: flex-end;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .price-status {
-	position: relative;
+  position: relative;
   right: 0;
   top: 0;
   font-size: 20px;
@@ -12381,9 +12381,9 @@ button:focus {
 }
 
 @media (min-width: 576px) {
-	.my-activity > .my-activity-card > .action > .price-status {
-		position: absolute;
-	}
+  .my-activity > .my-activity-card > .action > .price-status {
+    position: absolute;
+  }
 }
 
 .my-activity > .my-activity-card > .action > .pay-button {
@@ -13300,9 +13300,9 @@ form .error-msg > .text {
   bottom: 0;
   left: 0;
   margin-top: 5px;
-	max-width: 120px;
-	overflow-x: auto;
-	flex-wrap: nowrap;
+  max-width: 120px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant {
@@ -13313,7 +13313,7 @@ form .error-msg > .text {
   border: 1px solid #fff;
   position: relative;
   cursor: pointer;
-	flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant > img {
@@ -13367,7 +13367,7 @@ form .error-msg > .text {
   flex-flow: row wrap;
   justify-content: flex-start;
   max-width: 810px;
-	width: 100%;
+  width: 100%;
   margin: 20px auto 0;
   color: white;
 }
@@ -13455,7 +13455,7 @@ form .error-msg > .text {
 @media (min-width: 576px) {
   .category-interest > .interest-group {
     max-width: 100%;
-	  overflow-x: initial;
+    overflow-x: initial;
   }
 }
 
@@ -13588,7 +13588,7 @@ form .error-msg > .text {
   margin-top: 5px;
   color: #888;
   text-align: center;
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon {
@@ -13768,9 +13768,9 @@ form .error-msg > .text {
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .logo-home {
-	max-width: 95%;
-	position: relative;
-	left: -15px;
+  max-width: 95%;
+  position: relative;
+  left: -15px;
 }
 
 .video-header > #carousel .carousel-item > .content-wrapper > .activity-name > .subheader {

@@ -11155,7 +11155,7 @@ section.activity-header #carousel .master-action > .activity-header-detail.actio
 @media (min-width: 576px) {
   .category-interest > .interest-group {
     max-width: 100%;
-	  overflow-x: initial;
+    overflow-x: initial;
   }
 }
 
@@ -11288,7 +11288,7 @@ section.activity-header #carousel .master-action > .activity-header-detail.actio
   margin-top: 5px;
   color: #888;
   text-align: center;
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .category-interest > .add-interest-activity:active > .icon {
@@ -11567,7 +11567,7 @@ section.activity-detail-section > .content > .activity-section,
 }
 
 .navbar-wrapper .navbar-brand > .logo {
-	height: 39px;
+  height: 39px;
 }
 
 @media (max-width: 460px) {
@@ -11934,7 +11934,7 @@ section.activity-detail-section > .content > .activity-section,
 }
 
 .footer > .footer-wrapper .email-sub .email > .input {
-	color: black;
+  color: black;
 }
 
 .footer > .footer-wrapper .follow-us {
@@ -11950,7 +11950,7 @@ section.activity-detail-section > .content > .activity-section,
 }
 
 .modal.\--policy .modal-dialog {
-	max-width: 600px;
+  max-width: 600px;
 }
 
 .modal .modal-content {
@@ -13087,9 +13087,9 @@ form .error-msg > .text {
   bottom: 0;
   left: 0;
   margin-top: 5px;
-	max-width: 120px;
-	overflow-x: auto;
-	flex-wrap: nowrap;
+  max-width: 120px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant {
@@ -13100,7 +13100,7 @@ form .error-msg > .text {
   border: 1px solid #fff;
   position: relative;
   cursor: pointer;
-	flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .activity-card > .title-wrapper > .activity-join > .participant > img {
@@ -13467,9 +13467,9 @@ section.activity-header #carousel .activity-header-detail > .activity-action > .
   display: flex;
   flex: 2;
   align-self: flex-end;
-	max-width: 120px;
-	overflow-x: auto;
-	flex-wrap: nowrap;
+  max-width: 120px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
 }
 
 section.activity-header #carousel .activity-header-detail > .activity-action > .availability-wrapper > .activity-join > .participant {
@@ -13479,7 +13479,7 @@ section.activity-header #carousel .activity-header-detail > .activity-action > .
   border-radius: 50%;
   border: 1px solid #fff;
   position: relative;
-	flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 section.activity-header #carousel .activity-header-detail > .activity-action > .availability-wrapper > .activity-join > .participant > img {
