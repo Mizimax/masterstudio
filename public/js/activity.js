@@ -61,8 +61,10 @@ function activityHover() {
     $('#activity-wrapper').delegate('.activity-overlay.--hover', 'touchend', function () {
       // if (!iOS) {
         $(this).hover(function () {
+          alert('hoverin')
           $(this).siblings('.video-wrapper').children('.video').get(0).play()
         }, function () {
+          alert('hoverout')
           $(this).siblings('.video-wrapper').children('.video').get(0).pause()
         })
       // } else {
