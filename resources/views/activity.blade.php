@@ -323,7 +323,7 @@
               alert('555')
               $('.record-btn').off('click').on('click', function () {
                   console.log('record')
-                alert(MasterStudio.videoPreview.play)
+                alert(recorder.startRecording())
                   if (!MasterStudio.videoPreview.play) {
                     recorder.startRecording()
                     $(this).prop('disabled', false)
