@@ -57,7 +57,7 @@ function activityHover() {
   if (tap) {
     $('.button.--detail.--mobile').addClass('d-block')
 
-    $('#activity-wrapper').delegate('.activity-overlay.--hover', 'touchend', function () {
+    $('#activity-wrapper').delegate('.activity-overlay.--hover', 'click', function () {
 
       $(this).hover(function () {
           $(this).siblings('.video-wrapper').children('.video').get(0).play()
