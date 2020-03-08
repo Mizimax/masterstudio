@@ -250,7 +250,7 @@
             </div>
             <div class="d-flex">
                 <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
-                <button id="record-btn" class="record-btn {{ !$iOS ? '--ios' : '' }}">
+                <button id="record-btn" class="record-btn {{ $iOS ? '--ios' : '' }}">
                     Start recording
                     @if($iOS)
                         <input id="record-file" type="file" accept="video/*;capture=camcorder">
