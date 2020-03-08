@@ -41,6 +41,7 @@
 				->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 				->where('as.user_id', $user['user_id'])
 				->orderBy('as.activity_story_id', 'desc')
+				->select('*', 'as.created_at')
 				->get();
 			$myActivities = UserActivity::from('user_activities as ua')
 				->join('activities as ac', 'ua.activity_id', 'ac.activity_id')

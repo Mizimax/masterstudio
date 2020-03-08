@@ -175,7 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="location">{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}{{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : '' }}
+                        <div class="location">{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}{{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : $story['story_day_ago']->i . ' minutes' }}
                             ago: {{ $story['activity_location_name'] }}</div>
                     </div>
                 @endforeach

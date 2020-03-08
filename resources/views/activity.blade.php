@@ -252,7 +252,7 @@
                 <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
                 <button id="record-btn" class="record-btn {{ $iOS ? '--ios' : '' }}">
                     Start recording
-                    @if($iOS)
+                    @if(!$iOS)
                         <input id="record-file" type="file" accept="video/*;capture=camcorder">
                     @endif
                 </button>
@@ -267,7 +267,7 @@
     <script src="/js/infinite-scroll.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
     <script src="https://cdn.temasys.io/adapterjs/0.15.x/adapter.min.js"></script>
-    @if(!$ios)
+    @if(!$iOS)
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
     @endif
     <script src="/js/activity.js"></script>
@@ -300,7 +300,7 @@
 
       function recordVideo(type) {
         return function () {
-                    @if(!$iOS)
+                    @if($iOS)
           var countup
 
           $('.record-video').addClass('d-flex')
@@ -414,16 +414,21 @@
               $('#upload-btn').addClass('d-none')
               $('#record-btn').removeClass('d-none')
               $(this).toggleClass('d-flex')
+              var preview = $('#preview')
+              preview[0].src = ''
+              $('#record-file').val('')
             }
           })
 
           $('#record-file').change(function (event) {
             var preview = $('#preview')
             preview[0].src = URL.createObjectURL(this.files[0])
-          })
-          $('#record-btn').off('click').on('click', function () {
+            if (!this.files[0].type.match('video.*')) {
+              alert('Support only video file.')
+              return false
+            }
+            $('#record-btn').addClass('d-none')
             $('#upload-btn').removeClass('d-none')
-            $(this).addClass('d-none')
             $('#upload-btn').off('click').on('click', function () {
               if ($('#activity-story').val() == '0') {
                 alert('Please select activity')
@@ -434,7 +439,7 @@
               var formData = new FormData()
               formData.append('video-blob', $('#record-file')[0].files[0])
               formData.append('_token', $('meta[name="csrf-token"]').attr('content'))
-              console.log('>> type: ', type)
+
               $.ajax({
                 url: '/activity/' + $('#activity-story').val() + '/story' + (type
                                                                              ? '?type=' + type

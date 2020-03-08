@@ -144,14 +144,18 @@
 					->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 					->where('as.user_id', $userId)
 					->where('as.story_status', 'LIKE', '%' . ($me ? '' : 'story') . '%')
-					->orderBy('as.activity_story_id', 'desc')->get();
+					->orderBy('as.activity_story_id', 'desc')
+					->select('*', 'as.created_at')
+					->get();
 			} else {
 				$stories = ActivityStory::from('activity_stories as as')
 					->join('activities as ac', 'as.activity_id', 'ac.activity_id')
 					->where('as.user_id', $userId)
 					->whereIn('ac.category_id', $category)
 					->where('as.story_status', 'LIKE', '%' . ($me ? '' : 'story') . '%')
-					->orderBy('as.activity_story_id', 'desc')->get();
+					->orderBy('as.activity_story_id', 'desc')
+					->select('*', 'as.created_at')
+					->get();
 			}
 
 			return view('components.activity-story', ['stories' => $stories, 'me' => $me]);
