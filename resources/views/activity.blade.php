@@ -267,7 +267,9 @@
     <script src="/js/infinite-scroll.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@12.0.0/dist/lazyload.min.js"></script>
     <script src="https://cdn.temasys.io/adapterjs/0.15.x/adapter.min.js"></script>
+    @if(!$ios)
     <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+    @endif
     <script src="/js/activity.js"></script>
     <script src="/js/activity-page.js"></script>
     <script type="text/javascript" src="https://cdn.omise.co/omise.js">
