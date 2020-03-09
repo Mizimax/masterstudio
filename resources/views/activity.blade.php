@@ -233,8 +233,8 @@
         <div class="record-video">
             <div class="video-preview">
                 <video id="preview" class="video" autoplay loop playsinline></video>
-                <div class="cantaccess">This function requires camera and microphone access.</div>
                 @if(!$iOS)
+                <div class="cantaccess">This function requires camera and microphone access.</div>
                     <div class="time-record" align="center">
                         <span class="time">0:00</span> / 1:00 minute
                     </div>
