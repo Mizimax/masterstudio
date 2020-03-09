@@ -252,7 +252,7 @@
                 <button id="upload-btn" class="record-btn mr-2 d-none">Upload</button>
                 <button id="record-btn" class="record-btn {{ $iOS ? '--ios' : '' }}">
                     Start recording
-                    @if(!$iOS)
+                    @if($iOS)
                         <input id="record-file" type="file" accept="video/*;capture=camcorder">
                     @endif
                 </button>
@@ -300,7 +300,7 @@
 
       function recordVideo(type) {
         return function () {
-                    @if($iOS)
+                    @if(!$iOS)
           var countup
 
           $('.record-video').addClass('d-flex')
