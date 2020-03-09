@@ -133,7 +133,7 @@
                         <a id="home-menu" class="nav-link px-2 px-lg-3" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a id="activity-menu" class="nav-link px-2 px-lg-3" href="/activity">Activities</a>
+                        <a id="activity-menu" class="nav-link px-2 px-lg-3" href="/activity">Activity</a>
                     </li>
                     <li class="nav-item">
                         <a id="master-menu" class="nav-link px-2 px-lg-3" href="/master">Master</a>

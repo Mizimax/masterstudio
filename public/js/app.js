@@ -132,6 +132,78 @@
 
 /***/ }),
 
+  /***/ './resources/sass/dashboard.activity.scss':
+  /*!************************************************!*\
+    !*** ./resources/sass/dashboard.activity.scss ***!
+    \************************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
+  /***/ './resources/sass/dashboard.master.scss':
+  /*!**********************************************!*\
+    !*** ./resources/sass/dashboard.master.scss ***!
+    \**********************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
+  /***/ './resources/sass/dashboard.scss':
+  /*!***************************************!*\
+    !*** ./resources/sass/dashboard.scss ***!
+    \***************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
+  /***/ './resources/sass/dashboard.story.scss':
+  /*!*********************************************!*\
+    !*** ./resources/sass/dashboard.story.scss ***!
+    \*********************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
+  /***/ './resources/sass/dashboard.studio.scss':
+  /*!**********************************************!*\
+    !*** ./resources/sass/dashboard.studio.scss ***!
+    \**********************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
+  /***/ './resources/sass/dashboard.user.scss':
+  /*!********************************************!*\
+    !*** ./resources/sass/dashboard.user.scss ***!
+    \********************************************/
+  /*! no static exports found */
+  /***/ (function (module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+    /***/
+  }),
+
 /***/ "./resources/sass/home.scss":
 /*!**********************************!*\
   !*** ./resources/sass/home.scss ***!
@@ -204,9 +276,9 @@
   }),
 
 /***/ 0:
-  /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ./resources/sass/master.scss ./resources/sass/master-detail.scss ./resources/sass/studio.scss ./resources/sass/studio-detail.scss ./resources/sass/activity-detail.scss ./resources/sass/profile.scss ***!
-    \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
+  /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+    !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/home.scss ./resources/sass/activity.scss ./resources/sass/master.scss ./resources/sass/master-detail.scss ./resources/sass/studio.scss ./resources/sass/studio-detail.scss ./resources/sass/activity-detail.scss ./resources/sass/profile.scss ./resources/sass/dashboard.scss ./resources/sass/dashboard.studio.scss ./resources/sass/dashboard.user.scss ./resources/sass/dashboard.master.scss ./resources/sass/dashboard.activity.scss ./resources/sass/dashboard.story.scss ***!
+    \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -219,7 +291,13 @@
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/studio.scss */'./resources/sass/studio.scss')
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/studio-detail.scss */'./resources/sass/studio-detail.scss')
     __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/activity-detail.scss */'./resources/sass/activity-detail.scss')
-    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/profile.scss */'./resources/sass/profile.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/profile.scss */'./resources/sass/profile.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/dashboard.scss */'./resources/sass/dashboard.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/dashboard.studio.scss */'./resources/sass/dashboard.studio.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/dashboard.user.scss */'./resources/sass/dashboard.user.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/dashboard.master.scss */'./resources/sass/dashboard.master.scss')
+    __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/dashboard.activity.scss */'./resources/sass/dashboard.activity.scss')
+    module.exports = __webpack_require__(/*! /Users/max/Desktop/masterstudio/resources/sass/dashboard.story.scss */'./resources/sass/dashboard.story.scss')
 
 
 /***/ })

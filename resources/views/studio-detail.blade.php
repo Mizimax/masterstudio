@@ -177,7 +177,7 @@
                         <div role="tabpanel" class="tab-pane fade in" id="location">
                             <iframe
                                     class="studio-location"
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13041.000141488994!2d100.49078499776775!3d13.650917617558623!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2a251bb6b0cf1%3A0xf656e94ff13324ad!2sKing%20Mongkut%E2%80%99s%20University%20of%20Technology%20Thonburi!5e0!3m2!1sen!2sth!4v1569249162314!5m2!1sen!2sth"
+                                    src="{{ $studio['studio_location'] }}"
                                     height="320" frameborder="0" style="border:0;"
                                     allowfullscreen=""></iframe>
                         </div>
