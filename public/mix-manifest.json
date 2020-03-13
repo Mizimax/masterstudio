@@ -8,5 +8,11 @@
     "/css/studio.css": "/css/studio.css",
     "/css/studio-detail.css": "/css/studio-detail.css",
     "/css/activity-detail.css": "/css/activity-detail.css",
-    "/css/profile.css": "/css/profile.css"
+  "/css/profile.css": "/css/profile.css",
+  "/css/dashboard.css": "/css/dashboard.css",
+  "/css/dashboard.studio.css": "/css/dashboard.studio.css",
+  "/css/dashboard.user.css": "/css/dashboard.user.css",
+  "/css/dashboard.master.css": "/css/dashboard.master.css",
+  "/css/dashboard.story.css": "/css/dashboard.story.css",
+  "/css/dashboard.activity.css": "/css/dashboard.activity.css"
 }

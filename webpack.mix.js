@@ -1,20 +1,20 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 // const LiveReloadPlugin = require('webpack-livereload-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 mix.webpackConfig({
-    plugins: [
-        // new LiveReloadPlugin(),
-        new BrowserSyncPlugin({
-            files: [
-                'app/**/*',
-                'public/**/*',
-                'resources/views/**/*',
-                'routes/**/*'
-            ]
-        })
-    ]
-});
+  plugins: [
+    // new LiveReloadPlugin(),
+    new BrowserSyncPlugin({
+      files: [
+        'app/**/*',
+        'public/**/*',
+        'resources/views/**/*',
+        'routes/**/*',
+      ],
+    }),
+  ],
+})
 
 /*
  |--------------------------------------------------------------------------
@@ -28,12 +28,19 @@ mix.webpackConfig({
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/home.scss', 'public/css')
-    .sass('resources/sass/activity.scss', 'public/css')
-    .sass('resources/sass/master.scss', 'public/css')
+  .sass('resources/sass/app.scss', 'public/css')
+  .sass('resources/sass/home.scss', 'public/css')
+  .sass('resources/sass/activity.scss', 'public/css')
+  .sass('resources/sass/master.scss', 'public/css')
   .sass('resources/sass/master-detail.scss', 'public/css')
   .sass('resources/sass/studio.scss', 'public/css')
   .sass('resources/sass/studio-detail.scss', 'public/css')
   .sass('resources/sass/activity-detail.scss', 'public/css')
-  .sass('resources/sass/profile.scss', 'public/css');
+  .sass('resources/sass/profile.scss', 'public/css')
+  .sass('resources/sass/dashboard.scss', 'public/css')
+  .sass('resources/sass/dashboard.studio.scss', 'public/css')
+  .sass('resources/sass/dashboard.user.scss', 'public/css')
+  .sass('resources/sass/dashboard.master.scss', 'public/css')
+  .sass('resources/sass/dashboard.activity.scss', 'public/css')
+  .sass('resources/sass/dashboard.story.scss', 'public/css')
+

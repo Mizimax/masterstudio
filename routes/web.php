@@ -49,6 +49,12 @@
 	});
 	Route::group(['middleware' => 'master'], function () {
 		Route::get('/dashboard', 'DashboardController@index');
+		Route::get('/dashboard/studio', 'DashboardController@studios');
+		Route::get('/dashboard/studio/add', 'DashboardController@addStudio');
+		Route::post('/dashboard/studio', 'DashboardController@createStudio');
+		Route::get('/dashboard/studio/{studioId}', 'DashboardController@studio');
+		Route::post('/dashboard/studio/{studioId}', 'DashboardController@editStudio');
+		Route::delete('/dashboard/studio/{studioId}', 'DashboardController@removeStudio');
 	});
 	Route::get('/content/master/search', 'MasterController@search');
 	Route::get('/content/master/category', 'MasterController@category');
