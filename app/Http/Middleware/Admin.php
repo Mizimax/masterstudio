@@ -4,7 +4,7 @@
 
 	use Closure;
 
-	class Master
+	class Admin
 	{
 		/**
 		 * Handle an incoming request.
@@ -15,9 +15,9 @@
 		 */
 		public function handle($request, Closure $next)
 		{
-			if (\Auth::check() && \Auth::user()->master_id) {
+			if (\Auth::check() && \Auth::user()->user_type == 'admin') {
 				return $next($request);
 			}
-			return redirect('http://localhost/#login');
+			return abort(401);
 		}
 	}

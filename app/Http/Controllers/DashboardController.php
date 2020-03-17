@@ -18,6 +18,37 @@
 			return view('dashboard-user');
 		}
 
+		public function masters()
+		{
+			return view('dashboard-master');
+		}
+
+		public function master()
+		{
+			return view('dashboard-master-id');
+		}
+
+		public function addMaster()
+		{
+			return view('dashboard-master-create');
+		}
+
+		public function createMaster()
+		{
+
+		}
+
+		public function editMaster()
+		{
+
+		}
+
+		public function removeMaster()
+		{
+
+		}
+
+
 		public function studios()
 		{
 			$user = \Auth::user();

@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('page', 'studio')
+@section('page', 'master')
 
 @section('style')
     <link rel="stylesheet" href="/css/dashboard.studio.css">
@@ -9,34 +9,23 @@
 @section('content')
     <div class="studio-wrapper">
 
-        @if($studios)
-            <h3 align="center">Studio {{ $studios['studio_id'] }}</h3>
+        @if($master)
+            <h3 align="center">Studio {{ $master['master_id'] }}</h3>
             <form class="studio-form" method="post"
-                  action="/dashboard/studio/{{ $studios['studio_id'] }}"
+                  action="/dashboard/studio/{{ $master['master_id'] }}"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="studio_name">Studio name</label>
+                    <label for="studio_name">Master name</label>
                     <input required type="text" name="studio_name"
-                           value="{{ $studios['studio_name'] }}"
+                           value="{{ $master['master_name'] }}"
                            class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="studio_name">Studio title</label>
                     <input required type="text" name="studio_title"
-                           value="{{ $studios['studio_title'] }}"
+                           value="{{ $master['studio_title'] }}"
                            class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="master_id">Studio owner</label>
-                    <select required name="master_id" class="form-control">
-                        <option value="{{ $studios['master_id'] }}">{{ $masters[array_search($studios['category_id'], array_column($categories->toArray(), 'category_id'))]['category_name'] }}</option>
-                        @foreach($masters as $master)
-                            @if($master['studio_id'] != $studios['studio_id'])
-                                <option value="{{ $cg['category_id'] }}">{{ $cg['category_name'] }}</option>
-                            @endif
-                        @endforeach
-                    </select>
                 </div>
                 <div class="form-group">
                     <label for="category_id">Category</label>

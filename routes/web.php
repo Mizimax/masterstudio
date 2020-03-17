@@ -47,7 +47,7 @@
 		Route::post('/activity/{id}/pin', 'ActivityController@pin');
 		Route::post('/activity/{id}/unpin', 'ActivityController@unpin');
 	});
-	Route::group(['middleware' => 'master'], function () {
+	Route::group(['middleware' => ['master', 'admin']], function () {
 		Route::get('/dashboard', 'DashboardController@index');
 		Route::get('/dashboard/studio', 'DashboardController@studios');
 		Route::get('/dashboard/studio/add', 'DashboardController@addStudio');
@@ -55,6 +55,15 @@
 		Route::get('/dashboard/studio/{studioId}', 'DashboardController@studio');
 		Route::post('/dashboard/studio/{studioId}', 'DashboardController@editStudio');
 		Route::delete('/dashboard/studio/{studioId}', 'DashboardController@removeStudio');
+		Route::get('/dashboard/master', 'DashboardController@masters');
+		Route::get('/dashboard/master/add', 'DashboardController@addMaster');
+		Route::post('/dashboard/master', 'DashboardController@createMaster');
+		Route::get('/dashboard/master/{masterId}', 'DashboardController@master');
+		Route::post('/dashboard/master/{masterId}', 'DashboardController@editMaster');
+		Route::delete('/dashboard/master/{masterId}', 'DashboardController@removeMaster');
+	});
+	Route::group(['middleware' => 'admin'], function () {
+
 	});
 	Route::get('/content/master/search', 'MasterController@search');
 	Route::get('/content/master/category', 'MasterController@category');
