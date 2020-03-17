@@ -45,12 +45,14 @@
 		.studio-container {
 			display: flex;
 			align-items: center;
+			flex-wrap: wrap;
 		}
 
 		.studio {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			flex-wrap: wrap;
 			padding: 20px;
 			margin: 20px 0;
 			border-radius: 15px;
@@ -75,6 +77,7 @@
 			> .category {
 				display: flex;
 				align-items: center;
+				flex-wrap: wrap;
 
 				> .pic {
 					width: 30px;

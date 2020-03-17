@@ -13,6 +13,67 @@ body {
 	background-color: #f5f5f5;
 }
 
+.container {
+	max-width: 600px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.content-list {
+	max-width: 600px;
+	width: 100%;
+	padding: 0 20px;
+
+	.content-container {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.content {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		padding: 20px;
+		margin: 20px 0;
+		border-radius: 15px;
+		background-color: white;
+		cursor: pointer;
+		@include shadow(0px, 0px, 10px, 1px, 0.1);
+
+		> .name {
+			font-weight: bold;
+			display: flex;
+			align-items: center;
+
+			> .icon {
+				width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				object-fit: cover;
+				margin-right: 20px;
+			}
+		}
+
+		> .category {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+
+			> .pic {
+				width: 30px;
+				margin-right: 10px;
+			}
+		}
+
+		&:hover {
+			@include shadow(0px, 0px, 10px, 1px, 0.2);
+		}
+	}
+}
+
 .navbar-wrapper {
 	@extend .position-fixed;
 	z-index: $zindex-fixed;

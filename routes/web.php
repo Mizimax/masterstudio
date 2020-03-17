@@ -47,7 +47,7 @@
 		Route::post('/activity/{id}/pin', 'ActivityController@pin');
 		Route::post('/activity/{id}/unpin', 'ActivityController@unpin');
 	});
-	Route::group(['middleware' => ['master', 'admin']], function () {
+	Route::group(['middleware' => 'master'], function () {
 		Route::get('/dashboard', 'DashboardController@index');
 		Route::get('/dashboard/studio', 'DashboardController@studios');
 		Route::get('/dashboard/studio/add', 'DashboardController@addStudio');
@@ -55,6 +55,10 @@
 		Route::get('/dashboard/studio/{studioId}', 'DashboardController@studio');
 		Route::post('/dashboard/studio/{studioId}', 'DashboardController@editStudio');
 		Route::delete('/dashboard/studio/{studioId}', 'DashboardController@removeStudio');
+		Route::get('/dashboard/user', 'DashboardController@users');
+		Route::get('/dashboard/user/{userId}', 'DashboardController@user');
+		Route::post('/dashboard/user/{userId}', 'DashboardController@editUser');
+		Route::delete('/dashboard/user/{userId}', 'DashboardController@removeUser');
 		Route::get('/dashboard/master', 'DashboardController@masters');
 		Route::get('/dashboard/master/add', 'DashboardController@addMaster');
 		Route::post('/dashboard/master', 'DashboardController@createMaster');
