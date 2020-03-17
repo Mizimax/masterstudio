@@ -4,6 +4,7 @@
 
 	use App\Category;
 	use App\Studio;
+    use App\User;
 	use Illuminate\Http\Request;
 
 	class DashboardController extends Controller
@@ -147,5 +148,23 @@
 			Studio::where('studios.studio_id', $studioId)->delete();
 			return redirect()->back();
 		}
+
+        public function users()
+        {
+            $users = User::get();
+            return view('dashboard-user', ['users' => $users]);
+        }
+
+        public function user($userId)
+        {
+            $user = User::where('user_id', $userId)->get();
+            return view('dashboard-user-id', ['user' => $user]);
+        }
+
+        public function removeUser($userId)
+        {
+            User::where('user_id', $userId)->delete();
+            return redirect()->back();
+        }
 
 	}

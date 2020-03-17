@@ -55,6 +55,10 @@
 		Route::get('/dashboard/studio/{studioId}', 'DashboardController@studio');
 		Route::post('/dashboard/studio/{studioId}', 'DashboardController@editStudio');
 		Route::delete('/dashboard/studio/{studioId}', 'DashboardController@removeStudio');
+        Route::get('/dashboard/user', 'DashboardController@users');
+        Route::get('/dashboard/user/{userId}', 'DashboardController@user');
+        Route::post('/dashboard/user/{userId}', 'DashboardController@editUser');
+        Route::delete('/dashboard/user/{userId}', 'DashboardController@removeUser');
 	});
 	Route::get('/content/master/search', 'MasterController@search');
 	Route::get('/content/master/category', 'MasterController@category');
