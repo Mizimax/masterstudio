@@ -442,8 +442,14 @@
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as act', 'act.activity_id', '=', 'as.activity_id')
 				->orderBy('as.activity_story_id', 'desc')
+				->where('as.story_status', 'story')
 				->select('*', 'as.created_at')->get();
-			return view('dashboard-story', ['stories' => $stories]);
+			$lessons = ActivityStory::from('activity_stories as as')
+				->join('activities as act', 'act.activity_id', '=', 'as.activity_id')
+				->orderBy('as.activity_story_id', 'desc')
+				->where('as.story_status', 'lesson')
+				->select('*', 'as.created_at')->get();
+			return view('dashboard-story', ['stories' => $stories, 'lessons' => $lessons]);
 		}
 
 		public function removeStory($storyId)

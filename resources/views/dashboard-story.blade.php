@@ -14,8 +14,55 @@
 @section('content')
     <div class="studio-wrapper">
 
+        <h3 class="mt-4">Stories</h3>
         <div class="activity-story h-100">
             @foreach ($stories as $story)
+                @php
+                    $storyCreated = new DateTime($story['created_at']);
+                    $now = new DateTime(date("Y-m-d H:i:s"));
+                    $story['story_day_ago'] = $storyCreated->diff($now);
+                    $story['users_activity'] = \App\UserActivity::join('users', 'user_activities.user_id', 'users.user_id')->where('activity_id', $story['activity_id'])->where('user_activity_paid', 1)->get();
+                @endphp
+                <div class="activity-wrapper" style="position: relative">
+                    <form method="post" action="/dashboard/story/{{ $story['activity_story_id'] }}"
+                          onsubmit="return deleteStory()">
+                        <input name="_method" type="hidden" value="DELETE">
+                        @csrf
+                        <img src="/img/icon/close.svg" class="svg close-btn">
+                    </form>
+                    <div class="activity-card">
+                        <div class="video-wrapper">
+                            <video class="video lazy" loop muted playsinline>
+                                <source data-src="{{ $story['activity_story_video'] }}"
+                                        type="video/mp4" />
+                            </video>
+                        </div>
+
+                        <div class="title-wrapper">
+                            <div class="title" align="left">{{ $story['activity_name'] }}</div>
+                            <div class="activity-join">
+                                @foreach($story['users_activity'] as $usersStory)
+                                    <div class="participant image-wrapper">
+                                        <img src="{{ $usersStory['user_pic'] }}"
+                                             alt="{{ $usersStory['user_name'] }}"
+                                             onclick="window.location.href = '/user/{{ $usersStory['user_id'] }}'">
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="location">{{ $story['story_day_ago']->m !== 0 ? $story['story_day_ago']->m . ' months ' : '' }}{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}
+                        @if($story['story_day_ago']->m === 0)
+                            {{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : $story['story_day_ago']->i . ' minutes' }}
+                        @endif
+                        ago: {{ $story['activity_location_name'] }}</div>
+                </div>
+            @endforeach
+        </div>
+
+        <h3 class="mt-4">Lessons</h3>
+        <div class="activity-story h-100">
+            @foreach ($lessons as $story)
                 @php
                     $storyCreated = new DateTime($story['created_at']);
                     $now = new DateTime(date("Y-m-d H:i:s"));
