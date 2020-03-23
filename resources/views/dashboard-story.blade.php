@@ -50,12 +50,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="location">{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}{{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : $story['story_day_ago']->i . ' minutes' }}
+                    <div class="location">{{ $story['story_day_ago']->m !== 0 ? $story['story_day_ago']->m . ' months ' : '' }}{{ $story['story_day_ago']->d !== 0 ? $story['story_day_ago']->d . ' days ' : '' }}
+                        @if($story['story_day_ago']->m === 0)
+                            {{ $story['story_day_ago']->h !== 0 ? $story['story_day_ago']->h . ' hours' : $story['story_day_ago']->i . ' minutes' }}
+                        @endif
                         ago: {{ $story['activity_location_name'] }}</div>
                 </div>
             @endforeach
         </div>
-
 
     </div>
 @endsection

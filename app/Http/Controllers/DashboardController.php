@@ -441,7 +441,8 @@
 		{
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as act', 'act.activity_id', '=', 'as.activity_id')
-				->get();
+				->orderBy('as.activity_story_id', 'desc')
+				->select('*', 'as.created_at')->get();
 			return view('dashboard-story', ['stories' => $stories]);
 		}
 
