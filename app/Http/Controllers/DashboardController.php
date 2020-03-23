@@ -441,8 +441,6 @@
 		{
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as act', 'act.activity_id', '=', 'as.activity_id')
-				->join('users as us', 'us.user_id', '=', 'as.user_id')
-				->join('masters as ms', 'us.master_id', '=', 'ms.master_id')
 				->get();
 			return view('dashboard-story', ['stories' => $stories]);
 		}
