@@ -46,12 +46,14 @@
 .studio-wrapper > .studio-list .studio-container {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .studio-wrapper > .studio-list .studio {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
 	padding: 20px;
 	margin: 20px 0;
 	border-radius: 15px;
@@ -78,6 +80,7 @@
 .studio-wrapper > .studio-list .studio > .category {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .studio-wrapper > .studio-list .studio > .category > .pic {

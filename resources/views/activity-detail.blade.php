@@ -29,10 +29,15 @@
         <!-- Carousel -->
         <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel">
             <!-- Indicators -->
-            <ul class="carousel-indicators d-sm-block d-none">
+            <ul class="carousel-indicators d-sm-flex d-none">
                 @foreach($activity['activity_video'] as $key => $video)
                     <li data-target="#carousel" data-slide-to="{{ $key }}"
                         class="{{ $loop->first ? 'active' : ''}}"></li>
+                @endforeach
+                @foreach($activity['activity_pic'] as $pic)
+                    <li data-target="#carousel"
+                        data-slide-to="{{ count($activity['activity_video']) + $key }}"
+                        class="{{ count($activity['activity_video']) == 0 ? 'active' : ''}}"></li>
                 @endforeach
             </ul>
             <!-- End Indicators -->
@@ -45,6 +50,11 @@
                             <source src="{{ $video }}"
                                     type="video/mp4" />
                         </video>
+                    </div>
+                @endforeach
+                @foreach($activity['activity_pic'] as $pic)
+                    <div class="carousel-item {{ count($activity['activity_video']) == 0 ? 'active' : ''}}">
+                        <img src="{{ $pic }}" style="height: 100vh; object-fit: cover">
                     </div>
                 @endforeach
             </div>
@@ -379,8 +389,10 @@
                              aria-labelledby="confirm-tab">
                             <div class="payment-success --confirm" align="center">
                                 <h3 class="header">Booking Confirmation</h3>
-                                <img src="{{ count($activity['activity_pic']) !== 0 ? $activity['activity_pic'][0] : $activity['activity_video'][0] }}"
-                                     class="activity-image">
+
+                                <video src="{{  $activity['activity_video'][0] }}"
+                                       style="width: 100%" autoplay muted play></video>
+
                                 <p class="thx">You are joining </p>
                                 <h3 class="name">"{{ $activity['activity_name'] }}"</h3>
                                 <p class="total">total amount : <span class="price">{{ number_format($activity['activity_price']) }} Bath</span>
@@ -498,16 +510,16 @@
         })
 
         $('.video-wrapper .video').hover(function () {
-            $(this).get(0).play()
-          }, function () {
-            $(this).get(0).pause()
-          })
+          $(this).get(0).play()
+        }, function () {
+          $(this).get(0).pause()
+        })
 
-          $('.activity-overlay').hover(function () {
-            $(this).siblings('.video-wrapper').children('.video').get(0).play()
-          }, function () {
-            $(this).siblings('.video-wrapper').children('.video').get(0).pause()
-          })
+        $('.activity-overlay').hover(function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).play()
+        }, function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+        })
 
           @if(\Session::has('success'))
           joinActivity('success')
@@ -515,9 +527,9 @@
 
           @if($errors->any())
           joinActivity()
-          @endif
+                  @endif
 
-        var hash = location.hash.substr(1);
+        var hash = location.hash.substr(1)
         if (hash === 'pay') {
           joinActivity()
         }
@@ -611,7 +623,7 @@
 
       var joinActivity = function (state) {
                     @if(Auth::check())
-                    $('#payment-modal').modal('toggle');
+                    $('#payment-modal').modal('toggle')
           if (state === 'success') {
             console.log('>> : ')
             $('.nav-tabs a[href="#paymentSuccessTab"]').tab('show')

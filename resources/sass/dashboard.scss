@@ -285,3 +285,349 @@ body {
 	background-color: white;
 	@include shadow(0px, 0px, 10px, 1px, 0.1);
 }
+
+.error {
+	margin-left: 10px;
+	display: inline-block;
+	color: red;
+	font-size: 13px;
+}
+
+.primary-button {
+	padding: 0.5rem 2rem;
+	background-color: #f14ea6;
+	color: white;
+	font-size: 14px;
+	text-align: center;
+	white-space: nowrap;
+	border-radius: 20px;
+	transition: 0.5s all;
+	border: none;
+
+	&.--outline {
+		color: $primary;
+		border: 1px solid $primary;
+		background: white;
+	}
+}
+
+.select-button {
+	padding: 4px 8px;
+	color: $primary;
+	font-weight: 300;
+	font-size: 14px;
+	background: white;
+	border-radius: 5px;
+	margin: 2px;
+	@include shadow(2px, 2px, 15px, 0px, 0.1);
+
+	&:hover, &.active {
+		background: $primary;
+		color: white;
+	}
+
+	&.--circle {
+		width: 35px;
+		height: 35px;
+		padding: 0;
+		border-radius: 50%;
+	}
+
+	&.--box {
+		padding: 0;
+		width: 72px;
+		height: 72px;
+		font-size: 12px;
+	}
+}
+
+textarea:focus, input:focus, button:focus {
+	outline: none;
+}
+
+.benefit-wrapper {
+	display: flex;
+	flex-wrap: wrap-reverse;
+	justify-content: center;
+	margin-top: 10px;
+
+	> .benefit-card {
+		position: relative;
+		margin: 15px;
+		padding: 100px 20px 20px;
+		color: white;
+		border-radius: 10px;
+		background-size: cover;
+		background-position: center;
+		width: 100%;
+		//height: 240px;
+		align-self: flex-end;
+		@include shadow(0px, 0px, 15px, 1px, 0.15);
+
+		@include mobile-up {
+			max-width: 200px;
+		}
+
+		> .content {
+			position: relative;
+			z-index: 9;
+
+			> .svg {
+				display: block;
+				width: 50px;
+				height: 50px;
+				margin: 0 auto;
+				border-radius: 50%;
+				object-fit: cover;
+				@include shadow(0px, 0px, 15px, 1px, 0.15);
+			}
+
+			> .name {
+				margin-top: 7px;
+				font-size: 16px;
+				font-weight: bold;
+			}
+
+			> .description {
+				margin-top: 10px;
+				font-size: 16px;
+				height: 55px;
+				overflow-y: auto;
+				text-align: left;
+			}
+		}
+	}
+}
+
+.edit-wrapper {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+
+	&:focus {
+		& > .edit-dropdown {
+			display: block;
+		}
+	}
+
+	> .edit-pic {
+		width: 25px;
+		height: 25px;
+		background-color: #ccc;
+		border-radius: 50%;
+		border: 1px solid #fff;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		> .icon {
+			width: 15px;
+			height: 15px;
+		}
+	}
+
+	.benefit-file {
+		display: none;
+		position: absolute;
+		top: -200px;
+		left: 0;
+		width: 166px;
+		height: 31px;
+		z-index: -1;
+		cursor: pointer;
+
+		&.--icon {
+			top: 31px;
+
+			&:hover + .edit-dropdown > .edit-menu.icon {
+				color: white;
+				background: $primary;
+			}
+		}
+
+		&:hover + .edit-dropdown > .edit-menu.edit {
+			color: white;
+			background: $primary;
+		}
+
+	}
+
+	> .edit-dropdown {
+		display: none;
+		position: absolute;
+		background: white;
+		top: 35px;
+		left: 0;
+		font-size: 14px;
+		z-index: 55;
+		color: black;
+		border-radius: 10px;
+		@include shadow(5px, 5px, 15px, 0px, 0.17);
+
+		> .edit-menu {
+			padding: 7px 15px;
+			cursor: pointer;
+			white-space: nowrap;
+
+			&:hover {
+				color: white;
+				background: $primary;
+			}
+
+			&:first-child {
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+			}
+
+			&:last-child {
+				border-bottom-left-radius: 10px;
+				border-bottom-right-radius: 10px;
+			}
+
+			&:not(:first-child) {
+				border-top: 1px solid #ccc;
+			}
+		}
+	}
+}
+
+.activity-story {
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+	overflow-x: auto;
+	padding: 100px 20px 30px 20px;
+
+	&.--hover {
+		> .activity-wrapper {
+			> .activity-card {
+				&:hover {
+					width: 420px;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	> .activity-wrapper {
+		> .location {
+			text-align: left;
+			font-style: italic;
+			color: #9F9F9F;
+			margin-top: 8px;
+		}
+	}
+}
+
+.activity-card {
+	position: relative;
+	flex-shrink: 0;
+	border-radius: 10px;
+	width: 220px;
+	height: 300px;
+	margin-right: 20px;
+	transition: width .5s;
+
+	> .video-wrapper {
+		width: 100%;
+		height: 100%;
+
+		> .video {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 10px;
+			object-fit: cover;
+			object-position: 50% 50%;
+		}
+	}
+
+	> .master-profile {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 9;
+
+		> .activity-detail {
+			//width: 250px;
+			height: auto;
+			padding: 5px 10px;
+		}
+
+		> .image-wrapper {
+			width: 75px;
+			height: 75px;
+			position: absolute;
+			left: 20px;
+			top: 0;
+			transform: translateY(-50%);
+
+			> img {
+				border-radius: 50%;
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+
+	> .title-wrapper {
+		position: absolute;
+		left: 10px;
+		bottom: 10px;
+
+		> .activity-join {
+			display: flex;
+			bottom: 0;
+			left: 0;
+			margin-top: 5px;
+			max-width: 120px;
+			overflow-x: auto;
+			flex-wrap: nowrap;
+
+			> .participant {
+				width: 40px;
+				height: 40px;
+				margin-right: -13px;
+				border-radius: 50%;
+				border: 1px solid #fff;
+				position: relative;
+				cursor: pointer;
+				flex-shrink: 0;
+				@extend .shadow;
+
+				> img {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 40px;
+					height: 100%;
+					border-radius: 50%;
+				}
+			}
+		}
+
+		> .title {
+			font-size: 16px !important;
+			font-weight: bold !important;
+			color: white !important;
+		}
+	}
+}
+
+.close-btn {
+	position: absolute;
+	right: 5px;
+	top: -10px;
+	width: 40px;
+	height: 40px;
+	z-index: 99;
+	background: white;
+	border-radius: 50%;
+	color: red;
+	cursor: pointer;
+}
+

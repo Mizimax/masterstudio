@@ -13611,8 +13611,10 @@ section.activity-detail-section > .content > .activity-section.\--exp > .benefit
   color: white;
   border-radius: 10px;
   background-size: cover;
+	background-position: center;
   width: 100%;
   align-self: flex-end;
+	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 576px) {
@@ -13632,6 +13634,8 @@ section.activity-detail-section > .content > .activity-section.\--exp > .benefit
   height: 50px;
   margin: 0 auto;
   border-radius: 50%;
+	-o-object-fit: cover;
+	object-fit: cover;
 }
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .content > .name {

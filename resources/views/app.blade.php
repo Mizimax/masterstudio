@@ -359,11 +359,13 @@
         $(function () {
           $('[data-toggle="tooltip"]').tooltip()
         })
-
+                  @if(!$user)
         var hash = location.hash.substr(1)
+
         if (hash === 'login') {
           modal('login')
         }
+          @endif
 
       })
     </script>
@@ -464,7 +466,13 @@
             if (res.status === 200) {
               window.location.reload()
             } else {
-              $('#login-error').text('Invalid email or password.')
+              var jsonData = res.responseJSON
+              var errors = jsonData.errors
+              Object.keys(errors).forEach(function (key) {
+                $('#login-error').text(errors[key])
+                return false
+              })
+
             }
           },
         })
@@ -813,6 +821,7 @@
     </div>
 `
       var loginModal = `
+           @if(!$user)
           <div id="login-error" style="color: red;" align="center"></div>
           <form id="loginForm" class="register-form" onsubmit="login(); return false;">
                         <div class="form-group">
@@ -831,6 +840,7 @@
                         <button type="submit" class="primary-button">Login</button>
                     </div>
             </form>
+            @endif
           `
 
       var allActivityModal = `

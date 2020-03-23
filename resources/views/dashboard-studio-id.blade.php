@@ -30,10 +30,10 @@
                 <div class="form-group">
                     <label for="master_id">Studio owner</label>
                     <select required name="master_id" class="form-control">
-                        <option value="{{ $studios['master_id'] }}">{{ $masters[array_search($studios['category_id'], array_column($categories->toArray(), 'category_id'))]['category_name'] }}</option>
+                        <option value="{{ $studios['master_id'] }}">{{ $masters[array_search($studios['master_id'], array_column($masters->toArray(), 'master_id'))]['master_name'] }}</option>
                         @foreach($masters as $master)
                             @if($master['studio_id'] != $studios['studio_id'])
-                                <option value="{{ $cg['category_id'] }}">{{ $cg['category_name'] }}</option>
+                                <option value="{{ $master['master_id'] }}">{{ $master['master_name'] }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -82,7 +82,8 @@
                 </div>
                 <div class="form-group">
                     <label for="studio_icon">Studio video</label><br>
-                    <video src="{{ $studios['studio_video'][0] }}" class="preview">
+                    <video src="{{ $studios['studio_video'][0] }}" class="preview" autoplay muted
+                           playsinline>
                     </video>
                     <input type="file" name="studio_video[]" accept="video/*">
                 </div>
@@ -91,7 +92,8 @@
                     <div class="image-wrapper" id="bg-video">
                         @foreach($studios['studio_video'] as $i => $video)
                             @if($i != 0)
-                                <video src="{{ $video }}" class="preview">
+                                <video src="{{ $video }}" class="preview" autoplay muted
+                                       playsinline>
                                 </video>
                                 <input type="file" name="studio_video[]"
                                        accept="video/*">

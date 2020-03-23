@@ -8,7 +8,7 @@
             $videos = json_decode($nowActivity['activity_video'], true);
             $pics = json_decode($nowActivity['activity_pic'], true);
             $video = count($videos) !== 0 ? $videos[0] : '';
-            $pic = count($pics) !== 0 ? $videos[0] : '';
+            $pic = count($pics) !== 0 ? $pics[0] : '';
         @endphp
         <div class="my-activity-card row no-gutters">
             <div class="image-wrapper col-sm-auto">

@@ -47,27 +47,36 @@
 		Route::post('/activity/{id}/pin', 'ActivityController@pin');
 		Route::post('/activity/{id}/unpin', 'ActivityController@unpin');
 	});
-	Route::group(['middleware' => 'master'], function () {
+	Route::group(['middleware' => ['master', 'admin']], function () {
 		Route::get('/dashboard', 'DashboardController@index');
 		Route::get('/dashboard/studio', 'DashboardController@studios');
-		Route::get('/dashboard/studio/add', 'DashboardController@addStudio');
-		Route::post('/dashboard/studio', 'DashboardController@createStudio');
 		Route::get('/dashboard/studio/{studioId}', 'DashboardController@studio');
 		Route::post('/dashboard/studio/{studioId}', 'DashboardController@editStudio');
-		Route::delete('/dashboard/studio/{studioId}', 'DashboardController@removeStudio');
 		Route::get('/dashboard/user', 'DashboardController@users');
 		Route::get('/dashboard/user/{userId}', 'DashboardController@user');
 		Route::post('/dashboard/user/{userId}', 'DashboardController@editUser');
-		Route::delete('/dashboard/user/{userId}', 'DashboardController@removeUser');
 		Route::get('/dashboard/master', 'DashboardController@masters');
-		Route::get('/dashboard/master/add', 'DashboardController@addMaster');
-		Route::post('/dashboard/master', 'DashboardController@createMaster');
 		Route::get('/dashboard/master/{masterId}', 'DashboardController@master');
 		Route::post('/dashboard/master/{masterId}', 'DashboardController@editMaster');
-		Route::delete('/dashboard/master/{masterId}', 'DashboardController@removeMaster');
+		Route::get('/dashboard/activity', 'DashboardController@activities');
+		Route::get('/dashboard/activity/{activityId}', 'DashboardController@activity');
+		Route::post('/dashboard/activity/{activityId}', 'DashboardController@editActivity');
 	});
 	Route::group(['middleware' => 'admin'], function () {
-
+		Route::get('/dashboard/master/add', 'DashboardController@addUser');
+		Route::post('/dashboard/master', 'DashboardController@createUser');
+		Route::delete('/dashboard/user/{userId}', 'DashboardController@removeUser');
+		Route::get('/dashboard/master/add', 'DashboardController@addMaster');
+		Route::post('/dashboard/master', 'DashboardController@createMaster');
+		Route::delete('/dashboard/master/{masterId}', 'DashboardController@removeMaster');
+		Route::get('/dashboard/studio/add', 'DashboardController@addStudio');
+		Route::post('/dashboard/studio', 'DashboardController@createStudio');
+		Route::delete('/dashboard/studio/{studioId}', 'DashboardController@removeStudio');
+		Route::get('/dashboard/activity/add', 'DashboardController@addActivity');
+		Route::post('/dashboard/activity', 'DashboardController@createActivigty');
+		Route::delete('/dashboard/activity/{activityId}', 'DashboardController@removeActivity');
+		Route::get('/dashboard/story', 'DashboardController@stories');
+		Route::delete('/dashboard/story/{storyId}', 'DashboardController@removeStory');
 	});
 	Route::get('/content/master/search', 'MasterController@search');
 	Route::get('/content/master/category', 'MasterController@category');

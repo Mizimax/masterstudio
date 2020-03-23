@@ -10,87 +10,86 @@
     <div class="studio-wrapper">
 
         @if($master)
-            <h3 align="center">Studio {{ $master['master_id'] }}</h3>
+            <h3 align="center">Master {{ $master['master_id'] }}</h3>
             <form class="studio-form" method="post"
-                  action="/dashboard/studio/{{ $master['master_id'] }}"
+                  action="/dashboard/master/{{ $master['master_id'] }}"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="studio_name">Master name</label>
-                    <input required type="text" name="studio_name"
+                    <label for="master_name">Master name</label>
+                    <input required type="text" name="master_name"
                            value="{{ $master['master_name'] }}"
                            class="form-control">
                 </div>
+
                 <div class="form-group">
-                    <label for="studio_name">Studio title</label>
-                    <input required type="text" name="studio_title"
-                           value="{{ $master['studio_title'] }}"
+                    <label for="master_nickname">Master nickname</label>
+                    <input required type="text" name="master_nickname"
+                           value="{{ $master['master_nickname'] }}"
                            class="form-control">
                 </div>
+
                 <div class="form-group">
-                    <label for="category_id">Category</label>
+                    <label for="master_location">Master location</label>
+                    <input type="text" name="master_location"
+                           value="{{ $master['master_location'] }}"
+                           class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="master_location">Master recommended</label>
                     <select required name="category_id" class="form-control">
-                        <option value="{{ $studios['category_id'] }}">{{ $categories[array_search($studios['category_id'], array_column($categories->toArray(), 'category_id'))]['category_name'] }}</option>
+                        @if($master['master_recommended'] === 1)
+                            <option value="1">Recommend</option>
+                            <option value="2">Most Recommend</option>
+                        @else
+                            <option value="2">Most Recommend</option>
+                            <option value="1">Recommend</option>
+                        @endif
+                        <option value="0">No</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="master_recommended">Master category</label>
+                    <select required name="master_recommended" class="form-control">
+                        <option value="{{ $master['category_id'] }}">{{ $categories[array_search($master['category_id'], array_column($categories->toArray(), 'category_id'))]['category_name'] }}</option>
                         @foreach($categories as $cg)
-                            @if($cg['category_id'] != $studios['category_id'])
+                            @if($cg['category_id'] != $master['category_id'])
                                 <option value="{{ $cg['category_id'] }}">{{ $cg['category_name'] }}</option>
                             @endif
                         @endforeach
                     </select>
                 </div>
+
                 <div class="form-group">
-                    <label for="studio_description">Studio description</label>
-                    <textarea required name="studio_description"
-                              class="form-control">{{ $studios['studio_description'] }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label for="studio_location">Studio location</label>
-                    <input type="text" required name="studio_location"
-                           value="{{ $studios['studio_location'] }}"
+                    <label for="user_name">User name</label>
+                    <input required type="text" name="user_name"
+                           value="{{ $master['user_name'] }}"
                            class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="studio_icon">Studio icon</label><br>
-                    <img src="{{ $studios['studio_icon'] }}" class="preview">
-                    <input type="file" name="studio_icon" accept="image/*">
+                    <label for="user_email">User email</label>
+                    <input required type="text" name="user_email"
+                           value="{{ $master['user_email'] }}"
+                           class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="studio_icon">Studio background</label><br>
-
-                    <div class="image-wrapper" id="bg-image">
-                        @foreach($studios['studio_bg'] as $bg)
-                            <img src="{{ $bg }}" class="preview">
-                            <input type="file" name="studio_bg[]" accept="image/*">
-                        @endforeach
-                    </div>
-
-
-                    <button type="button" class="btn btn-primary mt-2" onclick="addImage()">+
-                        Add another image
-                    </button>
+                    <label for="user_password">New password</label>
+                    <input type="password" name="user_password"
+                           class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="studio_icon">Studio video</label><br>
-                    <video src="{{ $studios['studio_video'][0] }}" class="preview">
-                    </video>
-                    <input type="file" name="studio_video[]" accept="video/*">
+                    <label for="confirm_user_password">Confirm password</label>
+                    <input type="password" name="confirm_user_password"
+                           class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="studio_icon">Studio background video</label><br>
-                    <div class="image-wrapper" id="bg-video">
-                        @foreach($studios['studio_video'] as $i => $video)
-                            @if($i != 0)
-                                <video src="{{ $video }}" class="preview">
-                                </video>
-                                <input type="file" name="studio_video[]"
-                                       accept="video/*">
-                            @endif
-                        @endforeach
-                    </div>
-                    <button type="button" class="btn btn-primary mt-2" onclick="addVideo()">+
-                        Add another video
-                    </button>
+                    <label for="user_pic">User profile picture</label><br>
+                    <img src="{{ $master['user_pic'] }}" class="preview">
+                    <input type="file" name="user_pic" accept="image/*">
                 </div>
+
                 <div class="submit-wrapper">
                     <button class="btn btn-primary btn-fixed" type="submit">
                         Save
@@ -133,7 +132,11 @@
         $('.studio-form').delegate('input[type=file]', 'change', function () {
 
           $(this).prev().attr('src', URL.createObjectURL(this.files[0]))
+
         })
+          @if($errors->any())
+          alert('{{ $errors->first() }}')
+          @endif
       })
     </script>
 @endsection

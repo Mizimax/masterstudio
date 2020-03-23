@@ -9,6 +9,11 @@
 @section('content')
     <div class="container">
         <div class="content-list">
+            <div align="center">
+                <a href="/dashboard/user/add">
+                    <button class="primary-button" style="padding: 10px 20px;">+ Add user</button>
+                </a>
+            </div>
             @foreach($users as $user)
                 <div class="content-container">
                     <a href="/dashboard/user/{{ $user['user_id'] }}" style="flex: 1;">
@@ -30,7 +35,6 @@
                 </div>
             @endforeach
         </div>
-    </div>
     </div>
 @endsection
 

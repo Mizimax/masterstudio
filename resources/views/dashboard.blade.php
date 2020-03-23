@@ -33,8 +33,6 @@
                         <li class="nav-item">
                             <a id="user-menu" class="nav-link px-2 px-lg-3" href="/dashboard/user">User</a>
                         </li>
-                    @endif
-                    @if($user['user_type'] == 'admin')
                         <li class="nav-item">
                             <a id="story-menu" class="nav-link px-2 px-lg-3"
                                href="/dashboard/story">Story</a>
