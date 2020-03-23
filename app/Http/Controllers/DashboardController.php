@@ -437,6 +437,83 @@
 			return redirect()->back();
 		}
 
+		public function createActivity(Request $request)
+		{
+			$inputs = $request->input();
+			$files = $request->file();
+
+			$path = '/img/upload/activity/';
+			$activityData = [];
+			$activityData['activity_sponsor'] = [];
+			$activityData['activity_benefit'] = [];
+			$activityData['activity_video'] = [];
+			$activityData['activity_pic'] = [];
+			foreach ($files as $name => $file) {
+				foreach ($file as $i => $f) {
+					if ($name === 'activity_video' || $name === 'activity_pic') {
+						$fileName = time() . ($name == 'activity_video' ? '.mp4' : '.jpg');
+						$f->move(public_path($path), $fileName);
+						$activityData[$name][$i] = $path . $fileName;
+					} else {
+						$fileName = time() . '.jpg';
+						$f->move(public_path($path), $fileName);
+						if ($name !== 'sponsor_pic') {
+							$activityData['activity_benefit'][$i][($name == 'bg' ? 'bg' : 'pic')] = $path . $fileName;
+						} else {
+							$activityData['activity_sponsor'][$i]['url'] = $path . $fileName;
+						}
+					}
+				}
+			}
+
+			foreach ($inputs['benefit_name'] as $i => $bf) {
+				$activityData['activity_benefit'][$i]['name'] = $bf;
+				$activityData['activity_benefit'][$i]['text'] = $inputs['benefit_desc'][$i];
+			}
+
+			foreach ($inputs['sponsor_name'] as $i => $sp) {
+				$activityData['activity_sponsor'][$i]['name'] = $sp;
+				$activityData['activity_sponsor'][$i]['link'] = $inputs['sponsor_link'][$i];
+			}
+
+			Activity::create([
+				'activity_name' => $inputs['activity_name'],
+				'activity_url_name' => $inputs['activity_url_name'],
+				'category_id' => $inputs['category_id'],
+				'achievement_id' => $inputs['achievement_id'],
+				'activity_description' => $inputs['activity_description'],
+				'activity_location' => $inputs['activity_location'],
+				'activity_location_name' => $inputs['activity_location_name'],
+				'activity_prepare' => $inputs['activity_prepare'],
+				'activity_difficult' => $inputs['activity_difficult'],
+				'activity_time_type' => $inputs['activity_time_type'],
+				'activity_apply_start' => $inputs['activity_apply_start'],
+				'activity_apply_end' => $inputs['activity_apply_end'],
+				'activity_start' => $inputs['activity_start'],
+				'activity_end' => $inputs['activity_end'],
+				'activity_routine_day' => $inputs['activity_routine_day'],
+				'activity_time_start' => $inputs['activity_time_start'],
+				'activity_time_end' => $inputs['activity_time_end'],
+				'activity_price' => $inputs['activity_price'],
+				'activity_price_type' => $inputs['activity_price_type'],
+				'activity_hour' => $inputs['activity_hour'],
+				'activity_max' => $inputs['activity_max'],
+				'activity_time_end' => $inputs['activity_time_end'],
+				'activity_sponsors' => json_encode($activityData['activity_sponsor']),
+				'activity_benefit' => json_encode($activityData['activity_benefit']),
+				'activity_video' => json_encode($activityData['activity_video']),
+				'activity_pic' => json_encode($activityData['activity_pic']),
+			]);
+			return redirect()->back();
+		}
+
+		public function addActivity()
+		{
+			$categories = Category::get();
+			$achievement = Achievement::get();
+			return view('dashboard-activity-create', ['categories' => $categories, 'achievement' => $achievement]);
+		}
+
 		public function stories()
 		{
 			$stories = ActivityStory::from('activity_stories as as')

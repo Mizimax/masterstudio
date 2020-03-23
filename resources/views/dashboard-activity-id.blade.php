@@ -219,7 +219,8 @@
                         </button>
                         <button type="button" class="select-button flex-grow-1" value="7">Sunday
                         </button>
-                        <input name="activity_routine_day" type="hidden">
+                        <input name="activity_routine_day"
+                               value="{{ $activity['activity_routine_day'] }}" type="hidden">
                     </div>
                 </div>
 
@@ -239,8 +240,13 @@
                                class="form-control">
                         <select name="activity_price_type" class="form-control"
                                 style="width: 120px; margin-left: 10px">
-                            <option value="0">per activity</option>
-                            <option value="1">per hour</option>
+                            @if($activity['activity_price_type'] == 0)
+                                <option value="0">per activity</option>
+                                <option value="1">per hour</option>
+                            @else
+                                <option value="1">per hour</option>
+                                <option value="0">per activity</option>
+                            @endif
                         </select>
                     </div>
                 </div>
