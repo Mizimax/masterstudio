@@ -24,13 +24,30 @@
 
 @section('content')
     <div class="studio-wrapper">
-
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
         @if($activity)
             <h3 align="center">Activity {{ $activity['activity_id'] }}</h3>
             <form onsubmit="editor()" class="studio-form" method="post"
                   action="/dashboard/activity/{{ $activity['activity_id'] }}"
                   enctype="multipart/form-data">
                 @csrf
+                <div class="form-group">
+                    <label for="user_id">Activity owner</label>
+                    <select name="user_id" class="form-control">
+                        <option value="{{ $activity['user_id'] }}">{{ $masters[array_search($activity['master_id'], array_column($masters->toArray(), 'master_id'))]['master_name'] }}</option>
+                        @foreach($masters as $ms)
+                            @if($ms['master_id'] != $activity['master_id'])
+                                <option value="{{ $ms['user_id'] }}">{{ $ms['master_name'] }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="activity_name">Activity name</label>
                     <input required type="text" name="activity_name"
@@ -54,14 +71,12 @@
                 <div class="form-group">
                     <label for="activity_description">Activity preparing</label>
                     <input type="hidden" name="activity_prepare" id="editor-input">
-                    <div class="text-editor" id="editor">
-                        {!! $activity['activity_prepare'] !!}
-                    </div>
+                    <div class="text-editor" id="editor">{!! $activity['activity_prepare'] !!}</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="master_recommended">Activity category</label>
-                    <select required name="master_recommended" class="form-control">
+                    <label for="category_id">Activity category</label>
+                    <select required name="category_id" class="form-control">
                         <option value="{{ $activity['category_id'] }}">{{ $categories[array_search($activity['category_id'], array_column($categories->toArray(), 'category_id'))]['category_name'] }}</option>
                         @foreach($categories as $cg)
                             @if($cg['category_id'] != $activity['category_id'])
@@ -72,8 +87,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="master_recommended">Activity achievement</label>
-                    <select required name="master_recommended" class="form-control">
+                    <label for="achievement_id">Activity achievement</label>
+                    <select required name="achievement_id" class="form-control">
                         <option value="{{ $activity['achievement_id'] }}">{{ $achievement[array_search($activity['achievement_id'], array_column($achievement->toArray(), 'achievement_id'))]['achievement_name'] }}</option>
                         @foreach($achievement as $ach)
                             @if($ach['achievement_id'] != $activity['achievement_id'])
@@ -175,8 +190,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="activity_difficult">Activity time type</label>
-                    <select required name="activity_difficult" class="form-control">
+                    <label for="activity_time_type">Activity time type</label>
+                    <select required name="activity_time_type" class="form-control">
                         <option value="{{ $activity['activity_time_type'] }}">{{ $activity['activity_time_type'] == 0 ? 'One time Activity' : 'Routine Activity' }}</option>
                         @if($activity['activity_time_type'] == 0)
                             <option value="1">Routine Activity</option>
@@ -188,7 +203,7 @@
 
                 <div class="form-group">
                     <label for="activity_apply_start">Activity apply date</label><br />
-                    <input type="date" name="activity_apply_start"
+                    <input required type="date" name="activity_apply_start"
                            value="{{ $activity['activity_apply_start'] }}"> -
                     <input type="date" name="activity_apply_end"
                            value="{{ $activity['activity_apply_end'] }}">
@@ -196,7 +211,7 @@
 
                 <div class="form-group">
                     <label for="activity_start">Activity start date</label><br />
-                    <input type="date" name="activity_start"
+                    <input required type="date" name="activity_start"
                            value="{{ $activity['activity_start'] }}"> -
                     <input type="date" name="activity_end" value="{{ $activity['activity_end'] }}">
                 </div>
@@ -204,20 +219,34 @@
                 <div class="form-group">
                     <label for="goal">Routine day</label>
                     <div class="d-flex justify-content-between">
-                        <button type="button" class="select-button flex-grow-1" value="1">Monday
+                        <button type="button"
+                                class="select-button flex-grow-1 {{ strstr($activity['activity_routine_day'], '1') ? 'active' : '' }}"
+                                value="1">Monday
                         </button>
-                        <button type="button" class="select-button flex-grow-1" value="2">Tuesday
+                        <button type="button"
+                                class="select-button flex-grow-1 {{ strstr($activity['activity_routine_day'], '2') ? 'active' : ''  }}"
+                                value="2">Tuesday
                         </button>
-                        <button type="button" class="select-button flex-grow-1" value="3">
+                        <button type="button"
+                                class="select-button flex-grow-1 {{ strstr($activity['activity_routine_day'], '3') ? 'active' : ''  }}"
+                                value="3">
                             Wednesday
                         </button>
-                        <button type="button" class="select-button flex-grow-1" value="4">Thursday
+                        <button type="button"
+                                class="select-button flex-grow-1 {{ strstr($activity['activity_routine_day'], '4') ? 'active' : ''  }}"
+                                value="4">Thursday
                         </button>
-                        <button type="button" class="select-button flex-grow-1" value="5">Friday
+                        <button type="button"
+                                class="select-button flex-grow-1 {{ strstr($activity['activity_routine_day'], '5') ? 'active' : ''  }}"
+                                value="5">Friday
                         </button>
-                        <button type="button" class="select-button flex-grow-1" value="6">Saturday
+                        <button type="button"
+                                class="select-button flex-grow-1 {{ strstr($activity['activity_routine_day'], '6') ? 'active' : ''  }}"
+                                value="6">Saturday
                         </button>
-                        <button type="button" class="select-button flex-grow-1" value="7">Sunday
+                        <button type="button"
+                                class="select-button flex-grow-1 {{ strstr($activity['activity_routine_day'], '7') ? 'active' : ''  }}"
+                                value="7">Sunday
                         </button>
                         <input name="activity_routine_day"
                                value="{{ $activity['activity_routine_day'] }}" type="hidden">
@@ -225,10 +254,10 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="activity_start">Activity time start</label><br />
-                    <input type="time" name="activity_start"
+                    <label for="activity_time_start">Activity time start</label><br />
+                    <input required type="time" name="activity_time_start"
                            value="{{ $activity['activity_time_start'] }}"> -
-                    <input type="time" name="activity_end"
+                    <input type="time" name="activity_time_end"
                            value="{{ $activity['activity_time_end'] }}">
                 </div>
 
@@ -343,10 +372,10 @@
 
       function addSponsor() {
         var sponsor = `
-            <input type="text" name="sponsor_name[]" placeholder="Sponsor name"><br />
-                            <input type="text" name="sponsor_link[]" placeholder="Sponsor link"><br />
+            <input type="text" required name="sponsor_name[]" placeholder="Sponsor name"><br />
+                            <input required type="text" name="sponsor_link[]" placeholder="Sponsor link"><br />
                             <img src="" class="preview">
-                            <input type="file" name="sponsor_pic[]" accept="image/*">
+                            <input required type="file" name="sponsor_pic[]" accept="image/*">
                             <br/> <br/>
         `
         $('#sponsor-image').append(sponsor)
@@ -371,9 +400,9 @@
                                     <div class="edit-pic">
                                         <img class="icon" src="/img/icon/edit.png">
                                     </div>
-                                    <input class="benefit-file --bg benefit-bg" name="bg[]" id="benefit-bg"
+                                    <input required class="benefit-file --bg benefit-bg" name="bg[]" id="benefit-bg"
                                            type="file" accept="image/*">
-                                    <input class="benefit-file --icon benefit-pic" name="pic[]" id="benefit-icon"
+                                    <input required class="benefit-file --icon benefit-pic" name="pic[]" id="benefit-icon"
                                            type="file" accept="image/*">
                                     <div class="edit-dropdown">
                                         <div class="edit-menu edit" onclick="benefitBg(this)">
@@ -386,12 +415,12 @@
                                 </div>
                                 <div class="content">
                                     <img class="svg" src="/img/profile.jpg" alt="">
-                                    <div class="name"><input type="text" name="benefit_name[]" placeholder="Title"
+                                    <div class="name"><input required type="text" name="benefit_name[]" placeholder="Title"
                                                              value=""
                                                                      style="width: 100%"></div>
 
                   <div class="description">
-                      <textarea name="benefit_desc[]" id="" cols="30"
+                      <textarea required name="benefit_desc[]" id="" cols="30"
                                 rows="10" placeholder="Description"></textarea>
                                                 </div>
 
@@ -404,7 +433,7 @@
       }
 
       function editor() {
-        $('#editor-input').val(JSON.stringify($('#editor > .ql-editor').html()))
+        $('#editor-input').val($('#editor > .ql-editor').html().trim())
       }
 
       function sortAlphabet(str) {

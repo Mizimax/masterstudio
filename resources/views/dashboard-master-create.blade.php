@@ -8,7 +8,13 @@
 
 @section('content')
     <div class="studio-wrapper">
-
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
 
         <h3 align="center">Create Master</h3>
         <form class="studio-form" method="post" action="/dashboard/master"
@@ -16,25 +22,26 @@
             @csrf
             <div class="form-group">
                 <label for="master_name">Master name</label>
-                <input required type="text" name="master_name"
+                <input required type="text" name="master_name" value="{{ old('master_name') }}"
                        class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="master_nickname">Master nickname</label>
                 <input required type="text" name="master_nickname"
+                       value="{{ old('master_nickname') }}"
                        class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="master_location">Master location</label>
-                <input type="text" name="master_location"
+                <input type="text" name="master_location" value="{{ old('master_location') }}"
                        class="form-control">
             </div>
 
             <div class="form-group">
-                <label for="master_location">Master recommended</label>
-                <select required name="category_id" class="form-control">
+                <label for="master_recommend">Master recommended</label>
+                <select required name="master_recommend" class="form-control">
                     <option value="0">No</option>
                     <option value="1">Recommend</option>
                     <option value="2">Most Recommend</option>
@@ -42,38 +49,31 @@
             </div>
 
             <div class="form-group">
-                <label for="master_recommended">Master category</label>
-                <select required name="master_recommended" class="form-control">
+                <label for="category_id">Master category</label>
+                <select required name="category_id" class="form-control">
                     @foreach($categories as $cg)
                         <option value="{{ $cg['category_id'] }}">{{ $cg['category_name'] }}</option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="form-group">
-                <label for="user_name">User name</label>
-                <input required type="text" name="user_name"
-                       class="form-control">
+            <div class="form-group" id="user-id">
+                <label for="user_name">From user email</label>
+                <select name="user_id" class="form-control">
+                    <option value="">Select email</option>
+                    @foreach($users as $us)
+                        <option value="{{ $us['user_id'] }}">{{ $us['user_email'] }}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="form-group">
-                <label for="user_email">User email</label>
-                <input required type="text" name="user_email"
-                       class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="user_password">New password</label>
-                <input type="password" name="user_password"
-                       class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="confirm_user_password">Confirm password</label>
-                <input type="password" name="confirm_user_password"
-                       class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="user_pic">User profile picture</label><br>
-                <img src="" class="preview">
-                <input type="file" name="user_pic" accept="image/*">
+
+            <button type="button" class="btn btn-primary"
+                    onclick="createUser(this)">Create new user
+            </button>
+            <br /><br />
+
+            <div id="user-form">
+
             </div>
 
             <div class="submit-wrapper">
@@ -81,6 +81,7 @@
                     Save
                 </button>
             </div>
+
         </form>
 
 
@@ -104,6 +105,45 @@
             <input type="file" name="studio_video[]" accept="video/*">
         `
         $('#bg-video').append(bg)
+      }
+
+      function createUser(ele) {
+        var userForm = `
+        <div class="form-group">
+            <label for="user_name">User name</label>
+            <input required type="text" name="user_name" value="{{ old('user_name') }}"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="user_email">User email</label>
+            <input required type="text" name="user_email" value="{{ old('user_email') }}"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="user_password">New password</label>
+            <input type="password" name="user_password"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="confirm_user_password">Confirm password</label>
+            <input type="password" name="confirm_user_password"
+                   class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="user_pic">User profile picture</label><br>
+            <img src="" class="preview">
+            <input type="file" name="user_pic" accept="image/*">
+        </div>
+        `
+        $('#user-form').html(userForm)
+        $('#user-id').toggleClass('d-none')
+        if ($('#user-id').hasClass('d-none')) {
+          $(ele).text('Select from email')
+          $('#user-id > select').val('')
+        } else {
+          $(ele).text('Create new user')
+          $('#user-form').html('')
+        }
       }
     </script>
 

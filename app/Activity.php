@@ -7,4 +7,5 @@
 	class Activity extends Model
 	{
 		//
+		protected $guarded = [];
 	}

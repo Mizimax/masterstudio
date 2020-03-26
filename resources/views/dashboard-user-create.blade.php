@@ -8,7 +8,13 @@
 
 @section('content')
     <div class="studio-wrapper">
-
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
         @if($user)
             <h3 align="center">Create user</h3>
             <form class="studio-form" method="post"
@@ -17,12 +23,12 @@
                 @csrf
                 <div class="form-group">
                     <label for="user_name">User name</label>
-                    <input required type="text" name="user_name"
+                    <input required type="text" name="user_name" value="{{ old('user_name') }}"
                            class="form-control">
                 </div>
                 <div class="form-group">
                     <label for="user_email">User email</label>
-                    <input required type="text" name="user_email"
+                    <input required type="text" name="user_email" value="{{ old('user_email') }}"
                            class="form-control">
                 </div>
                 <div class="form-group">

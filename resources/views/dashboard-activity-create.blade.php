@@ -24,14 +24,29 @@
 
 @section('content')
     <div class="studio-wrapper">
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
         <h3 align="center">Create Activity</h3>
         <form onsubmit="editor()" class="studio-form" method="post"
               action="/dashboard/activity"
               enctype="multipart/form-data">
             @csrf
             <div class="form-group">
+                <label for="user_id">Activity owner</label>
+                <select name="user_id" class="form-control">
+                    @foreach($masters as $ms)
+                        <option value="{{ $ms['user_id'] }}">{{ $ms['master_name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="activity_name">Activity name</label>
-                <input required type="text" name="activity_name"
+                <input required type="text" name="activity_name" value="{{ old('activity_name') }}"
                        class="form-control">
             </div>
 
@@ -55,8 +70,8 @@
             </div>
 
             <div class="form-group">
-                <label for="master_recommended">Activity category</label>
-                <select required name="master_recommended" class="form-control">
+                <label for="category_id">Activity category</label>
+                <select required name="category_id" class="form-control">
                     @foreach($categories as $cg)
                         <option value="{{ $cg['category_id'] }}">{{ $cg['category_name'] }}</option>
                     @endforeach
@@ -64,8 +79,8 @@
             </div>
 
             <div class="form-group">
-                <label for="master_recommended">Activity achievement</label>
-                <select required name="master_recommended" class="form-control">
+                <label for="achievement_id">Activity achievement</label>
+                <select required name="achievement_id" class="form-control">
                     @foreach($achievement as $ach)
                         <option value="{{ $ach['achievement_id'] }}">{{ $ach['achievement_name'] }}</option>
                     @endforeach
@@ -113,8 +128,8 @@
             </div>
 
             <div class="form-group">
-                <label for="activity_difficult">Activity time type</label>
-                <select required name="activity_difficult" class="form-control">
+                <label for="activity_time_type">Activity time type</label>
+                <select required name="activity_time_type" class="form-control">
                     <option value="0">One time Activity</option>
                     <option value="1">Routine Activity</option>
                 </select>
@@ -122,13 +137,13 @@
 
             <div class="form-group">
                 <label for="activity_apply_start">Activity apply date</label><br />
-                <input type="date" name="activity_apply_start"> -
+                <input required type="date" name="activity_apply_start"> -
                 <input type="date" name="activity_apply_end">
             </div>
 
             <div class="form-group">
                 <label for="activity_start">Activity start date</label><br />
-                <input type="date" name="activity_start"> -
+                <input required type="date" name="activity_start"> -
                 <input type="date" name="activity_end">
             </div>
 
@@ -155,9 +170,9 @@
             </div>
 
             <div class="form-group">
-                <label for="activity_start">Activity time start</label><br />
-                <input type="time" name="activity_start"> -
-                <input type="time" name="activity_end">
+                <label for="activity_time_start">Activity time start</label><br />
+                <input required type="time" name="activity_time_start"> -
+                <input type="time" name="activity_time_end">
             </div>
 
             <div class="form-group">
@@ -307,7 +322,7 @@
       }
 
       function editor() {
-        $('#editor-input').val(JSON.stringify($('#editor > .ql-editor').html()))
+        $('#editor-input').val($('#editor > .ql-editor').html().trim())
       }
 
       function sortAlphabet(str) {

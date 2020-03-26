@@ -8,7 +8,13 @@
 
 @section('content')
     <div class="studio-wrapper">
-
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
         @if($studios)
             <h3 align="center">Studio {{ $studios['studio_id'] }}</h3>
             <form class="studio-form" method="post"
@@ -28,12 +34,12 @@
                            class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="master_id">Studio owner</label>
-                    <select required name="master_id" class="form-control">
-                        <option value="{{ $studios['master_id'] }}">{{ $masters[array_search($studios['master_id'], array_column($masters->toArray(), 'master_id'))]['master_name'] }}</option>
+                    <label for="studio_user">Studio owner</label>
+                    <select required name="studio_user" class="form-control">
+                        <option value="{{ $studios['studio_user'] }}">{{ $masters[array_search($studios['studio_user'], array_column($masters->toArray(), 'user_id'))]['master_name'] }}</option>
                         @foreach($masters as $master)
-                            @if($master['studio_id'] != $studios['studio_id'])
-                                <option value="{{ $master['master_id'] }}">{{ $master['master_name'] }}</option>
+                            @if($master['user_id'] != $studios['studio_user'])
+                                <option value="{{ $master['user_id'] }}">{{ $master['master_name'] }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -80,13 +86,18 @@
                         Add another image
                     </button>
                 </div>
+
                 <div class="form-group">
                     <label for="studio_icon">Studio video</label><br>
-                    <video src="{{ $studios['studio_video'][0] }}" class="preview" autoplay muted
+                    @foreach($studios['studio_video'] as $video)
+                        <video src="{{ $video }}" class="preview" autoplay muted
                            playsinline>
                     </video>
                     <input type="file" name="studio_video[]" accept="video/*">
+                    @endforeach
                 </div>
+
+
                 <div class="form-group">
                     <label for="studio_icon">Studio background video</label><br>
                     <div class="image-wrapper" id="bg-video">

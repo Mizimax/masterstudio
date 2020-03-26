@@ -9,12 +9,19 @@
 @section('content')
     <div class="container">
         <div class="content-list">
-            <div align="center">
-                <a href="/dashboard/activity/add">
-                    <button class="primary-button" style="padding: 10px 20px;">+ Add activity
-                    </button>
-                </a>
-            </div>
+            @if(count($activities) != 0)
+                <div align="center">
+                    <a href="/dashboard/activity/add">
+                        <button class="primary-button" style="padding: 10px 20px;">+ Add activity
+                        </button>
+                    </a>
+                </div>
+            @else
+                <div align="center" style="padding: 20px">
+                    You don't own any activity.<br>
+                    The activity can only be edited by the owner
+                </div>
+            @endif
             @foreach($activities as $activity)
                 <div class="content-container">
                     <a href="/dashboard/activity/{{ $activity['activity_id'] }}" style="flex: 1;">

@@ -48,8 +48,8 @@
 		Route::post('/activity/{id}/unpin', 'ActivityController@unpin');
 	});
 	Route::group(['middleware' => 'admin'], function () {
-		Route::get('/dashboard/master/add', 'DashboardController@addUser');
-		Route::post('/dashboard/master', 'DashboardController@createUser');
+		Route::get('/dashboard/user/add', 'DashboardController@addUser');
+		Route::post('/dashboard/user', 'DashboardController@createUser');
 		Route::delete('/dashboard/user/{userId}', 'DashboardController@removeUser');
 		Route::get('/dashboard/master/add', 'DashboardController@addMaster');
 		Route::post('/dashboard/master', 'DashboardController@createMaster');
@@ -63,7 +63,7 @@
 		Route::get('/dashboard/story', 'DashboardController@stories');
 		Route::delete('/dashboard/story/{storyId}', 'DashboardController@removeStory');
 	});
-	Route::group(['middleware' => ['master', 'admin']], function () {
+	Route::group(['middleware' => ['MasterOrAdmin']], function () {
 		Route::get('/dashboard', 'DashboardController@index');
 		Route::get('/dashboard/studio', 'DashboardController@studios');
 		Route::get('/dashboard/studio/{studioId}', 'DashboardController@studio');

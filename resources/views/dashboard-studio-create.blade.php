@@ -9,7 +9,13 @@
 @section('content')
     <div class="studio-wrapper">
 
-
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
         <h3 align="center">Create Studio</h3>
         <form class="studio-form" method="post" action="/dashboard/studio"
               enctype="multipart/form-data">
@@ -25,9 +31,20 @@
                        class="form-control">
             </div>
             <div class="form-group">
+                <label for="studio_user">Studio owner</label>
+                <select required name="studio_user" class="form-control">
+                    <option value="">Select studio owner</option>
+                    @foreach($masters as $master)
+
+                        <option value="{{ $master['user_id'] }}">{{ $master['master_name'] }}</option>
+
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="category_id">Category</label>
                 <select required name="category_id" class="form-control">
-                    <option value="">เลือก Category</option>
+                    <option value="">Select category</option>
                     @foreach($categories as $cg)
                         <option value="{{ $cg['category_id'] }}">{{ $cg['category_name'] }}</option>
                     @endforeach

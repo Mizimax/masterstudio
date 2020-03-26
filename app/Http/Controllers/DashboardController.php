@@ -10,6 +10,9 @@
 	use App\Studio;
 	use App\User;
 	use Illuminate\Http\Request;
+	use Illuminate\Support\Facades\Hash;
+	use Illuminate\Support\Facades\Session;
+	use Illuminate\Support\Facades\Validator;
 
 	class DashboardController extends Controller
 	{
@@ -43,61 +46,84 @@
 		public function addMaster()
 		{
 			$categories = Category::get();
-			return view('dashboard-master-create', ['categories' => $categories]);
+			$users = User::get();
+			return view('dashboard-master-create', ['categories' => $categories, 'users' => $users]);
 		}
 
 		public function createMaster(Request $request)
 		{
-			$this->validate($request, [
-				'user_email' => 'required|email|unique:users'
-			]);
 			$inputs = $request->input();
 			$files = $request->file();
 
-			if ($inputs['user_password'] != $inputs['confirm_user_password']) {
-				return redirect()->back()->withErrors(['message' => 'Password must be equal.']);
-			}
-
-			$user = [
-				'user_name' => $inputs['user_name'],
-				'user_email' => $inputs['user_email'],
-				'user_password' => $inputs['user_password'],
-			];
-
-			if (isset($files['user_pic'])) {
-				$path = '/img/upload/user/';
-				$fileName = time() . '.jpg';
-				$files['user_pic']->move(public_path($path), $fileName);
-				$user['user_pic'] = $path . $fileName;
-			}
-
-			User::create($user);
-
-			Master::create([
+			$masterId = Master::create([
 				'master_name' => $inputs['master_name'],
 				'category_id' => $inputs['category_id'],
 				'master_nickname' => $inputs['master_nickname'],
 				'master_location' => $inputs['master_location'],
-				'master_recommended' => $inputs['master_recommended'] == 1 ? 1 : 0,
-				'master_most_recommended' => $inputs['master_recommended'] == 2 ? 1 : 0,
-			]);
-			return redirect()->back();
+				'master_recommend' => $inputs['master_recommend'] == 1 ? 1 : 0,
+				'master_most_recommend' => $inputs['master_recommend'] == 2 ? 1 : 0,
+			])->id;
+
+			if (!isset($inputs['user_id'])) {
+				$validator = Validator::make($request->all(), [
+					'user_email' => 'required|email|unique:users',
+				]);
+				if ($validator->fails()) {
+					return redirect()->back()->withErrors($validator)->withInput();
+				}
+				if ($inputs['user_password'] != $inputs['confirm_user_password']) {
+					return redirect()->back()->withErrors(['message' => 'Password must be equal.'])->withInput();
+				}
+
+				$user = [
+					'user_name' => $inputs['user_name'],
+					'user_email' => $inputs['user_email'],
+					'user_password' => $inputs['user_password'],
+					'master_id' => $masterId
+				];
+
+				if (isset($files['user_pic'])) {
+					$path = '/img/upload/user/';
+					$fileName = time() . '.jpg';
+					$files['user_pic']->move(public_path($path), $fileName);
+					$user['user_pic'] = $path . $fileName;
+				}
+
+				User::create($user);
+			} else {
+				User::where('user_id', $inputs['user_id'])->update([
+					'master_id' => $masterId
+				]);
+			}
+
+			return redirect()->back()->with('success', 'Create master data success !');
 		}
 
 		public function editMaster(Request $request, $masterId)
 		{
 			$inputs = $request->input();
 			$files = $request->file();
+			if ($inputs['user_email']) {
+				$validator = Validator::make($request->all(), [
+					'user_email' => 'required|email|unique:users',
+				]);
+				if ($validator->fails()) {
+					return redirect()->back()->withErrors($validator)->withInput();
+				}
+			}
 
 			if ($inputs['user_password'] != $inputs['confirm_user_password']) {
-				return redirect()->back()->withErrors(['message' => 'Password must be equal.']);
+				return redirect()->back()->withErrors(['message' => 'Password must be equal.'])->withInput();
 			}
 
 			$user = [
 				'user_name' => $inputs['user_name'],
-				'user_email' => $inputs['user_email'],
 				'user_password' => $inputs['user_password'],
 			];
+
+			if ($inputs['user_email']) {
+				$user['user_email'] = $inputs['user_email'];
+			}
 
 			if (isset($files['user_pic'])) {
 				$path = '/img/upload/user/';
@@ -113,10 +139,10 @@
 				'category_id' => $inputs['category_id'],
 				'master_nickname' => $inputs['master_nickname'],
 				'master_location' => $inputs['master_location'],
-				'master_recommended' => $inputs['master_recommended'] == 1 ? 1 : 0,
-				'master_most_recommended' => $inputs['master_recommended'] == 2 ? 1 : 0,
+				'master_recommend' => $inputs['master_recommend'] == 1 ? 1 : 0,
+				'master_most_recommend' => $inputs['master_recommend'] == 2 ? 1 : 0,
 			]);
-			return redirect()->back();
+			return redirect()->back()->with('success', 'Edit user data success !');
 		}
 
 		public function removeMaster($masterId)
@@ -146,15 +172,17 @@
 			$studios = Studio::where('studios.studio_id', $studioId)
 				->join('users as us', 'us.user_id', 'studios.studio_user')
 				->join('masters as ms', 'ms.master_id', 'us.master_id')
+				->select('*', 'studios.studio_id')
 				->first();
 			if ($user->user_type != 'admin' && $studios['studio_user'] != $user['user_id']) {
 				return redirect('/dashboard/studio');
 			}
+
 			$studios['studio_bg'] = json_decode($studios['studio_bg'], true);
 			$studios['studio_video'] = json_decode($studios['studio_video'], true);
 
 			$categories = Category::get();
-			$masters = Master::get();
+			$masters = Master::join('users', 'users.master_id', 'masters.master_id')->get();
 			return view('dashboard-studio-id', ['studios' => $studios, 'categories' => $categories, 'masters' => $masters]);
 		}
 
@@ -166,7 +194,8 @@
 				return redirect('/dashboard/studio');
 			}
 			$categories = Category::get();
-			return view('dashboard-studio-create', ['categories' => $categories]);
+			$masters = Master::join('users', 'users.master_id', 'masters.master_id')->get();
+			return view('dashboard-studio-create', ['categories' => $categories, 'masters' => $masters]);
 		}
 
 		public function createStudio(Request $request)
@@ -203,13 +232,14 @@
 				'studio_name' => $inputs['studio_name'],
 				'studio_title' => $inputs['studio_title'],
 				'category_id' => $inputs['category_id'],
+				'studio_user' => $inputs['studio_user'],
 				'studio_description' => $inputs['studio_description'],
 				'studio_location' => $inputs['studio_location'],
 				'studio_icon' => $studioData['studio_icon'],
 				'studio_bg' => json_encode($studioData['studio_bg']),
 				'studio_video' => json_encode($studioData['studio_video']),
 			]);
-			return redirect()->back();
+			return redirect()->back()->with('success', 'Create studio data success !');
 		}
 
 		public function editStudio(Request $request, $studioId)
@@ -251,11 +281,11 @@
 				'studio_description' => $inputs['studio_description'],
 				'studio_location' => $inputs['studio_location'],
 				'studio_icon' => $studioData['studio_icon'],
-				'master_id' => $studioData['master_id'],
+				'studio_user' => $inputs['studio_user'],
 				'studio_bg' => json_encode($studioData['studio_bg']),
 				'studio_video' => json_encode($studioData['studio_video']),
 			]);
-			return redirect()->back();
+			return redirect()->back()->with('success', 'Edit studio data success !');
 		}
 
 		public function removeStudio($studioId)
@@ -272,24 +302,35 @@
 
 		public function user($userId)
 		{
-			$user = User::where('user_id', $userId)->get();
-			return view('dashboard-user-id', ['user' => $user]);
+			$user = User::where('user_id', $userId)->first();
+			return view('dashboard-user-id', ['users' => $user]);
 		}
 
 		public function editUser(Request $request, $userId)
 		{
 			$inputs = $request->input();
 			$files = $request->file();
+			if ($inputs['user_email']) {
+				$validator = Validator::make($request->all(), [
+					'user_email' => 'required|email|unique:users',
+				]);
+				if ($validator->fails()) {
+					return redirect()->back()->withErrors($validator)->withInput();
+				}
+			}
 
 			if ($inputs['user_password'] != $inputs['confirm_user_password']) {
-				return redirect()->back()->withErrors(['message' => 'Password must be equal.']);
+				return redirect()->back()->withErrors(['message' => 'Password must be equal.'])->withInput();
 			}
 
 			$user = [
 				'user_name' => $inputs['user_name'],
-				'user_email' => $inputs['user_email'],
-				'user_password' => $inputs['user_password'],
+				'user_password' => Hash::make($inputs['user_password']),
 			];
+
+			if ($inputs['user_email']) {
+				$user['user_email'] = $inputs['user_email'];
+			}
 
 			if (isset($files['user_pic'])) {
 				$path = '/img/upload/user/';
@@ -299,27 +340,33 @@
 			}
 
 			User::where('user_id', $userId)->update($user);
-			return redirect()->back();
+			return redirect()->back()->with('success', 'Edit user data success !');
 		}
 
 		public function addUser()
 		{
-
+			return view('dashboard-user-create');
 		}
 
-		public function createUser(Request $request, $userId)
+		public function createUser(Request $request)
 		{
+			$validator = Validator::make($request->all(), [
+				'user_email' => 'required|email|unique:users',
+			]);
+			if ($validator->fails()) {
+				return redirect()->back()->withErrors($validator)->withInput();
+			}
 			$inputs = $request->input();
 			$files = $request->file();
 
 			if ($inputs['user_password'] != $inputs['confirm_user_password']) {
-				return redirect()->back()->withErrors(['message' => 'Password must be equal.']);
+				return redirect()->back()->withErrors(['message' => 'Password must be equal.'])->withInput();
 			}
 
 			$user = [
 				'user_name' => $inputs['user_name'],
 				'user_email' => $inputs['user_email'],
-				'user_password' => $inputs['user_password'],
+				'user_password' => Hash::make($inputs['user_password']),
 			];
 
 			if (isset($files['user_pic'])) {
@@ -329,8 +376,8 @@
 				$user['user_pic'] = $path . $fileName;
 			}
 
-			User::where('user_id', $userId)->update($user);
-			return redirect()->back();
+			User::create($user);
+			return redirect()->back()->with('success', 'Create user data success !');
 		}
 
 
@@ -343,6 +390,13 @@
 
 		public function activities()
 		{
+			$activity = Activity::where('user_id', \Auth::id())->first();
+			if (\Auth::user()->user_type != 'admin') {
+				if ($activity) {
+					return redirect('/dashboard/activity/' . $activity['activity_id']);
+				}
+				return view('dashboard-activity', ['activities' => []]);
+			}
 			$activities = Activity::join('users as u', 'u.user_id', 'activities.user_id')
 				->join('masters as m', 'm.master_id', 'u.master_id')->get();
 			return view('dashboard-activity', ['activities' => $activities]);
@@ -361,7 +415,8 @@
 
 			$categories = Category::get();
 			$achievement = Achievement::get();
-			return view('dashboard-activity-id', ['activity' => $activity, 'categories' => $categories, 'achievement' => $achievement]);
+			$masters = Master::join('users', 'users.master_id', 'masters.master_id')->get();
+			return view('dashboard-activity-id', ['activity' => $activity, 'categories' => $categories, 'achievement' => $achievement, 'masters' => $masters]);
 		}
 
 		public function editActivity(Request $request, $activityId)
@@ -396,19 +451,24 @@
 				}
 			}
 
-			foreach ($inputs['benefit_name'] as $i => $bf) {
-				$activityData['activity_benefit'][$i]['name'] = $bf;
-				$activityData['activity_benefit'][$i]['text'] = $inputs['benefit_desc'][$i];
+			if (isset($inputs['benefit_name'])) {
+				foreach ($inputs['benefit_name'] as $i => $bf) {
+					$activityData['activity_benefit'][$i]['name'] = $bf;
+					$activityData['activity_benefit'][$i]['text'] = $inputs['benefit_desc'][$i];
+				}
 			}
 
-			foreach ($inputs['sponsor_name'] as $i => $sp) {
-				$activityData['activity_sponsor'][$i]['name'] = $sp;
-				$activityData['activity_sponsor'][$i]['link'] = $inputs['sponsor_link'][$i];
+			if (isset($inputs['sponsor_name'])) {
+				foreach ($inputs['sponsor_name'] as $i => $sp) {
+					$activityData['activity_sponsor'][$i]['name'] = $sp;
+					$activityData['activity_sponsor'][$i]['link'] = $inputs['sponsor_link'][$i];
+				}
 			}
 
 			$activityModel->update([
 				'activity_name' => $inputs['activity_name'],
 				'activity_url_name' => $inputs['activity_url_name'],
+				'user_id' => $inputs['user_id'],
 				'category_id' => $inputs['category_id'],
 				'achievement_id' => $inputs['achievement_id'],
 				'activity_description' => $inputs['activity_description'],
@@ -434,7 +494,7 @@
 				'activity_video' => json_encode($activityData['activity_video']),
 				'activity_pic' => json_encode($activityData['activity_pic']),
 			]);
-			return redirect()->back();
+			return redirect()->back()->with('success', 'Edit activity data success !');;
 		}
 
 		public function createActivity(Request $request)
@@ -466,19 +526,24 @@
 				}
 			}
 
-			foreach ($inputs['benefit_name'] as $i => $bf) {
-				$activityData['activity_benefit'][$i]['name'] = $bf;
-				$activityData['activity_benefit'][$i]['text'] = $inputs['benefit_desc'][$i];
+			if (isset($inputs['benefit_name'])) {
+				foreach ($inputs['benefit_name'] as $i => $bf) {
+					$activityData['activity_benefit'][$i]['name'] = $bf;
+					$activityData['activity_benefit'][$i]['text'] = $inputs['benefit_desc'][$i];
+				}
 			}
 
-			foreach ($inputs['sponsor_name'] as $i => $sp) {
-				$activityData['activity_sponsor'][$i]['name'] = $sp;
-				$activityData['activity_sponsor'][$i]['link'] = $inputs['sponsor_link'][$i];
+			if (isset($inputs['sponsor_name'])) {
+				foreach ($inputs['sponsor_name'] as $i => $sp) {
+					$activityData['activity_sponsor'][$i]['name'] = $sp;
+					$activityData['activity_sponsor'][$i]['link'] = $inputs['sponsor_link'][$i];
+				}
 			}
 
 			Activity::create([
 				'activity_name' => $inputs['activity_name'],
 				'activity_url_name' => $inputs['activity_url_name'],
+				'user_id' => $inputs['user_id'],
 				'category_id' => $inputs['category_id'],
 				'achievement_id' => $inputs['achievement_id'],
 				'activity_description' => $inputs['activity_description'],
@@ -504,14 +569,15 @@
 				'activity_video' => json_encode($activityData['activity_video']),
 				'activity_pic' => json_encode($activityData['activity_pic']),
 			]);
-			return redirect()->back();
+			return redirect()->back()->with('success', 'Create activity data success !');;
 		}
 
 		public function addActivity()
 		{
 			$categories = Category::get();
 			$achievement = Achievement::get();
-			return view('dashboard-activity-create', ['categories' => $categories, 'achievement' => $achievement]);
+			$masters = Master::join('users', 'users.master_id', 'masters.master_id')->get();
+			return view('dashboard-activity-create', ['categories' => $categories, 'achievement' => $achievement, 'masters' => $masters]);
 		}
 
 		public function stories()

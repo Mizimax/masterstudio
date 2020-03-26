@@ -7,4 +7,6 @@
 	class Master extends Model
 	{
 		//
+
+		protected $guarded = [];
 	}

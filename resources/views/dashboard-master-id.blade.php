@@ -8,11 +8,18 @@
 
 @section('content')
     <div class="studio-wrapper">
-
+        @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+        @endif
         @if($master)
             <h3 align="center">Master {{ $master['master_id'] }}</h3>
             <form class="studio-form" method="post"
                   action="/dashboard/master/{{ $master['master_id'] }}"
+                  onsubmit="emailCheck()"
                   enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
@@ -37,9 +44,9 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="master_location">Master recommended</label>
-                    <select required name="category_id" class="form-control">
-                        @if($master['master_recommended'] === 1)
+                    <label for="master_recommend">Master recommended</label>
+                    <select required name="master_recommend" class="form-control">
+                        @if($master['master_recommend'] === 1)
                             <option value="1">Recommend</option>
                             <option value="2">Most Recommend</option>
                         @else
@@ -51,8 +58,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="master_recommended">Master category</label>
-                    <select required name="master_recommended" class="form-control">
+                    <label for="category_id">Master category</label>
+                    <select required name="category_id" class="form-control">
                         <option value="{{ $master['category_id'] }}">{{ $categories[array_search($master['category_id'], array_column($categories->toArray(), 'category_id'))]['category_name'] }}</option>
                         @foreach($categories as $cg)
                             @if($cg['category_id'] != $master['category_id'])
@@ -70,7 +77,7 @@
                 </div>
                 <div class="form-group">
                     <label for="user_email">User email</label>
-                    <input required type="text" name="user_email"
+                    <input type="text" name="user_email"
                            value="{{ $master['user_email'] }}"
                            class="form-control">
                 </div>
@@ -124,6 +131,12 @@
             <input type="file" name="studio_video[]" accept="video/*">
         `
         $('#bg-video').append(bg)
+      }
+
+      function emailCheck() {
+        if ($('input[name=user_email]').val() == '{{ $master['user_email'] }}') {
+          $('input[name=user_email]').val('')
+        }
       }
     </script>
 

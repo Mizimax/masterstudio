@@ -10,6 +10,7 @@
 		protected $fillable = [
 			'studio_name',
 			'studio_title',
+			'studio_user',
 			'category_id',
 			'studio_description',
 			'studio_location',
