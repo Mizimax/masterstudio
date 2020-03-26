@@ -18,6 +18,6 @@
 			if (\Auth::check() && \Auth::user()->user_type == 'admin') {
 				return $next($request);
 			}
-			return abort(401);
+			return redirect('/#login');
 		}
 	}

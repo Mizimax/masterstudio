@@ -18,6 +18,6 @@
 			if (\Auth::check() && \Auth::user()->master_id) {
 				return $next($request);
 			}
-			return redirect('http://localhost/#login');
+			return redirect('/#login');
 		}
 	}
