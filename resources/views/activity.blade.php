@@ -26,7 +26,8 @@
                 @foreach($headActivities as $key => $headActivity)
                     @php
                         $headActivity['activity_benefit'] = json_decode($headActivity['activity_benefit'], true);
-                        $headActivity['activity_video'] = json_decode($headActivity['activity_video'], true)[0];
+                        $headActivity['activity_video'] = json_decode($headActivity['activity_video'], true);
+                        $headActivity['activity_video'] = count($headActivity['activity_video']) != 0 ? $headActivity['activity_video'][0] : '';
 			            $headActivity['activity_routine_day'] = str_split($headActivity['activity_routine_day']);
 			            $start = new DateTime($headActivity->activity_start);
                         $end = new DateTime($headActivity->activity_end);
@@ -151,6 +152,7 @@
                     </div>
                     <div class="your-info">
                         <h3 class="name">{{ $user['user_name'] }}</h3>
+                        @if(!$userCategories->isEmpty())
                         <span class="level">LV. <span
                                     id="category-level">{{ $userCategories[0]['user_level'] }}</span></span>
                         <div class="progress">
@@ -162,9 +164,15 @@
                         <span class="timespend-badge">Time spend</span>
                         <span class="timespend"><span
                                     id="category-hour">{{ $userCategories[0]['user_hour'] }}</span> hours</span>
-                        @if(!$userCategories->isEmpty())
+
                             <span id="category-badge"
                                   class="category">{{ $userCategories[0]['category_name'] }}</span>
+                        @else
+                            <span class="level">LV. <span
+                                        id="category-level">{{ $user['user_level'] }}</span></span>
+                            <span class="timespend-badge">Time spend</span>
+                            <span class="timespend"><span
+                                        id="category-hour">{{ $user``['user_hour'] }}</span> hours</span>
                         @endif
                     </div>
                 </div>
@@ -297,6 +305,14 @@
       var loadingHtml = `
             <div class="activity-loading">Loading...</div>
         `
+
+      function deleteStory() {
+        var result = confirm('Confirm to delete?')
+        if (!result) {
+          return false
+        }
+
+      }
 
       function recordVideo(type) {
         return function () {
@@ -483,6 +499,10 @@
         })
         $('#carousel').on('slid.bs.carousel', function () {
           $('.carousel-item.active > .video').get(0).play()
+        })
+
+        $('#story').delegate('.close-btn', 'click', function () {
+          $(this).parent().submit()
         })
 
           @if($user)

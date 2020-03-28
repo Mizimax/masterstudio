@@ -1347,3 +1347,16 @@ form .error-msg {
 
 	}
 }
+
+.close-btn {
+	position: absolute;
+	right: 5px;
+	top: 0px;
+	width: 30px;
+	height: 30px;
+	z-index: 99;
+	background: white;
+	border-radius: 50%;
+	color: red;
+	cursor: pointer;
+}

@@ -597,7 +597,14 @@
 
 		public function removeStory($storyId)
 		{
-			ActivityStory::where('activity_story_id', $storyId)->delete();
+			$acModel = ActivityStory::where('activity_story_id', $storyId);
+			$ac = $acModel->first();
+			$user = \Auth::user();
+			$me = $ac['user_id'] == $user['user_id'];
+			if (!$me && $user['user_type'] != 'admin') {
+				return redirect()->back();
+			}
+			$acModel->delete();
 			return redirect()->back();
 		}
 

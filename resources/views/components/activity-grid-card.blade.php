@@ -9,7 +9,8 @@
     @php
         if(!is_array($activity['activity_benefit'])) {
                 $activity['activity_benefit'] = json_decode($activity['activity_benefit'], true);
-                $activity['activity_video'] = json_decode($activity['activity_video'], true)[0];
+                $activity['activity_video'] = json_decode($activity['activity_video'], true);
+                $activity['activity_video'] = count($activity['activity_video']) != 0 ? $activity['activity_video'][0] : '';
                 $activity['activity_routine_day'] = str_split($activity['activity_routine_day']);
                 $start = new DateTime($activity->activity_start);
                 $end = new DateTime($activity->activity_end);

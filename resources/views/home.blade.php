@@ -27,7 +27,6 @@
                 @foreach($headActivities as $key => $headActivity)
                     @php
                         $headActivity['activity_benefit'] = json_decode($headActivity['activity_benefit'], true);
-                        $headActivity['activity_video'] = json_decode($headActivity['activity_video'], true)[0];
 			            $headActivity['activity_routine_day'] = str_split($headActivity['activity_routine_day']);
 			            $start = new DateTime($headActivity->activity_start);
                         $end = new DateTime($headActivity->activity_end);

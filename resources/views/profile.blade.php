@@ -200,6 +200,10 @@
           // ... more custom settings?
         })
 
+        $('.category-timeline-wrapper').delegate('.close-btn', 'click', function () {
+          $(this).parent().submit()
+        })
+
         $('.activity-overlay').hover(function () {
             $(this).siblings('.video-wrapper').children('.video').get(0).play()
           }, function () {

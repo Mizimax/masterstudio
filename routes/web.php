@@ -46,6 +46,8 @@
 		Route::post('/activity/{id}/comment', 'ActivityController@comment');
 		Route::post('/activity/{id}/pin', 'ActivityController@pin');
 		Route::post('/activity/{id}/unpin', 'ActivityController@unpin');
+
+		Route::delete('/dashboard/story/{storyId}', 'DashboardController@removeStory');
 	});
 	Route::group(['middleware' => 'admin'], function () {
 		Route::get('/dashboard/user/add', 'DashboardController@addUser');
@@ -61,7 +63,6 @@
 		Route::post('/dashboard/activity', 'DashboardController@createActivity');
 		Route::delete('/dashboard/activity/{activityId}', 'DashboardController@removeActivity');
 		Route::get('/dashboard/story', 'DashboardController@stories');
-		Route::delete('/dashboard/story/{storyId}', 'DashboardController@removeStory');
 	});
 	Route::group(['middleware' => ['MasterOrAdmin']], function () {
 		Route::get('/dashboard', 'DashboardController@index');
