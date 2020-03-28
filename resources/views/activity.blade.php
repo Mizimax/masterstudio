@@ -172,7 +172,7 @@
                                         id="category-level">{{ $user['user_level'] }}</span></span>
                             <span class="timespend-badge">Time spend</span>
                             <span class="timespend"><span
-                                        id="category-hour">{{ $user``['user_hour'] }}</span> hours</span>
+                                        id="category-hour">{{ $user['user_hour'] }}</span> hours</span>
                         @endif
                     </div>
                 </div>
