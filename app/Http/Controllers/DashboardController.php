@@ -178,6 +178,8 @@
 				return redirect('/dashboard/studio');
 			}
 
+			dd($studios);
+
 			$studios['studio_bg'] = json_decode($studios['studio_bg'], true);
 			$studios['studio_video'] = json_decode($studios['studio_video'], true);
 
