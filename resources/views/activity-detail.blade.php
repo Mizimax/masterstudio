@@ -390,7 +390,7 @@
                             <div class="payment-success --confirm" align="center">
                                 <h3 class="header">Booking Confirmation</h3>
 
-                                <video src="{{  $activity['activity_video'][0] }}"
+                                <video src="{{  count($activity['activity_video']) != 0 ? $activity['activity_video'][0] : '' }}"
                                        style="width: 100%" autoplay muted play></video>
 
                                 <p class="thx">You are joining </p>

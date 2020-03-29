@@ -108,8 +108,8 @@
                     <div class="master-action d-sm-block d-none">
                         <div class="actions">
                             <div class="action-wrapper">
-                                <button class="join-button">Join<br>Activity</button>
-                                <span>1 Activity available</span>
+                                <button class="join-button" onclick="goTo('activity')">Join<br>Activity
+                                </button>
                             </div>
                             @if(!$me)
                                 @if(!$isFollower)

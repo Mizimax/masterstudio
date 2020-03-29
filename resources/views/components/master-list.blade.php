@@ -1,9 +1,10 @@
 @if($masters->isEmpty())
-    <div class="search-result">No master.</div>
+    <div class="search-result">No master found.</div>
 @endif
 @foreach ($masters as $key => $master)
     @php
-        $master['activity_video'] = json_decode($master['activity_video'], true)[0];
+        $master['activity_video'] = json_decode($master['activity_video'], true);
+        $master['activity_video'] = count($master['activity_video']) != 0 ? $master['activity_video'][0] : '';
         $isFollower = ($master['follower'] === 1 ? true : false);
         $me = ($master['user_id'] === $userme['user_id']);
     @endphp

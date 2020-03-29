@@ -937,6 +937,7 @@
     <h5 align="center">Fill information</h5>
     <form method="post" action="/become" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" value="">
         <div class="form-group">
             <label for="cert">Certification</label>
             <div class="d-flex">
@@ -953,28 +954,28 @@
         </div>
         <div class="form-group">
             <label for="pro_desc">Profession description</label>
-            <textarea name="pro_desc" class="search-interest --goal"
+            <textarea required name="pro_desc" class="search-interest --goal"
                       placeholder="Describe about yourself / your master"></textarea>
         </div>
         <div class="form-group">
             <label for="phone_number">Phone number</label>
-            <input type="text" name="phone_number" id="user_firstname"
+            <input required type="text" name="phone_number" id="user_firstname"
                    class="form-control"
                    placeholder="Your phone number">
         </div>
         <div class="form-group">
             <label for="email_contact">Email contact</label>
-            <input type="text" name="email_contact" id="user_firstname"
+            <input required type="text" name="email_contact" id="user_firstname"
                    class="form-control"
                    placeholder="Your email">
         </div>
         <div class="form-group">
             <label for="card_number">Goal of becoming master</label>
             <div class="d-flex justify-content-between">
-                <button class="select-button --box" value="1">Finding disciple</button>
-                <button class="select-button --box" value="2">Learn how to teach</button>
-                <button class="select-button --box" value="3">Business + Master</button>
-                <button class="select-button --box" value="3">Voice up</button>
+                <button type="button" class="select-button --box" value="1">Finding disciple</button>
+                <button type="button" class="select-button --box" value="2">Learn how to teach</button>
+                <button type="button" class="select-button --box" value="3">Business + Master</button>
+                <button type="button" class="select-button --box" value="3">Voice up</button>
                 <input name="goal" type="hidden">
             </div>
         </div>

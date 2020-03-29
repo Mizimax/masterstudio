@@ -1,5 +1,5 @@
 <style>
-    img[src^='/img/studio'] {
+    img[src^='/img/studio'], img[src^='/img/upload/studio'] {
         border-radius: 50%;
         object-fit: cover;
     }

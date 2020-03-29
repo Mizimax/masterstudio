@@ -183,7 +183,7 @@
                 @endforeach
             </div>
         </div>
-        <section id="activity" class="activity-you"
+        <section class="activity-you"
                  style="background-image: url('{{ !$userCategories->isEmpty() ? $userCategories[0]->category_bg : $categories[0]->category_bg }}')">
             <div class="content">
                 <h3 class="header">Activity for you</h3>
@@ -381,7 +381,7 @@
                 `
                 }).join('\n')
               } else {
-                searchHtml = '<div class="search-result">No activity.</div>'
+                searchHtml = '<div class="search-result">No activity found.</div>'
               }
               $(e).next().html(searchHtml)
               replaceSvg()

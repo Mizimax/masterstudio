@@ -169,7 +169,7 @@
                                 No followed master now.
                             </div>
                         @else
-                            <div class="follow-wrapper justify-content-center"
+                            <div class="follow-wrapper"
                                  style="margin-top: 20px">
 
                                 @foreach($masters as $master)

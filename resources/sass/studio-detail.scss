@@ -6,6 +6,12 @@
 @import 'components/activity-grid-card';
 @import 'components/activity-card-detail';
 
+.checkin {
+	@media (max-height: 700px) {
+		display: none;
+	}
+}
+
 .studio-header {
 	height: 100vh;
 
@@ -122,7 +128,7 @@
 				}
 			}
 
-			> .activity-story {
+			.activity-story {
 				flex: 1;
 				overflow-x: auto;
 				padding: 10px 0 0 0;
@@ -518,7 +524,7 @@
 					}
 				}
 
-				> .activity-story {
+				.activity-story {
 					flex: 1;
 					overflow-x: auto;
 					padding: 25px 0;

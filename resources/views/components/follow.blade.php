@@ -3,7 +3,8 @@
 @endif
 @foreach ($masters as $key => $master)
     @php
-        $master['activity_video'] = json_decode($master['activity_video'], true)[0];
+        $master['activity_video'] = json_decode($master['activity_video'], true);
+        $master['activity_video'] = count($master['activity_video']) != 0 ? $master['activity_video'][0] : '';
     @endphp
     <div class="master-profile-wrapper">
         <div class="master-profile">

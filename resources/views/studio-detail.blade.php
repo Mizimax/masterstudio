@@ -105,8 +105,9 @@
                         <span class="text">{!! $isFollower ? 'Followed' : 'follow<br />studio' !!}</span>
                     </div>
                 </div>
-                <div class="checkin"></div>
-                @include('components/activity-story', ['stories'=>$stories])
+                <div class="checkin">
+                    @include('components/activity-story', ['stories'=>$stories, 'notime' => true])
+                </div>
 
             </div>
         </div>
@@ -115,9 +116,9 @@
     <div class="studio-detail-container">
         <section class="studio-detail">
             <div class="detail-header"
-                 style="background-image: url('{{ $studio['studio_bg'][0] }}')">
+                 style="background-image: url('{{ count($studio['studio_bg']) != 0 ? $studio['studio_bg'][0] : '' }}')">
                 <div class="bg-blur"
-                     style="background-image: url('{{ $studio['studio_bg'][0] }}')"></div>
+                     style="background-image: url('{{ count($studio['studio_bg']) != 0 ? $studio['studio_bg'][0] : '' }}')"></div>
                 <div class="content">
                     <h1 class="title">{{ $studio['studio_name'] }}</h1>
                     <div class="studio-line">
@@ -134,7 +135,7 @@
                         <div role="tabpanel" class="tab-pane fade in active show" id="description">
                             <div class="video-wrapper" played="false">
                                 <video class="video lazy pointer" loop muted playsinline>
-                                    <source data-src="{{ $studio['studio_video'][0] }}"
+                                    <source data-src="{{ count($studio['studio_video']) != 0 ? $studio['studio_video'][0] : '' }}"
                                             type="video/mp4" />
                                 </video>
                                 <div class="play-wrapper">
@@ -186,7 +187,7 @@
             </div>
         </section>
         @if(!empty($stories) && count($stories) !== 0)
-            <section class="studio-master d-block d-sm-none">
+            <section class="studio-master checkin">
                 <h4 class="title">Studio Stories</h4>
                 <div class="activity-wrapper">
                     @include('components/activity-story', ['stories'=>$stories])
@@ -245,18 +246,17 @@
           $(this).attr('played', !played)
         })
 
-
-          $('.activity-wrapper .video').hover(function () {
-            $(this).get(0).play()
-          }, function () {
-            $(this).get(0).pause()
-          })
+        $('.activity-wrapper .video').hover(function () {
+          $(this).get(0).play()
+        }, function () {
+          $(this).get(0).pause()
+        })
 
         $('.activity-overlay').hover(function () {
-            $(this).siblings('.video-wrapper').children('.video').get(0).play()
-          }, function () {
-            $(this).siblings('.video-wrapper').children('.video').get(0).pause()
-          })
+          $(this).siblings('.video-wrapper').children('.video').get(0).play()
+        }, function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+        })
 
       })
     </script>

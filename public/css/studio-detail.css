@@ -13369,6 +13369,12 @@ form .error-msg > .text {
   cursor: auto;
 }
 
+@media (max-height: 700px) {
+	.checkin {
+		display: none;
+	}
+}
+
 .studio-header {
   height: 100vh;
 }
@@ -13492,7 +13498,7 @@ form .error-msg > .text {
   height: 65%;
 }
 
-.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
+.studio-header > .studio-header-wrapper > .studio-header-content .activity-story {
   flex: 1;
   overflow-x: auto;
   padding: 10px 0 0 0;
@@ -13500,22 +13506,22 @@ form .error-msg > .text {
 }
 
 @media (min-width: 576px) {
-  .studio-header > .studio-header-wrapper > .studio-header-content > .activity-story {
+	.studio-header > .studio-header-wrapper > .studio-header-content .activity-story {
     display: flex;
   }
 }
 
-.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .activity-card {
+.studio-header > .studio-header-wrapper > .studio-header-content .activity-story .activity-card {
   width: 130px;
   height: 180px;
   margin-right: 15px;
 }
 
-.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .title {
+.studio-header > .studio-header-wrapper > .studio-header-content .activity-story .title {
   font-size: 12px;
 }
 
-.studio-header > .studio-header-wrapper > .studio-header-content > .activity-story .participant {
+.studio-header > .studio-header-wrapper > .studio-header-content .activity-story .participant {
   width: 30px;
   height: 30px;
   margin-right: -15px;
@@ -13882,23 +13888,23 @@ form .error-msg > .text {
   padding: 5px 10px;
 }
 
-.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story {
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card .activity-story {
   flex: 1;
   overflow-x: auto;
   padding: 25px 0;
 }
 
-.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story .activity-card {
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card .activity-story .activity-card {
   width: 130px;
   height: 100%;
   margin-right: 5px;
 }
 
-.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story .title {
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card .activity-story .title {
   font-size: 12px;
 }
 
-.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card > .activity-story .participant {
+.studio-detail-container > .studio-master > .master-profile-card-wrapper > .master-profile-card .activity-story .participant {
   width: 30px;
   height: 30px;
   margin-right: -15px;

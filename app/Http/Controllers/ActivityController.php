@@ -69,7 +69,9 @@
 			}
 			$iOS = strstr($_SERVER['HTTP_USER_AGENT'], 'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPad') || strstr($_SERVER['HTTP_USER_AGENT'], 'iPod');
 
-			return view('activity', ['activities' => $activities, 'headActivities' => $headActivities, 'stories' => $stories, 'user' => $user, 'myActivities' => $myActivities, 'userCategories' => $userCategories, 'categories' => $categories, 'iOS' => $iOS]);
+			$me = $user ? true : false;
+
+			return view('activity', ['activities' => $activities, 'headActivities' => $headActivities, 'stories' => $stories, 'user' => $user, 'myActivities' => $myActivities, 'userCategories' => $userCategories, 'categories' => $categories, 'iOS' => $iOS, 'me' => $me]);
 		}
 
 		/**

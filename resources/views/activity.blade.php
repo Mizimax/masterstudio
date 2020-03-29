@@ -213,7 +213,7 @@
                 </div>
             </div>
         @endif
-        <section id="activity" class="all-activity"
+        <section class="all-activity"
                  style="margin-top: 70px; background-image: url('{{ !$userCategories->isEmpty() ? $userCategories[0]->category_bg : $categories[0]->category_bg }}')">
             <div class="content">
                 <h3 class="header">All activities</h3>
@@ -754,7 +754,7 @@
                 `
                 }).join('\n')
               } else {
-                searchHtml = '<div class="search-result">No activity.</div>'
+                searchHtml = '<div class="search-result">No activity found.</div>'
               }
               $(e).next().html(searchHtml)
               replaceSvg()
