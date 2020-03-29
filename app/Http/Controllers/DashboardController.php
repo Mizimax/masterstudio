@@ -172,7 +172,7 @@
 			$studios = Studio::where('studios.studio_id', $studioId)
 				->join('users as us', 'us.user_id', 'studios.studio_user')
 				->join('masters as ms', 'ms.master_id', 'us.master_id')
-				->select('*', 'studios.studio_id')
+				->select('*', 'studios.studio_id', 'studios.studio_video')
 				->first();
 			if ($user->user_type != 'admin' && $studios['studio_user'] != $user['user_id']) {
 				return redirect('/dashboard/studio');
