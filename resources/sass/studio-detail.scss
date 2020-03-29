@@ -12,6 +12,12 @@
 	}
 }
 
+.checkout {
+	@media (min-height: 700px) {
+		display: none;
+	}
+}
+
 .studio-header {
 	height: 100vh;
 
@@ -162,10 +168,6 @@
 	.activity-story {
 		display: flex;
 		padding: 20px 0;
-
-		@include mobile-up {
-			display: none;
-		}
 	}
 
 }

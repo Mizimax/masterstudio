@@ -13375,6 +13375,12 @@ form .error-msg > .text {
 	}
 }
 
+@media (min-height: 700px) {
+	.checkout {
+		display: none;
+	}
+}
+
 .studio-header {
   height: 100vh;
 }
@@ -13530,12 +13536,6 @@ form .error-msg > .text {
 .studio-master .activity-story {
   display: flex;
   padding: 20px 0;
-}
-
-@media (min-width: 576px) {
-  .studio-master .activity-story {
-    display: none;
-  }
 }
 
 .studio-detail-container {

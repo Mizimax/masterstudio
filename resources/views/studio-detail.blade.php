@@ -187,7 +187,7 @@
             </div>
         </section>
         @if(!empty($stories) && count($stories) !== 0)
-            <section class="studio-master checkin">
+            <section class="studio-master checkout">
                 <h4 class="title">Studio Stories</h4>
                 <div class="activity-wrapper">
                     @include('components/activity-story', ['stories'=>$stories])
