@@ -183,7 +183,7 @@
                 @endforeach
             </div>
         </div>
-        <section class="activity-you"
+        <section id="activity-section" class="activity-you"
                  style="background-image: url('{{ !$userCategories->isEmpty() ? $userCategories[0]->category_bg : $categories[0]->category_bg }}')">
             <div class="content">
                 <h3 class="header">Activity for you</h3>
@@ -266,7 +266,7 @@
 
     <script>
       var getActivityCategory = function (category_id) {
-        goTo('activity')
+        goTo('activity-section')
         $('#activity-wrapper').html(loadingHtml)
         $.ajax({
           url: '/content/activities?category=' + category_id,
@@ -290,7 +290,7 @@
       }
 
       var interestSelected = function () {
-        goTo('activity')
+        goTo('activity-section')
 
         var selectedCategory = MasterStudio.categorySelected.length !== 0
                                ? MasterStudio.categorySelected[0]

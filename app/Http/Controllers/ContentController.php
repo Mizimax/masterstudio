@@ -69,9 +69,6 @@
 					->get();
 			}
 
-			if ($queryActivities->isEmpty()) {
-				abort(404);
-			}
 			return view('components.activity-grid-card', ['queryActivities' => $queryActivities, 'isSearching' => true]);
 		}
 
