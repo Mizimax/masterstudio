@@ -13,7 +13,8 @@
     border-spacing:0 10px;" align="center">
             <tr style="background-color: white;">
                 <td align="center" style=" padding: 10px">
-                    <img src="{{$message->embed(asset('/img/logo/logo.png'))}}" />
+                    <img src="{{$message->embed(asset('/img/logo/logo.png'))}}" alt="@Masterstudio"
+                         width="226" />
                 </td>
             </tr>
             <tr style="background-color: white;">
