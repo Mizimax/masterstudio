@@ -839,6 +839,8 @@
                         <button type="button" class="primary-button --outline" onclick="modal('register')">Register</button>
                         <button type="submit" class="primary-button">Login</button>
                     </div>
+                    <div align="center"><a href="/password/reset" style="font-size: 13px;">Forgot password ?</a></div>
+                    <br/>
             </form>
             @endif
           `

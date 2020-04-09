@@ -1,7 +1,16 @@
-@extends('layouts.app')
+@php
+    $categories = \App\Category::get();
+@endphp
+@extends('app')
+
+@section('title', 'Reset password')
+
+@section('style')
+    <link rel="stylesheet" href="/css/app.css">
+@endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="padding: 130px 0;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -18,9 +27,9 @@
                                        class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email"
+                                    <input id="user_email" type="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           name="email" value="{{ $email ?? old('email') }}"
+                                           name="user_email" value="{{ $email ?? old('email') }}"
                                            required autocomplete="email" autofocus>
 
                                     @error('email')

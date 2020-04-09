@@ -11969,7 +11969,7 @@ section.activity-detail-section > .content > .activity-section,
 
 .modal .modal-content > .modal-body .modal-action,
 .modal .modal-content > .modal-body2 .modal-action {
-  padding: 25px 0;
+	padding: 25px 0 15px;
   display: flex;
 }
 

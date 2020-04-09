@@ -1,7 +1,16 @@
-@extends('layouts.app')
+@php
+    $categories = \App\Category::get();
+@endphp
+@extends('app')
+
+@section('title', 'Forgot password')
+
+@section('style')
+    <link rel="stylesheet" href="/css/app.css">
+@endsection
 
 @section('content')
-    <div class="container">
+    <div class="container" style="padding: 130px 0;">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -21,11 +30,12 @@
                                 <label for="email"
                                        class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
+                                <div class="col-md-8">
+                                    <input id="user_email" type="email"
                                            class="form-control @error('email') is-invalid @enderror"
-                                           name="email" value="{{ old('email') }}" required
-                                           autocomplete="email" autofocus>
+                                           name="user_email" value="{{ old('email') }}" required
+                                           autocomplete="email" autofocus
+                                           style="max-width: 300px; width: 100%;">
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -37,7 +47,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="primary-button">
                                         {{ __('Send Password Reset Link') }}
                                     </button>
                                 </div>

@@ -48,6 +48,10 @@
                     <li class="nav-item">
                         <a id="studio-menu" class="nav-link px-2 px-lg-3" href="/dashboard/studio">Studio</a>
                     </li>
+                        <li class="nav-item">
+                            <a id="studio-menu" class="nav-link px-2 px-lg-3"
+                               href="/dashboard/mail">Email</a>
+                        </li>
                 </ul>
             </div>
 

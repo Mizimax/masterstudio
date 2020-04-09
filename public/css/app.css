@@ -11958,7 +11958,7 @@ button:focus {
 }
 
 .modal .modal-content > .modal-body .modal-action {
-  padding: 25px 0;
+	padding: 25px 0 15px;
   display: flex;
 }
 

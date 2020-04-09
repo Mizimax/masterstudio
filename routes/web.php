@@ -63,6 +63,8 @@
 		Route::post('/dashboard/activity', 'DashboardController@createActivity');
 		Route::delete('/dashboard/activity/{activityId}', 'DashboardController@removeActivity');
 		Route::get('/dashboard/story', 'DashboardController@stories');
+		Route::get('/dashboard/mail', 'DashboardController@addMail');
+		Route::post('/dashboard/mail', 'DashboardController@createMail');
 	});
 	Route::group(['middleware' => ['MasterOrAdmin']], function () {
 		Route::get('/dashboard', 'DashboardController@index');

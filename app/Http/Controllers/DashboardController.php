@@ -6,11 +6,14 @@
 	use App\Activity;
 	use App\ActivityStory;
 	use App\Category;
+	use App\Mail\WebSubscription;
 	use App\Master;
 	use App\Studio;
+	use App\Subscriber;
 	use App\User;
 	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\Hash;
+	use Illuminate\Support\Facades\Mail;
 	use Illuminate\Support\Facades\Session;
 	use Illuminate\Support\Facades\Validator;
 
@@ -605,6 +608,33 @@
 				return redirect()->back();
 			}
 			$acModel->delete();
+			return redirect()->back();
+		}
+
+		public function addMail()
+		{
+			$users = User::get();
+			return view('dashboard-email', ['users' => $users]);
+		}
+
+		public function createMail(Request $request)
+		{
+			$inputs = $request->input();
+
+			if ($inputs['email_sendto'] == 1) {
+				$subs = Subscriber::pluck('subscriber_email')->toArray();
+				Mail::to($subs)->send(new WebSubscription($inputs['email_subject'], $inputs['email_description']));
+			} else if ($inputs['email_sendto'] == 2) {
+				$users = User::pluck('user_email')->toArray();
+				Mail::to($users)->send(new WebSubscription($inputs['email_subject'], $inputs['email_description']));
+			} else if ($inputs['email_sendto'] == 3) {
+				$masters = User::whereNotNull('master_id')->pluck('user_email')->toArray();
+				Mail::to($masters)->send(new WebSubscription($inputs['email_subject'], $inputs['email_description']));
+			} else if ($inputs['email_sendto'] == 4) {
+				$user = User::where('user_id', $inputs['email_user'])->first();
+				Mail::to($user['user_email'])->send(new WebSubscription($inputs['email_subject'], $inputs['email_description']));
+			}
+
 			return redirect()->back();
 		}
 
