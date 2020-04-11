@@ -9,7 +9,10 @@
         </tr>
         <tr style="background-color: white;">
             <td align="left" style="padding: 20px; font-size: 13px">
-                {!! $description !!}
+                Hi {{ $user_firstname . $user_surname }}, <br />
+                <p style="text-indent: 20px">Welcome to @Masterstudio. Your subscription is now
+                    active and you can log in with your email: {{ $user_email }} and password to
+                    start experiencing all that we have to offer.</p>
             </td>
         </tr>
         <tr style="background-color: white;">
