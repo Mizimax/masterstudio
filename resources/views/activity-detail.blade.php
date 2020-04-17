@@ -34,7 +34,7 @@
                     <li data-target="#carousel" data-slide-to="{{ $key }}"
                         class="{{ $loop->first ? 'active' : ''}}"></li>
                 @endforeach
-                @foreach($activity['activity_pic'] as $pic)
+                @foreach($activity['activity_pic'] as $key => $pic)
                     <li data-target="#carousel"
                         data-slide-to="{{ count($activity['activity_video']) + $key }}"
                         class="{{ count($activity['activity_video']) == 0 ? 'active' : ''}}"></li>
@@ -45,7 +45,7 @@
             <!-- Slideshow -->
             <div class="carousel-inner">
                 @foreach($activity['activity_video'] as $video)
-                    <div class="carousel-item {{ $loop->first ? 'active' : ''}}">
+                    <div align="center" class="carousel-item {{ $loop->first ? 'active' : ''}}">
                         <video class="video video-fluid" autoplay loop muted playsinline>
                             <source src="{{ $video }}"
                                     type="video/mp4" />
@@ -53,7 +53,8 @@
                     </div>
                 @endforeach
                 @foreach($activity['activity_pic'] as $pic)
-                    <div class="carousel-item {{ count($activity['activity_video']) == 0 ? 'active' : ''}}">
+                    <div align="center"
+                         class="carousel-item {{ count($activity['activity_video']) == 0 ? 'active' : ''}}">
                         <img src="{{ $pic }}" style="height: 100vh; object-fit: cover">
                     </div>
                 @endforeach
@@ -297,7 +298,8 @@
                 <div class="sponsor-wrapper">
                     @foreach($activity['activity_sponsors'] as $sponsor)
                         <div class="sponsor">
-                            <img src="{{ $sponsor['url'] }}" alt=""
+                            <img style="width: 200px; margin: 10px;" src="{{ $sponsor['url'] }}"
+                                 alt=""
                                  onclick="window.location.href = '{{ $sponsor['link'] }}'">
                         </div>
                     @endforeach
@@ -472,7 +474,7 @@
                                     booked {{ $activity['activity_name'] }}</p>
                                 <h5 class="price">{{ number_format($activity['activity_price']) }}
                                     Bath</h5>
-                                <img src="{{ count($activity['activity_pic']) !== 0 ? $activity['activity_pic'][0] : $activity['activity_video'][0] }}"
+                                <img src="{{ count($activity['activity_pic']) !== 0 ? $activity['activity_pic'][0] : (count($activity['activity_video']) !== 0 ? $activity['activity_video'][0] : '') }}"
                                      class="activity-image">
                                 <button class="pay-button"
                                         onclick="$('#payment-modal').modal('hide');modal('all')">

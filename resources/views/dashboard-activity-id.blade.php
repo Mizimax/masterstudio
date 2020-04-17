@@ -297,22 +297,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="activity_location_name">Activity location name</label>
-                    <input required type="text" name="activity_location_name"
-                           value="{{ $activity['activity_location_name'] }}"
-                           class="form-control">
-
-                </div>
-
-                <div class="form-group">
-                    <label for="activity_location">Activity location url</label>
-                    <input required type="text" name="activity_location"
-                           value="{{ $activity['activity_location'] }}"
-                           class="form-control">
-
-                </div>
-
-                <div class="form-group">
                     <label for="studio_icon">Activity sponsor</label><br>
 
                     <div class="image-wrapper" id="sponsor-image">
@@ -445,7 +429,7 @@
 
       function selectButton() {
         $('.select-button').off('click').on('click', function () {
-          var input = $(this).siblings('input[type="hidden"]')
+          var input = $(this).siblings('input')
           var value = $(this).attr('value')
           if ($(this).hasClass('active')) {
             var index = input.val().indexOf(value)
@@ -468,11 +452,11 @@
         $(ele).parent().siblings('.benefit-file.--icon').trigger('click')
       }
 
-      $('.edit-wrapper').delegate('.benefit-file.--bg', 'change', function () {
+      $('.benefit-wrapper').delegate('.benefit-file.--bg', 'change', function () {
         $(this).parents('.benefit-card').css('background-image', 'url(' + URL.createObjectURL(this.files[0]) + ')')
       })
 
-      $('.benefit-file.--icon').change(function () {
+      $('.benefit-wrapper').delegate('.benefit-file.--icon', 'change', function () {
         $(this).parents('.benefit-card').children('.content').children('.svg').attr('src', URL.createObjectURL(this.files[0]))
       })
     </script>

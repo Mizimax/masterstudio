@@ -11969,7 +11969,7 @@ section.activity-detail-section > .content > .activity-section,
 
 .modal .modal-content > .modal-body .modal-action,
 .modal .modal-content > .modal-body2 .modal-action {
-	padding: 25px 0 15px;
+  padding: 25px 0 15px;
   display: flex;
 }
 
@@ -12815,16 +12815,16 @@ form .error-msg > .text {
 }
 
 .close-btn {
-	position: absolute;
-	right: 5px;
-	top: 0px;
-	width: 30px;
-	height: 30px;
-	z-index: 99;
-	background: white;
-	border-radius: 50%;
-	color: red;
-	cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  width: 30px;
+  height: 30px;
+  z-index: 99;
+  background: white;
+  border-radius: 50%;
+  color: red;
+  cursor: pointer;
 }
 
 .icon-wrapper {
@@ -13388,6 +13388,11 @@ section.activity-header > .video-wrapper > .video {
      object-fit: cover;
 }
 
+section.activity-header #carousel {
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
 section.activity-header #carousel .vr-exp {
   position: absolute;
   bottom: 30px;
@@ -13624,10 +13629,10 @@ section.activity-detail-section > .content > .activity-section.\--exp > .benefit
   color: white;
   border-radius: 10px;
   background-size: cover;
-	background-position: center;
+  background-position: center;
   width: 100%;
   align-self: flex-end;
-	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 576px) {
@@ -13647,8 +13652,8 @@ section.activity-detail-section > .content > .activity-section.\--exp > .benefit
   height: 50px;
   margin: 0 auto;
   border-radius: 50%;
-	-o-object-fit: cover;
-	object-fit: cover;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .content > .name {

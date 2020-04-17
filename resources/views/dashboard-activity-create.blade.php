@@ -39,6 +39,7 @@
             <div class="form-group">
                 <label for="user_id">Activity owner</label>
                 <select name="user_id" class="form-control">
+                    <option value="">Select owner</option>
                     @foreach($masters as $ms)
                         <option value="{{ $ms['user_id'] }}">{{ $ms['master_name'] }}</option>
                     @endforeach
@@ -72,6 +73,7 @@
             <div class="form-group">
                 <label for="category_id">Activity category</label>
                 <select required name="category_id" class="form-control">
+                    <option value="">Select category</option>
                     @foreach($categories as $cg)
                         <option value="{{ $cg['category_id'] }}">{{ $cg['category_name'] }}</option>
                     @endforeach
@@ -81,9 +83,11 @@
             <div class="form-group">
                 <label for="achievement_id">Activity achievement</label>
                 <select required name="achievement_id" class="form-control">
+                    <option value="">Select achievement</option>
                     @foreach($achievement as $ach)
                         <option value="{{ $ach['achievement_id'] }}">{{ $ach['achievement_name'] }}</option>
                     @endforeach
+                    <option value="">No achievement</option>
                 </select>
             </div>
 
@@ -165,7 +169,7 @@
                     </button>
                     <button type="button" class="select-button flex-grow-1" value="7">Sunday
                     </button>
-                    <input name="activity_routine_day" type="hidden">
+                    <input required name="activity_routine_day" class="text-hide" type="text">
                 </div>
             </div>
 
@@ -199,20 +203,6 @@
                 <label for="activity_max">Activity max apply</label>
                 <input required type="text" name="activity_max"
                        class="form-control" style="width: 140px">
-
-            </div>
-
-            <div class="form-group">
-                <label for="activity_location_name">Activity location name</label>
-                <input required type="text" name="activity_location_name"
-                       class="form-control">
-
-            </div>
-
-            <div class="form-group">
-                <label for="activity_location">Activity location url</label>
-                <input required type="text" name="activity_location"
-                       class="form-control">
 
             </div>
 
@@ -334,7 +324,7 @@
 
       function selectButton() {
         $('.select-button').off('click').on('click', function () {
-          var input = $(this).siblings('input[type="hidden"]')
+          var input = $(this).siblings('input')
           var value = $(this).attr('value')
           if ($(this).hasClass('active')) {
             var index = input.val().indexOf(value)
@@ -357,11 +347,11 @@
         $(ele).parent().siblings('.benefit-file.--icon').trigger('click')
       }
 
-      $('.edit-wrapper').delegate('.benefit-file.--bg', 'change', function () {
+      $('.benefit-wrapper').delegate('.benefit-file.--bg', 'change', function () {
         $(this).parents('.benefit-card').css('background-image', 'url(' + URL.createObjectURL(this.files[0]) + ')')
       })
 
-      $('.benefit-file.--icon').change(function () {
+      $('.benefit-wrapper').delegate('.benefit-file.--icon', 'change', function () {
         $(this).parents('.benefit-card').children('.content').children('.svg').attr('src', URL.createObjectURL(this.files[0]))
       })
     </script>

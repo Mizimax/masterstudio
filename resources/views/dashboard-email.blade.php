@@ -1,6 +1,6 @@
 @extends('dashboard')
 
-@section('page', 'user')
+@section('page', 'mail')
 
 @section('style')
     <link rel="stylesheet" href="/css/dashboard.studio.css">

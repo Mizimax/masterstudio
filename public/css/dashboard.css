@@ -11400,7 +11400,6 @@ button:focus {
 }
 
 .edit-wrapper .benefit-file {
-	display: none;
 	position: absolute;
 	top: -200px;
 	left: 0;
@@ -11410,8 +11409,12 @@ button:focus {
 	cursor: pointer;
 }
 
+.edit-wrapper .benefit-file.\--bg {
+	top: 0px;
+}
+
 .edit-wrapper .benefit-file.\--icon {
-	top: 31px;
+	top: 0px;
 }
 
 .edit-wrapper .benefit-file.\--icon:hover + .edit-dropdown > .edit-menu.icon {
@@ -11579,7 +11582,7 @@ button:focus {
 	color: white !important;
 }
 
-.close-btn {
+.activity-card .close-btn {
 	position: absolute;
 	right: 5px;
 	top: -10px;

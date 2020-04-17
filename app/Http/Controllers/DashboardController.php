@@ -154,6 +154,12 @@
 			return redirect()->back();
 		}
 
+		public function removeActivity($activityId)
+		{
+			Activity::where('activity_id', $activityId)->delete();
+			return redirect()->back();
+		}
+
 
 		public function studios()
 		{
@@ -475,8 +481,6 @@
 				'category_id' => $inputs['category_id'],
 				'achievement_id' => $inputs['achievement_id'],
 				'activity_description' => $inputs['activity_description'],
-				'activity_location' => $inputs['activity_location'],
-				'activity_location_name' => $inputs['activity_location_name'],
 				'activity_prepare' => $inputs['activity_prepare'],
 				'activity_difficult' => $inputs['activity_difficult'],
 				'activity_time_type' => $inputs['activity_time_type'],
@@ -550,8 +554,6 @@
 				'category_id' => $inputs['category_id'],
 				'achievement_id' => $inputs['achievement_id'],
 				'activity_description' => $inputs['activity_description'],
-				'activity_location' => $inputs['activity_location'],
-				'activity_location_name' => $inputs['activity_location_name'],
 				'activity_prepare' => $inputs['activity_prepare'],
 				'activity_difficult' => $inputs['activity_difficult'],
 				'activity_time_type' => $inputs['activity_time_type'],

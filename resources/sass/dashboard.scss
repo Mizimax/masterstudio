@@ -428,7 +428,6 @@ textarea:focus, input:focus, button:focus {
 	}
 
 	.benefit-file {
-		display: none;
 		position: absolute;
 		top: -200px;
 		left: 0;
@@ -437,8 +436,12 @@ textarea:focus, input:focus, button:focus {
 		z-index: -1;
 		cursor: pointer;
 
+		&.--bg {
+			top: 0px;
+		}
+
 		&.--icon {
-			top: 31px;
+			top: 0px;
 
 			&:hover + .edit-dropdown > .edit-menu.icon {
 				color: white;
