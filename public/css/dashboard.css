@@ -11582,7 +11582,7 @@ button:focus {
 	color: white !important;
 }
 
-.activity-card .close-btn {
+.close-btn {
 	position: absolute;
 	right: 5px;
 	top: -10px;

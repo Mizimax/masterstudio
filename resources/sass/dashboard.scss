@@ -621,19 +621,21 @@ textarea:focus, input:focus, button:focus {
 		}
 	}
 
-	.close-btn {
-		position: absolute;
-		right: 5px;
-		top: -10px;
-		width: 40px;
-		height: 40px;
-		z-index: 99;
-		background: white;
-		border-radius: 50%;
-		color: red;
-		cursor: pointer;
+
+}
+
+.close-btn {
+	position: absolute;
+	right: 5px;
+	top: -10px;
+	width: 40px;
+	height: 40px;
+	z-index: 99;
+	background: white;
+	border-radius: 50%;
+	color: red;
+	cursor: pointer;
 
 
-	}
 }
 

@@ -13653,7 +13653,7 @@ section.activity-detail-section > .content > .activity-section.\--exp > .benefit
   margin: 0 auto;
   border-radius: 50%;
   -o-object-fit: cover;
-  object-fit: cover;
+	object-fit: cover;
 }
 
 section.activity-detail-section > .content > .activity-section.\--exp > .benefit-wrapper > .benefit-card > .content > .name {
