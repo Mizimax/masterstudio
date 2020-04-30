@@ -179,6 +179,13 @@
                 <a order="{{ $master['studio_id'] || $master['master_location'] ? '4' : '3' }}"
                    class="tab-link col-sm-auto col-4" href="#suggest" role="tab" data-toggle="tab">Master
                     Suggestion</a>
+
+                @if($me)
+                    <a order="{{ $master['studio_id'] || $master['master_location'] ? '5' : '4' }}"
+                       class="tab-link col-sm-auto col-4" href="#dashboard" role="tab"
+                       data-toggle="tab">Master
+                        Dashboard</a>
+                @endif
             </div>
 
             <div class="nav-tab-mobile nav-tab nav nav-pill justify-content-sm-center justify-content-start flex-nowrap d-flex d-sm-none"
@@ -197,6 +204,13 @@
                 <a order="{{ $master['studio_id'] || $master['master_location'] ? '4' : '3' }}"
                    class="tab-link col-sm-auto col-4" href="#suggest" role="tab" data-toggle="tab">Master
                     Suggestion</a>
+
+                @if($me)
+                    <a order="{{ $master['studio_id'] || $master['master_location'] ? '5' : '4' }}"
+                       class="tab-link col-sm-auto col-4" href="#dashboard" role="tab"
+                       data-toggle="tab">Master
+                        Dashboard</a>
+                @endif
             </div>
             <!-- Tab panes -->
             <div class="tab-content">
@@ -254,6 +268,133 @@
                         @include('components.activity-grid-card', ['size' => 80, 'nohover' => '55', 'activities'=>$nowActivities])
                     </div>
                 </div>
+                @if($me)
+                    <div role="tabpanel" class="tab-pane fade" id="dashboard">
+                        <div class="d-flex flex-wrap">
+                            @foreach($nowActivities as $activity)
+                                @php
+                                    $joinUserNo = \App\UserActivity::from('user_activities as ua')
+                                                ->join('users AS u', 'u.user_id', '=', 'ua.user_id')
+                                                ->where('ua.activity_id', $activity['activity_id'])
+                                                ->where('ua.user_activity_paid', 1)->count();
+
+                                    $interestUserNo = \App\UserActivity::from('user_activities as ua')
+                                                ->join('users AS u', 'u.user_id', '=', 'ua.user_id')
+                                                ->where('ua.activity_id', $activity['activity_id'])
+                                                ->where('ua.user_activity_status', 0)->count();
+                                @endphp
+                                <div class="activity-summary">
+                                    <div class="head">{{ $activity['activity_name'] }}</div>
+                                    <div class="d-flex">
+                                        <div class="indicator">End registration</div>
+                                        <div class="value">{{ $activity['activity_apply_end'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Start activity</div>
+                                        <div class="value">{{ $activity['activity_start'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Join user</div>
+                                        <div class="value">{{ $joinUserNo }}
+                                            / {{ $activity['activity_max'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Available</div>
+                                        <div class="value">{{ $activity['activity_max'] - $joinUserNo }}
+                                            / {{ $activity['activity_max'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Retention users</div>
+                                        <div class="value">{{ $activity['activity_user_retention'] }}
+                                            / {{ $activity['activity_max'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Pay users</div>
+                                        <div class="value">{{ $joinUserNo }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Interested users</div>
+                                        <div class="value">{{ $interestUserNo }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Total earns</div>
+                                        <div class="value">{{ $activity['activity_price'] * $joinUserNo }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">@master</div>
+                                        <div class="value"></div>
+                                    </div>
+                                    <button onclick="window.location='/dashboard/activity/{{ $activity['activity_id'] }}'"
+                                            class="primary-button w-100">Edit Activity
+                                    </button>
+                                    <div align="center" style="margin-top: 5px;">
+                                        <a href="">Cancel Activity</a>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                            @foreach($pastActivities as $activity)
+                                @php
+                                    $joinUsers = \App\UserActivity::from('user_activities as ua')
+                                                ->join('users AS u', 'u.user_id', '=', 'ua.user_id')
+                                                ->where('ua.activity_id', $activity['activity_id'])
+                                                ->where('ua.user_activity_paid', 1)->get();
+                                @endphp
+                                <div class="activity-summary">
+                                    <div class="head">{{ $activity['activity_name'] }}</div>
+                                    <div class="d-flex">
+                                        <div class="indicator">End registration</div>
+                                        <div class="value">{{ $activity['activity_apply_end'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Start activity</div>
+                                        <div class="value">{{ $activity['activity_start'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Join user</div>
+                                        <div class="value">{{ count($joinUsers) }}
+                                            / {{ $activity['activity_max'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Available</div>
+                                        <div class="value">{{ $activity['activity_max'] - count($joinUsers) }}
+                                            / {{ $activity['activity_max'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Retention users</div>
+                                        <div class="value"> / {{ $activity['activity_max'] }}</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Pay users</div>
+                                        <div class="value"></div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Interested users</div>
+                                        <div class="value"></div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">Total earns</div>
+                                        <div class="value"></div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div class="indicator">@master</div>
+                                        <div class="value"></div>
+                                    </div>
+                                    <button class="primary-button w-100">Edit Activity</button>
+                                    <div align="center" style="margin-top: 5px;">
+                                        <a href="">Cancel Activity</a>
+                                    </div>
+
+                                </div>
+                            @endforeach
+                            @if($nowActivities->isEmpty() && $nowActivities->isEmpty())
+                                <div class="no-act" align="center">
+                                    No activity now.
+                                </div>
+                            @endif
+                        </div>
+                        @endif
+                    </div>
             </div>
         </div>
     </section>
@@ -401,18 +542,17 @@
             $(this).children('.activity-detail').fadeOut()
           })
 
-
-          $('.activity-wrapper .video').hover(function () {
-            $(this).get(0).play()
-          }, function () {
-            $(this).get(0).pause()
-          })
+        $('.activity-wrapper .video').hover(function () {
+          $(this).get(0).play()
+        }, function () {
+          $(this).get(0).pause()
+        })
 
         $('.activity-overlay').hover(function () {
-            $(this).siblings('.video-wrapper').children('.video').get(0).play()
-          }, function () {
-            $(this).siblings('.video-wrapper').children('.video').get(0).pause()
-          })
+          $(this).siblings('.video-wrapper').children('.video').get(0).play()
+        }, function () {
+          $(this).siblings('.video-wrapper').children('.video').get(0).pause()
+        })
 
         $('#profile-img').change(function () {
           changeProfile()

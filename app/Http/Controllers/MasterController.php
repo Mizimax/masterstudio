@@ -107,12 +107,14 @@
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->where('ms.master_id', $id)
+				->where('act.activity_private', 0)
 				->where('act.activity_apply_end', '>=', Carbon::now())->get();
 			$pastActivities = Activity::from('activities as act')
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 				->where('ms.master_id', $id)
+				->where('act.activity_private', 0)
 				->where('act.activity_apply_end', '<', Carbon::now())->get();
 			return view('master-detail', ['nowActivities' => $nowActivities, 'pastActivities' => $pastActivities, 'stories' => $stories, 'master' => $master, 'me' => $me, 'isFollower' => $isFollower]);
 		}

@@ -37,35 +37,31 @@
                   action="/dashboard/activity/{{ $activity['activity_id'] }}"
                   enctype="multipart/form-data">
                 @csrf
+                @if(\Auth::user()->user_type === 'admin')
+                    <div class="form-group">
+                        <label for="user_id">Activity owner</label>
+                        <select name="user_id" class="form-control">
+                            <option value="{{ $activity['user_id'] }}">{{ $masters[array_search($activity['master_id'], array_column($masters->toArray(), 'master_id'))]['master_name'] }}</option>
+                            @foreach($masters as $ms)
+                                @if($ms['master_id'] != $activity['master_id'])
+                                    <option value="{{ $ms['user_id'] }}">{{ $ms['master_name'] }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
                 <div class="form-group">
-                    <label for="user_id">Activity owner</label>
-                    <select name="user_id" class="form-control">
-                        <option value="{{ $activity['user_id'] }}">{{ $masters[array_search($activity['master_id'], array_column($masters->toArray(), 'master_id'))]['master_name'] }}</option>
-                        @foreach($masters as $ms)
-                            @if($ms['master_id'] != $activity['master_id'])
-                                <option value="{{ $ms['user_id'] }}">{{ $ms['master_name'] }}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="activity_name">Activity name</label>
+                    <label for="activity_name">Activity name <span class="required">* ความยาวไม่เกิน 50 คำ</span></label>
                     <input required type="text" name="activity_name"
                            value="{{ $activity['activity_name'] }}"
-                           class="form-control">
+                           class="form-control" maxlength="50">
                 </div>
 
                 <div class="form-group">
-                    <label for="master_nickname">Activity url</label>
-                    <input required type="text" name="activity_url_name"
-                           value="{{ $activity['activity_url_name'] }}"
-                           class="form-control">
-                </div>
-
-                <div class="form-group">
-                    <label for="studio_description">Activity description</label>
+                    <label for="studio_description">Activity description <span class="required">* ความยาวไม่เกิน 500 คำ</span></label>
                     <textarea required name="activity_description"
-                              class="form-control">{{ $activity['activity_description'] }}</textarea>
+                              class="form-control" maxlength="500"
+                    >{{ $activity['activity_description'] }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -96,10 +92,39 @@
                             @endif
                         @endforeach
                     </select>
+                    <button type="button" class="primary-button mt-2"
+                            onclick="addAchievement(this)">+
+                        Add another achievement
+                    </button>
+                    <div class="add-achievement mt-2 d-none">
+                        <input type="text" name="achievement_name"
+                               placeholder="Achievement name"><br />
+                        <img src="" class="preview">
+                        <input type="file" name="achievement_pic">
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="activity_video">Activity video</label><br>
+                    <label for="activity_difficult">Activity difficult</label>
+                    <select required name="activity_difficult" class="form-control">
+                        <option value="{{ $activity['activity_difficult'] }}">{{ $activity['activity_difficult'] }}</option>
+                        @if($activity['activity_difficult'] == 'Beginner')
+                            <option value="Advance">Advance</option>
+                            <option value="Pro">Pro</option>
+                        @elseif($activity['activity_difficult'] == 'Advance')
+                            <option value="Beginner">Beginner</option>
+                            <option value="Pro">Pro</option>
+
+                        @elseif($activity['activity_difficult'] == 'Pro')
+                            <option value="Beginner">Beginner</option>
+                            <option value="Advance">Advance</option>
+                        @endif
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="activity_video">Activity video<span class="required"><br />* Resolution : 720p, Dimension : 1280 x 720, Lenght : 3 min</span></label><br>
                     <div class="image-wrapper" id="bg-video">
                         @foreach($activity['activity_video'] as $i => $video)
                             <video src="{{ $video }}" class="preview" autoplay muted playsinline>
@@ -108,13 +133,13 @@
                                    accept="video/*">
                         @endforeach
                     </div>
-                    <button type="button" class="btn btn-primary mt-2" onclick="addVideo()">+
+                    <button type="button" class="primary-button mt-2" onclick="addVideo()">+
                         Add another video
                     </button>
                 </div>
 
                 <div class="form-group">
-                    <label for="studio_icon">Activity image</label><br>
+                    <label for="studio_icon">Activity image<span class="required"> * Dimension : 1280 x 720</span></label><br>
 
                     <div class="image-wrapper" id="bg-image">
                         @foreach($activity['activity_pic'] as $pic)
@@ -124,7 +149,7 @@
                     </div>
 
 
-                    <button type="button" class="btn btn-primary mt-2" onclick="addImage()">+
+                    <button type="button" class="primary-button mt-2" onclick="addImage()">+
                         Add another image
                     </button>
                 </div>
@@ -132,7 +157,7 @@
                 <div class="form-group">
                     <label for="activity_benefit">Activity benefit</label><br />
                     <div align="center">
-                        <button type="button" class="btn btn-primary mt-2" onclick="addBenefit()">+
+                        <button type="button" class="primary-button mt-2" onclick="addBenefit()">+
                             Add another benefit
                         </button>
                     </div>
@@ -175,18 +200,6 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="activity_difficult">Activity difficult</label>
-                    <select required name="activity_difficult" class="form-control">
-                        <option value="{{ $activity['activity_difficult'] }}">{{ $activity['activity_difficult'] }}</option>
-                        @if($activity['activity_difficult'] == 'Basic')
-                            <option value="Advance">Advance</option>
-                        @else
-                            <option value="Basic">Basic</option>
-                        @endif
-                    </select>
                 </div>
 
                 <div class="form-group">
@@ -312,18 +325,41 @@
                     </div>
 
 
-                    <button type="button" class="btn btn-primary mt-2" onclick="addSponsor()">+
+                    <button type="button" class="primary-button mt-2" onclick="addSponsor()">+
                         Add another sponsor
                     </button>
                 </div>
 
 
-                <div class="submit-wrapper">
-                    <button class="btn btn-primary btn-fixed" type="submit">
+                <div class="submit-wrapper d-flex flex-column">
+                    <button class="btn btn-primary mt-2" type="submit">
                         Save
                     </button>
                 </div>
             </form>
+            <div class="preview-public" align="center">
+                <button class="primary-button" type="button"
+                        onclick="window.open('http://localhost/activity/{{ $activity["activity_url_name"] }}', '_blank')">
+                    Preview
+                </button>
+                @if($activity['activity_private'] === 1)
+                    <form action="./{{ $activity['activity_id'] }}/public" method="post">
+                        @csrf
+                        <button class="primary-button mt-2" type="button"
+                                onclick="$(this).parent().submit()">
+                            Set Public
+                        </button>
+                    </form>
+                @else
+                    <form action="./{{ $activity['activity_id'] }}/private" method="post">
+                        @csrf
+                        <button class="primary-button mt-2" type="button"
+                                onclick="$(this).parent().submit()">
+                            Set Private
+                        </button>
+                    </form>
+                @endif
+            </div>
         @else
             <div align="center" style="padding: 20px">
                 You don't own this studio.<br>
@@ -375,7 +411,13 @@
         $('#bg-video').append(bg)
       }
 
+      window.benefit = 1
+
       function addBenefit() {
+        window.benefit++
+        if (window.benefit > 4) {
+          return false
+        }
         var benefit = `
             <div class="benefit-card"
                                  style="background-color: white">
@@ -442,6 +484,12 @@
           }
           $(this).toggleClass('active')
         })
+      }
+
+      function addAchievement(ele) {
+        $(ele).next().removeClass('d-none')
+        $(ele).prev().remove()
+        $(ele).remove()
       }
 
       function benefitBg(ele) {

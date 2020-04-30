@@ -36,31 +36,38 @@
               action="/dashboard/activity"
               enctype="multipart/form-data">
             @csrf
+            @if(\Auth::user()->user_type === 'admin')
+                <div class="form-group">
+                    <label for="user_id">Activity owner</label>
+                    <select name="user_id" class="form-control">
+                        <option value="">Select owner</option>
+                        @foreach($masters as $ms)
+                            <option value="{{ $ms['user_id'] }}">{{ $ms['master_name'] }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
             <div class="form-group">
-                <label for="user_id">Activity owner</label>
-                <select name="user_id" class="form-control">
-                    <option value="">Select owner</option>
-                    @foreach($masters as $ms)
-                        <option value="{{ $ms['user_id'] }}">{{ $ms['master_name'] }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="activity_name">Activity name</label>
+                <label for="activity_name">Activity name <span class="required">* ความยาวไม่เกิน 50 คำ</span></label>
                 <input required type="text" name="activity_name" value="{{ old('activity_name') }}"
-                       class="form-control">
+                       class="form-control" maxlength="50">
             </div>
 
             <div class="form-group">
-                <label for="master_nickname">Activity url</label>
-                <input required type="text" name="activity_url_name"
-                       class="form-control">
+                <label for="master_nickname">Activity url <span class="required">* กำหนดครั้งเดียวเท่านั้น แก้ไขไม่ได้</span></label>
+                <input required type="text" onkeypress="$('.activity-url').text(this.value)"
+                       name="activity_url_name"
+                       class="form-control" maxlength="50">
+                <br />
+                Example :
+                <span class="preview">https://atmasterstudio.com/activity/<span
+                            class="activity-url"></span></span>
             </div>
 
             <div class="form-group">
-                <label for="studio_description">Activity description</label>
+                <label for="studio_description">Activity description <span class="required">* ความยาวไม่เกิน 500 คำ</span></label>
                 <textarea required name="activity_description"
-                          class="form-control"></textarea>
+                          class="form-control" maxlength="500"></textarea>
             </div>
 
             <div class="form-group">
@@ -82,32 +89,49 @@
 
             <div class="form-group">
                 <label for="achievement_id">Activity achievement</label>
-                <select required name="achievement_id" class="form-control">
+                <select required name="achievement_id" class="form-control" onchange="">
                     <option value="">Select achievement</option>
                     @foreach($achievement as $ach)
                         <option value="{{ $ach['achievement_id'] }}">{{ $ach['achievement_name'] }}</option>
                     @endforeach
-                    <option value="">No achievement</option>
+                </select>
+                <button type="button" class="primary-button mt-2" onclick="addAchievement(this)">+
+                    Add another achievement
+                </button>
+                <div class="add-achievement mt-2 d-none">
+                    <input type="text" name="achievement_name"
+                           placeholder="Achievement name"><br />
+                    <img src="" class="preview">
+                    <input type="file" name="achievement_pic">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="activity_difficult">Activity difficult</label>
+                <select required name="activity_difficult" class="form-control">
+                    <option value="Beginner">Beginner</option>
+                    <option value="Advance">Advance</option>
+                    <option value="Pro">Pro</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="activity_video">Activity video</label><br>
+                <label for="activity_video">Activity video<span class="required"><br />* Resolution : 720p, Dimension : 1280 x 720, Lenght : 3 min</span></label><br>
                 <div class="image-wrapper" id="bg-video">
                 </div>
-                <button type="button" class="btn btn-primary mt-2" onclick="addVideo()">+
+                <button type="button" class="primary-button mt-2" onclick="addVideo()">+
                     Add another video
                 </button>
             </div>
 
             <div class="form-group">
-                <label for="studio_icon">Activity image</label><br>
+                <label for="studio_icon">Activity image<span class="required"> * Dimension : 1280 x 720</span></label><br>
 
                 <div class="image-wrapper" id="bg-image">
                 </div>
 
 
-                <button type="button" class="btn btn-primary mt-2" onclick="addImage()">+
+                <button type="button" class="primary-button mt-2" onclick="addImage()">+
                     Add another image
                 </button>
             </div>
@@ -115,20 +139,12 @@
             <div class="form-group">
                 <label for="activity_benefit">Activity benefit</label><br />
                 <div align="center">
-                    <button type="button" class="btn btn-primary mt-2" onclick="addBenefit()">+
+                    <button type="button" class="primary-button mt-2" onclick="addBenefit()">+
                         Add another benefit
                     </button>
                 </div>
                 <div class="benefit-wrapper">
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label for="activity_difficult">Activity difficult</label>
-                <select required name="activity_difficult" class="form-control">
-                    <option value="Basic">Basic</option>
-                    <option value="Advance">Advance</option>
-                </select>
             </div>
 
             <div class="form-group">
@@ -181,9 +197,10 @@
 
             <div class="form-group">
                 <label for="activity_price">Activity price</label>
-                <div class="d-flex" style="width: 250px">
+                <div class="d-flex align-items-center" style="width: 250px">
                     <input required type="text" name="activity_price"
                            class="form-control">
+                    <div style="margin-left: 10px;">Bath</div>
                     <select name="activity_price_type" class="form-control"
                             style="width: 120px; margin-left: 10px">
                         <option value="0">per activity</option>
@@ -213,14 +230,14 @@
                 </div>
 
 
-                <button type="button" class="btn btn-primary mt-2" onclick="addSponsor()">+
+                <button type="button" class="primary-button mt-2" onclick="addSponsor()">+
                     Add another sponsor
                 </button>
             </div>
 
 
-            <div class="submit-wrapper">
-                <button class="btn btn-primary btn-fixed" type="submit">
+            <div class="submit-wrapper d-flex flex-column">
+                <button class="btn btn-primary mt-2" type="submit">
                     Save
                 </button>
             </div>
@@ -320,6 +337,12 @@
         var arraySort = arraySplit.sort()
         var arrayJoin = arraySplit.join('')
         return arrayJoin
+      }
+
+      function addAchievement(ele) {
+        $(ele).next().removeClass('d-none')
+        $(ele).prev().remove()
+        $(ele).remove()
       }
 
       function selectButton() {

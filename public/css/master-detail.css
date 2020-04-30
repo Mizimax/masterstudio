@@ -13824,11 +13824,6 @@ form .error-msg > .text {
   flex-wrap: wrap;
 }
 
-.master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .no-act {
-  padding: 50px 0 20px;
-  width: 250px;
-}
-
 .master-detail-section > .master-container > .tab-content > #activity > .activity-wrapper .header {
   padding: 10px 0;
   border-bottom: 1px solid #fff;
@@ -14022,5 +14017,35 @@ form .error-msg > .text {
   color: white;
   border: none;
   border-radius: 40px;
+}
+
+.no-act {
+	padding: 50px 0 20px;
+	width: 100%;
+}
+
+.activity-summary {
+	border-radius: 20px;
+	background: white;
+	padding: 20px;
+	color: black;
+	font-size: 13px;
+	width: 280px;
+	margin: 10px;
+	box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.1);
+}
+
+.activity-summary > .d-flex {
+	margin: 5px 0;
+}
+
+.activity-summary .head {
+	font-size: 17px;
+	margin-bottom: 3px;
+}
+
+.activity-summary .indicator {
+	flex: 1;
+	color: #888;
 }
 

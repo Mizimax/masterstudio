@@ -24,6 +24,8 @@
 	Route::get('/studio/{id}', 'StudioController@show');
 	Route::post('/become', 'MasterController@create');
 
+	Route::get('/dashboard/login', 'DashboardController@login')->name('dashboard');
+
 	Route::group(['middleware' => 'auth'], function () {
 		Route::post('/activity/{id}/payment', 'PaymentController@payment');
 		Route::post('/user/{userId}', 'UserController@follow');
@@ -59,18 +61,26 @@
 		Route::get('/dashboard/studio/add', 'DashboardController@addStudio');
 		Route::post('/dashboard/studio', 'DashboardController@createStudio');
 		Route::delete('/dashboard/studio/{studioId}', 'DashboardController@removeStudio');
-		Route::get('/dashboard/activity/add', 'DashboardController@addActivity');
-		Route::post('/dashboard/activity', 'DashboardController@createActivity');
-		Route::delete('/dashboard/activity/{activityId}', 'DashboardController@removeActivity');
 		Route::get('/dashboard/story', 'DashboardController@stories');
 		Route::get('/dashboard/mail', 'DashboardController@addMail');
 		Route::post('/dashboard/mail', 'DashboardController@createMail');
+		Route::get('/dashboard/mail', 'DashboardController@addMail');
+		Route::get('/dashboard/category', 'DashboardController@categories');
+		Route::get('/dashboard/category/add', 'DashboardController@addCategory');
+		Route::get('/dashboard/category/{categoryId}', 'DashboardController@category');
+		Route::post('/dashboard/category/{categoryId}', 'DashboardController@editCategory');
+		Route::post('/dashboard/category', 'DashboardController@createCategory');
+		Route::delete('/dashboard/category/{categoryId}', 'DashboardController@removeCategory');
 	});
 	Route::group(['middleware' => ['MasterOrAdmin']], function () {
+		Route::get('/dashboard/activity/add', 'DashboardController@addActivity');
+		Route::post('/dashboard/activity', 'DashboardController@createActivity');
+		Route::delete('/dashboard/activity/{activityId}', 'DashboardController@removeActivity');
 		Route::get('/dashboard', 'DashboardController@index');
 		Route::get('/dashboard/studio', 'DashboardController@studios');
 		Route::get('/dashboard/studio/{studioId}', 'DashboardController@studio');
 		Route::post('/dashboard/studio/{studioId}', 'DashboardController@editStudio');
+		Route::post('/dashboard/studio/{studioId}/master/{masterId}', 'DashboardController@addMasterStudio');
 		Route::get('/dashboard/user', 'DashboardController@users');
 		Route::get('/dashboard/user/{userId}', 'DashboardController@user');
 		Route::post('/dashboard/user/{userId}', 'DashboardController@editUser');
@@ -80,6 +90,8 @@
 		Route::get('/dashboard/activity', 'DashboardController@activities');
 		Route::get('/dashboard/activity/{activityId}', 'DashboardController@activity');
 		Route::post('/dashboard/activity/{activityId}', 'DashboardController@editActivity');
+		Route::post('/dashboard/activity/{activityId}/public', 'DashboardController@publicActivity');
+		Route::post('/dashboard/activity/{activityId}/private', 'DashboardController@privateActivity');
 	});
 
 	Route::get('/content/master/search', 'MasterController@search');

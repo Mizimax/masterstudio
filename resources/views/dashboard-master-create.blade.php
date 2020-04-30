@@ -67,7 +67,7 @@
                 </select>
             </div>
 
-            <button type="button" class="btn btn-primary"
+            <button type="button" class="primary-button"
                     onclick="createUser(this)">Create new user
             </button>
             <br /><br />

@@ -51,7 +51,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="studio_description">Studio description</label>
+                <label for="studio_description">Studio description<span class="required"> * ความยาวไม่เกิน 500 คำ</span></label>
                 <textarea required name="studio_description"
                           class="form-control"></textarea>
             </div>
@@ -66,25 +66,25 @@
                 <input type="file" name="studio_icon" accept="image/*">
             </div>
             <div class="form-group">
-                <label for="studio_icon">Studio background</label><br>
+                <label for="studio_icon">Studio background<span class="required"> * Dimension : 1280 x 720</span></label><br>
 
                 <div class="image-wrapper" id="bg-image">
                     <img src="" class="preview">
                     <input type="file" name="studio_bg[]" accept="image/*">
                 </div>
 
-                <button type="button" class="btn btn-primary mt-2" onclick="addImage()">+
+                <button type="button" class="primary-button mt-2" onclick="addImage()">+
                     Add another image
                 </button>
             </div>
             <div class="form-group">
-                <label for="studio_icon">Studio video</label><br>
+                <label for="studio_icon">Studio video<span class="required"><br />* Resolution : 720p, Dimension : 1280 x 720, Lenght : 3 min</span></label><br>
                 <video src="" class="preview">
                 </video>
                 <input type="file" name="studio_video[]" accept="video/*">
             </div>
             <div class="form-group">
-                <label for="studio_icon">Studio background video</label><br>
+                <label for="studio_icon">Studio background video<span class="required"><br />* Resolution : 720p, Dimension : 1280 x 720, Lenght : 3 min</span></label><br>
                 <div class="image-wrapper" id="bg-video">
 
                     <video src="" class="preview">
@@ -93,7 +93,7 @@
                            accept="video/*">
 
                 </div>
-                <button type="button" class="btn btn-primary mt-2" onclick="addVideo()">+
+                <button type="button" class="primary-button mt-2" onclick="addVideo()">+
                     Add another video
                 </button>
             </div>

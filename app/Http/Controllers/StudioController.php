@@ -44,7 +44,8 @@
 				->join('users AS u', 'u.user_id', '=', 'act.user_id')
 				->join('masters AS ms', 'u.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
-				->where('ms.studio_id', $id)->take(4)->get();
+				->where('ms.studio_id', $id)
+				->where('act.activity_private', 0)->take(4)->get();
 			$stories = ActivityStory::from('activity_stories as as')
 				->join('activities as act', 'act.activity_id', '=', 'as.activity_id')
 				->join('users as us', 'us.user_id', '=', 'as.user_id')

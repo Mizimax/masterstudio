@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
 
 class LoginController extends Controller
 {
@@ -20,12 +23,18 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-	protected $redirectTo = '/';
+	/**
+	 * Check user's role and redirect user based on their role
+	 * @return
+	 */
+	public function authenticated(Request $request)
+	{
+		if (str_replace(url('/'), '', url()->previous()) == "/dashboard/login") {
+			return redirect('/dashboard');
+		}
+
+		return redirect('/');
+	}
 
     /**
      * Create a new controller instance.

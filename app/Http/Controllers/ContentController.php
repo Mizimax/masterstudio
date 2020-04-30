@@ -31,7 +31,8 @@
 				->join('users AS us', 'act.user_id', '=', 'us.user_id')
 				->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 				->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
-				->skip($offset * $limit)->take($limit)->get();
+				->skip($offset * $limit)->take($limit)
+				->where('act.activity_private', 0)->get();
 
 			if ($queryActivities->isEmpty()) {
 				abort(404);
@@ -58,7 +59,7 @@
 					->join('masters AS ms', 'us.master_id', '=', 'ms.master_id')
 					->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 					->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
-					->take(6)->get();
+					->where('act.activity_private', 0)->take(6)->get();
 			} else {
 				$queryActivities = Activity::from('activities as act')
 					->join('users AS us', 'act.user_id', '=', 'us.user_id')
@@ -66,7 +67,7 @@
 					->join('categories AS cg', 'act.category_id', '=', 'cg.category_id')
 					->select(\DB::raw('*, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 0) AS activity_pin, (SELECT COUNT(*) FROM user_activities AS ua WHERE ua.activity_id = act.activity_id AND ua.user_id = ' . $user_id . ' AND ua.user_activity_status = 0 AND ua.user_activity_paid = 1) AS activity_join'))
 					->whereIn('act.category_id', $category_id)
-					->get();
+					->where('act.activity_private', 0)->get();
 			}
 
 			return view('components.activity-grid-card', ['queryActivities' => $queryActivities, 'isSearching' => true]);
