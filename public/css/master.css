@@ -12193,7 +12193,7 @@ button:focus {
 }
 
 .interest-modal > .interest-wrapper > .interest-badge {
-  margin: 8px 8px 8px 3px;
+	margin: 8px 8px 3px 3px;
   padding: 10px 20px;
   color: #f14ea6;
   background: white;

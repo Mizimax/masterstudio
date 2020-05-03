@@ -210,6 +210,13 @@
 		{
 			Auth::logout();
 
+			return redirect('/');
+		}
+
+		public function getLogoutBack()
+		{
+			Auth::logout();
+
 			return redirect()->back();
 		}
 

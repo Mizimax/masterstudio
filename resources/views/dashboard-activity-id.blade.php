@@ -332,34 +332,32 @@
 
 
                 <div class="submit-wrapper d-flex flex-column">
+                    @if($activity['activity_private'] === 1)
+                        <form action="./{{ $activity['activity_id'] }}/public" method="post">
+                            @csrf
+                            <button class="primary-button" type="button"
+                                    onclick="$(this).parent().submit()">
+                                Set Public
+                            </button>
+                        </form>
+                    @else
+                        <form action="./{{ $activity['activity_id'] }}/private" method="post">
+                            @csrf
+                            <button class="primary-button" type="button"
+                                    onclick="$(this).parent().submit()">
+                                Set Private
+                            </button>
+                        </form>
+                    @endif
+                    <button class="primary-button mt-2" type="button"
+                            onclick="window.open('http://localhost/activity/{{ $activity["activity_url_name"] }}', '_blank')">
+                        Preview
+                    </button>
                     <button class="btn btn-primary mt-2" type="submit">
                         Save
                     </button>
                 </div>
             </form>
-            <div class="preview-public" align="center">
-                <button class="primary-button" type="button"
-                        onclick="window.open('http://localhost/activity/{{ $activity["activity_url_name"] }}', '_blank')">
-                    Preview
-                </button>
-                @if($activity['activity_private'] === 1)
-                    <form action="./{{ $activity['activity_id'] }}/public" method="post">
-                        @csrf
-                        <button class="primary-button mt-2" type="button"
-                                onclick="$(this).parent().submit()">
-                            Set Public
-                        </button>
-                    </form>
-                @else
-                    <form action="./{{ $activity['activity_id'] }}/private" method="post">
-                        @csrf
-                        <button class="primary-button mt-2" type="button"
-                                onclick="$(this).parent().submit()">
-                            Set Private
-                        </button>
-                    </form>
-                @endif
-            </div>
         @else
             <div align="center" style="padding: 20px">
                 You don't own this studio.<br>

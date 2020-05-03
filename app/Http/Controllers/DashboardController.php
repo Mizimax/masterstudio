@@ -11,6 +11,8 @@
 	use App\Studio;
 	use App\Subscriber;
 	use App\User;
+	use App\Follow;
+	use App\UserActivity;
 	use Illuminate\Http\Request;
 	use Illuminate\Support\Facades\Hash;
 	use Illuminate\Support\Facades\Mail;
@@ -25,7 +27,54 @@
 			if (\Auth::check() && \Auth::user()->user_type != 'admin') {
 				return redirect('/dashboard/master');
 			}
-			return redirect('/dashboard/user');
+			$allActivityCount = Activity::count();
+			$allMasterCount = Master::count();
+			$allUserCount = User::count();
+			$allUserActivityCount = UserActivity::count();
+			$allFollowCount = Follow::where('follow_type', 'studio')->count();
+			$allActivity = Activity::select(\DB::raw('(activity_hour * activity_price) AS totalIncome'))->first();
+			$categories = Category::get();
+			return view('dashboard-index', [
+				'allActivityCount' => $allActivityCount,
+				'allMasterCount' => $allMasterCount,
+				'allUserActivityCount' => $allUserActivityCount,
+				'allUserCount' => $allUserCount,
+				'allFollowCount' => $allFollowCount,
+				'totalIncome' => $allActivity['totalIncome'],
+				'categories' => $categories,
+
+			]);
+		}
+
+		public function getCategoryInfo($categoryId)
+		{
+			$activityCount = Activity::where('category_id', $categoryId)->count();
+			$masterCount = Master::where('category_id', $categoryId)->count();
+			$studioCount = Studio::where('category_id', $categoryId)->count();
+			$storyCount = ActivityStory::join('activities as act', 'act.activity_id', 'activity_stories.activity_id')
+				->where('act.category_id', $categoryId)
+				->count();
+			$userActivityCount = UserActivity::from('user_activities as ua')
+				->join('activities as act', 'act.activity_id', 'ua.activity_id')
+				->where('act.category_id', $categoryId)
+				->count();
+			$followCount = Follow::join('users', 'follows.following_id', 'users.user_id')
+				->join('masters', 'masters.master_id', 'users.master_id')
+				->join('categories as cg', 'masters.category_id', 'cg.category_id')
+				->where('masters.category_id', $categoryId)->count();
+			$activity = Activity::where('category_id', $categoryId)
+				->select(\DB::raw('(activity_hour * activity_price) AS totalIncome'))->first();
+			$categories = Category::get();
+			return view('dashboard-category-info', [
+				'activityCount' => $activityCount,
+				'userActivityCount' => $userActivityCount,
+				'storyCount' => $storyCount,
+				'followCount' => $followCount,
+				'totalIncome' => $activity['totalIncome'],
+				'categories' => $categories,
+				'masterCount' => $masterCount,
+				'studioCount' => $studioCount,
+			]);
 		}
 
 		public function login()
@@ -597,6 +646,8 @@
 					$activityData['activity_sponsor'][$i]['link'] = $inputs['sponsor_link'][$i];
 				}
 			}
+
+			echo "<script>window.open('/activity/" . $inputs['activity_name'] . "', '_blank')</script>";
 
 			$activityId = Activity::create([
 				'activity_name' => $inputs['activity_name'],

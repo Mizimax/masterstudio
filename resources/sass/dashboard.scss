@@ -136,7 +136,20 @@ body {
 					}
 				}
 
+				&.--left {
+					margin-left: 25px;
+					margin-right: 0;
+
+					> a {
+						&:after {
+							left: -13px;
+							right: auto;
+						}
+					}
+				}
+
 				> a {
+
 					&:after {
 						content: "";
 						position: absolute;

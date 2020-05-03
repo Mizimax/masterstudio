@@ -11105,6 +11105,16 @@ body {
 	}
 }
 
+.navbar-wrapper .navbar .nav-item.\--border.\--left {
+	margin-left: 25px;
+	margin-right: 0;
+}
+
+.navbar-wrapper .navbar .nav-item.\--border.\--left > a:after {
+	left: -13px;
+	right: auto;
+}
+
 .navbar-wrapper .navbar .nav-item.\--border > a:after {
 	content: "";
 	position: absolute;

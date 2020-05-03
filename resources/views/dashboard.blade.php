@@ -42,6 +42,10 @@
                     <ul class="navbar-nav ml-auto mt-2 mr-1 mt-md-0">
                         @if($user['user_type'] == 'admin')
                             <li class="nav-item">
+                                <a id="dashboard-menu" class="nav-link px-2 px-lg-3"
+                                   href="/dashboard">Overview</a>
+                            </li>
+                            <li class="nav-item">
                                 <a id="user-menu" class="nav-link px-2 px-lg-3"
                                    href="/dashboard/user">User</a>
                             </li>
@@ -70,6 +74,24 @@
                             <li class="nav-item">
                                 <a id="mail-menu" class="nav-link px-2 px-lg-3"
                                    href="/dashboard/mail">Email</a>
+                            </li>
+                        @endif
+                        @if(\Auth::check())
+
+                            <li class="nav-item --border --left">
+                                <a id="mail-menu" class="nav-link px-2 px-lg-3"
+                                   href=""
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout
+                                    <form id="logout-form" action="/logout/back" method="post"
+                                          style="display: none">
+                                        @csrf
+                                    </form>
+                                </a>
+                            </li>
+                        @else
+                            <li class="nav-item --border --left">
+                                <a id="mail-menu" class="nav-link px-2 px-lg-3"
+                                   href="/dashboard/login">Login</a>
                             </li>
                         @endif
                     </ul>
@@ -124,6 +146,11 @@
     <script>
       $(document).ready(function () {
         $('#' + page + '-menu').addClass('active')
+          @if(!Auth::check())
+          @if($errors->any())
+          alert('{{ $errors->first() }}')
+          @endif
+          @endif
       })
     </script>
     @yield('script')

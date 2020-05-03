@@ -12,7 +12,8 @@
 	*/
 
 	Route::get('/', 'HomeController@index');
-	Route::post('/logout/back', 'UserController@getLogout');
+	Route::post('/signout', 'UserController@getLogout');
+	Route::post('/logout/back', 'UserController@getLogoutBack');
 	Route::get('/user/{userId}', 'UserController@show');
 	Route::get('/activity', 'ActivityController@index');
 	Route::get('/activity/search', 'ActivityController@search');
@@ -52,6 +53,7 @@
 		Route::delete('/dashboard/story/{storyId}', 'DashboardController@removeStory');
 	});
 	Route::group(['middleware' => 'admin'], function () {
+		Route::get('/dashboard/category/{categoryId}/info', 'DashboardController@getCategoryInfo');
 		Route::get('/dashboard/user/add', 'DashboardController@addUser');
 		Route::post('/dashboard/user', 'DashboardController@createUser');
 		Route::delete('/dashboard/user/{userId}', 'DashboardController@removeUser');

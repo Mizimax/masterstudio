@@ -238,7 +238,7 @@
 
             <div class="submit-wrapper d-flex flex-column">
                 <button class="btn btn-primary mt-2" type="submit">
-                    Save
+                    Save & Preview
                 </button>
             </div>
         </form>

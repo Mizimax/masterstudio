@@ -13,6 +13,7 @@
 	position: fixed;
 	right: 50px;
 	bottom: 50px;
+	z-index: 999;
 }
 
 .studio-wrapper > .studio-form > .submit-wrapper > .btn-fixed {
