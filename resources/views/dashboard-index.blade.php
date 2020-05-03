@@ -26,6 +26,9 @@
                 <div class="my-2">Total income :
                     {{ $totalIncome }} baht
                 </div>
+                <div class="my-2">Category :
+                    {{ count($categories) }} categories
+                </div>
                 <br />
                 <div class="custom-dropdown" style="width: 200px">
                     <select id="category" name="month">
