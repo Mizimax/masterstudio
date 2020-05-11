@@ -9,7 +9,19 @@
 @section('content')
     <div class="container --master">
         <div class="content-list">
-
+            <div class="d-flex align-items-center">
+                <div class="custom-dropdown" style="width: 200px">
+                    <select name="month">
+                        <option value="">All months</option>
+                        <option value="">All months</option>
+                        <option value="">March 2020</option>
+                    </select>
+                </div>
+                <form class="ml-4" action="/dashboard/export" method="post">
+                    @csrf
+                    <button class="primary-button" type="submit" class="export">Export</button>
+                </form>
+            </div>
             <div class="summary-wrapper mt-4">
                 <div class="my-2 mt-4">Activity : {{ $allActivityCount }} activities
                 </div>
@@ -30,13 +42,22 @@
                     {{ count($categories) }} categories
                 </div>
                 <br />
-                <div class="custom-dropdown" style="width: 200px">
-                    <select id="category" name="month">
-                        <option value="{{ $categories[0]['category_id'] }}">{{ $categories[0]['category_name'] }}</option>
-                        @foreach($categories as $category)
-                            <option value="{{ $category['category_id'] }}">{{ $category['category_name'] }}</option>
-                        @endforeach
-                    </select>
+
+                <div class="d-flex align-items-center">
+                    <div class="custom-dropdown" style="width: 200px">
+                        <select id="category" name="month">
+                            <option value="{{ $categories[0]['category_id'] }}">{{ $categories[0]['category_name'] }}</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category['category_id'] }}">{{ $category['category_name'] }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <form class="ml-4" action="/dashboard/category/export/"
+                          onsubmit="$(this).attr('action', '/dashboard/category/export/' + $('#category').val())"
+                          method="post">
+                        @csrf
+                        <button class="primary-button" type="submit" class="export">Export</button>
+                    </form>
                 </div>
                 <div id="category-wrapper">
 
@@ -100,21 +121,7 @@
             closeAllSelect(this)
             this.nextSibling.classList.toggle('select-hide')
             this.classList.toggle('select-arrow-active')
-            $.ajax({
-              url: '/dashboard/category/' + $('#category').val() + '/info',
-              type: 'get',
-              processData: false,
-              contentType: 'application/json',
-              data: JSON.stringify({
-                '_token': $('meta[name="csrf-token"]').attr('content'),
-              }),
-              success: function (data) {
-                $('#category-wrapper').html(data)
-              },
-              error: function (error) {
-                console.log(error)
-              },
-            })
+
           })
         }
 
@@ -143,10 +150,27 @@
         document.addEventListener('click', closeAllSelect)
       }
     </script>
-
     <script>
       $(document).ready(function () {
         dropdownInit()
+
+        $('#category').siblings('.select-items').click(function () {
+          $.ajax({
+            url: '/dashboard/category/' + $('#category').val() + '/info',
+            type: 'get',
+            processData: false,
+            contentType: 'application/json',
+            data: JSON.stringify({
+              '_token': $('meta[name="csrf-token"]').attr('content'),
+            }),
+            success: function (data) {
+              $('#category-wrapper').html(data)
+            },
+            error: function (error) {
+              console.log(error)
+            },
+          })
+        })
 
         $.ajax({
           url: '/dashboard/category/1/info',

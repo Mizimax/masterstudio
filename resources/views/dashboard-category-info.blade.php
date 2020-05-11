@@ -15,7 +15,7 @@
     {{ $totalIncome }} baht
 </div>
 <div class="my-2">@master income :
-    {{ $totalIncome * 0.2 }} baht
+    {{ $totalIncome * 0.02 }} baht
 </div>
 <div class="my-2">Total sponsor :
     0 baht

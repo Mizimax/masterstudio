@@ -6,6 +6,8 @@
 	use App\Activity;
 	use App\ActivityStory;
 	use App\Category;
+	use App\Exports\OverviewExport;
+	use App\Exports\CategoryOverviewExport;
 	use App\Mail\WebSubscription;
 	use App\Master;
 	use App\Studio;
@@ -17,6 +19,7 @@
 	use Illuminate\Support\Facades\Hash;
 	use Illuminate\Support\Facades\Mail;
 	use Illuminate\Support\Facades\Validator;
+	use Maatwebsite\Excel\Facades\Excel;
 
 	class DashboardController extends Controller
 	{
@@ -46,6 +49,16 @@
 			]);
 		}
 
+		public function export()
+		{
+			return Excel::download(new OverviewExport(), 'atmaster_overview.xlsx');
+		}
+
+		public function exportCategory($categoryId)
+		{
+			return Excel::download(new CategoryOverviewExport($categoryId), 'atmaster_' . $categoryId . '_overview.xlsx');
+		}
+
 		public function getCategoryInfo($categoryId)
 		{
 			$activityCount = Activity::where('category_id', $categoryId)->count();
@@ -64,14 +77,12 @@
 				->where('masters.category_id', $categoryId)->count();
 			$activity = Activity::where('category_id', $categoryId)
 				->select(\DB::raw('(activity_hour * activity_price) AS totalIncome'))->first();
-			$categories = Category::get();
 			return view('dashboard-category-info', [
 				'activityCount' => $activityCount,
 				'userActivityCount' => $userActivityCount,
 				'storyCount' => $storyCount,
 				'followCount' => $followCount,
 				'totalIncome' => $activity['totalIncome'],
-				'categories' => $categories,
 				'masterCount' => $masterCount,
 				'studioCount' => $studioCount,
 			]);

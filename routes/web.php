@@ -73,6 +73,8 @@
 		Route::post('/dashboard/category/{categoryId}', 'DashboardController@editCategory');
 		Route::post('/dashboard/category', 'DashboardController@createCategory');
 		Route::delete('/dashboard/category/{categoryId}', 'DashboardController@removeCategory');
+		Route::post('/dashboard/export', 'DashboardController@export');
+		Route::post('/dashboard/category/export/{categoryId}', 'DashboardController@exportCategory');
 	});
 	Route::group(['middleware' => ['MasterOrAdmin']], function () {
 		Route::get('/dashboard/activity/add', 'DashboardController@addActivity');
