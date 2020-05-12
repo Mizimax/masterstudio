@@ -13,7 +13,7 @@
 
 	Route::get('/', 'HomeController@index');
 	Route::post('/signout', 'UserController@getLogout');
-	Route::post('/logout/back', 'UserController@getLogoutBack');
+	Route::post('/logout/back', 'UserController@getLogout');
 	Route::get('/user/{userId}', 'UserController@show');
 	Route::get('/activity', 'ActivityController@index');
 	Route::get('/activity/search', 'ActivityController@search');

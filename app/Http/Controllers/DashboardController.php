@@ -20,6 +20,7 @@
 	use Illuminate\Support\Facades\Mail;
 	use Illuminate\Support\Facades\Validator;
 	use Maatwebsite\Excel\Facades\Excel;
+	use Carbon\Carbon;
 
 	class DashboardController extends Controller
 	{
@@ -51,12 +52,14 @@
 
 		public function export()
 		{
-			return Excel::download(new OverviewExport(), 'atmaster_overview.xlsx');
+			$dt = Carbon::now();
+			return Excel::download(new OverviewExport(), 'atmaster_overview_' . $dt->toDateString() . '.xlsx');
 		}
 
 		public function exportCategory($categoryId)
 		{
-			return Excel::download(new CategoryOverviewExport($categoryId), 'atmaster_' . $categoryId . '_overview.xlsx');
+			$dt = Carbon::now();
+			return Excel::download(new CategoryOverviewExport($categoryId), 'atmaster_' . $categoryId . '_overview_' . $dt->toDateString() . '.xlsx');
 		}
 
 		public function getCategoryInfo($categoryId)
@@ -785,6 +788,10 @@
 
 		public function createCategory(Request $request)
 		{
+			Validator::make($request->all(), [
+				'category_video' => 'max:102400',
+			])->validate();
+
 			$inputs = $request->input();
 			$files = $request->file();
 
