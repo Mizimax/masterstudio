@@ -414,6 +414,11 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        @if($joinUsers->isEmpty())
+                                            <div style="padding: 20px">
+                                                No participant.
+                                            </div>
+                                        @endif
                                     </div>
                                     <form method="post" onsubmit="return deleteActivity()"
                                           action="/dashboard/activity/{{ $activity['activity_id'] }}">
