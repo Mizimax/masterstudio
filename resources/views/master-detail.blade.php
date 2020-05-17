@@ -415,7 +415,7 @@
                                             </div>
                                         @endforeach
                                         @if($joinUsers->isEmpty())
-                                            <div style="padding: 20px">
+                                            <div style="padding: 40px" align="center">
                                                 No participant.
                                             </div>
                                         @endif
