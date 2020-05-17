@@ -14047,6 +14047,7 @@ form .error-msg > .text {
   display: none;
   position: absolute;
   background: white;
+	z-index: 99;
   top: 35px;
   left: 0;
   font-size: 14px;

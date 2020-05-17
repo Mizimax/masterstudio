@@ -3,8 +3,8 @@
 @section('page', 'activity')
 
 @section('style')
-    <link rel="stylesheet" href="/css/dashboard.studio.css">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.studio.css?v=1.0">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css?v=1.0" rel="stylesheet">
     <style>
         .text-editor {
             border: none;
@@ -333,19 +333,18 @@
 
                 <div class="submit-wrapper d-flex flex-column">
                     @if($activity['activity_private'] === 1)
-                        <form action="./{{ $activity['activity_id'] }}/public" method="post">
-                            @csrf
-                            <button class="primary-button" type="button"
-                                    onclick="$(this).parent().submit()">
-                                Set Public
-                            </button>
-                        </form>
+
+                        <button class="primary-button" type="button"
+                                onclick="$('#public').submit()">
+                            Published
+                        </button>
+
                     @else
                         <form action="./{{ $activity['activity_id'] }}/private" method="post">
                             @csrf
                             <button class="primary-button" type="button"
-                                    onclick="$(this).parent().submit()">
-                                Set Private
+                                    onclick="$('#private').submit()">
+                                Draft
                             </button>
                         </form>
                     @endif
@@ -364,7 +363,12 @@
                 The studio can only be edited by the owner
             </div>
         @endif
-
+        <form id="public" action="./{{ $activity['activity_id'] }}/public" method="post">
+            @csrf
+        </form>
+        <form id="private" action="./{{ $activity['activity_id'] }}/private" method="post">
+            @csrf
+        </form>
 
     </div>
 @endsection

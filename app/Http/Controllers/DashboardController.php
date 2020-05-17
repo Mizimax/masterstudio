@@ -131,6 +131,7 @@
 			$masterId = Master::create([
 				'master_name' => $inputs['master_name'],
 				'category_id' => $inputs['category_id'],
+				'studio_id' => $inputs['studio_id'],
 				'master_nickname' => $inputs['master_nickname'],
 				'master_location' => $inputs['master_location'],
 				'master_recommend' => $inputs['master_recommend'] == 1 ? 1 : 0,
@@ -210,6 +211,7 @@
 			Master::where('master_id', $masterId)->update([
 				'master_name' => $inputs['master_name'],
 				'category_id' => $inputs['category_id'],
+				'studio_id' => $inputs['studio_id'],
 				'master_nickname' => $inputs['master_nickname'],
 				'master_location' => $inputs['master_location'],
 				'master_recommend' => $inputs['master_recommend'] == 1 ? 1 : 0,
@@ -229,6 +231,7 @@
 			$user = \Auth::user();
 			$activityModel = Activity::where('activity_id', $activityId);
 			$activity = $activityModel->first();
+
 			if ($user['user_type'] != 'admin') {
 				if ($activity['user_id'] !== $user['user_id']) {
 					return redirect()->back();
@@ -484,7 +487,7 @@
 		public function removeUser($userId)
 		{
 
-			User::where('user_id', $userId)->update();
+			User::where('user_id', $userId)->delete();
 			return redirect()->back();
 		}
 
@@ -500,7 +503,8 @@
 				$activities = Activity::join('users as u', 'u.user_id', 'activities.user_id')
 					->join('masters as m', 'm.master_id', 'u.master_id')->get();
 			}
-			return view('dashboard-activity', ['activities' => $activities, 'master' => $master]);
+			$categories = Category::get();
+			return view('dashboard-activity', ['activities' => $activities, 'master' => $master, 'categories' => $categories]);
 		}
 
 		public function activity($activityId)

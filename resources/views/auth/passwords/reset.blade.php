@@ -6,7 +6,7 @@
 @section('title', 'Reset password')
 
 @section('style')
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="/css/app.css?v=1.0">
 @endsection
 
 @section('content')

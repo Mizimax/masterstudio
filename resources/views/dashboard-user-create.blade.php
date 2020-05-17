@@ -3,7 +3,7 @@
 @section('page', 'user')
 
 @section('style')
-    <link rel="stylesheet" href="/css/dashboard.studio.css">
+    <link rel="stylesheet" href="/css/dashboard.studio.css?v=1.0">
 @endsection
 
 @section('content')

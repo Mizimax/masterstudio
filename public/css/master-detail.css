@@ -13504,6 +13504,7 @@ form .error-msg > .text {
   display: none;
   position: absolute;
   background: white;
+	z-index: 99;
   top: 35px;
   left: 0;
   font-size: 14px;
@@ -14047,5 +14048,48 @@ form .error-msg > .text {
 .activity-summary .indicator {
 	flex: 1;
 	color: #888;
+}
+
+.participant {
+	display: flex;
+	padding: 10px;
+	border-radius: 20px;
+	margin: 15px 20px;
+	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.participant > .pic {
+	border-radius: 50%;
+}
+
+.participant > .pic > img {
+	border-radius: 50%;
+}
+
+.participant > .content {
+	flex: 1;
+	position: relative;
+}
+
+.participant > .content > .name {
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+.participant > .content > .status {
+	border-radius: 20px;
+	background: #f14ea6;
+	color: white;
+	padding: 3px 10px;
+}
+
+.participant > .content > .primary-button,
+.activity-detail > .activity-add.participant > .badge-wrapper.content > .badge {
+	float: right;
+	padding: 10px 17px;
+	font-size: 11px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 

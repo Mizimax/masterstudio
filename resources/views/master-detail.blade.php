@@ -7,7 +7,7 @@
 @section('page', 'master')
 
 @section('style')
-    <link rel="stylesheet" href="/css/master-detail.css">
+    <link rel="stylesheet" href="/css/master-detail.css?v=1.0">
     <style>
         #map {
             margin-top: 20px;
@@ -380,14 +380,54 @@
                                         <div class="indicator">@master</div>
                                         <div class="value"></div>
                                     </div>
-                                    <button class="primary-button w-100">Edit Activity</button>
-                                    <div align="center" style="margin-top: 5px;">
-                                        <a href="">Cancel Activity</a>
+                                    <button class="primary-button w-100"
+                                            onclick="window.location='/dashboard/activity/{{ $activity['activity_id'] }}'">
+                                        Edit Activity
+                                    </button>
+                                    <div align="center"
+                                         onclick="showParticipant({{ $activity['activity_id'] }})"
+                                         style="margin-top: 8px; font-weight: bold; color: #f14ea6; font-size: 16px">
+                                        <a href="#">Participant profile</a>
                                     </div>
+                                    <div id="participants-{{ $activity['activity_id'] }}"
+                                         style="height: 0; width: 0; overflow: hidden">
+                                        <div align="center"
+                                             style="font-weight: bold;  font-size: 20px">{{ $activity['activity_name'] }}</div>
+                                        <div align="center" style="margin-top: 5px">Participant
+                                            profile
+                                        </div>
+
+                                        @foreach($joinUsers as $ju)
+                                            <div class="participant">
+                                                <div class="pic" style="width: 80px;height: 80px;">
+                                                    <img src="{{ $ju['user_pic'] }}"
+                                                         alt="{{ $ju['user_name'] }}"
+                                                         style="width: 80px;height: 80px;">
+                                                </div>
+                                                <div class="content ml-3">
+                                                    <div class="name">{{$ju['user_name']}}</div>
+                                                    <div style="margin-bottom: 5px">Level
+                                                        : {{ $ju['user_level'] }}</div>
+                                                    <span class="status">Paid</span>
+                                                    <button class="primary-button">view profile
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <form method="post" onsubmit="return deleteActivity()"
+                                          action="/dashboard/activity/{{ $activity['activity_id'] }}">
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        @csrf
+                                        <div align="center" onclick="$(this).parent().submit()"
+                                             style="margin-top: 8px;font-size: 12px; color: #f14ea6;">
+                                            <a href="#">Cancel Activity</a>
+                                        </div>
+                                    </form>
 
                                 </div>
                             @endforeach
-                            @if($nowActivities->isEmpty() && $nowActivities->isEmpty())
+                                @if($nowActivities->isEmpty() && $pastActivities->isEmpty())
                                 <div class="no-act" align="center">
                                     No activity now.
                                 </div>
@@ -425,6 +465,23 @@
             {{--        <div class="overlay"></div>--}}
         </div>
     @endif
+    <div class="modal fade" id="participant-modal" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="max-width: 500px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="logo-wrapper">
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body3">
+
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('script')
@@ -625,6 +682,14 @@
         })
       }
 
+      function deleteActivity() {
+        var result = confirm('Confirm to delete?')
+        if (!result) {
+          return false
+        }
+
+      }
+
       function addPicGallery() {
         var formData = new FormData()
         formData.append('image', $('.add-file')[0].files[0])
@@ -642,6 +707,11 @@
             $('.gallery-wrapper').html(data)
           },
         })
+      }
+
+      function showParticipant(id) {
+        $('#participant-modal').modal('show')
+        $('.modal-body3').html($('#participants-' + id).html())
       }
     </script>
 @endsection

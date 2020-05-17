@@ -3,8 +3,8 @@
 @section('page', 'category')
 
 @section('style')
-    <link rel="stylesheet" href="/css/dashboard.studio.css">
-    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.studio.css?v=1.0">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css?v=1.0" rel="stylesheet">
     <style>
         .text-editor {
             border: none;

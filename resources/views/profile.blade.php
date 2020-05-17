@@ -5,11 +5,11 @@
 @endphp
 @extends('app')
 
-@section('title', 'Studio')
+@section('title', 'User - ' . $user['user_name'])
 @section('page', 'home')
 
 @section('style')
-    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/profile.css?v=1.0">
 @endsection
 
 @section('content')

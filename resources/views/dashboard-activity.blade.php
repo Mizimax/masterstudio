@@ -3,7 +3,7 @@
 @section('page', 'activity')
 
 @section('style')
-    <link rel="stylesheet" href="/css/dashboard.master.css">
+    <link rel="stylesheet" href="/css/dashboard.master.css?v=1.0">
 @endsection
 
 @section('content')
@@ -68,7 +68,17 @@
                 </div>
             </div>
 
-            <div class="d-flex flex-wrap mt-4">
+            <div class="custom-dropdown"
+                 style="width: 200px; margin-left: auto; margin-right: 50px;">
+                <select id="category" name="month">
+                    <option value="0">All category</option>
+                    <option value="0">All category</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category['category_id'] }}">{{ $category['category_name'] }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div id="activity-wrapper" style="display: flex" class="flex-wrap mt-4">
                 @php
                     $count = 0;
                     $interest = 0;
@@ -90,6 +100,8 @@
                         $income += $activity['activity_price'] * $joinUserNo;
                     @endphp
                     <div class="activity-summary">
+                        <input type="hidden" name="category_id"
+                               value="{{ $activity['category_id'] }}">
                         <div class="head">{{ $activity['activity_name'] }}</div>
                         <div class="d-flex">
                             <div class="indicator">Owner</div>
@@ -150,6 +162,9 @@
 
                     </div>
                 @endforeach
+            </div>
+            <div id="activity-wrapper-filter" class="d-flex flex-wrap mt-4">
+
             </div>
 
         </div>
@@ -246,12 +261,35 @@
 
       }
 
+      function getActivityByCategory(category) {
+        return $('#activity-wrapper > .activity-summary').filter(function (index, item) {
+          var categoryId = $(item).find('input[type=hidden]').val()
+          return categoryId == category
+        })
+      }
+
       $(document).ready(function () {
         dropdownInit()
 
         $('#joinUser').text('{{ $count }}')
         $('#income').text('{{ $income }}')
         $('#interest').text('{{ $interest }}')
+
+        $('#category').siblings('.select-items').click(function () {
+          if ($('#category').val() == 0) {
+            $('#activity-wrapper').css('height', 'auto')
+            $('#activity-wrapper').css('overflow', 'auto')
+            $('#activity-wrapper-filter').css('height', '0px')
+            $('#activity-wrapper-filter').css('overflow', 'hidden')
+            return false
+          }
+          $('#activity-wrapper').css('height', '0px')
+          $('#activity-wrapper').css('overflow', 'hidden')
+          $('#activity-wrapper-filter').css('height', 'auto')
+          $('#activity-wrapper-filter').css('overflow', 'auto')
+          var activityFilter = getActivityByCategory($('#category').val()).clone()
+          $('#activity-wrapper-filter').html(activityFilter)
+        })
       })
     </script>
 @endsection

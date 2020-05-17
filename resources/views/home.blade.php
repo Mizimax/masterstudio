@@ -4,7 +4,7 @@
 @section('page', 'home')
 
 @section('style')
-    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/home.css?v=1.0">
 @endsection
 
 @section('content')

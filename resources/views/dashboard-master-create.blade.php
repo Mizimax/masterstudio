@@ -3,7 +3,7 @@
 @section('page', 'master')
 
 @section('style')
-    <link rel="stylesheet" href="/css/dashboard.studio.css">
+    <link rel="stylesheet" href="/css/dashboard.studio.css?v=1.0">
 @endsection
 
 @section('content')
@@ -34,7 +34,7 @@
             </div>
 
             <div class="form-group">
-                <label for="master_location">Master location</label>
+                <label for="master_location">Studio</label>
                 <input type="text" name="master_location" value="{{ old('master_location') }}"
                        class="form-control">
             </div>

@@ -7,7 +7,7 @@
 @section('page', 'studio')
 
 @section('style')
-    <link rel="stylesheet" href="/css/studio.css">
+    <link rel="stylesheet" href="/css/studio.css?v=1.0">
     <style>
         img[src^='/img/studio'], img[src^='/img/upload/studio/'] {
             border-radius: 50%;

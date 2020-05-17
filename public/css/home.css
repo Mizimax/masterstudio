@@ -13710,7 +13710,7 @@ form .error-msg > .text {
 
 @media (max-height: 700px) and (max-width: 576px) {
   .video-header > .search-group {
-    margin-top: 0 !important;
+	  margin-top: 20px !important;
     top: 70%;
   }
 }
