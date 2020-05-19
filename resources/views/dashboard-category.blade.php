@@ -3,7 +3,7 @@
 @section('page', 'category')
 
 @section('style')
-    <link rel="stylesheet" href="/css/dashboard.master.css?v=1.0">
+    <link rel="stylesheet" href="/css/dashboard.master.css?v=1.1">
     <style>
 
     </style>

@@ -7,7 +7,7 @@
 @section('page', 'master')
 
 @section('style')
-    <link rel="stylesheet" href="/css/master.css?v=1.0">
+    <link rel="stylesheet" href="/css/master.css?v=1.1">
 @endsection
 
 @section('content')

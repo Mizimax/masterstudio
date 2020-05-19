@@ -53,13 +53,13 @@
 		public function export()
 		{
 			$dt = Carbon::now();
-			return Excel::download(new OverviewExport(), 'atmaster_overview_' . $dt->toDateString() . '.xlsx');
+			return Excel::download(new OverviewExport(), 'atmaster_overview_' . $dt->month . '-' . $dt->year . '.xlsx');
 		}
 
 		public function exportCategory($categoryId)
 		{
 			$dt = Carbon::now();
-			return Excel::download(new CategoryOverviewExport($categoryId), 'atmaster_' . $categoryId . '_overview_' . $dt->toDateString() . '.xlsx');
+			return Excel::download(new CategoryOverviewExport($categoryId), 'atmaster_' . $categoryId . '_overview_' . $dt->month . '-' . $dt->year . '.xlsx');
 		}
 
 		public function getCategoryInfo($categoryId)

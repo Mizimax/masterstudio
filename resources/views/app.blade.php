@@ -26,7 +26,7 @@
 
     <title>@yield('title') - Master Studio</title>
     <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?v=1.0">
+          href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?v=1.1">
     @yield('style')
     <script>
       var page = '@yield('page')'

@@ -13,6 +13,7 @@
 	use Illuminate\Contracts\View\View;
 	use Maatwebsite\Excel\Concerns\FromCollection;
 	use Maatwebsite\Excel\Concerns\FromView;
+	use Carbon\Carbon;
 
 	class CategoryOverviewExport implements FromView
 	{
@@ -45,6 +46,7 @@
 				->where('masters.category_id', $this->categoryId)->count();
 			$activity = Activity::where('category_id', $this->categoryId)
 				->select(\DB::raw('(activity_hour * activity_price) AS totalIncome'))->first();
+			$dt = Carbon::now();
 			return view('exports.overview-category', [
 				'activityCount' => $activityCount,
 				'userActivityCount' => $userActivityCount,
@@ -53,6 +55,7 @@
 				'totalIncome' => $activity['totalIncome'],
 				'masterCount' => $masterCount,
 				'studioCount' => $studioCount,
+				'monthYear' => $dt->month . '-' . $dt->year
 			]);
 		}
 	}

@@ -7,7 +7,7 @@
 @section('page', 'studio')
 
 @section('style')
-    <link rel="stylesheet" href="/css/studio-detail.css?v=1.0">
+    <link rel="stylesheet" href="/css/studio-detail.css?v=1.1">
 @endsection
 
 @section('content')

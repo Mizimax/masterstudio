@@ -4,7 +4,7 @@
 @section('page', 'activity')
 
 @section('style')
-    <link rel="stylesheet" href="/css/activity.css?v=1.0">
+    <link rel="stylesheet" href="/css/activity.css?v=1.1">
 @endsection
 
 @section('content')

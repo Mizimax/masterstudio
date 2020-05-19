@@ -1,7 +1,7 @@
 <table>
     <thead>
     <tr>
-        <th width="20">Follow</th>
+        <th width="20">Month</th>
         <th width="20">Join activity user</th>
         <th width="20">Activities</th>
         <th width="20">Masters</th>
@@ -14,6 +14,7 @@
     </thead>
     <tbody>
     <tr>
+        <td>{{ $monthYear }}</td>
         <td>{{ $followCount }} Follows</td>
         <td>{{ $userActivityCount }} Users</td>
         <td>{{ $activityCount }} Activities</td>

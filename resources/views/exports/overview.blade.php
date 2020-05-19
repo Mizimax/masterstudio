@@ -1,6 +1,7 @@
 <table>
     <thead>
     <tr>
+        <th width="20">Month</th>
         <th width="20">Activities</th>
         <th width="20">Masters</th>
         <th width="20">User Activity</th>
@@ -12,6 +13,7 @@
     </thead>
     <tbody>
     <tr>
+        <td>{{ $monthYear }}</td>
         <td>{{ $allActivityCount }} Activities</td>
         <td>{{ $allMasterCount }} Masters</td>
         <td>{{ $allUserActivityCount }} Users</td>

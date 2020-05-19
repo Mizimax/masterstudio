@@ -7,7 +7,7 @@
 @section('page', 'register')
 
 @section('style')
-    <link rel="stylesheet" href="/css/home.css?v=1.0">
+    <link rel="stylesheet" href="/css/home.css?v=1.1">
 @endsection
 
 @section('content')
