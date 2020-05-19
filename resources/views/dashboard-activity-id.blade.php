@@ -349,7 +349,7 @@
                         </form>
                     @endif
                     <button class="primary-button mt-2" type="button"
-                            onclick="window.open('http://localhost/activity/{{ $activity["activity_url_name"] }}', '_blank')">
+                            onclick="window.open('/activity/{{ $activity["activity_url_name"] }}', '_blank')">
                         Preview
                     </button>
                     <button class="btn btn-primary mt-2" type="submit">

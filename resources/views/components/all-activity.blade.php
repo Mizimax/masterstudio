@@ -33,7 +33,7 @@
                 <span class="price-status">{{ number_format($nowActivity['activity_price']) }} Bath {{ $nowActivity['user_activity_paid'] === 0 ? 'Interested' : 'Paid' }}</span>
                 @if($nowActivity['user_activity_paid'] === 0)
                     <button class="pay-button"
-                            onclick="window.location.href='/activity/{{ $nowActivity['activity_url_name'] }}#pay'">
+                            onclick="window.location.href='/activity/{{ $nowActivity['activity_url_name'] }}?{{ Str::random(5) }}#pay'">
                         Pay now
                     </button>
                     <button class="pay-button --outline"
@@ -46,7 +46,13 @@
                             onclick="window.location.href='/activity/{{ $nowActivity['activity_url_name'] }}'">
                         View activity detail
                     </button>
-                    <button class="pay-button --outline">Cancel booked</button>
+                    <form method="post"
+                          action="/activity/{{ $nowActivity['activity_id'] }}/user"
+                          onsubmit="return deleteActivity()" style="width: 190px">
+                        <input name="_method" type="hidden" value="DELETE">
+                        @csrf
+                        <button class="pay-button --outline">Cancel booked</button>
+                    </form>
                 @endif
             </div>
         </div>

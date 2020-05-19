@@ -14050,7 +14050,7 @@ form .error-msg > .text {
 	color: #888;
 }
 
-.participant {
+.participants .participant {
 	display: flex;
 	padding: 10px;
 	border-radius: 20px;
@@ -14058,33 +14058,33 @@ form .error-msg > .text {
 	box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
-.participant > .pic {
+.participants .participant > .pic {
 	border-radius: 50%;
 }
 
-.participant > .pic > img {
+.participants .participant > .pic > img {
 	border-radius: 50%;
 }
 
-.participant > .content {
+.participants .participant > .content {
 	flex: 1;
 	position: relative;
 }
 
-.participant > .content > .name {
+.participants .participant > .content > .name {
 	font-size: 18px;
 	margin-bottom: 5px;
 }
 
-.participant > .content > .status {
+.participants .participant > .content > .status {
 	border-radius: 20px;
 	background: #f14ea6;
 	color: white;
 	padding: 3px 10px;
 }
 
-.participant > .content > .primary-button,
-.activity-detail > .activity-add.participant > .badge-wrapper.content > .badge {
+.participants .participant > .content > .primary-button,
+.participants .activity-detail > .activity-add.participant > .badge-wrapper.content > .badge {
 	float: right;
 	padding: 10px 17px;
 	font-size: 11px;

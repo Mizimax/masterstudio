@@ -1067,6 +1067,14 @@
           scrollTop: $('#' + name).offset().top,
         }, 500)
       }
+
+      var deleteActivity = function () {
+        var result = confirm('Confirm to delete?')
+        if (!result) {
+          return false
+        }
+
+      }
     </script>
     @yield('script')
 </body>

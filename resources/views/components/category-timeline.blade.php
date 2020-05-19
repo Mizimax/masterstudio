@@ -29,7 +29,7 @@
                         <source data-src="{{ $timeline['activity_story_video'] }}"
                                 type="video/mp4" />
                     </video>
-                    <div class="name">{{ $timeline['activity_name']  }}</div>
+                    <div class="name" align="center">{{ $timeline['activity_name']  }}</div>
                 </div>
             @endforeach
         </div>

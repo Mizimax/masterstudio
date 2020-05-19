@@ -667,44 +667,46 @@
 	}
 }
 
-.participant {
-	display: flex;
-	padding: 10px;
-	border-radius: 20px;
-	margin: 15px 20px;
-	@include shadow(0px, 0px, 15px, 0px, 0.1);
+.participants {
+	.participant {
+		display: flex;
+		padding: 10px;
+		border-radius: 20px;
+		margin: 15px 20px;
+		@include shadow(0px, 0px, 15px, 0px, 0.1);
 
-	> .pic {
-		border-radius: 50%;
-
-		> img {
+		> .pic {
 			border-radius: 50%;
-		}
-	}
 
-	> .content {
-		flex: 1;
-		position: relative;
-
-		> .name {
-			font-size: 18px;
-			margin-bottom: 5px;
+			> img {
+				border-radius: 50%;
+			}
 		}
 
-		> .status {
-			border-radius: 20px;
-			background: $primary;
-			color: white;
-			padding: 3px 10px;
-		}
+		> .content {
+			flex: 1;
+			position: relative;
 
-		> .primary-button {
-			float: right;
-			padding: 10px 17px;
-			font-size: 11px;
-			position: absolute;
-			right: 0;
-			bottom: 0;
+			> .name {
+				font-size: 18px;
+				margin-bottom: 5px;
+			}
+
+			> .status {
+				border-radius: 20px;
+				background: $primary;
+				color: white;
+				padding: 3px 10px;
+			}
+
+			> .primary-button {
+				float: right;
+				padding: 10px 17px;
+				font-size: 11px;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
 		}
 	}
 }

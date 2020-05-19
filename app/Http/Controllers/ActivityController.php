@@ -284,4 +284,13 @@
 				'message' => 'Added comment'
 			], 200);
 		}
+
+		public function cancelActivity($activityId)
+		{
+			//
+			UserActivity::where('activity_id', $activityId)
+				->where('user_id', \Auth::id())->delete();
+			return redirect()->back();
+		}
+
 	}

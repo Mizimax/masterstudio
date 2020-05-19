@@ -29,6 +29,7 @@
 
 	Route::group(['middleware' => 'auth'], function () {
 		Route::post('/activity/{id}/payment', 'PaymentController@payment');
+		Route::delete('/activity/{id}/user', 'ActivityController@cancelActivity');
 		Route::post('/user/{userId}', 'UserController@follow');
 		Route::post('/master/{userId}', 'MasterController@follow');
 		Route::delete('/master/{id}/gallery/{picId}', 'MasterController@delGallery');

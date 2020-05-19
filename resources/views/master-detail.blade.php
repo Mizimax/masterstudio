@@ -327,9 +327,51 @@
                                     <button onclick="window.location='/dashboard/activity/{{ $activity['activity_id'] }}'"
                                             class="primary-button w-100">Edit Activity
                                     </button>
-                                    <div align="center" style="margin-top: 5px;">
-                                        <a href="">Cancel Activity</a>
+                                    <div align="center"
+                                         onclick="showParticipant({{ $activity['activity_id'] }})"
+                                         style="margin-top: 8px; font-weight: bold; color: #f14ea6; font-size: 16px">
+                                        <a href="#">Participant profile</a>
                                     </div>
+                                    <div id="participants-{{ $activity['activity_id'] }}"
+                                         style="height: 0; width: 0; overflow: hidden">
+                                        <div align="center"
+                                             style="font-weight: bold;  font-size: 20px">{{ $activity['activity_name'] }}</div>
+                                        <div align="center" style="margin-top: 5px">Participant
+                                            profile
+                                        </div>
+
+                                        @foreach($joinUsers as $ju)
+                                            <div class="participant">
+                                                <div class="pic" style="width: 80px;height: 80px;">
+                                                    <img src="{{ $ju['user_pic'] }}"
+                                                         alt="{{ $ju['user_name'] }}"
+                                                         style="width: 80px;height: 80px;">
+                                                </div>
+                                                <div class="content ml-3">
+                                                    <div class="name">{{$ju['user_name']}}</div>
+                                                    <div style="margin-bottom: 5px">Level
+                                                        : {{ $ju['user_level'] }}</div>
+                                                    <span class="status">Paid</span>
+                                                    <button class="primary-button">view profile
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                        @if($joinUsers->isEmpty())
+                                            <div style="padding: 40px" align="center">
+                                                No participant.
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <form method="post" onsubmit="return deleteActivity()"
+                                          action="/dashboard/activity/{{ $activity['activity_id'] }}">
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        @csrf
+                                        <div align="center" onclick="$(this).parent().submit()"
+                                             style="margin-top: 8px;font-size: 12px; color: #f14ea6;">
+                                            <a href="#">Cancel Activity</a>
+                                        </div>
+                                    </form>
 
                                 </div>
                             @endforeach
