@@ -35,8 +35,11 @@
 
             <div class="form-group">
                 <label for="master_location">Studio</label>
-                <input type="text" name="master_location" value="{{ old('master_location') }}"
-                       class="form-control">
+                <select name="studio_id" class="form-control" required>
+                    @foreach($studios as $studio)
+                        <option value="{{ $studio['studio_id'] }}">{{ $studio['studio_name'] }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="form-group">

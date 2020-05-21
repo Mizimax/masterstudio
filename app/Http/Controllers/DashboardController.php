@@ -113,14 +113,16 @@
 			$master = Master::join('users', 'users.master_id', 'masters.master_id')
 				->where('masters.master_id', $masterId)->first();
 			$categories = Category::get();
-			return view('dashboard-master-id', ['master' => $master, 'categories' => $categories]);
+			$studios = Studio::get();
+			return view('dashboard-master-id', ['master' => $master, 'categories' => $categories, 'studios' => $studios]);
 		}
 
 		public function addMaster()
 		{
 			$categories = Category::get();
 			$users = User::get();
-			return view('dashboard-master-create', ['categories' => $categories, 'users' => $users]);
+			$studios = Studio::get();
+			return view('dashboard-master-create', ['categories' => $categories, 'users' => $users, 'studios' => $studios]);
 		}
 
 		public function createMaster(Request $request)
@@ -133,7 +135,6 @@
 				'category_id' => $inputs['category_id'],
 				'studio_id' => $inputs['studio_id'],
 				'master_nickname' => $inputs['master_nickname'],
-				'master_location' => $inputs['master_location'],
 				'master_recommend' => $inputs['master_recommend'] == 1 ? 1 : 0,
 				'master_most_recommend' => $inputs['master_recommend'] == 2 ? 1 : 0,
 			])->id;
@@ -213,7 +214,6 @@
 				'category_id' => $inputs['category_id'],
 				'studio_id' => $inputs['studio_id'],
 				'master_nickname' => $inputs['master_nickname'],
-				'master_location' => $inputs['master_location'],
 				'master_recommend' => $inputs['master_recommend'] == 1 ? 1 : 0,
 				'master_most_recommend' => $inputs['master_recommend'] == 2 ? 1 : 0,
 			]);

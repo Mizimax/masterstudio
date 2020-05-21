@@ -37,10 +37,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="master_location">Master location</label>
-                    <input type="text" name="master_location"
-                           value="{{ $master['master_location'] }}"
-                           class="form-control">
+                    <label for="master_location">Studio</label>
+                    <select name="studio_id" class="form-control" required>
+                        <option value="{{ $master['studio_id'] }}">{{ $studios[array_search($master['studio_id'], array_column($studios->toArray(), 'studio_id'))]['studio_name'] }}</option>
+                        @foreach($studios as $studio)
+                            @if($studio->studio_id !==  $master['studio_id'])
+                                <option value="{{ $studio['studio_id'] }}">{{ $studio['studio_name'] }}</option>
+                            @endif
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
