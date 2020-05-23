@@ -7,7 +7,7 @@
 @section('page', 'master')
 
 @section('style')
-    <link rel="stylesheet" href="/css/master-detail.css?v=1.1">
+    <link rel="stylesheet" href="/css/master-detail.css?v=1.2">
     <style>
         #map {
             margin-top: 20px;

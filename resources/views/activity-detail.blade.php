@@ -7,7 +7,7 @@
 @section('page', 'activity')
 
 @section('style')
-    <link rel="stylesheet" href="/css/activity-detail.css?v=1.1">
+    <link rel="stylesheet" href="/css/activity-detail.css?v=1.2">
     <script data-ad-client="ca-pub-1666764035078228" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 @endsection

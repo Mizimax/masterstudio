@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/css/dashboard.css?v=1.1">
+    <link rel="stylesheet" href="/css/dashboard.css?v=1.2">
     @if($user['user_type'] != 'admin')
         <style>
             body {

@@ -9,7 +9,7 @@
 @section('page', 'home')
 
 @section('style')
-    <link rel="stylesheet" href="/css/profile.css?v=1.1">
+    <link rel="stylesheet" href="/css/profile.css?v=1.2">
 @endsection
 
 @section('content')
