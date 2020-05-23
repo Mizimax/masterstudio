@@ -339,6 +339,8 @@
 				'studio_description' => $inputs['studio_description'],
 				'studio_location' => $inputs['studio_location'],
 				'studio_icon' => $studioData['studio_icon'],
+				'studio_lat' => $inputs['studio_lat'],
+				'studio_long' => $inputs['studio_long'],
 				'studio_bg' => json_encode($studioData['studio_bg']),
 				'studio_video' => json_encode($studioData['studio_video']),
 			]);
@@ -350,6 +352,10 @@
 			$inputs = $request->input();
 			$files = $request->file();
 			$user = \Auth::user();
+
+			if ($inputs['studio_location'] == '') {
+				return redirect()->back()->withErrors(['message' => 'Location required.']);
+			}
 
 			$studioModel = Studio::where('studios.studio_id', $studioId);
 			$studio = $studioModel->first();
@@ -385,6 +391,8 @@
 				'studio_location' => $inputs['studio_location'],
 				'studio_icon' => $studioData['studio_icon'],
 				'studio_user' => $inputs['studio_user'],
+				'studio_lat' => $inputs['studio_lat'],
+				'studio_long' => $inputs['studio_long'],
 				'studio_bg' => json_encode($studioData['studio_bg']),
 				'studio_video' => json_encode($studioData['studio_video']),
 			]);

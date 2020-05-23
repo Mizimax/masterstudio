@@ -16,6 +16,8 @@
 			'studio_location',
 			'studio_icon',
 			'studio_bg',
-			'studio_video'
+			'studio_video',
+			'studio_lat',
+			'studio_long'
 		];
 	}
