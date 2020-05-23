@@ -98,7 +98,7 @@
                                     <span class="menu-name">Following</span>
                                 </a>
                             </div>
-                            @if(Auth::user()->master_id)
+                            @if($user && Auth::user()->master_id)
                                 <div class="sub-menu">
                                     <a href="/dashboard">
                                         <span class="menu-name">Dashboard</span>
@@ -141,11 +141,18 @@
                     <li class="nav-item">
                         <a id="studio-menu" class="nav-link px-2 px-lg-3" href="/studio">Studio</a>
                     </li>
-                    <li class="nav-item">
-                        <a id="become-menu" class="nav-link px-2 px-lg-3" href="#"
-                           onclick="modal('become')">Become
-                            master</a>
-                    </li>
+                    @if($user && !$user['master_id'])
+                        <li class="nav-item">
+                            <a id="become-menu" class="nav-link px-2 px-lg-3" href="#"
+                               onclick="modal('become')">Become master</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a id="become-menu" class="nav-link px-2 px-lg-3"
+                               href="/dashboard/activity"
+                            >Create Activity</a>
+                        </li>
+                    @endif
                 </ul>
             </div>
 
@@ -822,28 +829,28 @@
 `
       var loginModal = `
            @if(!$user)
-          <div id="login-error" style="color: red;" align="center"></div>
-          <form id="loginForm" class="register-form" onsubmit="login(); return false;">
-                        <div class="form-group">
-                            <label for="user_email">Email</label>
-                            <input required type="text" id="user_email" class="form-control"
-                                   placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="user_password">Password</label>
-                            <input required type="password" id="user_password" name="user_password"
-                                   id="password" class="form-control" placeholder="Password">
-                        </div>
+        <div id="login-error" style="color: red;" align="center"></div>
+        <form id="loginForm" class="register-form" onsubmit="login(); return false;">
+                      <div class="form-group">
+                          <label for="user_email">Email</label>
+                          <input required type="text" id="user_email" class="form-control"
+                                 placeholder="Email">
+                      </div>
+                      <div class="form-group">
+                          <label for="user_password">Password</label>
+                          <input required type="password" id="user_password" name="user_password"
+                                 id="password" class="form-control" placeholder="Password">
+                      </div>
 
-                    <div class="modal-action justify-content-center">
-                        <button type="button" class="primary-button --outline" onclick="modal('register')">Register</button>
-                        <button type="submit" class="primary-button">Login</button>
-                    </div>
-                    <div align="center"><a href="/password/reset" style="font-size: 13px;">Forgot password ?</a></div>
-                    <br/>
-            </form>
-            @endif
-          `
+                  <div class="modal-action justify-content-center">
+                      <button type="button" class="primary-button --outline" onclick="modal('register')">Register</button>
+                      <button type="submit" class="primary-button">Login</button>
+                  </div>
+                  <div align="center"><a href="/password/reset" style="font-size: 13px;">Forgot password ?</a></div>
+                  <br/>
+          </form>
+@endif
+        `
 
       var allActivityModal = `
         <div id="my-activity" class="my-activity">
